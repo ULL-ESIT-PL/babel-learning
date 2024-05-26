@@ -1,0 +1,20 @@
+{
+  "name": "babel-learning",
+  "version": "1.0.0",
+  "description": "See this introduction by Matt Zeunert and the associated [GitHub repository](https://github.com/mattzeunert/babel-plugin-demo)  for a simple example of how to create a Babel plugin.",
+  "main": "index.js",
+  "scripts": {
+    "b": "babel src --out-dir lib",
+    "ba": "babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions",
+    "bab": "babel src --out-dir lib --presets=@babel/env",
+    "clean": "rm -rf lib"
+  },
+  "keywords": [],
+  "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.24.6",
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6"
+  }
+}
