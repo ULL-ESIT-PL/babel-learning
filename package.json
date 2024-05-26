@@ -7,7 +7,8 @@
     "b": "babel src --out-dir lib",
     "ba": "babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions",
     "bab": "babel src --out-dir lib --presets=@babel/env",
-    "clean": "rm -rf lib"
+    "clean": "rm -rf lib",
+    "save": "git add . && git commit -m 'save' && git push"
   },
   "keywords": [],
   "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
