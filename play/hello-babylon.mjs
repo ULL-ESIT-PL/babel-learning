@@ -1,18 +1,33 @@
 import * as babylon from "babylon";
 
-const code = `function square(n) {
-  return n * n;
-}`;
+const code = `n => n * n;`;
 
-let ast = babylon.parse(code);
+let ast = babylon.parse(code, {
+  sourceType: "module",
+  plugins: ["@babel/plugin-transform-arrow-functions"]
+});
 console.log(JSON.stringify(ast, null, 2));
-
-// Node {
-//   type: "File",
-//   start: 0,
-//   end: 38,
-//   loc: SourceLocation {...},
-//   program: Node {...},
-//   comments: [],
-//   tokens: [...]
-// }
+/*  
+node play/hello-babylon.mjs > salida.json
+compast -n salida.json 
+type: "File"
+program:
+  type: "Program"
+  body:
+    - type: "ExpressionStatement"
+      expression:
+        type: "ArrowFunctionExpression"
+        id: null
+        params:
+          - type: "Identifier"
+            name: "n"
+        body:
+          type: "BinaryExpression"
+          left:
+            type: "Identifier"
+            name: "n"
+          operator: "*"
+          right:
+            type: "Identifier"
+            name: "n"
+*/
