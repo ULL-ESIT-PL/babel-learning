@@ -157,7 +157,43 @@ If a path is in a list like in the body of a `Function`/`Program`, it will have 
 - The path's container (an array of all sibling nodes) with `path.container`
 - Get the name of the key of the list container with `path.listKey`
 
-See the example at [play/get-sibling-path.mjs](/play/get-sibling-path.mjs).
+See the example at [play/get-sibling-path.mjs](/play/get-sibling-path.mjs)
+
+```js
+import * as babylon from "babylon";
+import _traverse from "@babel/traverse";
+const traverse = _traverse.default;
+
+const code = `
+var a = 1; // pathA, path.key = 0
+var b = 2; // pathB, path.key = 1
+var c = 3; // pathC, path.key = 2
+`;
+
+const ast = babylon.parse(code);
+
+traverse(ast, {
+  enter(path) {
+    if (path.node.type === "VariableDeclaration") {
+      console.error(
+        path.inList, // true
+        path.listKey, // 
+        path.key, // 0
+        path.getSibling(path.key).node.declarations[0].id.name, // 
+        path.getSibling((path.key + 1)%3).node.declarations[0].id.name, //
+        path.container.length, // 3
+        path.getPrevSibling().node?.declarations[0].id.name, // 
+        path.getNextSibling().node?.declarations[0].id.name, // 
+        path.getAllPrevSiblings().length,  // 
+        path.getAllNextSiblings().length   // 
+      );
+    }
+  }
+});
+
+```
+
+Run the script:
 
 ```sh
 ➜  babel-learning git:(main) ✗ node play/get-sibling-path.mjs

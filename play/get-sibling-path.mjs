@@ -13,7 +13,6 @@ const ast = babylon.parse(code);
 traverse(ast, {
   enter(path) {
     if (path.node.type === "VariableDeclaration") {
-      //console.error(path.node);
       console.error(
         path.inList, // true
         path.listKey, // 
