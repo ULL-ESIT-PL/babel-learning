@@ -2,8 +2,8 @@
 
 There are two main options:
 
-- babel.config.json
-- .babelrc. The extension can also be `.babelrc.js`, `.babelrc.cjs`, or `.babelrc.mjs`.
+- `babel.config.json`
+- `.babelrc`. The extension can also be `.babelrc.js`, `.babelrc.cjs`, or `.babelrc.mjs`.
 
 ## babel.config.json
 
