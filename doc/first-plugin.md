@@ -147,7 +147,7 @@ sebmck === dork;
 
 Awesome! Our very first Babel plugin.
 
-## Second Plugin
+## Second Plugin: Reverse identifiers
 
 See the example [play/hello-plugin.mjs](/play/hello-plugin.mjs).
 
