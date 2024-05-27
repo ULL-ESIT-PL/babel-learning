@@ -96,23 +96,7 @@ BinaryExpression(path) {
   // ...
 }
 ```
-See the final code at [play/first-plugin.mjs](/play/first-plugin.mjs).
 
-```js
-export default function({ types: t }) {
-  return {
-    visitor: {
-      BinaryExpression(path) {
-        if (path.node.operator !== "===") {
-          return;
-        }
-        path.node.left = t.identifier("sebmck");
-        path.node.right = t.identifier("dork");
-      }
-    }
-  };
-};
-```
 Already if we run this plugin we would get:
 
 ```js
@@ -132,9 +116,29 @@ BinaryExpression(path) {
 }
 ```
 
-And now for our final result:
+## Running the plugin
+
+See the final code at [play/first-plugin.mjs](/play/first-plugin.mjs).
 
 ```js
+export default function({ types: t }) {
+  return {
+    visitor: {
+      BinaryExpression(path) {
+        if (path.node.operator !== "===") {
+          return;
+        }
+        path.node.left = t.identifier("sebmck");
+        path.node.right = t.identifier("dork");
+      }
+    }
+  };
+};
+```
+
+To run it simply use the `--plugins` flag with `npx babel` like so:
+
+```sh
 babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./play/first-plugin.mjs
 "use strict";
 
