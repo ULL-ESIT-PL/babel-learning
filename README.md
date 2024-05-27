@@ -13,6 +13,10 @@ Also see the following resources:
 * [Plugins: Babel](https://babeljs.io/docs/plugins)
 * [Plugins list](https://babeljs.io/docs/plugins-list)
 
+## Babel Configuration
+
+See the [Babel Configuration]((configure.md)) document for more information on configuring Babel.
+
 ## Writing a Babel Plugin
 
 * [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins.
