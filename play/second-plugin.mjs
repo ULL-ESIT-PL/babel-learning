@@ -1,29 +1,14 @@
-/* 
-input: foo === bar;
-ast:
-{
-  type: "BinaryExpression",
-  operator: "===",
-  left: {
-    type: "Identifier",
-    name: "foo"
-  },
-  right: {
-    type: "Identifier",
-    name: "bar"
-  }
-}
-*/
-export default function({ types: t }) {
+export default function() {
   return {
     visitor: {
-      BinaryExpression(path) {
-        if (path.node.operator !== "===") {
-          return;
-        }
-        path.node.left = t.identifier("sebmck");
-        path.node.right = t.identifier("dork");
-      }
-    }
+      Identifier(path) {
+        const name = path.node.name;
+        // reverse the name: JavaScript -> tpircSavaJ
+        path.node.name = name
+          .split("")
+          .reverse()
+          .join("");
+      },
+    },
   };
 }

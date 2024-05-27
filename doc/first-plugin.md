@@ -147,7 +147,7 @@ sebmck === dork;
 
 Awesome! Our very first Babel plugin.
 
-## Second Plugin: Reverse identifiers
+## Plugin: Reverse identifiers
 
 See the example [play/hello-plugin.mjs](/play/hello-plugin.mjs).
 
@@ -174,3 +174,15 @@ that reverses the name of all identifiers:
 
 oof === rab;
 ```
+
+Since we can't have two times the same plugin in the `--plugins` array, let's copy the plugin and run the transformation twice:
+
+```
+➜  babel-learning git:(main) ✗ cp play/hello-plugin.mjs play/second-plugin.mjs 
+➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./play/hello-plugin.mjs,./play/second-plugin.mjs
+"use strict";
+
+foo === bar;
+```
+
+We see that we get back the original identifier names.

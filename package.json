@@ -9,6 +9,7 @@
     "bab": "babel src --out-dir lib --presets=@babel/env  --plugins=@babel/plugin-transform-unicode-sets-regex",
     "clean": "rm -rf lib",
     "first-plugin": "babel src/foo.js --plugins=./play/first-plugin.mjs",
+    "hello-plugin": "babel src/foo.js --plugins=./play/hello-plugin.mjs",
     "save": "git add . && git commit -m 'save' && git push"
   },
   "keywords": [],
