@@ -146,3 +146,31 @@ sebmck === dork;
 ```
 
 Awesome! Our very first Babel plugin.
+
+## Second Plugin
+
+See the example [play/hello-plugin.mjs](/play/hello-plugin.mjs).
+
+```js
+export default function() {
+  return {
+    visitor: {
+      Identifier(path) {
+        const name = path.node.name;
+        path.node.name = name
+          .split("")
+          .reverse()
+          .join("");
+      },
+    },
+  };
+}
+```
+that reverses the name of all identifiers:
+
+```sh
+➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./play/hello-plugin.mjs
+"use strict";
+
+oof === rab;
+```
