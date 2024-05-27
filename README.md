@@ -90,3 +90,11 @@ var fn = function fn() {
   return 1;
 };
 ```
+
+## babel-traverse and babel-generator and compact-js-ast
+
+See example [play/hello-babel-traverse.js](/play/hello-babel-traverse.js).
+
+## babel-types and babel-template
+
+See example [play/hello-babel-types.js](/play/hello-babel-types.js).
