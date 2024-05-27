@@ -88,7 +88,7 @@ The `preset`entry is an array of presets to activate when processing.
 
 Note: The format of presets is identical to plugins, except for the fact that name normalization expects "preset-" instead of "plugin-", and presets cannot be instances of Plugin.
 
-## Code Generation options
+### Code Generation options
 
 See https://babeljs.io/docs/options#code-generator-options and https://babeljs.io/docs/babel-generator#options
 
