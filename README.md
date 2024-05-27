@@ -93,8 +93,8 @@ var fn = function fn() {
 
 ## babel-traverse and babel-generator and compact-js-ast
 
-See example [play/hello-babel-traverse.js](/play/hello-babel-traverse.js).
+See example [play/hello-babel-traverse.mjs](/play/hello-babel-traverse.mjs).
 
 ## babel-types and babel-template
 
-See example [play/hello-babel-types.js](/play/hello-babel-types.js).
+See example [play/hello-babel-types.mjs](/play/hello-babel-types.mjs).
