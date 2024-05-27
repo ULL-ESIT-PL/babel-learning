@@ -96,6 +96,7 @@ BinaryExpression(path) {
   // ...
 }
 ```
+See the final code at [play/first-plugin.mjs](/play/first-plugin.mjs).
 
 Already if we run this plugin we would get:
 
