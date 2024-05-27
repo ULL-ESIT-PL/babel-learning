@@ -91,9 +91,9 @@ var fn = function fn() {
 };
 ```
 
-## babel-traverse and babel-generator and compact-js-ast
+## Traversal
 
-See example [play/hello-babel-traverse.mjs](/play/hello-babel-traverse.mjs).
+See section [traversal.md](doc/traversal.md).
 
 ## babel-types and babel-template
 
