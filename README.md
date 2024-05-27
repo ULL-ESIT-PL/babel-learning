@@ -15,7 +15,7 @@ Also see the following resources:
 
 ## Babel Configuration
 
-See the [Babel Configuration]((configure.md)) document for more information on configuring Babel.
+See the [Babel Configuration](configure.md) section.
 
 ## Writing a Babel Plugin
 
