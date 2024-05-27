@@ -108,3 +108,9 @@ You can use two different kinds of placeholders:
 ## Writing your first plugin
 
 See section [first-plugin.md](doc/first-plugin.md).
+
+## Transformations
+
+1. [Visiting](doc/visiting.md)
+2. [Manipulation](doc/manipulation.md)
+3. [Scope](doc/scope.md)
