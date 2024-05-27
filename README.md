@@ -97,4 +97,4 @@ See example [play/hello-babel-traverse.mjs](/play/hello-babel-traverse.mjs).
 
 ## babel-types and babel-template
 
-See example [play/hello-babel-types.mjs](/play/hello-babel-types.mjs).
+See example [play/hello-babel-template.mjs](/play/hello-babel-template.mjs).
