@@ -147,7 +147,7 @@ Walk up the tree until we hit a parent node path in a list
 path.getStatementParent();
 ```
 
-## <a id="toc-get-sibling-paths"></a>Get Sibling Paths
+## Get Sibling Paths
 
 If a path is in a list like in the body of a `Function`/`Program`, it will have "siblings".
 
@@ -157,35 +157,17 @@ If a path is in a list like in the body of a `Function`/`Program`, it will have 
 - The path's container (an array of all sibling nodes) with `path.container`
 - Get the name of the key of the list container with `path.listKey`
 
+See the example at [play/get-sibling-path.mjs](/play/get-sibling-path.mjs).
+
+```sh
+➜  babel-learning git:(main) ✗ node play/get-sibling-path.mjs
+true body 0 a b 3 undefined b 0 2
+true body 1 b c 3 a c 1 1
+true body 2 c a 3 b undefined 2 0
+```
+
 > These APIs are used in the [transform-merge-sibling-variables](https://github.com/babel/babili/blob/master/packages/babel-plugin-transform-merge-sibling-variables/src/index.js) plugin used in [babel-minify](https://github.com/babel/babili).
 
-```js
-var a = 1; // pathA, path.key = 0
-var b = 2; // pathB, path.key = 1
-var c = 3; // pathC, path.key = 2
-```
-
-```js
-export default function({ types: t }) {
-  return {
-    visitor: {
-      VariableDeclaration(path) {
-        // if the current path is pathA
-        path.inList // true
-        path.listKey // "body"
-        path.key // 0
-        path.getSibling(0) // pathA
-        path.getSibling(path.key + 1) // pathB
-        path.container // [pathA, pathB, pathC]
-        path.getPrevSibling() // path(undefined) *
-        path.getNextSibling() // pathB
-        path.getAllPrevSiblings() // []
-        path.getAllNextSiblings() // [pathB, pathC]
-      }
-    }
-  };
-}
-```
 
 * `path(undefined)` is a `NodePath` where the `path.node === undefined`
 
