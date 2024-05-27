@@ -1,8 +1,6 @@
-# Visiting
+# <a id="toc-visiting"></a>Visiting
 
-## <a id="toc-visiting"></a>Visiting
-
-### <a id="toc-get-the-path-of-a-sub-node"></a>Get the Path of Sub-Node
+## <a id="toc-get-the-path-of-a-sub-node"></a>Get the Path of Sub-Node
 
 To access an AST node's property you normally access the node and then the property. `path.node.property`
 
@@ -42,7 +40,7 @@ ExportDefaultDeclaration(path) {
 }
 ```
 
-### <a id="toc-check-if-a-node-is-a-certain-type"></a>Check if a node is a certain type
+## <a id="toc-check-if-a-node-is-a-certain-type"></a>Check if a node is a certain type
 
 If you want to check what the type of a node is, the preferred way to do so is:
 
@@ -78,7 +76,7 @@ BinaryExpression(path) {
 }
 ```
 
-### <a id="toc-check-if-a-path-is-a-certain-type"></a>Check if a path is a certain type
+## <a id="toc-check-if-a-path-is-a-certain-type"></a>Check if a path is a certain type
 
 A path has the same methods for checking the type of a node:
 
@@ -100,7 +98,7 @@ BinaryExpression(path) {
 }
 ```
 
-### <a id="toc-check-if-an-identifier-is-referenced"></a>Check if an identifier is referenced
+## <a id="toc-check-if-an-identifier-is-referenced"></a>Check if an identifier is referenced
 
 ```js
 Identifier(path) {
@@ -120,7 +118,7 @@ Identifier(path) {
 }
 ```
 
-### <a id="toc-find-a-specific-parent-path"></a>Find a specific parent path
+## <a id="toc-find-a-specific-parent-path"></a>Find a specific parent path
 
 Sometimes you will need to traverse the tree upwards from a path until a condition is satisfied.
 
@@ -149,7 +147,7 @@ Walk up the tree until we hit a parent node path in a list
 path.getStatementParent();
 ```
 
-### <a id="toc-get-sibling-paths"></a>Get Sibling Paths
+## <a id="toc-get-sibling-paths"></a>Get Sibling Paths
 
 If a path is in a list like in the body of a `Function`/`Program`, it will have "siblings".
 
@@ -191,7 +189,7 @@ export default function({ types: t }) {
 
 * `path(undefined)` is a `NodePath` where the `path.node === undefined`
 
-### <a id="toc-stopping-traversal"></a>Stopping Traversal
+## <a id="toc-stopping-traversal"></a>Stopping Traversal
 
 If your plugin needs to not run in a certain situation, the simpliest thing to do is to write an early return.
 
@@ -218,9 +216,9 @@ outerPath.traverse({
 });
 ```
 
-## <a id="toc-manipulation"></a>Manipulation
+# <a id="toc-manipulation"></a>Manipulation
 
-### <a id="toc-replacing-a-node"></a>Replacing a node
+## <a id="toc-replacing-a-node"></a>Replacing a node
 
 ```js
 BinaryExpression(path) {
@@ -237,7 +235,7 @@ BinaryExpression(path) {
   }
 ```
 
-### <a id="toc-replacing-a-node-with-multiple-nodes"></a>Replacing a node with multiple nodes
+## <a id="toc-replacing-a-node-with-multiple-nodes"></a>Replacing a node with multiple nodes
 
 ```js
 ReturnStatement(path) {
@@ -263,7 +261,7 @@ ReturnStatement(path) {
 > nodes which means that you can do some pretty crazy transformations that would
 > be extremely verbose otherwise.
 
-### <a id="toc-replacing-a-node-with-a-source-string"></a>Replacing a node with a source string
+## <a id="toc-replacing-a-node-with-a-source-string"></a>Replacing a node with a source string
 
 ```js
 FunctionDeclaration(path) {
@@ -285,7 +283,7 @@ FunctionDeclaration(path) {
 > dynamic source strings, otherwise it's more efficient to parse the code
 > outside of the visitor.
 
-### <a id="toc-inserting-a-sibling-node"></a>Inserting a sibling node
+## <a id="toc-inserting-a-sibling-node"></a>Inserting a sibling node
 
 ```js
 FunctionDeclaration(path) {
@@ -306,7 +304,7 @@ FunctionDeclaration(path) {
 > uses the same heuristics mentioned in
 > [Replacing a node with multiple nodes](#replacing-a-node-with-multiple-nodes).
 
-### <a id="toc-inserting-into-a-container"></a>Inserting into a container
+## <a id="toc-inserting-into-a-container"></a>Inserting into a container
 
 If you want to insert into an AST node that is an array like `body`.
 Similar to `insertBefore`/`insertAfter`, except that you have to specify the `listKey`, which is usually `body`.
@@ -328,7 +326,7 @@ ClassMethod(path) {
  }
 ```
 
-### <a id="toc-removing-a-node"></a>Removing a node
+## <a id="toc-removing-a-node"></a>Removing a node
 
 ```js
 FunctionDeclaration(path) {
@@ -342,7 +340,7 @@ FunctionDeclaration(path) {
 - }
 ```
 
-### <a id="toc-replacing-a-parent"></a>Replacing a parent
+## <a id="toc-replacing-a-parent"></a>Replacing a parent
 
 Just call `replaceWith` with the parentPath: `path.parentPath`
 
@@ -361,7 +359,7 @@ BinaryExpression(path) {
   }
 ```
 
-### <a id="toc-removing-a-parent"></a>Removing a parent
+## <a id="toc-removing-a-parent"></a>Removing a parent
 
 ```js
 BinaryExpression(path) {
@@ -375,9 +373,9 @@ BinaryExpression(path) {
   }
 ```
 
-## <a id="toc-scope"></a>Scope
+# <a id="toc-scope"></a>Scope
 
-### <a id="toc-checking-if-a-local-variable-is-bound"></a>Checking if a local variable is bound
+## <a id="toc-checking-if-a-local-variable-is-bound"></a>Checking if a local variable is bound
 
 ```js
 FunctionDeclaration(path) {
@@ -399,7 +397,7 @@ FunctionDeclaration(path) {
 }
 ```
 
-### <a id="toc-generating-a-uid"></a>Generating a UID
+## <a id="toc-generating-a-uid"></a>Generating a UID
 
 This will generate an identifier that doesn't collide with any locally defined
 variables.
@@ -413,7 +411,7 @@ FunctionDeclaration(path) {
 }
 ```
 
-### <a id="toc-pushing-a-variable-declaration-to-a-parent-scope"></a>Pushing a variable declaration to a parent scope
+## <a id="toc-pushing-a-variable-declaration-to-a-parent-scope"></a>Pushing a variable declaration to a parent scope
 
 Sometimes you may want to push a `VariableDeclaration` so you can assign to it.
 
@@ -433,7 +431,7 @@ FunctionDeclaration(path) {
 + };
 ```
 
-### <a id="toc-rename-a-binding-and-its-references"></a>Rename a binding and its references
+## <a id="toc-rename-a-binding-and-its-references"></a>Rename a binding and its references
 
 ```js
 FunctionDeclaration(path) {
