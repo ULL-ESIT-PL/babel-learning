@@ -15,7 +15,7 @@ Also see the following resources:
 
 ## Babel Configuration
 
-See the [Babel Configuration](configure.md) section.
+See the [Babel Configuration](doc/configure.md) section.
 
 ## Writing a Babel Plugin
 
@@ -107,4 +107,4 @@ You can use two different kinds of placeholders:
 
 ## Writing your first plugin
 
-See section [first-plugin.md](first-plugin.md).
+See section [first-plugin.md](doc/first-plugin.md).
