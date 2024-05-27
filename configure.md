@@ -67,6 +67,8 @@ The Babel people recommend using the json file type versus the JS type:
 - The downside is that JS configs are less statically analyzable, and therefore have negative effects on cacheability, linting, IDE autocomplete, etc. 
 - Since `babel.config.json` and `.babelrc.json` are static JSON files, it allows other tools that use Babel such as bundlers to cache the results of Babel safely, which can be a huge build performance win.
 
+## Options
+
 The list of options is here: https://babeljs.io/docs/options
 
 ### plugin entry
