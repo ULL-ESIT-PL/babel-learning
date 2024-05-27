@@ -5,6 +5,8 @@ const traverse = _traverse.default;
 import _generate from "@babel/generator";
 const generate = _generate.default;
 
+import * as compast from "compact-js-ast"
+
 const code = `function square(n) {
   return n * n;
 }`;
@@ -22,7 +24,7 @@ traverse(ast, {
   }
 });
 
-//console.log(JSON.stringify(ast, null, 2));
+console.log(compast(ast, {parse: false}));
 
 const output = generate(ast, code);
 console.log(output.code);
