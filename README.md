@@ -1,5 +1,7 @@
 # Learning Babel
 
+My PL notes on Babel are here: https://ull-pl.vercel.app/topics/tree-transformations/babel
+
 See this introduction by Matt Zeunert and the associated [GitHub repository](https://github.com/mattzeunert/babel-plugin-demo) 
 for a simple example of how to create a Babel plugin.
 
