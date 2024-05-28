@@ -119,3 +119,7 @@ See section [first-plugin.md](doc/first-plugin.md).
 ## Parser
 
 See section [parser.md](doc/parser.md).
+
+## References
+
+See section [References](docs/references.md).
