@@ -122,4 +122,4 @@ See section [parser.md](doc/parser.md).
 
 ## References
 
-See section [References](docs/references.md).
+See section [References](doc/references.md).
