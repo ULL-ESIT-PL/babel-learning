@@ -454,6 +454,46 @@ Using polyfills: No polyfills were added, since the `useBuiltIns` option was not
 ```
 And it hangs here.
 
+### Running the tests on watching mode
+
+Now we run the test again:
+
+```
+➜  babel-tanhauhau git:(master) ✗ TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
+BABEL_ENV=test ./scripts/test.sh
+ FAIL  packages/babel-parser/test/curry-function.js
+  ● curry function syntax › should parse
+
+    SyntaxError: Unexpected token (1:9)
+
+      41 | 
+      42 |   _raise(errorContext, message) {
+    > 43 |     const err = new SyntaxError(message);
+         |                 ^
+      44 |     Object.assign(err, errorContext);
+      45 | 
+      46 |     if (this.options.errorRecovery) {
+
+      at Parser._raise (packages/babel-parser/lib/parser/error.js:43:17)
+      at Parser.raiseWithData (packages/babel-parser/lib/parser/error.js:36:17)
+      at Parser.raise (packages/babel-parser/lib/parser/error.js:30:17)
+      at Parser.unexpected (packages/babel-parser/lib/parser/util.js:109:16)
+      at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18)
+      at Parser.parseIdentifier (packages/babel-parser/lib/parser/expression.js:1492:23)
+      at Parser.parseFunctionId (packages/babel-parser/lib/parser/statement.js:847:63)
+      at Parser.parseFunction (packages/babel-parser/lib/parser/statement.js:813:22)
+      at Parser.parseFunctionStatement (packages/babel-parser/lib/parser/statement.js:462:17)
+      at Parser.parseStatementContent (packages/babel-parser/lib/parser/statement.js:154:21)
+
+
+Test Suites: 1 failed, 7 skipped, 1 of 8 total
+Tests:       1 failed, 5255 skipped, 5256 total
+Snapshots:   0 total
+Time:        8.269s, estimated 11s
+Ran all test suites matching /(packages|codemods|eslint)\/.*babel-parser.*\/test/i with tests matching "curry function".
+make: *** [test-only] Error 1
+```
+
 > Tracing the stack trace, led us to `packages/babel-parser/src/parser/expression.js` where it throws `this.unexpected()`.
 
 > Let us add some `console.log`:
