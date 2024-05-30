@@ -351,7 +351,7 @@ gulp.task(
 );
 ```
 
-Whe I do `make watch` I see the following output:
+When I do `make watch` I see the following output:
 
 ```sh
 ➜  babel-tanhauhau git:(master) ✗ make watch
