@@ -516,7 +516,7 @@ parseIdentifierName(pos: number, liberal?: boolean): string {
 
 Here is the full code of this version of the function:
   
-```js
+```ts
   parseIdentifierName(pos: number, liberal?: boolean): string {
     let name: string;
 
@@ -623,3 +623,16 @@ BABEL_ENV=test ./scripts/test.sh
     SyntaxError: Unexpected token (1:9)
 ...
 ```
+
+> As you can see, both tokens are `@` token:
+
+```js
+TokenType {
+  label: '@',
+  // ...
+}
+```
+
+> How do I know `this.state.type` and `this.lookahead().type` will give me the current and the next token?
+
+> Well, I'll explained them [later](https://lihautan.com/creating-custom-javascript-syntax-with-babel#thiseat-thismatch-thisnext).
