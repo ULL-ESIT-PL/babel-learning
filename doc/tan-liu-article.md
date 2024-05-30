@@ -334,6 +334,9 @@ The environment variable `BABEL_ENV=test` is used to set the environment to test
 
 > How do I know that? Let's start the watch mode, `make watch`, wear our detective cap 🕵️‍ and start digging!
 
+> You can access the built files for individual packages from `packages/<package-name>/lib`.
+
+
 In the `Makefile` we find this task `watch`:
 
 ```Makefile
@@ -350,6 +353,9 @@ gulp.task(
   })
 );
 ```
+
+The target `make watch` allow us to have Babel build itself and incrementally build files on change. This way
+we can see the changes we are going to do in the tokenizer and parser withour having to re-build the whole project.
 
 When I do `make watch` I see the following output:
 
