@@ -514,7 +514,7 @@ parseIdentifierName(pos: number, liberal?: boolean): string {
 }
 ```
 
-Here is the actual function:
+Here is the full code of this version of the function:
   
 ```js
   parseIdentifierName(pos: number, liberal?: boolean): string {
@@ -557,3 +557,7 @@ Here is the actual function:
     return name;
   }
 ```
+
+Next to the function I've got several warnings in VSCode stating that 
+["type annotations can only be used in typescript"](https://stackoverflow.com/questions/48859169/error-types-can-only-be-used-in-a-ts-file-visual-studio-code-using-ts-che). The solution adopted was to disable the configuration
+variable `"javascript.validate.enable"` in the settings.
