@@ -108,33 +108,32 @@ are in the `packages/` folder:
 ├── lib
 ├── node_modules
 ├── package.json
-├── packages
-packages
-└──
-   ├── babel-cli
-   ├── babel-generator
-   ├── babel-helper-...
-   ├── babel-node
-   ├── babel-parser
-   ├── babel-plugin-...
-   ├── babel-plugin-proposal-async-generator-functions
-   ├── babel-plugin-syntax-...
-   ├── babel-plugin-syntax-jsx
-   ├── babel-plugin-syntax-typescript
-   ├── babel-plugin-transform-...
-   ├── babel-polyfill
-   ├── babel-preset-env
-   ├── babel-preset-flow
-   ├── babel-preset-react
-   ├── babel-preset-typescript
-   ├── babel-register
-   ├── babel-runtime...
-   ├── babel-standalone
-   ├── babel-template
-   ├── babel-traverse
-   └── babel-types
-   ├── scripts
-   └── test
+└── packages
+   └──
+      ├── babel-cli
+      ├── babel-generator
+      ├── babel-helper-...
+      ├── babel-node
+      ├── babel-parser
+      ├── babel-plugin-...
+      ├── babel-plugin-proposal-async-generator-functions
+      ├── babel-plugin-syntax-...
+      ├── babel-plugin-syntax-jsx
+      ├── babel-plugin-syntax-typescript
+      ├── babel-plugin-transform-...
+      ├── babel-polyfill
+      ├── babel-preset-env
+      ├── babel-preset-flow
+      ├── babel-preset-react
+      ├── babel-preset-typescript
+      ├── babel-register
+      ├── babel-runtime...
+      ├── babel-standalone
+      ├── babel-template
+      ├── babel-traverse
+      └── babel-types
+      ├── scripts
+      └── test
 ```
 
 ```sh
