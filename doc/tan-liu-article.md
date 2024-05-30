@@ -636,3 +636,10 @@ TokenType {
 > How do I know `this.state.type` and `this.lookahead().type` will give me the current and the next token?
 
 > Well, I'll explained them [later](https://lihautan.com/creating-custom-javascript-syntax-with-babel#thiseat-thismatch-thisnext).
+>
+> Let's recap what we've done so far before we move on:
+
+1. We've written a test case for babel-parser
+2. We ran `make test-only` to run the test case
+3. We've started the **watch mode** via `make watch`
+4. We've learned about **parser state**, and console out the current token type, `this.state.type`
