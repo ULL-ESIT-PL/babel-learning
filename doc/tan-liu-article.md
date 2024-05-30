@@ -239,6 +239,8 @@ describe('curry function syntax', function() {
 });
 ```
 
+### TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
+
 and run `make test-only` from the root of the project:
 
 ```sh
@@ -283,6 +285,8 @@ make: *** [test-only] Error 1
 I guess that the environment variables `TEST_ONLY=babel-parser TEST_GREP="curry function"`
 set the test to run only the `babel-parser` tests and to grep for the string `curry function`.
 
+### BABEL_ENV=test npx jest -u packages/babel-parser/test/curry-function.js
+
 The same thing happens when I run the test using `jest`:
 
 ```sh
@@ -325,6 +329,8 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 The environment variable `BABEL_ENV=test` is used to set the environment to test.
 
 > Our parser found 2 seemingly innocent `@` tokens at a place where they shouldn't be present.
+
+### make watch
 
 > How do I know that? Let's start the watch mode, `make watch`, wear our detective cap 🕵️‍ and start digging!
 
