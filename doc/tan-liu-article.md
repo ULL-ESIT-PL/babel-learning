@@ -478,7 +478,7 @@ BABEL_ENV=test ./scripts/test.sh
       at Parser.raiseWithData (packages/babel-parser/lib/parser/error.js:36:17)
       at Parser.raise (packages/babel-parser/lib/parser/error.js:30:17)
       at Parser.unexpected (packages/babel-parser/lib/parser/util.js:109:16)
-      at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18)
+      at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18) <--- here
       at Parser.parseIdentifier (packages/babel-parser/lib/parser/expression.js:1492:23)
       at Parser.parseFunctionId (packages/babel-parser/lib/parser/statement.js:847:63)
       at Parser.parseFunction (packages/babel-parser/lib/parser/statement.js:813:22)
@@ -495,5 +495,7 @@ make: *** [test-only] Error 1
 ```
 
 > Tracing the stack trace, led us to `packages/babel-parser/src/parser/expression.js` where it throws `this.unexpected()`.
+
+Correct! See the message `at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18)` in the stack trace above.
 
 > Let us add some `console.log`:
