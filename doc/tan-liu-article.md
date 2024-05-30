@@ -212,3 +212,89 @@ typings
 
 14 directories, 19 files
 ```
+
+It's clear where to find the code for each process. 
+`plugins/` folder contains plugins that extend the base parser and add custom syntaxes, 
+such as `jsx` and `flow`.
+
+> Let's do a Test-driven development (TDD). 
+> I find it easier to define the test case then slowly work our way to "fix" it. 
+> It is especially true in an unfamiliar codebase, 
+> TDD allows you to "easily" point out code places you need to change.
+
+I copy the test file `test/curry-function.js` from the article:
+
+```js
+ ➜  babel-parser git:(master) ✗ cat test/curry-function.js 
+import { parse } from '../lib';
+
+function getParser(code) {
+  return () => parse(code, { sourceType: 'module' });
+}
+
+describe('curry function syntax', function() {
+  it('should parse', function() {
+    expect(getParser(`function @@ foo() {}`)()).toMatchSnapshot();
+  });
+});
+```
+
+and run `make test-only` from the root of the project:
+
+```sh
+➜  babel-parser git:(master) ✗ TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
+make: *** No rule to make target `test-only'.  Stop.
+➜  babel-parser git:(master) ✗ cd ..
+➜  packages git:(master) ✗ cd ..
+➜  babel-tanhauhau git:(master) ✗ TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
+BABEL_ENV=test ./scripts/test.sh
+ FAIL  packages/babel-parser/test/curry-function.js
+  ● curry function syntax › should parse
+
+    SyntaxError: Unexpected token (1:9)
+
+      752 | 
+      753 |   _raise(errorContext, message) {
+    > 754 |     const err = new SyntaxError(message);
+          |                 ^
+      755 |     Object.assign(err, errorContext);
+      756 | 
+      757 |     if (this.options.errorRecovery) {
+
+      at Parser._raise (packages/babel-parser/lib/index.js:754:17)
+      at Parser.raiseWithData (packages/babel-parser/lib/index.js:747:17)
+      at Parser.raise (packages/babel-parser/lib/index.js:741:17)
+      at Parser.unexpected (packages/babel-parser/lib/index.js:8844:16)
+      at Parser.parseIdentifierName (packages/babel-parser/lib/index.js:10863:18)
+      at Parser.parseIdentifier (packages/babel-parser/lib/index.js:10840:23)
+      at Parser.parseFunctionId (packages/babel-parser/lib/index.js:11927:55)
+      at Parser.parseFunction (packages/babel-parser/lib/index.js:11893:22)
+      at Parser.parseFunctionStatement (packages/babel-parser/lib/index.js:11542:17)
+      at Parser.parseStatementContent (packages/babel-parser/lib/index.js:11234:21)
+
+
+Test Suites: 1 failed, 7 skipped, 1 of 8 total
+Tests:       1 failed, 5255 skipped, 5256 total
+Snapshots:   0 total
+Time:        6.598s, estimated 11s
+Ran all test suites matching /(packages|codemods|eslint)\/.*babel-parser.*\/test/i with tests matching "curry function".
+make: *** [test-only] Error 1
+```
+I guess that the environment variables `TEST_ONLY=babel-parser TEST_GREP="curry function"`
+set the test to run only the `babel-parser` tests and to grep for the string `curry function`.
+
+The same thing happens when I run the test using `jest`:
+
+```sh
+➜  babel-tanhauhau git:(master) ✗ BABEL_ENV=test npx jest -u packages/babel-parser/test/curry-function.js
+
+ FAIL  packages/babel-parser/test/curry-function.js
+  curry function syntax
+    ✕ should parse (6ms)
+
+  ● curry function syntax › should parse
+
+    SyntaxError: Unexpected token (1:9)
+```
+
+The environment variable `BABEL_ENV=test` is used to set the environment to test.
