@@ -49,6 +49,9 @@ the parser is a recursive descent parser.
 [packages/babel-parser/src/parser/statement.js](https://github.com/tanhauhau/babel/blob/da0af5fd99a9b747370a2240df3abf2940b9649c/packages/babel-parser/src/parser/statement.js#L1030),
 and here found a line that sets the `generator` attribute.
 
+See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
+
+
 ## References
 
 See section [References](docs/references.md).
