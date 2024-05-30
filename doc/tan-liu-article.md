@@ -2,7 +2,11 @@
 
 ## Installing Tan Liu Babel fork
 
-I started cloning Tan Liu babel fork of the repo instead of the main Babel repo.
+I started forking Tan Liu babel fork of the repo instead of the main Babel repo and then I clone my fork:
+
+```sh
+gh repo clone ULL-ESIT-PL/babel-tanhauhau
+```
 
 Then I realized that I have to install yarn and gulp to build the project.
 
