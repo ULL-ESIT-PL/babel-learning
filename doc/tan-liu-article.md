@@ -581,3 +581,45 @@ Using polyfills: No polyfills were added, since the `useBuiltIns` option was not
 [19:41:08] Compiling 'packages/babel-parser/src/parser/expression.js'...
 [19:41:08] Finished 'build-no-bundle' after 474 ms
 ```
+Now, when I run the tests again, I get the following output:
+
+```sh
+➜  babel-tanhauhau git:(master) ✗ TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
+BABEL_ENV=test ./scripts/test.sh
+ FAIL  packages/babel-parser/test/curry-function.js
+  ● Console
+
+    console.error packages/babel-parser/lib/parser/expression.js:1515
+      TokenType {
+        label: '@',
+        keyword: undefined,
+        beforeExpr: false,
+        startsExpr: false,
+        rightAssociative: false,
+        isLoop: false,
+        isAssign: false,
+        prefix: false,
+        postfix: false,
+        binop: null,
+        updateContext: null
+      }
+    console.error packages/babel-parser/lib/parser/expression.js:1516
+      TokenType {
+        label: '@',
+        keyword: undefined,
+        beforeExpr: false,
+        startsExpr: false,
+        rightAssociative: false,
+        isLoop: false,
+        isAssign: false,
+        prefix: false,
+        postfix: false,
+        binop: null,
+        updateContext: null
+      }
+
+  ● curry function syntax › should parse
+
+    SyntaxError: Unexpected token (1:9)
+...
+```
