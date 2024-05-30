@@ -140,4 +140,48 @@ are in the `packages/` folder:
           └── test
 ```
 
-```sh
+## Our custom babel parser
+
+The folder we are going to work on is `packages/babel-parser/`:
+
+```
+➜  babel-tanhauhau git:(master) cd packages/babel-parser 
+typings
+➜  babel-parser git:(master) tree -I node_modules -aL 2
+.
+├── AUTHORS
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── ast
+│   ├── flow.md
+│   ├── jsx.md
+│   └── spec.md
+├── bin
+│   └── babel-parser.js
+├── lib
+│   └── index.js
+├── package.json
+├── src
+│   ├── index.js
+│   ├── options.js
+│   ├── parser
+│   ├── plugin-utils.js
+│   ├── plugins
+│   ├── tokenizer
+│   ├── types.js
+│   └── util
+├── test
+│   ├── estree-throws.js
+│   ├── expressions
+│   ├── expressions.js
+│   ├── fixtures
+│   ├── helpers
+│   ├── index.js
+│   ├── plugin-options.js
+│   └── unit
+└── typings
+    └── babel-parser.d.ts
+
+14 directories, 19 files
+```
