@@ -499,3 +499,61 @@ make: *** [test-only] Error 1
 Correct! See the message `at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18)` in the stack trace above.
 
 > Let us add some `console.log`:
+
+Tan Li proposes to go to file `packages/babel-parser/src/parser/expression.js` and add some `console.log` to see what is happening.
+
+```js
+parseIdentifierName(pos: number, liberal?: boolean): string {
+  if (this.match(tt.name)) {
+    // ...
+  } else {
+    console.log(this.state.type); // current token
+    console.log(this.lookahead().type); // next token
+    throw this.unexpected();
+  }
+}
+```
+
+Here is the actual function:
+  
+```js
+  parseIdentifierName(pos: number, liberal?: boolean): string {
+    let name: string;
+
+    if (this.match(tt.name)) {
+      name = this.state.value;
+    } else if (this.state.type.keyword) {
+      name = this.state.type.keyword;
+
+      // `class` and `function` keywords push function-type token context into this.context.
+      // But there is no chance to pop the context if the keyword is consumed
+      // as an identifier such as a property name.
+      const context = this.state.context;
+      if (
+        (name === "class" || name === "function") &&
+        context[context.length - 1].token === "function"
+      ) {
+        context.pop();
+      }
+    } else {
+      throw this.unexpected();
+    }
+
+    if (liberal) {
+      // If the current token is not used as a keyword, set its type to "tt.name".
+      // This will prevent this.next() from throwing about unexpected escapes.
+      this.state.type = tt.name;
+    } else {
+      this.checkReservedWord(
+        name,
+        this.state.start,
+        !!this.state.type.keyword,
+        false,
+      );
+    }
+
+    this.next();
+
+    return name;
+  }
+```
