@@ -166,11 +166,38 @@ typings
 │   ├── index.js
 │   ├── options.js
 │   ├── parser
+│   │   ├── base.js
+│   │   ├── comments.js
+│   │   ├── error-message.js
+│   │   ├── error.js
+│   │   ├── expression.js
+│   │   ├── index.js
+│   │   ├── lval.js
+│   │   ├── node.js
+│   │   ├── statement.js
+│   │   └── util.js
 │   ├── plugin-utils.js
 │   ├── plugins
+│   │   ├── estree.js
+│   │   ├── flow.js
+│   │   ├── jsx
+│   │   ├── placeholders.js
+│   │   ├── typescript
+│   │   └── v8intrinsic.js
 │   ├── tokenizer
+│   │   ├── context.js
+│   │   ├── index.js
+│   │   ├── state.js
+│   │   └── types.js
 │   ├── types.js
 │   └── util
+│       ├── class-scope.js
+│       ├── identifier.js
+│       ├── location.js
+│       ├── production-parameter.js
+│       ├── scope.js
+│       ├── scopeflags.js
+│       └── whitespace.js
 ├── test
 │   ├── estree-throws.js
 │   ├── expressions
