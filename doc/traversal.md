@@ -109,7 +109,8 @@ Called!
 Called!
 ```
 
-These calls are all on node **enter**. However there is also the possibility of
+These calls are all on node **enter**. 
+However there is also the possibility of
 calling a visitor method when on **exit**.
 
 Imagine we have this tree structure:

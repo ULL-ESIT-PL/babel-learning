@@ -23,7 +23,12 @@ then I proceed to make the bootstrap:
 ➜  babel-tanhauhau git:(master) make bootstrap
 ```
 I was using node v21.2.0.
-There were errors with node-gyp. node-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js. It contains a vendored copy of the gyp-next project that was previously used by the Chromium team and extended to support the development of Node.js native addons:
+There were errors with node-gyp. 
+I found that node-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js. 
+It contains a vendored copy of the `gyp-next` project that was previously used by the 
+Chromium team and extended to support the development of Node.js native addons.
+
+These were the errors:
 
 ```sh
 gyp info find Python using Python version 3.11.4 found at \"/Users/casianorodriguezleon/.pyenv/versions/3.11.4/bin/python\"
@@ -89,7 +94,7 @@ I then runned the tests. Most of them passed but there were some errors. For ins
   ● babel-plugin-transform-dotall-regex/dotall regex › with unicode property escape
 ```
 
-I will try to fix them later.
+I will try to find out what is the reason later.
 
 Babel uses a monorepo structure, all the packages, eg: 
 `@babel/core`, 
@@ -146,7 +151,6 @@ The folder we are going to work on is `packages/babel-parser/`:
 
 ```
 ➜  babel-tanhauhau git:(master) cd packages/babel-parser 
-typings
 ➜  babel-parser git:(master) tree -I node_modules -aL 2
 .
 ├── AUTHORS
@@ -213,16 +217,18 @@ typings
 14 directories, 19 files
 ```
 
-It's clear where to find the code for each process. 
-`plugins/` folder contains plugins that extend the base parser and add custom syntaxes, 
-such as `jsx` and `flow`.
+> We've talked about tokenization and parsing, now it's clear where to find the code for each process. 
+> `plugins/` folder contains plugins that extend the base parser and add custom syntaxes, 
+> such as `jsx` and `flow`.
+
+... and `typescript`.
 
 > Let's do a Test-driven development (TDD). 
 > I find it easier to define the test case then slowly work our way to "fix" it. 
 > It is especially true in an unfamiliar codebase, 
 > TDD allows you to "easily" point out code places you need to change.
 
-I copy the test file `test/curry-function.js` from the article:
+I copy the test file `packages/babel-parser/test/curry-function.js` from the article:
 
 ```js
  ➜  babel-parser git:(master) ✗ cat test/curry-function.js 
@@ -238,6 +244,38 @@ describe('curry function syntax', function() {
   });
 });
 ```
+
+The `index.js` file in the `lib` folder exports an object with `parse`, `parseExpression` and `tokTypes` properties:
+
+
+```js
+> B = require("./lib")
+{
+  parse: [Function: parse],
+  parseExpression: [Function: parseExpression],
+  tokTypes: [Getter]
+}
+```
+The `tokTypes` property is a getter that returns an object with the token types:
+
+```
+> B.tokTypes.num
+TokenType {
+  label: 'num',
+  keyword: undefined,
+  beforeExpr: false,
+  startsExpr: true,
+  rightAssociative: false,
+  isLoop: false,
+  isAssign: false,
+  prefix: false,
+  postfix: false,
+  binop: null,
+  updateContext: null
+}
+```
+
+The testing seems to be in Jest: `toMatchSnapshot` is a [Jest function](https://jestjs.io/docs/snapshot-testing).
 
 ### TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
 
