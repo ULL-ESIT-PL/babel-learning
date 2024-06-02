@@ -121,7 +121,7 @@ true
 
 - See https://babeljs.io/docs/babel-types/  and https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md#builders for more information.
 
-When we execute it, we get:
+We can execute it using the `--plugins` option of `babel`:
   
   ```js
 ➜  manipulating-ast-with-js git:(main) ✗ npx babel example-input.js --plugins=./example-transform.js
@@ -135,3 +135,19 @@ function App() {
 const str = t("Bye! Nice to meet you!");
 alert(str);
 ```
+
+or we can call the transform and the babel parser from our own code as in [src/manipulating-as-with-js/parsing-and-transform.jss](src/manipulating-as-with-js/parsing-and-transform.js).
+
+```js
+const transform = require('./example-transform');
+const babel = require('@babel/core');
+const fs = require('fs');
+const path = require('path');
+const code = fs.readFileSync(path.resolve(__dirname, 'example-input.js'), 'utf8');
+const result = babel.transform(code, {
+  plugins: [transform]
+});
+console.log(result.code);
+```
+
+which gives the same output as before.
