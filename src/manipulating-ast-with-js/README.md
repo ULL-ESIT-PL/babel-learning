@@ -23,9 +23,16 @@ I'll show you around, how to use the ASTExplorer, how to quickly prototyping a B
 - 38:40 Handling scope in the AST
 - 57:37 Ending
 
-## First step
+## My Summary
 
-Given the input and the initial transform code `example-transform.js`:
+### Tags
+
+- initial-transform: section first step
+
+
+### First step: tag initial-transform
+
+See tag `initial-transform`. Given the input and the initial transform code `example-transform.js`:
 
 ```js
 // transform -> babel7: initial screen
@@ -53,4 +60,58 @@ function ppA() {
 }
 const rts = t('label_bye');
 trela(rts);
+```
+
+### Second step: tag second-transform
+
+Given the input and the second transform code `example-transform.js`:
+
+```js
+// transform -> babel7: initial screen
+const translations = {
+  "label_hello": "Hello world!",
+  "label_bye": "Bye! Nice to meet you!",
+};
+
+module.exports = function (babel) {
+  const { types: t } = babel;
+
+  return {
+    name: "second-transform", // not required
+    visitor: {
+      CallExpression(path) {
+        let node = path.node;
+        if (t.isIdentifier(node.callee, { name: "t" })) {
+          if (t.isStringLiteral(node.arguments[0])) { // notice StringLiteral, not Literal
+            const key = node.arguments[0].value;
+            const value = translations[key];
+            if (value) {
+              console.error(node.callee.name, node.arguments[0].value);
+              node.arguments[0] = t.stringLiteral(value);
+            }
+          }
+        }
+      },
+    }
+  }
+};
+```
+Notice:
+
+- We are using `t.isStringLiteral` instead of `t.isLiteral` because we are only interested in string literals. The node is still a `Literal` but we are checking if it is a `StringLiteral`.
+- We are using `t.stringLiteral` to create a new `StringLiteral` node. `isStringLiteral` is a check, `stringLiteral` is a creator.
+  
+When we execute it, we get:
+  
+  ```js
+➜  manipulating-ast-with-js git:(main) ✗ npx babel example-input.js --plugins=./example-transform.js
+t label_hello
+t label_bye
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+import { t } from 'i18n';
+function App() {
+  console.log(t("Hello world!"));
+}
+const str = t("Bye! Nice to meet you!");
+alert(str);
 ```
