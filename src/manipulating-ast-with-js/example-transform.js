@@ -1,5 +1,5 @@
 // transform -> babel7: initial screen
-export default function (babel) {
+module.exports = function (babel) {
   const { types: t } = babel;
   
   return {

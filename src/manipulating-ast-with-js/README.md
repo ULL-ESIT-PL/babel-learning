@@ -22,3 +22,35 @@ I'll show you around, how to use the ASTExplorer, how to quickly prototyping a B
 - 25:10 Setting up the codemod
 - 38:40 Handling scope in the AST
 - 57:37 Ending
+
+## First step
+
+Given the input and the initial transform code `example-transform.js`:
+
+```js
+// transform -> babel7: initial screen
+module.exports = function (babel) {
+  const { types: t } = babel;
+  
+  return {
+    name: "ast-transform", // not required
+    visitor: {
+      Identifier(path) {
+        path.node.name = path.node.name.split('').reverse().join('');
+      }
+    }
+  };
+}
+```
+When we execute it, we get:
+
+```js
+➜  manipulating-ast-with-js git:(main) npx babel example-input.js --plugins=./example-transform.js
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+import { t } from 'i18n';
+function ppA() {
+  elosnoc.gol(t('label_hello'));
+}
+const rts = t('label_bye');
+trela(rts);
+```
