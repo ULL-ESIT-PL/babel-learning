@@ -100,8 +100,27 @@ module.exports = function (babel) {
 Notice:
 
 - We are using `t.isStringLiteral` instead of `t.isLiteral` because we are only interested in string literals. The node is still a `Literal` but we are checking if it is a `StringLiteral`.
+
 - We are using `t.stringLiteral` to create a new `StringLiteral` node. `isStringLiteral` is a check, `stringLiteral` is a creator.
-  
+
+Here is a REPL session example:
+
+```js
+> const B = require("@babel/types")
+undefined
+> n = B.binaryExpression("*", B.identifier("a"), B.identifier("b"));
+{
+  type: 'BinaryExpression',
+  operator: '*',
+  left: { type: 'Identifier', name: 'a' },
+  right: { type: 'Identifier', name: 'b' }
+}
+> B.isIdentifier(n.left)
+true
+```
+
+- See https://babeljs.io/docs/babel-types/  and https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md#builders for more information.
+
 When we execute it, we get:
   
   ```js
