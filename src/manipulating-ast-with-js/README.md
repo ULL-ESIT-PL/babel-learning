@@ -144,7 +144,7 @@ const babel = require('@babel/core');
 const fs = require('fs');
 const path = require('path');
 const code = fs.readFileSync(path.resolve(__dirname, 'example-input.js'), 'utf8');
-const result = babel.transform(code, {
+const result = babel.transform(code, { // See https://babeljs.io/docs/babel-core#transform
   plugins: [transform]
 });
 console.log(result.code);
