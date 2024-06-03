@@ -263,3 +263,55 @@ node.type = "StringLiteral";
 node.value = translations[node.arguments[0].value]; 
 delete node.arguments; delete node.callee;
 ```
+
+There is also a `replaceWithMultiple` that replaces a node with multiple nodes.
+The method `path.replaceWithMultiple` should be used when the parent node of the path expects multiple child nodes. It is generally used in contexts where multiple statements or expressions can exist, such as within a block statement, program body, or an array. The example [/src/manipulating-ast-with-js/replace-multiple.js](src/manipulating-ast-with-js/replace-multiple.js) shows how to use it. The example shows also how
+to visit multiple node types by separating their types with a `|`:
+
+```js
+const traverse = require("@babel/traverse").default;
+const template = require("@babel/template").default;
+const parser = require('@babel/parser');
+const t = require('@babel/types');
+const generate = require('@babel/generator').default;
+const fs = require('fs');
+const path = require('path');
+const code = fs.readFileSync(path.resolve(__dirname, 'example-input.js'), 'utf8');
+
+const ast = parser.parse(code, {
+  sourceType: 'module',
+  //tokens: true, 
+});
+//console.log(ast.tokens[0]); // CommentLine
+
+let buildCons = template(`console.log("hello world");`);
+
+traverse(ast, {
+  "ImportDeclaration|FunctionDeclaration|VariableDeclaration"(path) {
+    let node = path.node;
+    path.replaceWithMultiple([node, buildCons()]); 
+  }
+});
+
+//console.log(JSON.stringify(ast, null, 2));
+const result = generate(ast);
+console.log(result.code);
+
+```
+
+Here is the output:
+
+```js
+➜  manipulating-ast-with-js git:(main) ✗ node replace-multiple.js
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+import { t } from 'i18n';
+console.log("hello world");
+function App() {
+  console.log(t('label_hello'));
+}
+console.log("hello world");
+const str = t('label_bye');
+console.log("hello world");
+alert(str);
+```
+

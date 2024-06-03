@@ -29,6 +29,7 @@ traverse(ast, {
       labels.includes(arg.value)) {
       /* node.type = "StringLiteral"; node.value = translations[node.arguments[0].value]; delete node.arguments; delete node.callee; */
       path.replaceWith(t.stringLiteral(translations[arg.value]));
+      //path.replaceWithMultiple([t.stringLiteral(translations[arg.value])]);
     }
   }
 });
