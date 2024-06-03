@@ -322,3 +322,33 @@ console.log("hello world");
 alert(str);
 ```
 
+## babel.transform: Transforming the code without calling babel from the command line
+
+The method `babel.transform` can be used to transform the code without calling babel from the command line. The example [/src/manipulating-ast-with-js/parsing-and-transform.js](/src/manipulating-ast-with-js/parsing-and-transform.js) shows how: 
+
+```js
+➜  manipulating-ast-with-js git:(main) ✗ cat parsing-and-transform.js 
+const transform = require('./example-transform');
+const babel = require('@babel/core');
+const fs = require('fs');
+const path = require('path');
+const code = fs.readFileSync(path.resolve(__dirname, 'example-input.js'), 'utf8');
+const result = babel.transform(code, {
+  plugins: [transform]
+});
+console.log(result.code);
+```
+
+We can also use the method `babel.transformSync` and `babel.transformAsync` and the methods `babel.transformFile` to transform the code in a file
+
+```js
+➜  manipulating-ast-with-js git:(main) ✗ cat parsing-and-transformfile.js 
+const transform = require('./example-transform');
+const babel = require('@babel/core');
+const fs = require('fs');
+const path = require('path');
+const result = babel.transformFileSync(path.resolve(__dirname, 'example-input.js'), {
+  plugins: [transform]
+});
+console.log(result.code);
+```
