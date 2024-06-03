@@ -212,7 +212,7 @@ identifier placeholders:  var myModule = require("my-module");
 
 *I found that to generate a AST, a babel template is often simpler than 
 to build it with the constructors (since they are much harder work) 
-and also toMatchSnapshot the `parse` function (since the produced AST
+and also than to use the `parse` function (since the produced AST
 contains excessive information)*.
 . 
 
