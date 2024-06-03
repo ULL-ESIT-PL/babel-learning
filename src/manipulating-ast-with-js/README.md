@@ -151,3 +151,115 @@ console.log(result.code);
 ```
 
 which gives the same output as before.
+
+
+## Babel Templates
+
+At 29:25 we can see a call to `babel.template` but it is not explained and it does not work with the current version I'm working with.
+
+The `babel.template` function is  in the `@babel/template` package. 
+You build the template with a string 
+```js
+let buildRequire = template(`
+  var %%importName%% = require(%%source%%);
+`);
+```
+and then you call it with an object that has the placeholders wich are trees.
+```js
+let ast = buildRequire({
+  importName: t.identifier("myModule"),
+  source: t.stringLiteral("my-module"),
+});
+```
+
+Here is the full example:
+
+```js
+const template = require("@babel/template").default;
+const generate =  require("@babel/generator").default;
+const t =  require("@babel/types");
+
+let buildRequire = template(`
+  var %%importName%% = require(%%source%%);
+`);
+
+let ast = buildRequire({
+  importName: t.identifier("myModule"),
+  source: t.stringLiteral("my-module"),
+});
+
+console.log("syntactic placeholders: ", generate(ast).code);
+
+buildRequire = template(`
+  var IMPORT_NAME = require(SOURCE);
+`);
+
+ast = buildRequire({
+  IMPORT_NAME: t.identifier("myModule"),
+  SOURCE: t.stringLiteral("my-module"),
+});
+
+console.log("identifier placeholders: ",generate(ast).code);
+```
+
+The output is:
+
+```js
+➜  manipulating-ast-with-js git:(main) ✗ node babel-template-example.js 
+syntactic placeholders:  var myModule = require("my-module");
+identifier placeholders:  var myModule = require("my-module");
+```
+
+## replaceWith
+
+I have lots of trouble with `replaceWith` as used in minute 29. Example
+[src/manipulating-ast-with-js/parse-transform-generate.js](src/manipulating-ast-with-js/parse-transform-generate.js)
+shows how to use `replaceWith` to replace a node with another node.
+
+```js
+const traverse = require("@babel/traverse").default;
+const template = require("@babel/template").default;
+const parser = require('@babel/parser');
+const t = require('@babel/types');
+const generate = require('@babel/generator').default;
+const fs = require('fs');
+const path = require('path');
+const code = fs.readFileSync(path.resolve(__dirname, 'example-input.js'), 'utf8');
+
+const ast = parser.parse(code, {
+  sourceType: 'module',
+  //tokens: true, 
+});
+//console.log(ast.tokens[0]); // CommentLine
+
+const translations = {
+  "label_hello": "Hello world!",
+  "label_bye": "Bye! Nice to meet you!",
+};
+const labels = Object.keys(translations);
+
+traverse(ast, {
+  CallExpression(path) {
+    let node = path.node;
+    let callee = node.callee.name;
+    let arg = node.arguments[0];
+    if (callee == "t" &&
+      arg.type == "StringLiteral" &&
+      labels.includes(arg.value)) {
+      path.replaceWith(t.stringLiteral(translations[arg.value]));
+    }
+  }
+});
+
+//console.log(JSON.stringify(ast, null, 2))
+const result = generate(ast);
+console.log(result.code);
+```
+
+the `replaceWith` seems in this case to be equivalent to:
+
+```js
+node.type = "StringLiteral"; 
+node.value = translations[node.arguments[0].value]; 
+delete node.arguments; delete node.callee;
+```
