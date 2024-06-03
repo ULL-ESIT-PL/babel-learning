@@ -1,10 +1,9 @@
-## Manipulating AST with JavaScript by Tan Liu Hau
+# Manipulating AST with JavaScript by Tan Liu Hau
 
+## Tan Liu Hau Summary
 Link: https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE 
 
 Disclaimer: This video was recorded in 2021. The information presented may no longer be accurate or up-to-date. Viewers are advised to verify any details or facts before making decisions based on the content.
-
-### Tan Summary 
 
 I'll show you around, how to use the ASTExplorer, how to quickly prototyping a Babel plugin within the ASTExplorer, and then use it within a script. Through this video, you'll be able to write a script to manipulate AST yourself.
 
@@ -23,15 +22,16 @@ I'll show you around, how to use the ASTExplorer, how to quickly prototyping a B
 - 38:40 Handling scope in the AST
 - 57:37 Ending
 
-## My Summary
 
-### Tags
+## Tags
+
+Git Tags:
 
 - initial-transform: section first step
 - second-transform: See section second step
 
 
-### First step: tag initial-transform
+## First step: tag initial-transform
 
 See tag `initial-transform`. Given the input and the initial transform code `example-transform.js`:
 
@@ -63,7 +63,7 @@ const rts = t('label_bye');
 trela(rts);
 ```
 
-### Second step: tag second-transform
+## Second step: tag second-transform
 
 Given the input and the second transform code `example-transform.js`:
 
@@ -351,4 +351,72 @@ const result = babel.transformFileSync(path.resolve(__dirname, 'example-input.js
   plugins: [transform]
 });
 console.log(result.code);
+```
+
+## Scope
+
+See the question at Stack StackOverflow 
+[How do I traverse the scope of a Path in a babel plugin](https://stackoverflow.com/questions/44309639/how-do-i-traverse-the-scope-of-a-path-in-a-babel-plugin)
+
+> To illustrate this with a contrived example I'd like to transform source code like:
+
+```js
+const f = require('foo-bar');
+const result = f() * 2;
+```
+
+into something like:
+
+```js
+const result = 99 * 2; // as i "know" that calling f will always return 99
+```
+
+I decided to slightly modify the input example to have at least two scopes:
+
+```js
+➜  manipulating-ast-with-js git:(main) cat example-scope-input.js 
+const f = require('foo-bar');
+const result = f() * 2;
+let a = f();
+function h() {
+  let f = 2;
+  return f;
+}
+```
+The key point is that the `path.scope.bindings` object contains all the bindings in the current scope. The bindings are stored in an object where the key is the name of the binding and the value is an object with information about the binding. The `referencePaths` property of the binding object is an array of paths that reference the usages of the binding. We simple replace the references to the parent node (the `CallExpression`) with a `NumericLiteral(99)`:
+
+```js
+➜  manipulating-ast-with-js git:(main) ✗ cat example-scope-plugin.js 
+module.exports = ({ types: t }) => {
+  return {
+    visitor: {
+      CallExpression(path) {
+        const { scope, node } = path;
+        if (node.callee.name === 'require'
+          && node.arguments.length === 1
+          && t.isStringLiteral(node.arguments[0])
+          && node.arguments[0].value === 'foo-bar'
+        ) {
+          const localIdentifier = path.parent.id.name; // f
+          scope.bindings[localIdentifier].referencePaths.forEach(p => {
+            p.parentPath.replaceWith(t.NumericLiteral(99));
+          }); 
+        }
+      }
+    }
+  }
+};
+```
+
+When we run babel using this plugin we get:
+
+```js
+➜  manipulating-ast-with-js git:(main) ✗ npx babel example-scope-input.js --plugins=./example-scope-plugin.js
+const f = require('foo-bar');
+const result = 99 * 2;
+let a = 99;
+function h() {
+  let f = 2;
+  return f;
+}
 ```
