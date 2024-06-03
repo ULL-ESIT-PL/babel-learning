@@ -1,0 +1,577 @@
+{
+  "type": "File",
+  "start": 0,
+  "end": 219,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0,
+      "index": 0
+    },
+    "end": {
+      "line": 9,
+      "column": 11,
+      "index": 219
+    }
+  },
+  "errors": [],
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 219,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0,
+        "index": 0
+      },
+      "end": {
+        "line": 9,
+        "column": 11,
+        "index": 219
+      }
+    },
+    "sourceType": "module",
+    "interpreter": null,
+    "body": [
+      {
+        "type": "ImportDeclaration",
+        "start": 100,
+        "end": 125,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 0,
+            "index": 100
+          },
+          "end": {
+            "line": 2,
+            "column": 25,
+            "index": 125
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportSpecifier",
+            "start": 109,
+            "end": 110,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9,
+                "index": 109
+              },
+              "end": {
+                "line": 2,
+                "column": 10,
+                "index": 110
+              }
+            },
+            "imported": {
+              "type": "Identifier",
+              "start": 109,
+              "end": 110,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 9,
+                  "index": 109
+                },
+                "end": {
+                  "line": 2,
+                  "column": 10,
+                  "index": 110
+                },
+                "identifierName": "t"
+              },
+              "name": "t"
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 109,
+              "end": 110,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 9,
+                  "index": 109
+                },
+                "end": {
+                  "line": 2,
+                  "column": 10,
+                  "index": 110
+                },
+                "identifierName": "t"
+              },
+              "name": "t"
+            }
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 118,
+          "end": 124,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 18,
+              "index": 118
+            },
+            "end": {
+              "line": 2,
+              "column": 24,
+              "index": 124
+            }
+          },
+          "extra": {
+            "rawValue": "i18n",
+            "raw": "'i18n'"
+          },
+          "value": "i18n"
+        },
+        "leadingComments": [
+          {
+            "type": "CommentLine",
+            "value": " https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau",
+            "start": 0,
+            "end": 99,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0,
+                "index": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 99,
+                "index": 99
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "FunctionDeclaration",
+        "start": 127,
+        "end": 178,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 0,
+            "index": 127
+          },
+          "end": {
+            "line": 6,
+            "column": 1,
+            "index": 178
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 136,
+          "end": 139,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 9,
+              "index": 136
+            },
+            "end": {
+              "line": 4,
+              "column": 12,
+              "index": 139
+            },
+            "identifierName": "App"
+          },
+          "name": "App"
+        },
+        "generator": false,
+        "async": false,
+        "params": [],
+        "body": {
+          "type": "BlockStatement",
+          "start": 142,
+          "end": 178,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 15,
+              "index": 142
+            },
+            "end": {
+              "line": 6,
+              "column": 1,
+              "index": 178
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 146,
+              "end": 176,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 2,
+                  "index": 146
+                },
+                "end": {
+                  "line": 5,
+                  "column": 32,
+                  "index": 176
+                }
+              },
+              "expression": {
+                "type": "CallExpression",
+                "start": 146,
+                "end": 175,
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 2,
+                    "index": 146
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 31,
+                    "index": 175
+                  }
+                },
+                "callee": {
+                  "type": false,
+                  "start": 146,
+                  "end": 157,
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 2,
+                      "index": 146
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 13,
+                      "index": 157
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 146,
+                    "end": 153,
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 2,
+                        "index": 146
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 9,
+                        "index": 153
+                      },
+                      "identifierName": "console"
+                    },
+                    "name": "console"
+                  },
+                  "computed": false,
+                  "property": {
+                    "type": "Identifier",
+                    "start": 154,
+                    "end": 157,
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 10,
+                        "index": 154
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 13,
+                        "index": 157
+                      },
+                      "identifierName": "log"
+                    },
+                    "name": "log"
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "CallExpression",
+                    "start": 158,
+                    "end": 174,
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 14,
+                        "index": 158
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 30,
+                        "index": 174
+                      }
+                    },
+                    "callee": {
+                      "type": true,
+                      "start": 158,
+                      "end": 159,
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 14,
+                          "index": 158
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 15,
+                          "index": 159
+                        },
+                        "identifierName": "t"
+                      },
+                      "name": "t"
+                    },
+                    "arguments": [
+                      {
+                        "type": "StringLiteral",
+                        "start": 160,
+                        "end": 173,
+                        "loc": {
+                          "start": {
+                            "line": 5,
+                            "column": 16,
+                            "index": 160
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 29,
+                            "index": 173
+                          }
+                        },
+                        "extra": {
+                          "rawValue": "label_hello",
+                          "raw": "'label_hello'"
+                        },
+                        "value": "label_hello"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "directives": []
+        }
+      },
+      {
+        "type": "VariableDeclaration",
+        "start": 180,
+        "end": 207,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 0,
+            "index": 180
+          },
+          "end": {
+            "line": 8,
+            "column": 27,
+            "index": 207
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 186,
+            "end": 206,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 6,
+                "index": 186
+              },
+              "end": {
+                "line": 8,
+                "column": 26,
+                "index": 206
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 186,
+              "end": 189,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 6,
+                  "index": 186
+                },
+                "end": {
+                  "line": 8,
+                  "column": 9,
+                  "index": 189
+                },
+                "identifierName": "str"
+              },
+              "name": "str"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 192,
+              "end": 206,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 12,
+                  "index": 192
+                },
+                "end": {
+                  "line": 8,
+                  "column": 26,
+                  "index": 206
+                }
+              },
+              "callee": {
+                "type": true,
+                "start": 192,
+                "end": 193,
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 12,
+                    "index": 192
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 13,
+                    "index": 193
+                  },
+                  "identifierName": "t"
+                },
+                "name": "t"
+              },
+              "arguments": [
+                {
+                  "type": "StringLiteral",
+                  "start": 194,
+                  "end": 205,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 14,
+                      "index": 194
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 25,
+                      "index": 205
+                    }
+                  },
+                  "extra": {
+                    "rawValue": "label_bye",
+                    "raw": "'label_bye'"
+                  },
+                  "value": "label_bye"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const"
+      },
+      {
+        "type": "ExpressionStatement",
+        "start": 208,
+        "end": 219,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 0,
+            "index": 208
+          },
+          "end": {
+            "line": 9,
+            "column": 11,
+            "index": 219
+          }
+        },
+        "expression": {
+          "type": "CallExpression",
+          "start": 208,
+          "end": 218,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0,
+              "index": 208
+            },
+            "end": {
+              "line": 9,
+              "column": 10,
+              "index": 218
+            }
+          },
+          "callee": {
+            "type": false,
+            "start": 208,
+            "end": 213,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0,
+                "index": 208
+              },
+              "end": {
+                "line": 9,
+                "column": 5,
+                "index": 213
+              },
+              "identifierName": "alert"
+            },
+            "name": "alert"
+          },
+          "arguments": [
+            {
+              "type": "Identifier",
+              "start": 214,
+              "end": 217,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 6,
+                  "index": 214
+                },
+                "end": {
+                  "line": 9,
+                  "column": 9,
+                  "index": 217
+                },
+                "identifierName": "str"
+              },
+              "name": "str"
+            }
+          ]
+        }
+      }
+    ],
+    "directives": []
+  },
+  "comments": [
+    {
+      "type": "CommentLine",
+      "value": " https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau",
+      "start": 0,
+      "end": 99,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "index": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 99,
+          "index": 99
+        }
+      }
+    }
+  ]
+}
