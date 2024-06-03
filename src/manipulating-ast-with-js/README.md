@@ -383,7 +383,8 @@ function h() {
   return f;
 }
 ```
-The key point is that the `path.scope.bindings` object contains all the bindings in the current scope. The bindings are stored in an object where the key is the name of the binding and the value is an object with information about the binding. The `referencePaths` property of the binding object is an array of paths that reference the usages of the binding. We simple replace the references to the parent node (the `CallExpression`) with a `NumericLiteral(99)`:
+The key point is that during a traversing the `path.scope.bindings` object contains all the bindings in the current scope. The bindings are stored in an object where the keys are the names of the bindings and the values are objects with information about the binding. The `referencePaths` property of the binding object is an array of paths that reference the **usages** of the binding. In the following code, we simple traverse the usages of the binding `localIdentifier`
+replacing the references to the parent node (the `CallExpression`) with a `NumericLiteral(99)`:
 
 ```js
 ➜  manipulating-ast-with-js git:(main) ✗ cat example-scope-plugin.js 
@@ -408,7 +409,7 @@ module.exports = ({ types: t }) => {
 };
 ```
 
-When we run babel using this plugin we get:
+When we run Babel using this plugin we get:
 
 ```js
 ➜  manipulating-ast-with-js git:(main) ✗ npx babel example-scope-input.js --plugins=./example-scope-plugin.js
