@@ -264,6 +264,8 @@ node.value = translations[node.arguments[0].value];
 delete node.arguments; delete node.callee;
 ```
 
+## replaceWithMultiple
+
 There is also a `replaceWithMultiple` that replaces a node with multiple nodes.
 The method `path.replaceWithMultiple` should be used when the parent node of the path expects multiple child nodes. It is generally used in contexts where multiple statements or expressions can exist, such as within a block statement, program body, or an array. The example [/src/manipulating-ast-with-js/replace-multiple.js](src/manipulating-ast-with-js/replace-multiple.js) shows how to use it. The example shows also how
 to visit multiple node types by separating their types with a `|`:
