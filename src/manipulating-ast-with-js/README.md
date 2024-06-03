@@ -214,7 +214,6 @@ identifier placeholders:  var myModule = require("my-module");
 to build it with the constructors (since they are much harder work) 
 and also than to use the `parse` function (since the produced AST
 contains excessive information)*.
-. 
 
 ## replaceWith
 
