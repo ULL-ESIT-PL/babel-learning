@@ -210,6 +210,12 @@ syntactic placeholders:  var myModule = require("my-module");
 identifier placeholders:  var myModule = require("my-module");
 ```
 
+*I found that to generate a AST, a babel template is often simpler than 
+to build it with the constructors (since they are much harder work) 
+and also toMatchSnapshot the `parse` function (since the produced AST
+contains excessive information)*.
+. 
+
 ## replaceWith
 
 I have lots of trouble with `replaceWith` as used in minute 29. Example
