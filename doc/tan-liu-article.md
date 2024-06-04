@@ -702,7 +702,7 @@ Correct! See the message `... at Parser.parseIdentifierName (packages/babel-pars
 
 > Let us add some `console.log`:
 
-### Adding console.log to see the parser facilitating
+### Adding console.log to see the parser 
 
 Tan Li proposes to go to file `packages/babel-parser/src/parser/expression.js` and add some `console.log` to see what is happening.
 
@@ -779,7 +779,7 @@ in section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md).
 
 
 So I included the code above in the function `parseIdentifierName` in the file `packages/babel-parser/src/parser/expression.js`
-and watched the `make watch`terminal sending the warnings about compiling the files that I have changed:
+and watched the `make watch` terminal sending the warnings about compiling the files that I have changed:
 
 ```
 Using polyfills: No polyfills were added, since the `useBuiltIns` option was not set.
@@ -879,7 +879,10 @@ We can also [make a standalone execution of the Babel parser](/doc/standalone-pa
 
 By calling the [constructor](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/types.js#L45-L71) we are setting the `label` property of the token `atat` to `@@`
 
-> Next, let's find out where the token gets created during tokenization. A quick search on `tt.at` within [babel-parser/src/tokenizer] lead us to [packages/babel-parser/src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js#L891-L894)
+> Next, let's find out where the token gets created during tokenization. A quick search for `tt.at` within `babel-parser/src/tokenizer` lead us to [packages/babel-parser/src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js#L891-L894)
+
+Here is the general structure of the code of the `getTokenFromCode` function inside 
+the `babel-parser/src/tokenizer/index.js` file:
 
 ```js
 ...
@@ -919,8 +922,20 @@ export default class Tokenizer extends ParserErrors {
       String.fromCodePoint(code),
     );
   }
-
 ```
 
-Well, token types are import as `tt` throughout the babel-parser.
-Let's create the token tt.atat instead of tt.at if there's another @ succeed the current @:
+> Well, token types are import as `tt` throughout the babel-parser.
+> 
+Let's add the token `tt.atat`:
+
+```js
+case charCodes.atSign:
+      // if the next character is a `@`
+      if (this.input.charCodeAt(this.state.pos + 1) === charCodes.atSign) {
+        // create `tt.atat` instead
+        this.finishOp(tt.atat, 2);
+      } else {
+        this.finishOp(tt.at, 1);
+      }
+      return;
+``` 
