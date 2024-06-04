@@ -955,3 +955,49 @@ finishOp(type: TokenType, size: number): void {
     this.finishToken(type, str);
   }
 ```
+> If you run the test again, you will see that the current token and the next token has changed:
+
+```sh 
+➜  babel-tanhauhau git:(learning) ✗ TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
+BABEL_ENV=test ./scripts/test.sh
+ FAIL  packages/babel-parser/test/curry-function.js
+  ● Console
+
+    console.error packages/babel-parser/lib/parser/expression.js:1517
+      TokenType {
+        label: '@@',
+        keyword: undefined,
+        beforeExpr: false,
+        startsExpr: false,
+        rightAssociative: false,
+        isLoop: false,
+        isAssign: false,
+        prefix: false,
+        postfix: false,
+        binop: null,
+        updateContext: null
+      }
+    console.error packages/babel-parser/lib/parser/expression.js:1518
+      TokenType {
+        label: 'name',
+        keyword: undefined,
+        beforeExpr: false,
+        startsExpr: true,
+        rightAssociative: false,
+        isLoop: false,
+        isAssign: false,
+        prefix: false,
+        postfix: false,
+        binop: null,
+        updateContext: [Function (anonymous)]
+      }
+
+  ● curry function syntax › should parse
+
+    SyntaxError: Unexpected token (1:9)
+  ```
+
+  Notice that 
+  
+  1. I have created the branch `learning` to keep track of the changes I am doing in the code.
+  2. The parser fails but now the token has label `@@` 
