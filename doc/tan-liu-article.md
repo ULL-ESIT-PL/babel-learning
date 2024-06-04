@@ -886,6 +886,7 @@ the `babel-parser/src/tokenizer/index.js` file:
 
 ```js
 ...
+import * as charCodes from "charcodes";
 import { types as tt, keywords as keywordTypes, type TokenType } from "./types";
 ...
 
@@ -924,18 +925,33 @@ export default class Tokenizer extends ParserErrors {
   }
 ```
 
+The Babel parser uses [charcodes constants](https://github.com/xtuc/charcodes?tab=readme-ov-file) to represent characters.
+
 > Well, token types are import as `tt` throughout the babel-parser.
-> 
-Let's add the token `tt.atat`:
+>
+
+
+> Let's create the token `tt.atat` instead of `tt.at` if there's another `@` after the current `@`:
+>
+
+> ```js
+> case charCodes.atSign:
+>       // if the next character is a `@`
+>       if (this.input.charCodeAt(this.state.pos + 1) === charCodes.atSign) {
+>         // create `tt.atat` instead
+>         this.finishOp(tt.atat, 2);
+>       } else {
+>         this.finishOp(tt.at, 1);
+>       }
+>       return;
+> ``` 
+
+The function `finishOp`  receives the token type and the size of the token, sets the token value and advances the position by calling [finishToken](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js#L382-L390)
 
 ```js
-case charCodes.atSign:
-      // if the next character is a `@`
-      if (this.input.charCodeAt(this.state.pos + 1) === charCodes.atSign) {
-        // create `tt.atat` instead
-        this.finishOp(tt.atat, 2);
-      } else {
-        this.finishOp(tt.at, 1);
-      }
-      return;
-``` 
+finishOp(type: TokenType, size: number): void {
+    const str = this.input.slice(this.state.pos, this.state.pos + size);
+    this.state.pos += size;
+    this.finishToken(type, str);
+  }
+```
