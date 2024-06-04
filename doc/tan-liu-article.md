@@ -1129,3 +1129,29 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 
 > I am going to briefly explain how parsing works, and in the process hopefully, you understood what that one-liner change did.
 
+### How parsing works
+
+> With the list of tokens from the tokenizer, the parser consumes the token one by one and constructs the AST. 
+> The parser uses the language grammar specification to decide how to use the tokens, which token to expect next.
+
+> The grammar specification looks something like this:
+
+> ```
+> ...
+> ExponentiationExpression -> UnaryExpression
+>                             UpdateExpression ** ExponentiationExpression
+> MultiplicativeExpression -> ExponentiationExpression
+>                             MultiplicativeExpression ("*" or "/" or "%") ExponentiationExpression
+> AdditiveExpression       -> MultiplicativeExpression
+>                             AdditiveExpression + MultiplicativeExpression
+>                             AdditiveExpression - MultiplicativeExpression
+> ...
+> ```
+
+> It explains the precedence of each expressions/statements. For example, an `AdditiveExpression` is made up of either:
+
+> - a `MultiplicativeExpression`, or
+> - an `AdditiveExpression` followed by `+` operator token followed by `MultiplicativeExpression`, or
+> - an `AdditiveExpression` followed by `-` operator token followed by `MultiplicativeExpression`.
+
+
