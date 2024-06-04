@@ -1020,7 +1020,9 @@ BABEL_ENV=test ./scripts/test.sh
   1. I have created the branch `learning` to keep track of the changes I am doing in the code.
   2. The parser fails but now the token has label `@@` 
 
-# The new parser
+## The new parser
+
+### A plan
 
 > Before we move on, let's inspect how generator functions are represented in AST:
 
