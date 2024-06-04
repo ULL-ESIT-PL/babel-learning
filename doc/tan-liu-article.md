@@ -1001,3 +1001,34 @@ BABEL_ENV=test ./scripts/test.sh
   
   1. I have created the branch `learning` to keep track of the changes I am doing in the code.
   2. The parser fails but now the token has label `@@` 
+
+# The new parser
+
+> Before we move on, let's inspect how generator functions are represented in AST:
+
+```json
+➜  babel-learning git:(main) compast -jp '(function* () {})' | jq '.body[0].expression'
+{
+  "type": "FunctionExpression",
+  "id": null,
+  "expression": false,
+  "generator": true,
+  "async": false,
+  "params": [],
+  "body": {
+    "type": "BlockStatement",
+    "body": []
+  }
+}
+```
+
+> As you can see, a generator function is represented by the `generator: true` 
+> attribute of a `FunctionDeclaration`.
+
+> Similarly, we can add a `curry: true` attribute of the `FunctionDeclaration` too 
+> if it is a `curry` function:
+
+AST for curry function
+
+> We have a plan now, let's implement it.
+
