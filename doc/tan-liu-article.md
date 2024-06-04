@@ -379,6 +379,62 @@ TokenType {
   binop: null,
   updateContext: null
 }
+> B.tokTypes.exponent
+TokenType {
+  label: '**',
+  keyword: undefined,
+  beforeExpr: true,
+  startsExpr: false,
+  rightAssociative: true,
+  isLoop: false,
+  isAssign: false,
+  prefix: false,
+  postfix: false,
+  binop: 11,
+  updateContext: null
+}
+> B.tokTypes.star
+TokenType {
+  label: '*',
+  keyword: undefined,
+  beforeExpr: true,
+  startsExpr: false,
+  rightAssociative: false,
+  isLoop: false,
+  isAssign: false,
+  prefix: false,
+  postfix: false,
+  binop: 10,
+  updateContext: [Function (anonymous)]
+}
+> B.tokTypes.plusMin
+TokenType {
+  label: '+/-',
+  keyword: undefined,
+  beforeExpr: true,
+  startsExpr: true,
+  rightAssociative: false,
+  isLoop: false,
+  isAssign: false,
+  prefix: true,
+  postfix: false,
+  binop: 9,
+  updateContext: null
+}
+> B.tokTypes.incDec
+TokenType {
+  label: '++/--',
+  keyword: undefined,
+  beforeExpr: false,
+  startsExpr: true,
+  rightAssociative: false,
+  isLoop: false,
+  isAssign: false,
+  prefix: true,
+  postfix: true,
+  binop: null,
+  updateContext: [Function (anonymous)]
+}
 ```
 
 ### TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
