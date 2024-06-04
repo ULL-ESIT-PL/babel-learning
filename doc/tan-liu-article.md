@@ -1006,7 +1006,7 @@ BABEL_ENV=test ./scripts/test.sh
 
 > Before we move on, let's inspect how generator functions are represented in AST:
 
-`➜  babel-learning git:(main) ✗ compast -jp 'function foo() {}' | jq '.body[0]'`
+`➜  babel-learning git:(main) compast -jp 'function* foo() {}' | jq '.body[0]'`
 ```json
 {
   "type": "FunctionDeclaration",
@@ -1015,7 +1015,7 @@ BABEL_ENV=test ./scripts/test.sh
     "name": "foo"
   },
   "expression": false,
-  "generator": false,
+  "generator": true,
   "async": false,
   "params": [],
   "body": {
@@ -1031,7 +1031,26 @@ BABEL_ENV=test ./scripts/test.sh
 > Similarly, we can add a `curry: true` attribute or the `FunctionDeclaration` too 
 > if it is a `curry` function:
 
-AST for curry function
+`➜  babel-learning git:(main) compast -jp 'function @@ foo() {}' | jq '.body[0]'`
+```json
+{
+  "type": "FunctionDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "foo"
+  },
+  "expression": false,
+  "generator": false,
+  "curry": true,
+  "async": false,
+  "params": [],
+  "body": {
+    "type": "BlockStatement",
+    "body": []
+  }
+}
+```
+
 
 > We have a plan now, let's implement it.
 
