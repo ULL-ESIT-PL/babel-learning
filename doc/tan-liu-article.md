@@ -23,11 +23,11 @@ then I proceed to make the bootstrap:
 ```sh
 ➜  babel-tanhauhau git:(master) make bootstrap
 ```
-I was using node v21.2.0.
+I was using node v21.2.0 and nvm 0.35.3.
 There were errors with node-gyp. 
 I found that node-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js. 
 It contains a vendored copy of the `gyp-next` project that was previously used by the 
-Chromium team and extended to support the development of Node.js native addons.
+Chromium team and extended to support the development of Node.js native addons. Native modules refers to the modules that are written outside of JavaScript, modules that are written in C++ (C++ addons) for example and embedded into JavaScript using things like N-API (Node-API).
 
 These were the errors:
 
