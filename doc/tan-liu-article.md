@@ -5,9 +5,13 @@
 I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
 at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
 
+### Cloning the repo
+
 ```sh
 gh repo clone ULL-ESIT-PL/babel-tanhauhau
 ```
+
+### yarn and gulp
 
 Then I realized that I have to install yarn and gulp to build the project.
 
@@ -17,6 +21,8 @@ Then I realized that I have to install yarn and gulp to build the project.
 babel-tanhauhau git:(master) npm i -g yarn 
 babel-tanhauhau git:(master) npm i -g gulp
 ```
+
+### make bootstrap
 
 then I proceed to make the bootstrap:
 
@@ -80,6 +86,9 @@ It took a while to build the project, but there were no errors:
 [12:33:49] Skipped minification of 'babel-tanhauhau/packages/babel-standalone/babel.js' because not publishing
 [12:33:49] Finished 'build-babel-standalone' after 29 s
 ```
+
+### make build
+
 Thus I proceed to the `make build`:
 
 ```sh
@@ -88,7 +97,17 @@ babel-tanhauhau git:(master) make build
 [12:37:46] Skipped minification of 'babel-tanhauhau/packages/babel-standalone/babel.js' because not publishing
 [12:37:46] Finished 'build-babel-standalone' after 18 s
 ```
-I then runned the tests. Most of them passed but there were some errors. For instance:
+
+### make test
+
+I then runned the tests. 
+
+```sh
+  babel-tanhauhau git:(master) ✗ make test
+BABEL_ENV=test yarn --silent eslint scripts packages codemods eslint '*.js' --format=codeframe
+```
+
+Most of them passed but there were some errors. For instance:
 
 ```sh
  FAIL  packages/babel-plugin-transform-dotall-regex/test/index.js
