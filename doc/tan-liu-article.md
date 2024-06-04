@@ -323,7 +323,7 @@ rm -rf  eslint/*/test/tmp
 rm -rf  eslint/*/test-fixtures.json
 ```
 
-### parse, parseExpression and tokTypes
+### parse, parseExpression 
 
 The `index.js` file in the `lib` folder exports an object with 
 
@@ -361,6 +361,8 @@ Node {
   errors: []
 }
 ```
+
+### tokTypes
 
 The `tokTypes` property is a getter that returns an object with the token types:
 
