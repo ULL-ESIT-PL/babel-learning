@@ -1052,5 +1052,5 @@ BABEL_ENV=test ./scripts/test.sh
 ```
 
 
-> We have a plan now, let's implement it.
+> **We have a plan now**, let's implement it!.
 
