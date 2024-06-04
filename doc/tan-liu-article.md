@@ -1098,9 +1098,16 @@ export default class StatementParser extends ExpressionParser {
 > If you run the test again, you will be amazed that it passed!
 
 ```sh
+➜  babel-tanhauhau git:(learning) ✗ npx jest -u packages/babel-parser/test/curry-function.js
  PASS  packages/babel-parser/test/curry-function.js
   curry function syntax
-    ✓ should parse (12ms)
+    ✓ should parse (6ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   1 passed, 1 total
+Time:        0.562s, estimated 1s
+Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 ```
 
 > That's it? How did we miraculously fix it?
