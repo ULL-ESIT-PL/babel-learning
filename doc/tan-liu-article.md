@@ -24,6 +24,25 @@
 
 ## Installing Tan Liu Babel fork
 
+## Machine Configuration
+
+```sh
+➜  babel-learning git:(main) sw_vers        
+ProductName:            macOS
+ProductVersion:         14.5
+BuildVersion:           23F79
+➜  babel-learning git:(main) uname          
+Darwin
+➜  babel-learning git:(main) node --version
+v21.2.0
+➜  babel-learning git:(main) nvm --version
+0.35.3
+➜  babel-learning git:(main) npm --version
+10.2.3
+```
+
+## Forking
+
 I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
 at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
 
