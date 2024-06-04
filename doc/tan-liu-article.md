@@ -1154,4 +1154,33 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 > - an `AdditiveExpression` followed by `+` operator token followed by `MultiplicativeExpression`, or
 > - an `AdditiveExpression` followed by `-` operator token followed by `MultiplicativeExpression`.
 
+> With these rules, we translate them into parser code:
 
+> ```js
+> class Parser {
+>   // ...
+>   parseAdditiveExpression() {
+>     const left = this.parseMultiplicativeExpression();
+>     // if the current token is `+` or `-`
+>     if (this.match(tt.plus) || this.match(tt.minus)) {
+>       const operator = this.state.type;
+>       // move on to the next token
+>       this.nextToken();
+>       const right = this.parseMultiplicativeExpression();
+> 
+>       // create the node
+>       this.finishNode(
+>         {
+>           operator,
+>           left,
+>           right,
+>         },
+>         'BinaryExpression'
+>       );
+>     } else {
+>       // return as MultiplicativeExpression
+>       return left;
+>     }
+>   }
+> }
+> ```
