@@ -41,6 +41,21 @@ v21.2.0
 10.2.3
 ```
 
+### Branch `learning`
+
+You can find the version modified in the branch `learning` of the repository [ULL-ESIT-PL/babel-tanhauhau](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning)
+
+```sh
+➜  babel-tanhauhau git:(learning) ✗ git diff --name-only master 
+.vscode/settings.json
+packages/babel-parser/src/parser/expression.js
+packages/babel-parser/src/parser/statement.js
+packages/babel-parser/src/tokenizer/index.js
+packages/babel-parser/src/tokenizer/types.js
+packages/babel-parser/test/curry-function.cjs
+packages/babel-parser/test/curry-function.js
+```
+
 ### Forking
 
 I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
@@ -1114,18 +1129,3 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 
 > I am going to briefly explain how parsing works, and in the process hopefully, you understood what that one-liner change did.
 
-### Branch `learning`
-
-You can find this version in the branch `learning` of the repository [ULL-ESIT-PL/babel-tanhauhau](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning)
-
-```sh
-➜  babel-tanhauhau git:(learning) ✗ git push -u origin  learning
-➜  babel-tanhauhau git:(learning) ✗ git diff --name-only master 
-.vscode/settings.json
-packages/babel-parser/src/parser/expression.js
-packages/babel-parser/src/parser/statement.js
-packages/babel-parser/src/tokenizer/index.js
-packages/babel-parser/src/tokenizer/types.js
-packages/babel-parser/test/curry-function.cjs
-packages/babel-parser/test/curry-function.js
-```
