@@ -2,7 +2,8 @@
 
 ## The Goal
 
-> Let me show you what we will achieve at the end of this article:
+> Let me show you what we will achieve at the end of this article.
+> We are going to create a curry function syntax `@@.` The syntax is like the generator function, except you place `@@` instead of `*` in between the function keyword and the function name, eg `function @@ name(arg1, arg2)`.
 
 > ```js
 > // '@@' makes the function `foo` curried
@@ -11,8 +12,6 @@
 > }
 > console.log(foo(1, 2)(3)); // 6
 > ```
-
-> We are going to create a curry function syntax `@@.` The syntax is like the generator function, except you place `@@` instead of `*` in between the function keyword and the function name, eg `function @@ name(arg1, arg2)`.
 
 > In this example, you can have partial application with the function `foo`. Calling `foo` with the number of parameters less than the arguments required will return a new function of the remaining arguments:
 
