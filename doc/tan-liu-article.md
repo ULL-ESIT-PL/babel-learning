@@ -760,7 +760,7 @@ Here is the full code of this version of the function:
   }
 ```
 
-**Next to the function I've got several warnings in VSCode stating that 
+Next to the function I've got several warnings in VSCode stating that 
 ["type annotations can only be used in typescript"](https://stackoverflow.com/questions/48859169/error-types-can-only-be-used-in-a-ts-file-visual-studio-code-using-ts-che). The solution adopted is described
 in section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md).
 
