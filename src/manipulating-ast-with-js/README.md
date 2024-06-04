@@ -353,71 +353,12 @@ const result = babel.transformFileSync(path.resolve(__dirname, 'example-input.js
 console.log(result.code);
 ```
 
+
 ## Scope
 
-See the question at Stack StackOverflow 
+See section [/doc/scope.md](/doc/scope.md).
+
+Tan starts to talk about scope at [38:40](https://www.youtube.com/watch?v=5z28bsbJJ3w&list=PLoKaNN3BjQX0fEhzfpU9xHNWdxhIkP-hy&index=1&t=2320s)
+
+See also the question at Stack StackOverflow 
 [How do I traverse the scope of a Path in a babel plugin](https://stackoverflow.com/questions/44309639/how-do-i-traverse-the-scope-of-a-path-in-a-babel-plugin)
-
-> To illustrate this with a contrived example I'd like to transform source code like:
-
-```js
-const f = require('foo-bar');
-const result = f() * 2;
-```
-
-into something like:
-
-```js
-const result = 99 * 2; // as i "know" that calling f will always return 99
-```
-
-I decided to slightly modify the input example to have at least two scopes:
-
-```js
-➜  manipulating-ast-with-js git:(main) cat example-scope-input.js 
-const f = require('foo-bar');
-const result = f() * 2;
-let a = f();
-function h() {
-  let f = 2;
-  return f;
-}
-```
-The key point is that during a traversing the `path.scope.bindings` object contains all the bindings in the current scope. The bindings are stored in an object where the keys are the names of the bindings and the values are objects with information about the binding. The `referencePaths` property of the binding object is an array of paths that reference the **usages** of the binding. In the following code, we simple traverse the usages of the binding `localIdentifier`
-replacing the references to the parent node (the `CallExpression`) with a `NumericLiteral(99)`:
-
-```js
-➜  manipulating-ast-with-js git:(main) ✗ cat example-scope-plugin.js 
-module.exports = ({ types: t }) => {
-  return {
-    visitor: {
-      CallExpression(path) {
-        const { scope, node } = path;
-        if (node.callee.name === 'require'
-          && node.arguments.length === 1
-          && t.isStringLiteral(node.arguments[0])
-          && node.arguments[0].value === 'foo-bar'
-        ) {
-          const localIdentifier = path.parent.id.name; // f
-          scope.bindings[localIdentifier].referencePaths.forEach(p => {
-            p.parentPath.replaceWith(t.NumericLiteral(99));
-          }); 
-        }
-      }
-    }
-  }
-};
-```
-
-When we run Babel using this plugin we get:
-
-```js
-➜  manipulating-ast-with-js git:(main) ✗ npx babel example-scope-input.js --plugins=./example-scope-plugin.js
-const f = require('foo-bar');
-const result = 99 * 2;
-let a = 99;
-function h() {
-  let f = 2;
-  return f;
-}
-```
