@@ -2,7 +2,7 @@
 
 ## Installing Tan Liu Babel fork
 
-I started forking Tan Liu babel fork of the repo instead of the main Babel repo and then I clone my fork
+I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
 at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
 
 ```sh
