@@ -1113,3 +1113,17 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 > That's it? How did we miraculously fix it?
 
 > I am going to briefly explain how parsing works, and in the process hopefully, you understood what that one-liner change did.
+
+You can find this version in the branch `learning` of the repository [ULL-ESIT-PL/babel-tanhauhau](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning)
+
+```sh
+➜  babel-tanhauhau git:(learning) ✗ git push -u origin  learning
+➜  babel-tanhauhau git:(learning) ✗ git diff --name-only master 
+.vscode/settings.json
+packages/babel-parser/src/parser/expression.js
+packages/babel-parser/src/parser/statement.js
+packages/babel-parser/src/tokenizer/index.js
+packages/babel-parser/src/tokenizer/types.js
+packages/babel-parser/test/curry-function.cjs
+packages/babel-parser/test/curry-function.js
+```
