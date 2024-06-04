@@ -1006,13 +1006,16 @@ BABEL_ENV=test ./scripts/test.sh
 
 > Before we move on, let's inspect how generator functions are represented in AST:
 
+`➜  babel-learning git:(main) ✗ compast -jp 'function foo() {}' | jq '.body[0]'`
 ```json
-➜  babel-learning git:(main) compast -jp '(function* () {})' | jq '.body[0].expression'
 {
-  "type": "FunctionExpression",
-  "id": null,
+  "type": "FunctionDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "foo"
+  },
   "expression": false,
-  "generator": true,
+  "generator": false,
   "async": false,
   "params": [],
   "body": {
@@ -1023,9 +1026,9 @@ BABEL_ENV=test ./scripts/test.sh
 ```
 
 > As you can see, a generator function is represented by the `generator: true` 
-> attribute of a `FunctionDeclaration`.
+> attribute of a of the `FunctionExpression` or of the `FunctionDeclaration` if it is the case.
 
-> Similarly, we can add a `curry: true` attribute of the `FunctionDeclaration` too 
+> Similarly, we can add a `curry: true` attribute or the `FunctionDeclaration` too 
 > if it is a `curry` function:
 
 AST for curry function
