@@ -702,6 +702,8 @@ Correct! See the message `... at Parser.parseIdentifierName (packages/babel-pars
 
 > Let us add some `console.log`:
 
+### Adding console.log to see the parser facilitating
+
 Tan Li proposes to go to file `packages/babel-parser/src/parser/expression.js` and add some `console.log` to see what is happening.
 
 ```js
@@ -847,59 +849,78 @@ TokenType {
 }
 ```
 
+We can also [make a standalone execution of the Babel parser](/doc/standalone-parser-execution.md)
 
-## Executing standalone the Babel parser
+### A new token: `@@`
 
-We can also run the parser standalone. I added a `cjs` file to the `test` folder:
+> Here's what we are going to do next:
+
+> If there's 2 consecutive `@`, it should not be separate tokens, it should be a `@@` token, the new token we just defined for our curry function
+
+> Let's first look at where a token type is defined: [packages/babel-parser/src/tokenizer/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/types.js#L86-L203).
+
+> Here you see a list of tokens, so let's add our new token definition in as well:
+>
+> ```js
+> export const types: { [name: string]: TokenType } = {
+>   num: new TokenType("num", { startsExpr }),
+>   bigint: new TokenType("bigint", { startsExpr }),
+>   regexp: new TokenType("regexp", { startsExpr }),
+>   string: new TokenType("string", { startsExpr }),
+>   name: new TokenType("name", { startsExpr }),
+>   eof: new TokenType("eof"),
+>   ...
+>   at: new TokenType("@"),
+>   atat: new TokenType('@@'),
+>   hash: new TokenType("#", { startsExpr }),
+>   ...
+> };
+> ```
+
+By calling the [constructor](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/types.js#L45-L71) we are setting the `label` property of the token `atat` to `@@`
+
+> Next, let's find out where the token gets created during tokenization. A quick search on `tt.at` within [babel-parser/src/tokenizer] lead us to [packages/babel-parser/src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js#L891-L894)
 
 ```js
-➜  babel-parser git:(master) ✗ cat test/curry-function.cjs 
-const { parse } =  require('../lib');
+...
+import { types as tt, keywords as keywordTypes, type TokenType } from "./types";
+...
 
-function getParser(code) {
-  return () => parse(code, { sourceType: 'module' });
-}
-let input = `function @@ foo() {}`;
-let ast = getParser(input)();
+export default class Tokenizer extends ParserErrors {
+...
+ getTokenFromCode(code: number): void {
+    switch (code) {
+      // The interpretation of a dot depends on whether it is followed
+      // by a digit or another two dots.
 
-console.log(JSON.stringify(ast, null, "  "));
+      case charCodes.dot:
+        this.readToken_dot();
+        return;
+      ...
+      case charCodes.atSign:
+        ++this.state.pos;
+        this.finishToken(tt.at);
+        return;
+
+      case charCodes.numberSign:
+        this.readToken_numberSign();
+        return;
+      ...
+      default:
+        if (isIdentifierStart(code)) {
+          this.readWord();
+          return;
+        }
+    }
+
+    throw this.raise(
+      this.state.pos,
+      Errors.InvalidOrUnexpectedToken,
+      String.fromCodePoint(code),
+    );
+  }
+
 ```
 
-When we run it, we  get the same error:
-
-```sh
-➜  babel-parser git:(master) ✗ node test/curry-function.cjs 
-TokenType {
-  label: '@',
-  keyword: undefined,
-  beforeExpr: false,
-  startsExpr: false,
-  rightAssociative: false,
-  isLoop: false,
-  isAssign: false,
-  prefix: false,
-  postfix: false,
-  binop: null,
-  updateContext: null
-}
-TokenType {
-  label: '@',
-  keyword: undefined,
-  beforeExpr: false,
-  startsExpr: false,
-  rightAssociative: false,
-  isLoop: false,
-  isAssign: false,
-  prefix: false,
-  postfix: false,
-  binop: null,
-  updateContext: null
-}
-/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/parser/error.js:50
-SyntaxError: Unexpected token (1:9)
-    at Parser._raise (/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/    at Parser.parseIdentifierName (/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/parser/expression.js:1517:18) {
-  loc: Position { line: 1, column: 9 },
-  pos: 9
-}
-Node.js v21.2.0
-```
+Well, token types are import as `tt` throughout the babel-parser.
+Let's create the token tt.atat instead of tt.at if there's another @ succeed the current @:
