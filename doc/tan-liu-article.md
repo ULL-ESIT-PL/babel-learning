@@ -192,6 +192,8 @@ are in the `packages/` folder:
 
 ## Our custom babel parser
 
+### Tree structure
+
 The folder we are going to work on is `packages/babel-parser/`:
 
 ```
@@ -268,6 +270,8 @@ The folder we are going to work on is `packages/babel-parser/`:
 
 ... and `typescript`.
 
+### A test for the goal 
+
 > Let's do a Test-driven development (TDD). 
 > I find it easier to define the test case then slowly work our way to "fix" it. 
 > It is especially true in an unfamiliar codebase, 
@@ -290,10 +294,47 @@ describe('curry function syntax', function() {
 });
 ```
 
-The `index.js` file in the `lib` folder exports an object with `parse`, `parseExpression` and `tokTypes` properties:
+The testing seems to be in Jest: `toMatchSnapshot` is a [Jest function](https://jestjs.io/docs/snapshot-testing).
+See for instance 
+
+1. The script [ULL-ESIT-PL/babel-tanhauhau//scripts/test.sh](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/scripts/test.sh)
+2. [ULL-ESIT-PL/babel-tanhauhau//packages/babel-parser/test/unit/tokenizer/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/test/unit/tokenizer/types.js)
+
+To run the tests for a package we can use the `make test-only` command specifying 
+- The package with the `TEST_ONLY` environment variable and 
+- To run only those tests whose description matches the `TEST_GREP` environment variable
+
+```sh
+➜  babel-tanhauhau git:(master) ✗ TEST_ONLY=babel-parser TEST_GREP="token types" make test-only
+BABEL_ENV=test ./scripts/test.sh
+ PASS  packages/babel-parser/test/unit/tokenizer/types.js
+
+Test Suites: 7 skipped, 1 passed, 1 of 8 total
+Tests:       5253 skipped, 3 passed, 5256 total
+Snapshots:   0 total
+Time:        7.01s
+Ran all test suites matching /(packages|codemods|eslint)\/.*babel-parser.*\/test/i with tests matching "token types".
+/Applications/Xcode.app/Contents/Developer/usr/bin/make test-clean
+rm -rf  packages/*/test/tmp
+rm -rf  packages/*/test-fixtures.json
+rm -rf  codemods/*/test/tmp
+rm -rf  codemods/*/test-fixtures.json
+rm -rf  eslint/*/test/tmp
+rm -rf  eslint/*/test-fixtures.json
+```
+
+### parse, parseExpression and tokTypes
+
+The `index.js` file in the `lib` folder exports an object with 
+
+- `parse`, 
+- `parseExpression` and 
+- `tokTypes` properties
 
 
 ```js
+➜  babel-tanhauhau git:(master) ✗ cd packages/babel-parser 
+➜  babel-parser git:(master) ✗ node
 > B = require("./lib")
 {
   parse: [Function: parse],
@@ -301,6 +342,26 @@ The `index.js` file in the `lib` folder exports an object with `parse`, `parseEx
   tokTypes: [Getter]
 }
 ```
+
+We can get the AST for the code `1` with `B.parseExpression("1")`. The AST spec is at [packages/babel-parser/ast/spec.md](https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md):
+
+```js
+> B.parseExpression("1")
+Node {
+  type: 'NumericLiteral',
+  start: 0,
+  end: 1,
+  loc: SourceLocation {
+    start: Position { line: 1, column: 0 },
+    end: Position { line: 1, column: 1 }
+  },
+  extra: { rawValue: 1, raw: '1' },
+  value: 1,
+  comments: [],
+  errors: []
+}
+```
+
 The `tokTypes` property is a getter that returns an object with the token types:
 
 ```
@@ -320,11 +381,10 @@ TokenType {
 }
 ```
 
-The testing seems to be in Jest: `toMatchSnapshot` is a [Jest function](https://jestjs.io/docs/snapshot-testing).
-
 ### TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
 
-and run `make test-only` from the root of the project:
+
+We run `make test-only` from the root of the project:
 
 ```sh
 ➜  babel-parser git:(master) ✗ TEST_ONLY=babel-parser TEST_GREP="curry function" make test-only
