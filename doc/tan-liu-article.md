@@ -483,8 +483,8 @@ Time:        6.598s, estimated 11s
 Ran all test suites matching /(packages|codemods|eslint)\/.*babel-parser.*\/test/i with tests matching "curry function".
 make: *** [test-only] Error 1
 ```
-I guess that the environment variables `TEST_ONLY=babel-parser TEST_GREP="curry function"`
-set the test to run only the `babel-parser` tests and to grep for the string `curry function`.
+The environment variables `TEST_ONLY=babel-parser TEST_GREP="curry function"`
+set the test to run only the `babel-parser` tests and to grep for the string `curry function` in the test description.
 
 ### BABEL_ENV=test npx jest -u packages/babel-parser/test/curry-function.js
 
@@ -653,7 +653,8 @@ Using polyfills: No polyfills were added, since the `useBuiltIns` option was not
 [16:25:36] Finished 'build-no-bundle' after 1.19 s
 [16:25:36] Starting 'watch'...
 ```
-And it hangs here.
+And it hangs here waiting for any of the Babel source files to change and rebuilding the compiler 
+when need it.
 
 ### Running the tests on watching mode
 
