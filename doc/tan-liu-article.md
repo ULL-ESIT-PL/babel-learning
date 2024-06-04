@@ -24,7 +24,7 @@
 
 ## Installing Tan Liu Babel fork
 
-## Machine Configuration
+### Machine Configuration
 
 ```sh
 ➜  babel-learning git:(main) sw_vers        
@@ -41,7 +41,7 @@ v21.2.0
 10.2.3
 ```
 
-## Forking
+### Forking
 
 I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
 at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
