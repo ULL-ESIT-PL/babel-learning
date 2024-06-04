@@ -1,5 +1,28 @@
 # Reading "Creating custom JavaScript syntax with Babel"
 
+## The Goal
+
+> Let me show you what we will achieve at the end of this article:
+
+> ```js
+> // '@@' makes the function `foo` curried
+> function @@ foo(a, b, c) {
+>   return a + b + c;
+> }
+> console.log(foo(1, 2)(3)); // 6
+> ```
+
+> We are going to create a curry function syntax `@@.` The syntax is like the generator function, except you place `@@` instead of `*` in between the function keyword and the function name, eg `function @@ name(arg1, arg2)`.
+
+> In this example, you can have partial application with the function `foo`. Calling `foo` with the number of parameters less than the arguments required will return a new function of the remaining arguments:
+
+> ```js
+> foo(1, 2, 3); // 6
+> 
+> const bar = foo(1, 2); // (n) => 1 + 2 + n
+> bar(3); // 6
+> ```
+
 ## Installing Tan Liu Babel fork
 
 I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
@@ -118,7 +141,7 @@ I will try to find out what is the reason later.
 
 ## The Babel monorepo
 
-Babel uses a monorepo structure, all the packages, eg: 
+[Babel uses a monorepo structure](https://github.com/babel/babel/blob/main/doc/design/monorepo.md), all the packages, eg: 
 `@babel/core`, 
 `@babel/parser`, 
 `@babel/plugin-transform-react-jsx`, 
