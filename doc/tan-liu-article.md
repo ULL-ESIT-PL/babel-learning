@@ -1072,3 +1072,35 @@ BABEL_ENV=test ./scripts/test.sh
 
 > **We have a plan now**, let's implement it!.
 
+### Making the parser pass the test
+
+> A quick search on "`FunctionDeclaration`" leads us to a function called `parseFunction` in 
+> [packages/babel-parser/src/parser/statement.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js#L1039-L1100), and here we find a line that sets the `generator` attribute, let's add one more line:
+
+```js
+packages/babel-parser/src/parser/statement.js
+export default class StatementParser extends ExpressionParser {
+  // ...
+  parseFunction<T: N.NormalFunction>(
+    node: T,
+    statement?: number = FUNC_NO_FLAGS,
+    isAsync?: boolean = false
+  ): T {
+    // ...
+    node.generator = this.eat(tt.star);
+    node.curry = this.eat(tt.atat);
+  }
+}
+```
+
+> If you run the test again, you will be amazed that it passed!
+
+```sh
+ PASS  packages/babel-parser/test/curry-function.js
+  curry function syntax
+    ✓ should parse (12ms)
+```
+
+> That's it? How did we miraculously fix it?
+
+> I am going to briefly explain how parsing works, and in the process hopefully, you understood what that one-liner change did.
