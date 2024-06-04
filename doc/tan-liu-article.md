@@ -1184,3 +1184,18 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 >   }
 > }
 > ```
+
+> This is a made-up code that oversimplifies what babel have, but I hope you get the gist of it.
+
+> As you can see here, the parser is recursively in nature, and it goes from the lowest precedence to the highest precedence expressions/statements. Eg: `parseAdditiveExpression` calls `parseMultiplicativeExpression`, which in turn calls `parseExponentiationExpression`, which in turn calls ... . This recursive process is called [Recursive Descent Parsing](https://craftinginterpreters.com/parsing-expressions.html#recursive-descent-parsing).
+
+### this.eat, this.match, this.next
+
+> If you have noticed, in my examples above, I used some utility function, such as `this.eat`, `this.match`, `this.next`, etc. These are babel parser's internal functions, yet they are quite ubiquitous amongst parsers as well:
+
+- `this.match` returns a boolean indicating whether the current token matches the condition
+- `this.next` moves the token list forward to point to the next token
+- `this.eat` return what `this.match` returns and if `this.match` returns true, will do `this.next`
+  - `this.eat` is commonly used for optional operators, like `*` in generator function, `;` at the end of statements, and `?` in typescript types.
+- this.lookahead get the next token without moving forward to make a decision on the current node
+If you take a look again the parser code we just changed, it's easier to read it in now.
