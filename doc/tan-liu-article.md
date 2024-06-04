@@ -698,7 +698,7 @@ make: *** [test-only] Error 1
 
 > Tracing the stack trace, led us to `packages/babel-parser/src/parser/expression.js` where it throws `this.unexpected()`.
 
-Correct! See the message `at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18)` in the stack trace above.
+Correct! See the message `... at Parser.parseIdentifierName (packages/babel-parser/lib/parser/expression.js:1515:18)` in the stack trace above.
 
 > Let us add some `console.log`:
 
