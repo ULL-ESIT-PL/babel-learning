@@ -13,6 +13,11 @@ Also see the following resources:
 * [Plugins: Babel](https://babeljs.io/docs/plugins)
 * [Plugins list](https://babeljs.io/docs/plugins-list)
 
+## VSCode Configuration
+
+See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) on how to configure VSCode to work with Babel files in TypeScript.
+
+
 ## Babel Configuration
 
 See the [Babel Configuration](doc/configure.md) section.

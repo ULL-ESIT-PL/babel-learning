@@ -760,9 +760,9 @@ Here is the full code of this version of the function:
   }
 ```
 
-Next to the function I've got several warnings in VSCode stating that 
+**Next to the function I've got several warnings in VSCode stating that 
 ["type annotations can only be used in typescript"](https://stackoverflow.com/questions/48859169/error-types-can-only-be-used-in-a-ts-file-visual-studio-code-using-ts-che). The solution adopted was to disable the configuration
-variable `"javascript.validate.enable"` in the settings.
+variable `"javascript.validate.enable"` in the settings.**
 
 So I included the code above in the function `parseIdentifierName` in the file `packages/babel-parser/src/parser/expression.js`
 and watched the `make watch`terminal sending the warnings about compiling the files that I have changed:
