@@ -1197,5 +1197,52 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 - `this.next` moves the token list forward to point to the next token
 - `this.eat` return what `this.match` returns and if `this.match` returns true, will do `this.next`
   - `this.eat` is commonly used for optional operators, like `*` in generator function, `;` at the end of statements, and `?` in typescript types.
-- this.lookahead get the next token without moving forward to make a decision on the current node
+- `this.lookahead` get the next token without moving forward to make a decision on the current node
+
 If you take a look again the parser code we just changed, it's easier to read it in now.
+
+`packages/babel-parser/src/parser/statement.js`
+```js
+export default class StatementParser extends ExpressionParser {
+  parseStatementContent(/* ...*/) {
+    // ...
+    // NOTE: we call match to check the current token
+    if (this.match(tt._function)) {
+      this.next();
+      // NOTE: function statement has a higher precendence than a generic statement
+      this.parseFunction();
+    }
+  }
+  // ...
+  parseFunction(/* ... */) {
+    // NOTE: we call eat to check whether the optional token exists
+    node.generator = this.eat(tt.star);
+    node.curry = this.eat(tt.atat);
+    node.id = this.parseFunctionId();
+  }
+}
+```
+
+## Your parser in the web 
+
+> **Side Note**: You might be curious how am I able to visualize the custom syntax in the Babel AST Explorer, where I showed you the new "`curry`" attribute in the AST.
+
+> That's because I've added a new feature in the [Babel AST Explorer](https://lihautan.com/babel-ast-explorer/) where you can upload your custom parser!
+
+```
+➜  babel-tanhauhau git:(learning) ✗ ls packages/babel-parser/lib 
+index.js        options.js      parser          plugin-utils.js plugins         tokenizer       types.js        util
+```
+
+> If you go to `packages/babel-parser/lib`, you would find the compiled version of your parser and the source map. 
+> Open the drawer of the Babel AST Explorer, you will see a button to` upload a custom parser`. Drag the `packages/babel-parser/lib/index.js` 
+> in and you will be visualizing the AST generated via your custom parser!
+
+
+## Our babel plugin
+
+> With our custom babel parser done, let's move on to write our babel plugin.
+
+> But maybe before that, you may have some doubts on how are we going to use our custom babel parser, especially with whatever build stack we are using right now?
+
+> Well, fret not. **A babel plugin can provide a custom parser, which is [documented on the babel website](https://babeljs.io/docs/en/babel-parser#will-the-babel-parser-support-a-plugin-system)**
