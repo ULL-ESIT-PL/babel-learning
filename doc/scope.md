@@ -114,7 +114,7 @@ function getIdentifierPath(code) {
   traverse(ast, {
     Identifier: function (path) {
       nodePath = path;
-      path.stop();
+      path.stop(); // Stop traversing
     },
   });
 
