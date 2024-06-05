@@ -237,6 +237,9 @@ const output = generate(
 );
 console.log(output.code);
 ```
+- This code uses the `@babel/traverse` package to traverse the AST and change all the `n` identifiers to `x`. 
+- It then uses the `@babel/generator` package to generate the code from the modified AST. 
+- The `compact-js-ast` package is used to print the AST in a more readable format.
 
 Run it with:
 
