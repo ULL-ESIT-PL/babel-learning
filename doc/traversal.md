@@ -192,4 +192,36 @@ const MyVisitor = {
 
 ## babel-traverse and babel-generator and compact-js-ast
 
-See example [play/hello-babel-traverse.mjs](/play/hello-babel-traverse.mjs).
+See example [src/traverse/hello-babel-traverse.mjs](/src/traverse/hello-babel-traverse.mjs).
+
+`➜  babel-learning git:(main) ✗ node src/traverse/hello-babel-traverse.mjs`
+```yml
+type: "File"
+program:
+  type: "Program"
+  body:
+    - type: "FunctionDeclaration"
+      id:
+        type: "Identifier"
+        name: "square"
+      expression: false
+      params:
+        - type: "Identifier"
+          name: "x"
+      body:
+        type: "BlockStatement"
+        body:
+          - type: "ReturnStatement"
+            argument:
+              type: "BinaryExpression"
+              left:
+                type: "Identifier"
+                name: "x"
+              operator: "*"
+              right:
+                type: "Identifier"
+                name: "x"
+
+function square(x){return x*x;}
+```
+
