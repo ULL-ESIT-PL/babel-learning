@@ -132,7 +132,8 @@ function testReferencePaths() { //0123456789012345678901234567890123456
 testReferencePaths();
 ```
 
-Notice that the array `referencePaths` does not contain the declaration of the binding `square(n)`.
+Notice that the array `referencePaths` does not contain the declaration as a parameter 
+at column 26 of the binding `n`.
 
 ## Stack StackOverflow "How do I traverse the scope of a Path in a babel plugin"
 
