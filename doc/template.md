@@ -7,7 +7,10 @@ Babel Template is another tiny but incredibly useful module.
 It allows you to write strings of code with placeholders 
 that you can use instead of manually building up a massive AST.
 
-See example [src/template/hello-babel-template.mjs](/src/template/hello-babel-template.mjs):
+We can see in the example [src/template/hello-babel-template.mjs](/src/template/hello-babel-template.mjs)
+that the template variables `IMPORT_NAME`  and  `SOURCE` in the template object `buildRequire` are filled
+with the ASTs built using `babel-types` and stored in the variables  `identifier` and `stringLiteral`.
+The resulting AST  `ast` is used to generate the code using `@babel/generator`.
 
 ```js
 import template from "babel-template";
