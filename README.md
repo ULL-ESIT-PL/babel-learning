@@ -10,10 +10,14 @@ My PL notes on Babel are here: https://ull-pl.vercel.app/topics/tree-transformat
 * See this introduction by Matt Zeunert and the associated [GitHub repository](https://github.com/mattzeunert/babel-plugin-demo) for a simple example of how to create a Babel plugin.
   * [Compiling JavaScript with Babel and writing your own Babel plugins](https://youtu.be/5gQiIWXBQ0U?si=AR0ZKEI6rZe4OMpV) Matt Zeunert
   
+
 ## VSCode Configuration
 
 See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) on how to configure VSCode to work with Babel files in TypeScript.
 
+## git configuration: Husky and git Hooks
+
+See section [doc/git-hooks-configuration.md](doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
 
 ## Babel Configuration
 
