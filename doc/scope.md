@@ -125,7 +125,6 @@ function testReferencePaths() { //0123456789012345678901234567890123456
   console.log(path.node.loc.start); // { line: 1, column: 9, index: 9 }
   const referencePaths = path.context.scope.bindings.n.referencePaths;
   console.log(referencePaths.length); // 2
-  console.log(Object.keys(referencePaths[0]));
   console.log(referencePaths[0].node.loc.start) /* { line: 1, column: 28, index: 28, } */
   console.log(referencePaths[1].node.loc.start) /* { line: 1, column: 32, index: 32, } */
 }
