@@ -1039,7 +1039,7 @@ BABEL_ENV=test ./scripts/test.sh
   1. I have created the branch `learning` to keep track of the changes I am doing in the code.
   2. The parser fails but now the token has label `@@` 
 
-## The new parser
+## [The new parser](https://lihautan.com/creating-custom-javascript-syntax-with-babel#the-new-parser)
 
 ### A plan
 
@@ -1133,7 +1133,7 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 
 > I am going to briefly explain how parsing works, and in the process hopefully, you understood what that one-liner change did.
 
-### How parsing works
+### [How parsing works](https://lihautan.com/creating-custom-javascript-syntax-with-babel#how-parsing-works)
 
 > With the list of tokens from the tokenizer, the parser consumes the token one by one and constructs the AST. 
 > The parser uses the language grammar specification to decide how to use the tokens, which token to expect next.
@@ -1314,3 +1314,32 @@ export default function ourBabelPlugin() {
 >
 > If you have read my [step-by-step guide on babel transformation](https://lihautan.com/step-by-step-guide-for-writing-a-babel-transformation), writing this transformation should be manageable:
 
+> `babel-plugin-transformation-curry-function.js`
+> ```js
+> export default function ourBabelPlugin() {
+>   return {
+>     // ...
+>     visitor: {
+>       FunctionDeclaration(path) {
+>         if (path.get('curry').node) {
+>           // const foo = curry(function () { ... });
+>           path.node.curry = false;
+>           path.replaceWith(
+>             t.variableDeclaration('const', [
+>               t.variableDeclarator(
+>                 t.identifier(path.get('id.name').node),
+>                 t.callExpression(t.identifier('currying'), [
+>                   t.toExpression(path.node),
+>                 ])
+>               ),
+>             ])
+>           );
+>         }
+>       },
+>     },
+>   };
+> }
+> ```
+> The question is how do we provide the currying function?
+
+> There are 2 ways:
