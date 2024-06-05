@@ -2,7 +2,7 @@
 
 See section in file [//doc/tan-liu-article.md](//doc/tan-liu-article.md) describing my experience reproducing [Tan Li Hau lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX).
 
-Many of the examples here are explained in the video [Q&A Is there other ways to manipulate ast nodes besides replaceWith?](https://youtu.be/ouXuJAzcyHo?si=85hlkM_DDzpBfYw3) by Tan Li Hau (陈立豪) (2021). Do not miss it!
+Many of the examples here are explained in the video [Q&A Is there other ways to manipulate ast nodes besides replaceWith?](https://youtu.be/ouXuJAzcyHo?si=85hlkM_DDzpBfYw3) by Tan Li Hau (陈立豪) (2021). Do not miss it.
 
 ## Replacing a node
 
