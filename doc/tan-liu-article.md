@@ -1296,16 +1296,18 @@ export default function ourBabelPlugin() {
 
 [^variadic]: See example [/src/manipulating-ast-with-js/curry/variadic-curry.js](../src/manipulating-ast-with-js/curry/variadic-curry.js)
 
->So when we transform our curry function, we can transform it into the following:
+> So when we transform our curry function, we can transform it into the following:
 
-```js
-// from
-function @@ foo(a, b, c) {
-  return a + b + c;
-}
+> ```js
+> // from
+> function @@ foo(a, b, c) {
+>   return a + b + c;
+> }
+> 
+> // to
+> const foo = currying(function foo(a, b, c) {
+>   return a + b + c;
+> })
+> ```
 
-// to
-const foo = currying(function foo(a, b, c) {
-  return a + b + c;
-})
-Let's first ignore function hoisting in JavaScript, where you can call foo before it is defined.
+> Let's first ignore function hoisting in JavaScript, where you can call foo before it is defined.
