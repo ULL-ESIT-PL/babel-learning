@@ -82,7 +82,7 @@ var fn = function fn() {
 
 See section [traversal.md](doc/traversal.md).
 
-## babel-types and babel-template
+## Babel Template and Babel Types and Babel Generator
 
 See section [doc/template.md](doc/template.md).
 
