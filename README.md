@@ -65,6 +65,8 @@ Options:
 
 ## Compile JavaScript with Babel
 
+### npx babel src/input.js --out-dir lib --presets=@babel/env
+
 ```
 ➜  babel-learning git:(main) cat src/input.js 
 const fn = () => 1;
@@ -77,6 +79,8 @@ var fn = function fn() {
   return 1;
 };
 ```
+
+### babel.transformSync
 
 You can also call `babel.transformSync` from your own program with the `code` as
 the first argument and an option object specifying 

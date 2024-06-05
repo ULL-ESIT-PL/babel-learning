@@ -8,7 +8,7 @@ let ast = babylon.parse(code, {
 });
 console.log(JSON.stringify(ast, null, 2));
 /*  
-node play/hello-babylon.mjs > salida.json
+node src/hello-babylon.mjs > salida.json
 compast -n salida.json 
 type: "File"
 program:
