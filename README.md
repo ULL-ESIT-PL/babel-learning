@@ -85,7 +85,7 @@ using the modules babel-traverse and babel-generator and compact-js-ast
 
 ## Writing my first Babel Plugin
 
-* See section [first-plugin.md](doc/first-plugin.md).
+See section [first-plugin.md](doc/first-plugin.md).
 
 ## Visiting the AST in a Babel Plugin
 
