@@ -19,6 +19,8 @@ BinaryExpression(path) {
   }
 ```
 
+See [/src/manipulating-ast-with-js/README.md#replacewith](/src/manipulating-ast-with-js/README.md#replacewith) for a complete example.
+
 ## Replacing a node with multiple nodes
 
 ```js
@@ -44,6 +46,9 @@ ReturnStatement(path) {
 > statements. This is because Babel uses heuristics extensively when replacing
 > nodes which means that you can do some pretty crazy transformations that would
 > be extremely verbose otherwise.
+
+See section `replacewithmultiple`at file [/src/manipulating-ast-with-js/README.md](/src/manipulating-ast-with-js/README.md#replacewithmultiple)
+
 
 ## Replacing a node with a source string
 
