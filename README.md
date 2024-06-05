@@ -80,7 +80,9 @@ var fn = function fn() {
 
 ## Traversal
 
-See section [traversal.md](doc/traversal.md).
+See section [traversal.md](doc/traversal.md). It includes an example
+using the modules babel-traverse and babel-generator and compact-js-ast
+
 
 ## Babel Template and Babel Types and Babel Generator
 
