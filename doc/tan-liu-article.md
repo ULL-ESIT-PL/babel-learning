@@ -1,4 +1,4 @@
-# Reading "Creating custom JavaScript syntax with Babel"
+# Commented Reading of "Creating custom JavaScript syntax with Babel"
 
 [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) has written one of the best introductions to Babel I ever read. He is also a prolific [youtuber](https://youtube.com/c/lihautan).
 I strongly recommend you to [follow his work](https://twitter.com/lihautan) and attend his [lessons](https://lihautan.com/talks) and read his [books](https://lihautan.com/books). These are my notes for his article "Creating custom JavaScript syntax with Babel" (September 25, 2019) available at https://lihautan.com/creating-custom-javascript-syntax-with-babel. Read this having Tan Li's article at hand.
