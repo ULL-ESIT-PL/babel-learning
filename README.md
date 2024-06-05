@@ -108,7 +108,8 @@ See section [Scope](doc/scope.md)
 * [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins and is recommended by the Babel people.
   * [kentcdodds babel-plugin-handbook](https://github.com/kentcdodds/babel-plugin-handbook) forked from jamiebuilds/babel-handbook.
   * [StackOverflow: How to create a babel plugin for internal use](https://stackoverflow.com/questions/53639450/how-to-create-a-babel-plugin-for-internal-use)
-* See section [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md) describing my experience reproducing [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) article "Creating custom JavaScript syntax with Babel" (September 25, 2019) available at https://lihautan.com/creating-custom-javascript-syntax-with-babel.
+* See section [src/manipulating-ast-with-js/README.md](src/manipulating-ast-with-js/README.md) describing my experience reproducing [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) Lyoutube video https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE 
+  * [Step-by-step guide for writing a custom babel transformation](https://lihautan.com/step-by-step-guide-for-writing-a-babel-transformation). Tan Li Hau. September 12, 2019
 * [Babel: Usage Guide](https://babeljs.io/docs/usage)
 * [Plugins: Babel](https://babeljs.io/docs/plugins)
 * [Plugins list](https://babeljs.io/docs/plugins-list)
