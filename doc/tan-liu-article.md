@@ -1310,4 +1310,7 @@ export default function ourBabelPlugin() {
 > })
 > ```
 
-> Let's first ignore function hoisting in JavaScript, where you can call foo before it is defined.
+> Let's first ignore [function hoisting](https://scotch.io/tutorials/understanding-hoisting-in-javascript) in JavaScript, where you can call `foo` before it is defined.
+>
+> If you have read my [step-by-step guide on babel transformation](https://lihautan.com/step-by-step-guide-for-writing-a-babel-transformation), writing this transformation should be manageable:
+
