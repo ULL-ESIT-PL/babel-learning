@@ -1343,3 +1343,6 @@ export default function ourBabelPlugin() {
 > The question is how do we provide the `currying` function?
 
 > There are 2 ways:
+
+
+# [Back to README.md](/README.md)
