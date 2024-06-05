@@ -42,7 +42,7 @@ Here's how you can achieve this:
    Adjust your VS Code settings to recognize TypeScript syntax in `.js` files. Open your VS Code settings (`.vscode/settings.json` in your project or through the settings UI) and add the following:
 
    `➜  babel-tanhauhau git:(master) ✗ cat .vscode/settings.json`
-   ```json
+   ```js
     {
       "javascript.validate.enable": false, // Disable built-in validation
       "typescript.validate.enable": true, // Enable TypeScript validation
