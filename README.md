@@ -13,21 +13,6 @@ See section [doc/git-hooks-configuration.md](doc/git-hooks-configuration.md) on 
 
 See the [Babel Configuration](doc/configure.md) section.
 
-## Writing a Babel Plugin
-
-* [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins and is recommended by the Babel people.
-  * [kentcdodds babel-plugin-handbook](https://github.com/kentcdodds/babel-plugin-handbook) forked from jamiebuilds/babel-handbook.
-  * [StackOverflow: How to create a babel plugin for internal use](https://stackoverflow.com/questions/53639450/how-to-create-a-babel-plugin-for-internal-use)
-* See section [Commented Reading of "Creating custom JavaScript syntax with Babel"](src/manipulating-ast-with-js/README.md) describing my experience reproducing [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) article "Creating custom JavaScript syntax with Babel" (September 25, 2019) available at https://lihautan.com/creating-custom-javascript-syntax-with-babel.
-* [Babel: Usage Guide](https://babeljs.io/docs/usage)
-* [Plugins: Babel](https://babeljs.io/docs/plugins)
-* [Plugins list](https://babeljs.io/docs/plugins-list)
-
-### Babel Plugin Examples
-
-* [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)
-  * [babel-plugin-transform-remove-debugger at GitHub](https://github.com/babel/minify/tree/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger)
-
 ## Babel Help
 
 ```
@@ -117,6 +102,20 @@ See section [first-plugin.md](doc/first-plugin.md).
 2. [Manipulation](doc/manipulation.md)
 3. [Scope](doc/scope.md)
 
+## Writing a Babel Plugin
+
+* [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins and is recommended by the Babel people.
+  * [kentcdodds babel-plugin-handbook](https://github.com/kentcdodds/babel-plugin-handbook) forked from jamiebuilds/babel-handbook.
+  * [StackOverflow: How to create a babel plugin for internal use](https://stackoverflow.com/questions/53639450/how-to-create-a-babel-plugin-for-internal-use)
+* See section [Commented Reading of "Creating custom JavaScript syntax with Babel"](src/manipulating-ast-with-js/README.md) describing my experience reproducing [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) article "Creating custom JavaScript syntax with Babel" (September 25, 2019) available at https://lihautan.com/creating-custom-javascript-syntax-with-babel.
+* [Babel: Usage Guide](https://babeljs.io/docs/usage)
+* [Plugins: Babel](https://babeljs.io/docs/plugins)
+* [Plugins list](https://babeljs.io/docs/plugins-list)
+
+### Babel Plugin Examples
+
+* [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)
+  * [babel-plugin-transform-remove-debugger at GitHub](https://github.com/babel/minify/tree/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger)
 
 ## Parser
 
