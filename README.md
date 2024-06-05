@@ -2,9 +2,9 @@
 
 My PL notes on Babel are here: https://ull-pl.vercel.app/topics/tree-transformations/babel
 
-See this introduction by Matt Zeunert and the associated [GitHub repository](https://github.com/mattzeunert/babel-plugin-demo) 
-for a simple example of how to create a Babel plugin.
-
+* See section [Commented Reading of "Creating custom JavaScript syntax with Babel"](src/manipulating-ast-with-js/README.md) describing my experience reproducing [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) article "Creating custom JavaScript syntax with Babel" (September 25, 2019) available at https://lihautan.com/creating-custom-javascript-syntax-with-babel.
+* Follow Tan Li Hau in [youtube](https://youtube.com/c/lihautan) and [talks](https://lihautan.com/talks) and read his [books](https://lihautan.com/books). 
+* See this introduction by Matt Zeunert and the associated [GitHub repository](https://github.com/mattzeunert/babel-plugin-demo) for a simple example of how to create a Babel plugin.
 * [Compiling JavaScript with Babel and writing your own Babel plugins](https://youtu.be/5gQiIWXBQ0U?si=AR0ZKEI6rZe4OMpV)
 
 Also see the following resources:
