@@ -14,6 +14,7 @@ Here's how you can achieve this:
 1. **Enable JavaScript Type Checking**:
    Create or update your `tsconfig.json` file to enable type checking for JavaScript files. You can do this by including the `allowJs` and `checkJs` options in your configuration.
 
+   File `.vscode/settings.json`
    ```js
    {
      "compilerOptions": {
