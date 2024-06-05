@@ -16,7 +16,7 @@ In Babel.js, the `traverse` method from the `babel-traverse` package and the `vi
 
 In essence, `traverse` provides a lower-level API for AST manipulation, while `visitor` methods within plugins offer a higher-level, more convenient way to apply transformations within the Babel ecosystem.
 
-## <a id="toc-get-the-path-of-a-sub-node"></a>Get the Path of Sub-Node
+## Get the Path of Sub-Node
 
 To access an AST node's property you normally access the node and then the property. `path.node.property`
 
@@ -56,7 +56,7 @@ ExportDefaultDeclaration(path) {
 }
 ```
 
-## <a id="toc-check-if-a-node-is-a-certain-type"></a>Check if a node is a certain type
+## Check if a node is a certain type
 
 If you want to check what the type of a node is, the preferred way to do so is:
 
@@ -92,7 +92,7 @@ BinaryExpression(path) {
 }
 ```
 
-## <a id="toc-check-if-a-path-is-a-certain-type"></a>Check if a path is a certain type
+## Check if a path is a certain type
 
 A path has the same methods for checking the type of a node:
 
@@ -114,7 +114,7 @@ BinaryExpression(path) {
 }
 ```
 
-## <a id="toc-check-if-an-identifier-is-referenced"></a>Check if an identifier is referenced
+## Check if an identifier is referenced
 
 ```js
 Identifier(path) {
@@ -134,7 +134,7 @@ Identifier(path) {
 }
 ```
 
-## <a id="toc-find-a-specific-parent-path"></a>Find a specific parent path
+## Find a specific parent path
 
 Sometimes you will need to traverse the tree upwards from a path until a condition is satisfied.
 
@@ -223,7 +223,7 @@ true body 2 c a 3 b undefined 2 0
 
 * `path(undefined)` is a `NodePath` where the `path.node === undefined`
 
-## <a id="toc-stopping-traversal"></a>Stopping Traversal
+## Stopping Traversal
 
 If your plugin needs to not run in a certain situation, the simpliest thing to do is to write an early return.
 

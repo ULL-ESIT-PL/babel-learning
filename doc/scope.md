@@ -97,16 +97,16 @@ See the question at Stack StackOverflow
 
 > To illustrate this with a contrived example I'd like to transform source code like:
 
-```js
-const f = require('foo-bar');
-const result = f() * 2;
-```
+> ```js
+> const f = require('foo-bar');
+> const result = f() * 2;
+> ```
 
-into something like:
+> into something like:
 
-```js
-const result = 99 * 2; // as i "know" that calling f will always return 99
-```
+> ```js
+> const result = 99 * 2; // as i "know" that calling f will always return 99
+> ```
 
 I decided to slightly modify the input example to have at least two scopes:
 
