@@ -1,5 +1,9 @@
 # Reading "Creating custom JavaScript syntax with Babel"
 
+Tan Li Hau (陈立豪) has written on of the best introductions to Babel I ever seen. He is also a prolific youtuber.
+I strongly recommend you to follow his work and attend his lessons.
+
+
 ## The Goal
 
 > Let me show you what we will achieve at the end of this article.
@@ -22,7 +26,7 @@
 > bar(3); // 6
 > ```
 
-## Installing Tan Liu Babel fork
+## Installing Tan Li Hau Babel fork
 
 ### Machine Configuration
 
@@ -58,7 +62,7 @@ packages/babel-parser/test/curry-function.js
 
 ### Forking
 
-I started forking [Tan Liu babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
+I started forking [Tan Li Hau babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
 at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
 
 ### Cloning the repo
@@ -1227,7 +1231,7 @@ export default class StatementParser extends ExpressionParser {
 
 > **Side Note**: You might be curious how am I able to visualize the custom syntax in the Babel AST Explorer, where I showed you the new "`curry`" attribute in the AST.
 
-> That's because I've added a new feature in the [Babel AST Explorer](https://lihautan.com/babel-ast-explorer/) where you can upload your custom parser!
+> That's because I've added a new feature in the [Babel AST Explorer](https://lihautan.com/babel-ast-explorer/) (not the AST Explorer, but the one of Tan Li Hau) where you can upload your custom parser!
 
 ```
 ➜  babel-tanhauhau git:(learning) ✗ ls packages/babel-parser/lib 
@@ -1246,3 +1250,20 @@ index.js        options.js      parser          plugin-utils.js plugins         
 > But maybe before that, you may have some doubts on how are we going to use our custom babel parser, especially with whatever build stack we are using right now?
 
 > Well, fret not. **A babel plugin can provide a custom parser, which is [documented on the babel website](https://babeljs.io/docs/en/babel-parser#will-the-babel-parser-support-a-plugin-system)**
+>
+> `babel-plugin-transformation-curry-function.js`
+```js
+import customParser from './custom-parser';
+
+export default function ourBabelPlugin() {
+  return {
+    parserOverride(code, opts) {
+      return customParser.parse(code, opts);
+    },
+  };
+}
+```
+> Since we forked out the babel parser, all existing babel parser options or built-in plugins will still work perfectly.
+
+> With this doubt out of the way, let see how we can make our curry function curryable? (not entirely sure there's such word)
+

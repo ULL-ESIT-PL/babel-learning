@@ -2,7 +2,7 @@
 
 See section [/src/manipulating-ast-with-js/README.md#scope](/src/manipulating-ast-with-js/README.md#scope) describing my experiences with these sources:
 
-1. Reproducing [Tan Liu lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX). Tan starts to talk about scope at [38:40](https://www.youtube.com/watch?v=5z28bsbJJ3w&list=PLoKaNN3BjQX0fEhzfpU9xHNWdxhIkP-hy&index=1&t=2320s)
+1. Reproducing [Tan Li Hau lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX). Tan starts to talk about scope at [38:40](https://www.youtube.com/watch?v=5z28bsbJJ3w&list=PLoKaNN3BjQX0fEhzfpU9xHNWdxhIkP-hy&index=1&t=2320s)
 
 ## Stack StackOverflow "How do I traverse the scope of a Path in a babel plugin"
 
