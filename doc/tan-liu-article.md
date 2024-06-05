@@ -888,7 +888,7 @@ TokenType {
 
 We can also [make a standalone execution of the Babel parser](/doc/standalone-parser-execution.md)
 
-### A new token: `@@`
+### [A new token: `@@`](https://lihautan.com/creating-custom-javascript-syntax-with-babel#a-new-token)
 
 > Here's what we are going to do next:
 
