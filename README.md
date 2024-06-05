@@ -116,6 +116,14 @@ var f = function f(x) {
 f("Hello, Babel!");
 ```
 
+### Babylon
+
+Babylon was the parser that Babel used to parse JavaScript code.
+Not any more. Now Babel uses `@babel/parser` which is a fork of Babylon.
+See [src/hello-babylon.mjs](src/hello-babylon.mjs) for an example of using Babylon.
+
+
+
 ## Traversal
 
 See section [traversal.md](doc/traversal.md). It includes an example
