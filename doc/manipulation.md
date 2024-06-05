@@ -1,6 +1,6 @@
 # Manipulation
 
-See section in file [/src/manipulating-ast-with-js/README.md](/src/manipulating-ast-with-js/README.md) describing my experience reproducing [Tan Li Hau lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX).
+See section in file [//doc/tan-liu-article.md](//doc/tan-liu-article.md) describing my experience reproducing [Tan Li Hau lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX).
 
 # <a id="toc-manipulation"></a>Manipulation
 
