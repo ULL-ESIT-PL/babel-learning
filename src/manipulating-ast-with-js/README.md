@@ -33,7 +33,9 @@ Git Tags:
 
 ## First step: tag initial-transform
 
-See tag `initial-transform`. Given the [input](/src/manipulating-ast-with-js/example-input.js) 
+See tag `initial-transform` in this repo https://github.com/ULL-ESIT-PL/babel-learning. 
+
+Given the [/src/manipulating-ast-with-js/example-input.js](/src/manipulating-ast-with-js/example-input.js) 
 
 ```js
 // https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
