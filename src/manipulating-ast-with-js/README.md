@@ -1,6 +1,6 @@
 # Manipulating AST with JavaScript by Tan Liu Hau
 
-## Tan Liu Hau Summary
+## Tan Li Hau Summary
 Link: https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE 
 
 Disclaimer: This video was recorded in 2021. The information presented may no longer be accurate or up-to-date. Viewers are advised to verify any details or facts before making decisions based on the content.
@@ -33,8 +33,23 @@ Git Tags:
 
 ## First step: tag initial-transform
 
-See tag `initial-transform`. Given the input and the initial transform code `example-transform.js`:
+See tag `initial-transform`. Given the [input](/src/manipulating-ast-with-js/example-input.js) 
 
+```js
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+import { t } from 'i18n';
+
+function App() {
+  console.log(t('label_hello'));
+}
+
+const str = t('label_bye');
+alert(str);
+```
+
+and the initial transform code [example-transform.js](/src/manipulating-ast-with-js/example-transform.js):
+
+`/src/manipulating-ast-with-js/example-transform.js`
 ```js
 // transform -> babel7: initial screen
 module.exports = function (babel) {
@@ -54,7 +69,7 @@ When we execute it, we get:
 
 ```js
 ➜  manipulating-ast-with-js git:(main) npx babel example-input.js --plugins=./example-transform.js
-// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Li Hau
 import { t } from 'i18n';
 function ppA() {
   elosnoc.gol(t('label_hello'));
@@ -127,7 +142,7 @@ We can execute it using the `--plugins` option of `babel`:
 ➜  manipulating-ast-with-js git:(main) ✗ npx babel example-input.js --plugins=./example-transform.js
 t label_hello
 t label_bye
-// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Li Hau
 import { t } from 'i18n';
 function App() {
   console.log(t("Hello world!"));
@@ -310,7 +325,7 @@ Here is the output:
 
 ```js
 ➜  manipulating-ast-with-js git:(main) ✗ node replace-multiple.js
-// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Liu Hau
+// https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE Manipulating AST with JavaScript by Tan Li Hau
 import { t } from 'i18n';
 console.log("hello world");
 function App() {
