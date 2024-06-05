@@ -173,7 +173,7 @@ If a path is in a list like in the body of a `Function`/`Program`, it will have 
 - The path's container (an array of all sibling nodes) with `path.container`
 - Get the name of the key of the list container with `path.listKey`
 
-See the example at [play/get-sibling-path.mjs](/play/get-sibling-path.mjs)
+See the example at [src/get-sibling-path.mjs](/src/get-sibling-path.mjs)
 
 ```js
 import * as babylon from "babylon";
@@ -212,7 +212,7 @@ traverse(ast, {
 Run the script:
 
 ```sh
-➜  babel-learning git:(main) ✗ node play/get-sibling-path.mjs
+➜  babel-learning git:(main) ✗ node src/get-sibling-path.mjs
 true body 0 a b 3 undefined b 0 2
 true body 1 b c 3 a c 1 1
 true body 2 c a 3 b undefined 2 0

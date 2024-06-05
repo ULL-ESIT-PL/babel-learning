@@ -118,7 +118,7 @@ BinaryExpression(path) {
 
 ## Running the plugin
 
-See the final code at [play/first-plugin.mjs](/play/first-plugin.mjs).
+See the final code at [src/first-plugin.mjs](/src/first-plugin.mjs).
 
 ```js
 export default function({ types: t }) {
@@ -139,7 +139,7 @@ export default function({ types: t }) {
 To run it simply use the `--plugins` flag with `npx babel` like so:
 
 ```sh
-babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./play/first-plugin.mjs
+➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./src/first-plugin.mjs
 "use strict";
 
 sebmck === dork;
@@ -149,7 +149,7 @@ Awesome! Our very first Babel plugin.
 
 ## Plugin: Reverse identifiers
 
-See the example [play/hello-plugin.mjs](/play/hello-plugin.mjs).
+See the example [src/hello-plugin.mjs](/src/hello-plugin.mjs).
 
 ```js
 export default function() {
@@ -169,7 +169,7 @@ export default function() {
 that reverses the name of all identifiers:
 
 ```sh
-➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./play/hello-plugin.mjs
+➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./src/hello-plugin.mjs
 "use strict";
 
 oof === rab;
@@ -178,8 +178,8 @@ oof === rab;
 Since we can't have two times the same plugin in the `--plugins` array, let's copy the plugin and run the transformation twice:
 
 ```
-➜  babel-learning git:(main) ✗ cp play/hello-plugin.mjs play/second-plugin.mjs 
-➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./play/hello-plugin.mjs,./play/second-plugin.mjs
+➜  babel-learning git:(main) ✗ cp src/hello-plugin.mjs src/second-plugin.mjs 
+➜  babel-learning git:(main) ✗ npx babel src/foo.js --plugins=./src/hello-plugin.mjs,./src/second-plugin.mjs
 "use strict";
 
 foo === bar;

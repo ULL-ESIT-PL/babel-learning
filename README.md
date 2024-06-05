@@ -78,6 +78,40 @@ var fn = function fn() {
 };
 ```
 
+You can also call `babel.transformSync` from your own program with the `code` as
+the first argument and an option object specifying 
+the `presets` and `plugins`: 
+
+`➜  babel-learning git:(main) ✗ cat src/hello-babel.js` 
+```js
+const babel = require("@babel/core");
+
+const code = `
+let f = (x) => console.log(x);
+f("Hello, Babel!");
+`;
+const result = babel.transformSync(
+  code, 
+  {
+    presets: ["@babel/preset-env"], // for compiling ES2015+ syntax
+    plugins: ["@babel/plugin-transform-arrow-functions"]
+  }
+);
+console.log(result.code); 
+```
+
+When executed we get:
+
+`➜  babel-learning git:(main) ✗ node src/hello-babel.js` 
+```js
+"use strict";
+
+var f = function f(x) {
+  return console.log(x);
+};
+f("Hello, Babel!");
+```
+
 ## Traversal
 
 See section [traversal.md](doc/traversal.md). It includes an example
