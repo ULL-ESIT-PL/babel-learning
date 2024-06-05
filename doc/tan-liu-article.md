@@ -1340,6 +1340,6 @@ export default function ourBabelPlugin() {
 >   };
 > }
 > ```
-> The question is how do we provide the currying function?
+> The question is how do we provide the `currying` function?
 
 > There are 2 ways:
