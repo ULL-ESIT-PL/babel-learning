@@ -104,6 +104,8 @@ See section [Manipulation](doc/manipulation.md)
 
 See section [doc/template.md](doc/template.md).
 
+For another example using templates see section *Babel Templates* at file [/src/manipulating-ast-with-js/README.md](babel-templates/src/manipulating-ast-with-js/README.md#babel-templates).
+
 ## Scope
 
 See section [Scope](doc/scope.md)
