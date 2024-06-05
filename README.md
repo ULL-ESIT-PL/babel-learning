@@ -86,9 +86,6 @@ See section [traversal.md](doc/traversal.md).
 
 See section [doc/template.md](doc/template.md).
 
-## Writing your first plugin
-
-
 ## Transformations
 
 1. [Visiting](doc/visiting.md)
