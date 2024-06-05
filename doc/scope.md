@@ -120,7 +120,27 @@ function h() {
   return f;
 }
 ```
-The key point is that during a traversing the `path.scope.bindings` object contains all the bindings in the current scope. The bindings are stored in an object where the keys are the names of the bindings and the values are objects with information about the binding. The `referencePaths` property of the binding object is an array of paths that reference the **usages** of the binding. In the following code, we simple traverse the usages of the binding `localIdentifier`
+The key point is that during a traversing the `path.scope.bindings` object contains all the bindings in the current scope. The bindings are stored in an object where the keys are the names of the bindings and the values are objects with information about the binding. The `referencePaths` property of the binding object is an array of paths that reference the **usages** of the binding. This can be confirmed by the test `"param referenced in function body"` at
+[babel/babel//main/packages/babel-traverse/test/scope.js](https://github.com/babel/babel/blob/main/packages/babel-traverse/test/scope.js#L494-L509)
+
+```js
+t("reference paths", function () {
+      const path = getIdentifierPath("function square(n) { return n * n}");
+      const referencePaths = path.context.scope.bindings.n.referencePaths;
+      expect(referencePaths).toHaveLength(2);
+      expect(referencePaths[0].node.loc.start).toEqual({
+        line: 1,
+        column: 28,
+      });
+      expect(referencePaths[1].node.loc.start).toEqual({
+        line: 1,
+        column: 32,
+      });
+    });
+```
+
+
+In the following code, we simple traverse the usages of the binding `localIdentifier`
 replacing the references to the parent node (the `CallExpression`) with a `NumericLiteral(99)`:
 
 ```js
