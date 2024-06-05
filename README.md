@@ -91,14 +91,17 @@ See section [first-plugin.md](doc/first-plugin.md).
 
 See section [Visiting](doc/visiting.md)
 
+## Manipulating the AST in a Babel Plugin
+
+See section [Manipulation](doc/manipulation.md)
+
 ## Babel Template and Babel Types and Babel Generator
 
 See section [doc/template.md](doc/template.md).
 
-## Transformations
+## Scope
 
-2. [Manipulation](doc/manipulation.md)
-3. [Scope](doc/scope.md)
+See section [Scope](doc/scope.md)
 
 ## Writing a Babel Plugin
 
@@ -115,7 +118,7 @@ See section [doc/template.md](doc/template.md).
 * [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)
   * [babel-plugin-transform-remove-debugger at GitHub](https://github.com/babel/minify/tree/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger)
 
-## Parser
+## The Babel Parser
 
 See section [parser.md](doc/parser.md).
 
