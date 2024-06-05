@@ -103,7 +103,6 @@ This can be confirmed by the code in example [src/scope/referencepaths.mjs](/src
 
 ```js
 import { parse } from "@babel/parser";
-
 import _traverse from "@babel/traverse";
 const traverse = _traverse.default || _traverse;
 
