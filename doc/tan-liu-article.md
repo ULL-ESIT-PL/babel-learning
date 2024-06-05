@@ -574,6 +574,8 @@ The environment variable `BABEL_ENV=test` is used to set the environment to test
 
 > You can access the built files for individual packages from `packages/<package-name>/lib`.
 
+First: the babel command line script has a `-w --watch` option that allows us to watch the files and rebuild the project incrementally.
+See https://www.npmjs.com/package/babel-watch.
 
 In the `Makefile` we find this task `watch`:
 
