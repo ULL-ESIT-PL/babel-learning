@@ -45,12 +45,14 @@ You can use two different kinds of placeholders:
 
 `@babel/template` supports both those approaches by default, but they can't be mixed. If you need to be explicit about what syntax you are using, you can use the `syntacticPlaceholders` option.
 
-```sh
+
+```
 ➜  babel-learning git:(main) node src/template/hello-babel-template.mjs
 type: "Identifier"
 name: "myModule"
  type: "StringLiteral"
 value: "my-module"
-
+```
+```js
 var myModule = require("my-module");
 ```
