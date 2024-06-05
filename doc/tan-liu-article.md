@@ -1243,7 +1243,7 @@ index.js        options.js      parser          plugin-utils.js plugins         
 > in and you will be visualizing the AST generated via your custom parser!
 
 
-## Our babel plugin
+## [Our babel plugin](https://lihautan.com/creating-custom-javascript-syntax-with-babel#our-babel-plugin)
 
 > With our custom babel parser done, let's move on to write our babel plugin.
 
