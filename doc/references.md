@@ -9,5 +9,9 @@
 * [List of Babel Youtube videos by Tan Liu Hau](https://www.youtube.com/@lihautan/search?query=babel)
 * [Babel flow pragma bug](https://lihautan.com/notes/babel-flow-pragma-bug) not finished
 * [babel-plugin-transform-rename-properties](https://github.com/tanhauhau/babel-plugin-transform-rename-properties)
+* My PL notes on Babel are here: https://ull-pl.vercel.app/topics/tree-transformations/babel
+* [Babel: Usage Guide](https://babeljs.io/docs/usage)
+* [Plugins: Babel](https://babeljs.io/docs/plugins)
+* [Plugins list](https://babeljs.io/docs/plugins-list)
 
 
