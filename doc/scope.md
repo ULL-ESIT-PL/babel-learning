@@ -1,8 +1,94 @@
 # Scope
 
-See section [/src/manipulating-ast-with-js/README.md#scope](/src/manipulating-ast-with-js/README.md#scope) describing my experiences with these sources:
+See section [/src/manipulating-ast-with-js/README.md#scope](/src/manipulating-ast-with-js/README.md#scope) describing my experiences reproducing [Tan Li Hau lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX). Tan starts to talk about scope at [38:40](https://www.youtube.com/watch?v=5z28bsbJJ3w&list=PLoKaNN3BjQX0fEhzfpU9xHNWdxhIkP-hy&index=1&t=2320s)
 
-1. Reproducing [Tan Li Hau lessons in youtube video "Manipulating AST with JavaScript"](https://youtu.be/5z28bsbJJ3w?si=-65NxcFhTM8wpGLX). Tan starts to talk about scope at [38:40](https://www.youtube.com/watch?v=5z28bsbJJ3w&list=PLoKaNN3BjQX0fEhzfpU9xHNWdxhIkP-hy&index=1&t=2320s)
+## Checking if a local variable is bound
+
+```js
+FunctionDeclaration(path) {
+  if (path.scope.hasBinding("n")) {
+    // ...
+  }
+}
+```
+
+This will walk up the scope tree and check for that particular binding.
+
+You can also check if a scope has its **own** binding:
+
+```js
+FunctionDeclaration(path) {
+  if (path.scope.hasOwnBinding("n")) {
+    // ...
+  }
+}
+```
+
+## Generating a UID
+
+This will generate an identifier that doesn't collide with any locally defined
+variables.
+
+```js
+FunctionDeclaration(path) {
+  path.scope.generateUidIdentifier("uid");
+  // Node { type: "Identifier", name: "_uid" }
+  path.scope.generateUidIdentifier("uid");
+  // Node { type: "Identifier", name: "_uid2" }
+}
+```
+
+## Pushing a variable declaration to a parent scope
+
+Sometimes you may want to push a `VariableDeclaration` so you can assign to it.
+
+```js
+FunctionDeclaration(path) {
+  const id = path.scope.generateUidIdentifierBasedOnNode(path.node.id);
+  path.remove();
+  path.scope.parent.push({ id, init: path.node });
+}
+```
+
+```diff
+- function square(n) {
++ var _square = function square(n) {
+    return n * n;
+- }
++ };
+```
+
+## Rename a binding and its references
+
+```js
+FunctionDeclaration(path) {
+  path.scope.rename("n", "x");
+}
+```
+
+```diff
+- function square(n) {
+-   return n * n;
++ function square(x) {
++   return x * x;
+  }
+```
+
+Alternatively, you can rename a binding to a generated unique identifier:
+
+```js
+FunctionDeclaration(path) {
+  path.scope.rename("n");
+}
+```
+
+```diff
+- function square(n) {
+-   return n * n;
++ function square(_n) {
++   return _n * _n;
+  }
+```
 
 ## Stack StackOverflow "How do I traverse the scope of a Path in a babel plugin"
 
