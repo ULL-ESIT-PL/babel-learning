@@ -83,6 +83,13 @@ var fn = function fn() {
 See section [traversal.md](doc/traversal.md). It includes an example
 using the modules babel-traverse and babel-generator and compact-js-ast
 
+## Writing my first Babel Plugin
+
+* See section [first-plugin.md](doc/first-plugin.md).
+
+## Visiting the AST in a Babel Plugin
+
+See section [Visiting](doc/visiting.md)
 
 ## Babel Template and Babel Types and Babel Generator
 
@@ -90,13 +97,11 @@ See section [doc/template.md](doc/template.md).
 
 ## Transformations
 
-1. [Visiting](doc/visiting.md)
 2. [Manipulation](doc/manipulation.md)
 3. [Scope](doc/scope.md)
 
 ## Writing a Babel Plugin
 
-* See section [first-plugin.md](doc/first-plugin.md).
 * [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins and is recommended by the Babel people.
   * [kentcdodds babel-plugin-handbook](https://github.com/kentcdodds/babel-plugin-handbook) forked from jamiebuilds/babel-handbook.
   * [StackOverflow: How to create a babel plugin for internal use](https://stackoverflow.com/questions/53639450/how-to-create-a-babel-plugin-for-internal-use)
