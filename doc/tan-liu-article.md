@@ -1293,4 +1293,4 @@ function currying(fn) {
 
 > If you want to learn how to write a currying function[^variadic], you can read this [Currying in JS](https://hackernoon.com/currying-in-js-d9ddc64f162e) by [Shirsh Zibbu](https://twitter.com/zhirzh)
 
-[^variadic]: See example [src/manipulating-ast-with-js/curry/variadic-curry.js](/src/manipulating-ast-with-js/curry/variadic-curry.js)
+[^variadic]: See example [/src/manipulating-ast-with-js/curry/variadic-curry.js](/src/manipulating-ast-with-js/curry/variadic-curry.js)
