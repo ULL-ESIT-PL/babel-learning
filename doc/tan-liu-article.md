@@ -1273,3 +1273,24 @@ export default function ourBabelPlugin() {
 
 > This is because, after parsing + transformation, babel will use [@babel/generator](https://babeljs.io/docs/en/babel-generator) to generate code from the transformed AST. Since the `@babel/generator` has no idea about the new `curry` attribute we added, it will be omitted.
 
+> Ok, to make our function curryable, we can wrap it with a currying helper higher-order function:
+
+```js
+function currying(fn) {
+  const numParamsRequired = fn.length;
+  function curryFactory(params) {
+    return function (...args) {
+      const newParams = params.concat(args);
+      if (newParams.length >= numParamsRequired) {
+        return fn(...newParams);
+      }
+      return curryFactory(newParams);
+    }
+  }
+  return curryFactory([]);
+}
+```
+
+> If you want to learn how to write a currying function[^variadic], you can read this [Currying in JS](https://hackernoon.com/currying-in-js-d9ddc64f162e) by [Shirsh Zibbu](https://twitter.com/zhirzh)
+
+[variadic]: See example [src/manipulating-ast-with-js/curry/variadic-curry.js](/src/manipulating-ast-with-js/curry/variadic-curry.js)
