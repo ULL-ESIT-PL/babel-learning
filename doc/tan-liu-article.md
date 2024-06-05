@@ -1268,3 +1268,8 @@ export default function ourBabelPlugin() {
 > With this doubt out of the way, let see how we can make our curry function curryable?[^1] (not entirely sure there's such word)
 
 [^1]: ChatGPT says yes! and gives this (perfect) definition: "A function is "curryable" if it can be transformed into a curried version. In other words, it means that the function can be restructured such that it can be invoked with fewer arguments than it expects and returns another function that takes the remaining arguments.
+
+> Before we start, if you have eagerly tried to add our plugin into your build system, you would notice that the curry function gets compiled to a normal function.
+
+> This is because, after parsing + transformation, babel will use [@babel/generator](https://babeljs.io/docs/en/babel-generator) to generate code from the transformed AST. Since the `@babel/generator` has no idea about the new `curry` attribute we added, it will be omitted.
+
