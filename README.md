@@ -112,8 +112,7 @@ See section [Scope](doc/scope.md)
 
 * [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins and is recommended by the Babel people.
   * [kentcdodds babel-plugin-handbook](https://github.com/kentcdodds/babel-plugin-handbook) forked from jamiebuilds/babel-handbook.
-  * [StackOverflow: How to create a babel plugin for internal use](https://stackoverflow.com/questions/53639450/how-to-create-a-babel-plugin-for-internal-use)
-
+  
 ### Babel Plugin Examples
 
 * [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)

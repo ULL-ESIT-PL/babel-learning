@@ -13,4 +13,5 @@
 * [Babel: Usage Guide](https://babeljs.io/docs/usage)
 * [Plugins: Babel](https://babeljs.io/docs/plugins)
 * [Plugins list](https://babeljs.io/docs/plugins-list)
-* [Babel Handbook at jamiebuilds/babel-handbook]( 
+* [StackOverflow: How to create a babel plugin for internal use](https://stackoverflow.com/questions/53639450/how-to-create-a-babel-plugin-for-internal-use)
+
