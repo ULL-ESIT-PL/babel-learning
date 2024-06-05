@@ -1,4 +1,20 @@
-# <a id="toc-visiting"></a>Visiting
+# Visiting
+
+## Differences between `traverse` and `visitor:` methods in Babel.js
+
+In Babel.js, the `traverse` method from the `babel-traverse` package and the `visitor` methods provided within Babel plugins both serve the purpose of walking through and manipulating the Abstract Syntax Tree (AST). However, they are used in slightly different contexts and have some differences in how they are typically utilized.
+
+- **`traverse` Method**:
+  - Directly calls for AST traversal and manipulation.
+  - Can be used outside of the Babel plugin context.
+  - Offers more control and flexibility for one-off transformations.
+
+- **`visitor:` Methods**:
+  - Part of the Babel plugin system.
+  - Automatically integrated into the Babel transformation pipeline.
+  - More convenient for defining transformations as part of the Babel configuration.
+
+In essence, `traverse` provides a lower-level API for AST manipulation, while `visitor` methods within plugins offer a higher-level, more convenient way to apply transformations within the Babel ecosystem.
 
 ## <a id="toc-get-the-path-of-a-sub-node"></a>Get the Path of Sub-Node
 
