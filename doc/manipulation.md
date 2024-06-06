@@ -6,19 +6,37 @@ Many of the examples here are explained in the video [Q&A Is there other ways to
 
 ## Replacing a node
 
+`➜  babel-learning git:(main) ✗ cat src/manipulation/replacewith-plugin.cjs`
 ```js
-BinaryExpression(path) {
-  path.replaceWith(
-    t.binaryExpression("**", path.node.left, t.numberLiteral(2))
-  );
+module.exports = function (babel) {
+  const { types: t } = babel;
+
+  return {
+    name: "ast-transform", // not required
+    visitor: {
+      BinaryExpression(path) {
+        const { node } = path;
+        if (node.operator == "*" && node.left.name == node.right.name) {
+          path.replaceWith(t.binaryExpression("**", path.node.left, t.numericLiteral(2)));
+          path.stop;
+        }
+      }
+    }
+  };
 }
 ```
 
-```diff
-  function square(n) {
--   return n * n;
-+   return n ** 2;
-  }
+Here is the execution:
+
+`babel-learning git:(main) ✗ cat src/manipulation/square.js`
+```js
+let square = n => n * n
+```
+`➜  babel-learning git:(main) ✗ npx babel src/manipulation/square.js --plugins=./src/manipulation/replacewith-plugin.cjs`
+```js
+"use strict";
+
+let square = n => n ** 2;
 ```
 
 See [/src/manipulating-ast-with-js/README.md#replacewith](/src/manipulating-ast-with-js/README.md#replacewith) for a complete example.
