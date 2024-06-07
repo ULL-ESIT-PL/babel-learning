@@ -7,6 +7,7 @@
 * [Babel macros](https://lihautan.com/babel-macros). A tutorial on how to write Babel macros by Kent C. Dodds
 * [babel-plugin-macros Usage for macros authors](https://github.com/kentcdodds/babel-plugin-macros/blob/main/other/docs/author.md) 
 * [List of Babel Youtube videos by Tan Liu Hau](https://www.youtube.com/@lihautan/search?query=babel)
+* [List of Q&A Youtube videos by Tan Liu Hau](https://www.youtube.com/@lihautan/search?query=Q%26A%20)
 * [Babel flow pragma bug](https://lihautan.com/notes/babel-flow-pragma-bug) not finished
 * [babel-plugin-transform-rename-properties](https://github.com/tanhauhau/babel-plugin-transform-rename-properties)
 * My PL notes on Babel are here: https://ull-pl.vercel.app/topics/tree-transformations/babel
