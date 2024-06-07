@@ -1450,6 +1450,24 @@ helpers.typeof = helper("7.0.0-beta.0")`
 
 > The helper tag function specifies the `@babel/core` version required. The trick here is to `export default` the `currying` function.
 
-> To use the helper, just call the this.addHelper():
+> To use the helper, just call the `this.addHelper()`:
+
+```js
+// ...
+path.replaceWith(
+  t.variableDeclaration('const', [
+    t.variableDeclarator(
+      t.identifier(path.get('id.name').node),
+      t.callExpression(this.addHelper("currying"), [
+        t.toExpression(path.node),
+      ])
+    ),
+  ])
+);
+```
+
+> The `this.addHelper` will inject the helper at the top of the file if needed, and returns an `Identifier` to the injected function.
+
+
 
 # [Back to /README.md](/README.md) (Learning Babel)
