@@ -216,7 +216,7 @@ BinaryExpression(path) {
 
 In the Babel AST (Abstract Syntax Tree), expressions are nodes that represent values and can appear on the right-hand side of an assignment, as arguments to functions, and in various other places. 
 
-The `toExpression` method in the `@babel/types` package is used to convert a given AST node into an expression if it is not already one. This can be particularly useful when working with Babel transformations where you need to ensure that a node conforms to the syntax rules that expect expressions.
+The `toExpression` method in the `@babel/types` package is used to convert a given AST node into an expression if it is not already one. This can be particularly useful when working with Babel transformations where you need to ensure that a node conforms to the syntax rules that expect expressions. There are entities such as functions and classes that can appear in both statements and expressions. 
 
 Here is an example of how to use the `toExpression` method in a Babel plugin:
 
