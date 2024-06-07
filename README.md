@@ -108,7 +108,7 @@ var f = function f(x) {
 f("Hello, Babel!");
 ```
 
-### Babylon
+## Babylon
 
 Babylon was the parser that Babel used to parse JavaScript code.
 Not any more. Now Babel uses `@babel/parser` which is a fork of Babylon.
