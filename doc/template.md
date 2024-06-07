@@ -56,3 +56,5 @@ value: "my-module"
 ```js
 var myModule = require("my-module");
 ```
+
+See also the example at [/doc/manipulation.md#replacing-a-node-with-multiple-nodes](https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/manipulation.md#replacing-a-node-with-multiple-nodes)
