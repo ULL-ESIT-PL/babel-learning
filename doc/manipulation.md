@@ -241,7 +241,8 @@ module.exports = function(babel) {
       } 
     }
   }
-};                                                                                                                   ```
+};
+```
 
 Given the input program:
 
