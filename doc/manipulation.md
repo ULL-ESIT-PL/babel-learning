@@ -43,12 +43,16 @@ See section
 [/src/manipulating-ast-with-js/README.md](/src/manipulating-ast-with-js/README.md#replacewith)
 for a complete example.
 
+### Returned value
+
+When you call `path.replaceWith`, you replace the node at the current path with a new node. This method returns an **array** of `NodePath` objects representing the paths of the newly inserted nodes.
+
 ## Replacing a node with multiple nodes
 
 The following plugin replaces the `return` statement with two statements: a `let` statement and a `return` statement.
 
 `➜  babel-learning git:(main) cat src/manipulation/replacewithmultiple-plugin.cjs`
-```js 
+```js
 module.exports = function (babel) {
   return {
     name: "ast-transform2", // not required
@@ -58,7 +62,7 @@ module.exports = function (babel) {
           path.replaceWithMultiple([
             babel.template(`let a = N`)({N: path.node.argument.left }),
             babel.template(`return 4*a`)()
-          ])  
+          ])
         }
       }
     }
@@ -69,7 +73,7 @@ module.exports = function (babel) {
 When executed with input:
 
 ```js
-➜  babel-learning git:(main) cat src/manipulation/square2.js 
+➜  babel-learning git:(main) cat src/manipulation/square2.js
 let square = n => { return n * n; }
 ```
 
@@ -205,3 +209,22 @@ BinaryExpression(path) {
 -   return n * n;
   }
 ```
+
+## What are the differences between function declaration and function expressions?
+
+In the Babel AST (Abstract Syntax Tree), expressions are nodes that represent values and can appear on the right-hand side of an assignment, as arguments to functions, and in various other places. 
+
+The `toExpression` method in the `@babel/types` package is used to convert a given AST node into an expression if it is not already one. This can be particularly useful when working with Babel transformations where you need to ensure that a node conforms to the syntax rules that expect expressions.
+
+See
+
+- Tan Li Hau's video [What are the differences between function declaration and function expressions?](https://youtu.be/UNGvM9KFhvc?si=CSxumS57Hh9ORSLF)
+- Gist [Hopefully will be documentation of unclear methods available for Babel Types](https://gist.github.com/joshblack/5f2bf75038e23fdf80ac) where the following `toMethods` appear:
+  - toComputedKey
+  - toSequenceExpression
+  - toKeyAlias
+  - toIdentifier
+  - toBindingIdentifierName
+  - toStatement
+  - toExpression
+  - toBlock
