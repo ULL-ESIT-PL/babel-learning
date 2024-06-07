@@ -7,12 +7,14 @@ module.exports = function(babel) {
       FunctionDeclaration(path) {
         let node = path.node;
         let name = node.id.name;
+        node.id = null;
         let r = path.replaceWith(
           t.assignmentExpression(
             "=",
             t.identifier(name),
             t.toExpression(node)
           ))
+          idPath = null;
         //console.log(r[0].node.left.name); 
       } 
     }
