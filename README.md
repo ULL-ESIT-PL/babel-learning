@@ -1,14 +1,6 @@
 # Learning Babel
 
 
-## VSCode Configuration
-
-See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) on how to configure VSCode to work with Babel files in TypeScript.
-
-## git configuration: Husky and git Hooks
-
-See section [doc/git-hooks-configuration.md](doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
-
 ## Babel Configuration
 
 See the [Babel Configuration](doc/configure.md) section.
@@ -163,7 +155,8 @@ See section [Scope](doc/scope.md)
 
 ## The Babel Parser
 
-See section [parser.md](doc/parser.md).
+- See section [parser.md](doc/parser.md)
+- See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
 
 ## References
 
