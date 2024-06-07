@@ -1468,6 +1468,11 @@ path.replaceWith(
 
 > The `this.addHelper` will inject the helper at the top of the file if needed, and returns an `Identifier` to the injected function.
 
+## Closing Note
 
+The steps we've gone through above is similar to part of the [TC39 proposal process](https://github.com/tc39/proposals) when defining a new JavaScript specification. 
+When proposing a new specification, the champion[^champion] of the proposal usually write polyfills or forked out babel to write proof-of-concept demos. As you've seen, forking a parser or writing polyfills is not the hardest part of the process, but to define the problem space, plan and think through the use cases and edge cases, and gather opinions and suggestions from the community. To this end, I am grateful to the proposal champion, for their effort in pushing the JavaScript language forward.
+
+[^champion]: The person who is responsible for the ES proposal. Either the champion or a co-champion must be a member of [TC39](https://tc39.es/). See https://www.proposals.es/stages/stage1
 
 # [Back to /README.md](/README.md) (Learning Babel)
