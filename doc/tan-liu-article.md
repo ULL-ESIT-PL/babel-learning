@@ -176,6 +176,14 @@ Most of them passed but there were some errors. For instance:
 
 I will try to find out what is the reason later.
 
+## VSCode Configuration
+
+See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) on how to configure VSCode to work with Babel files in TypeScript.
+
+## git configuration: Husky and git Hooks
+
+See section [doc/git-hooks-configuration.md](doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
+
 ## The Babel monorepo
 
 [Babel uses a monorepo structure](https://github.com/babel/babel/blob/main/doc/design/monorepo.md), all the packages, eg: 
