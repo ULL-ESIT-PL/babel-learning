@@ -155,8 +155,11 @@ See section [Scope](doc/scope.md)
 
 ## The Babel Parser
 
-- See section [parser.md](doc/parser.md)
-- See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
+See section [parser.md](doc/parser.md)
+
+## Project "Creating custom JavaScript syntax with Babel"
+
+See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
 
 ## References
 
