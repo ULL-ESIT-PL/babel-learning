@@ -28,6 +28,17 @@ I strongly recommend you to [follow his work](https://twitter.com/lihautan) and 
 
 ## Installing Tan Li Hau Babel fork
 
+### Forking
+
+I started forking [Tan Li Hau babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
+at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
+
+### Cloning the repo
+
+```sh
+gh repo clone ULL-ESIT-PL/babel-tanhauhau
+```
+
 ### Machine Configuration
 
 ```sh
@@ -58,17 +69,6 @@ packages/babel-parser/src/tokenizer/index.js
 packages/babel-parser/src/tokenizer/types.js
 packages/babel-parser/test/curry-function.cjs
 packages/babel-parser/test/curry-function.js
-```
-
-### Forking
-
-I started forking [Tan Li Hau babel fork](https://github.com/tanhauhau/babel) of the repo instead of the main Babel repo and then I clone my fork
-at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
-
-### Cloning the repo
-
-```sh
-gh repo clone ULL-ESIT-PL/babel-tanhauhau
 ```
 
 ### yarn and gulp
