@@ -1373,4 +1373,79 @@ This solution will be s.t. like this:
 3. The user will have to import the `currying` function in their code.
   
 
+> ### Option 2: Use the @babel/helpers
+
+> You can add a new helper to `@babel/helpers`, which of course you are unlikely to merge that into the official `@babel/helpers`, so you would have to figure a way to make `@babel/core` to resolve to your `@babel/helpers`:
+
+`package.json`
+```json
+{
+  "resolutions": {
+    "@babel/helpers": "7.6.0--your-custom-forked-version",
+  }
+}
+```
+
+> Disclaimer: *I have not personally tried this, but I believe it will work. If you encountered problems trying this, [DM me](https://twitter.com/lihautan), I am very happy to discuss it with you*.
+
+> Adding a new helper function into `@babel/helpers` is very easy.
+>
+> Head over to packages/babel-helpers/src/helpers.js and add a new entry:
+
+> ```js
+> helpers.currying = helper("7.6.0")`
+>   export default function currying(fn) {
+>     const numParamsRequired = fn.length;
+>     function curryFactory(params) {
+>       return function (...args) {
+>         const newParams = params.concat(args);
+>         if (newParams.length >= numParamsRequired) {
+>           return fn(...newParams);
+>         }
+>         return curryFactory(newParams);
+>       }
+>     }
+>     return curryFactory([]);
+>   }
+> `;
+> ```
+
+The file `packages/babel-helpers/src/helpers.js` is a file that exports functions that are available inside 
+the Babel transformations. It is a huge file with the following structure:
+
+```js
+// @flow
+
+import template from "@babel/template";
+
+const helpers = Object.create(null);
+export default helpers;
+
+const helper = (minVersion: string) => tpl => ({
+  minVersion,
+  ast: () => template.program.ast(tpl),
+});
+
+helpers.typeof = helper("7.0.0-beta.0")`
+  export default function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) { return typeof obj; };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype
+          ? "symbol"
+          : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+`;
+/*
+... hundreds of lines with helpers.something = helper(versionString)`...`
+*/
+```
+
 # [Back to /README.md](/README.md) (Learning Babel)
