@@ -243,12 +243,14 @@ module.exports = function(babel) {
   }
 };                                                                                                                   ```
 
+Given the input program:
+
 ```js
 ➜  manipulation git:(main) ✗ cat a-function-declaration.js 
 function foo() {}
 ```                                                                                                           
 
-Execution:
+When we use the former plugin we get:
 
 `➜  manipulation git:(main) ✗ npx babel  a-function-declaration.js --plugins=./fun-declaration-to-expression-plugin.cjs`
 ```js
