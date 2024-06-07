@@ -42,6 +42,8 @@ gh repo clone ULL-ESIT-PL/babel-tanhauhau
 ### Machine Configuration
 
 ```sh
+➜  babel-learning git:(main) date
+June 2024, 12:30:50 WEST
 ➜  babel-learning git:(main) sw_vers        
 ProductName:            macOS
 ProductVersion:         14.5
@@ -1350,9 +1352,20 @@ export default function ourBabelPlugin() {
 >   };
 > }
 > ```
-> The question is how do we provide the `currying` function?
+> **The question is how do we provide the `currying` function?**
+
+I believe the question Tan is posing here is how to provide the `currying` function so that will be available when the transformation runs. That is, how to introduce it in the "Babel run time support"
 
 > There are 2 ways:
+
+> ### Option 1: Assume currying has been declared in the global scope
+
+> Basically, your job is done here.
+
+> If `currying` is not defined, then when executing the compiled code, the runtime will scream out `"currying is  not defined"`, just like the `"regeneratorRuntime is not defined"`.
+
+> So probably you have to educate the users to install `currying` polyfills in order to use your `babel-plugin-transformation-curry-function`.
+
 
 
 # [Back to /README.md](/README.md) (Learning Babel)
