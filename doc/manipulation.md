@@ -212,9 +212,48 @@ BinaryExpression(path) {
 
 ## What are the differences between function declaration and function expressions?
 
+### t.toExpression
+
 In the Babel AST (Abstract Syntax Tree), expressions are nodes that represent values and can appear on the right-hand side of an assignment, as arguments to functions, and in various other places. 
 
 The `toExpression` method in the `@babel/types` package is used to convert a given AST node into an expression if it is not already one. This can be particularly useful when working with Babel transformations where you need to ensure that a node conforms to the syntax rules that expect expressions.
+
+Here is an example of how to use the `toExpression` method in a Babel plugin:
+
+`➜  manipulation git:(main) ✗ cat fun-declaration-to-expression-plugin.cjs`
+```js
+module.exports = function(babel) {
+  const { types: t } = babel;
+
+  return {
+    name: "learning-toExpression", // nombre del plugin
+    visitor: {
+      FunctionDeclaration(path) {
+        let node = path.node;
+        let name = node.id.name;
+        let r = path.replaceWith(
+          t.assignmentExpression(
+            "=",
+            t.identifier(name),
+            t.toExpression(node)
+          ))
+        //console.log(r[0].node.left.name); 
+      } 
+    }
+  }
+};                                                                                                                   ```
+
+```js
+➜  manipulation git:(main) ✗ cat a-function-declaration.js 
+function foo() {}
+```                                                                                                           
+
+Execution:
+
+`➜  manipulation git:(main) ✗ npx babel  a-function-declaration.js --plugins=./fun-declaration-to-expression-plugin.cjs`
+```js
+foo = function foo() {};
+```
 
 See
 
