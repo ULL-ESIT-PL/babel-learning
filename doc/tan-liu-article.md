@@ -1448,4 +1448,8 @@ helpers.typeof = helper("7.0.0-beta.0")`
 */
 ```
 
+> The helper tag function specifies the `@babel/core` version required. The trick here is to `export default` the `currying` function.
+
+> To use the helper, just call the this.addHelper():
+
 # [Back to /README.md](/README.md) (Learning Babel)
