@@ -39,28 +39,52 @@ let square = n => n * n
 let square = n => n ** 2;
 ```
 
-See [/src/manipulating-ast-with-js/README.md#replacewith](/src/manipulating-ast-with-js/README.md#replacewith) for a complete example.
+See section
+[/src/manipulating-ast-with-js/README.md](/src/manipulating-ast-with-js/README.md#replacewith)
+for a complete example.
 
 ## Replacing a node with multiple nodes
 
-```js
-ReturnStatement(path) {
-  path.replaceWithMultiple([
-    t.expressionStatement(t.stringLiteral("Is this the real life?")),
-    t.expressionStatement(t.stringLiteral("Is this just fantasy?")),
-    t.expressionStatement(t.stringLiteral("(Enjoy singing the rest of the song in your head)")),
-  ]);
+The following plugin replaces the `return` statement with two statements: a `let` statement and a `return` statement.
+
+`➜  babel-learning git:(main) cat src/manipulation/replacewithmultiple-plugin.cjs`
+```js 
+module.exports = function (babel) {
+  return {
+    name: "ast-transform2", // not required
+    visitor: {
+      ReturnStatement(path) {
+        if (path.node.argument.type == "BinaryExpression" && path.node.argument.left.name  == "n") {
+          path.replaceWithMultiple([
+            babel.template(`let a = N`)({N: path.node.argument.left }),
+            babel.template(`return 4*a`)()
+          ])  
+        }
+      }
+    }
+  };
 }
 ```
 
-```diff
-  function square(n) {
--   return n * n;
-+   "Is this the real life?";
-+   "Is this just fantasy?";
-+   "(Enjoy singing the rest of the song in your head)";
-  }
+When executed with input:
+
+```js
+➜  babel-learning git:(main) cat src/manipulation/square2.js 
+let square = n => { return n * n; }
 ```
+
+We get:
+
+`➜  babel-learning git:(main) npx babel src/manipulation/square2.js --plugins=./src/manipulation/replacewithmultiple-plugin.cjs`
+```js
+"use strict";
+
+let square = n => {
+  let a = n;
+  return 4 * a;
+};
+```
+
 
 > **Note:** When replacing an expression with multiple nodes, they must be
 > statements. This is because Babel uses heuristics extensively when replacing
