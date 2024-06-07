@@ -231,12 +231,14 @@ module.exports = function(babel) {
       FunctionDeclaration(path) {
         let node = path.node;
         let name = node.id.name;
+        node.id = null;
         let r = path.replaceWith(
           t.assignmentExpression(
             "=",
             t.identifier(name),
             t.toExpression(node)
           ))
+          idPath = null;
         //console.log(r[0].node.left.name); 
       } 
     }
@@ -255,7 +257,7 @@ When we use the former plugin we get:
 
 `➜  manipulation git:(main) ✗ npx babel  a-function-declaration.js --plugins=./fun-declaration-to-expression-plugin.cjs`
 ```js
-foo = function foo() {};
+foo = function () {};
 ```
 
 See
