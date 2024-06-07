@@ -141,11 +141,6 @@ See section [Visiting](doc/visiting.md)
 
 See section [Manipulation](doc/manipulation.md)
 
-## Manipulating AST with JavaScript by Tan Liu Hau
-
-* See section [src/manipulating-ast-with-js/README.md](src/manipulating-ast-with-js/README.md) describing my experience reproducing [Tan Li Hau (陈立豪)](https://github.com/tanhauhau) youtube video [Manipulating AST with JavaScript](https://youtu.be/5z28bsbJJ3w?si=7UMZyXpNG5AdfWCE)
-* See also by the same author [Step-by-step guide for writing a custom babel transformation](https://lihautan.com/step-by-step-guide-for-writing-a-babel-transformation). Tan Li Hau. September 12, 2019
-
 ## Babel Template and Babel Types and Babel Generator
 
 See section [doc/template.md](doc/template.md).
