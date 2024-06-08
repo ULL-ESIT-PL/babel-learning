@@ -60,7 +60,7 @@ v21.2.0
 
 ### Branches `learning`,`feat/curry-function` and `master`
 
-There are currently three branches in the repo:
+There are currently three branches in the repository [ULL-ESIT-PL/babel-tanhauhau](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning):
 
 ```sh
 ➜  babel-tanhauhau git:(feat/curry-function) ✗ git -P branch
@@ -73,7 +73,7 @@ The branch `feat/curry-function` is the one with Tan Li Hau's solution.
 
 Branch `master` is the original Babel repo.  You can start from here and try to reproduce the article.
 
-You can find the version modified in the branch `learning` of the repository [ULL-ESIT-PL/babel-tanhauhau](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning)
+You can find the version I modified starting from `master` in the branch `learning`.
 
 ```sh
 ➜  babel-tanhauhau git:(learning) ✗ git diff --name-only master 
