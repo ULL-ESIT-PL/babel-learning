@@ -267,15 +267,13 @@ module.exports = function (babel) {
   const { types: t } = babel;
 
   return {
-    name: "ast-transform", // not required
-    
+    name: "generator-transform", 
     visitor: {
       FunctionDeclaration(path) {
         if (path.get("generator").node) { 
-          // const foo = curry(function () { ... });
           const functionName = path.get("id.name").node;
           path.node.id = undefined;
-          path.node.generator = false;
+          path.node.generator = false; // avoid infinite loop
 
           path.replaceWith(
             t.variableDeclaration("const", [
