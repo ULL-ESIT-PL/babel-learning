@@ -206,3 +206,54 @@ function h() {
   return f;
 }
 ```
+
+## Transforming a generator declaration on a constant function declaration and hoisting it
+
+See example [/src/scope/generator/-transform/](/src/scope/generator/-transform/).
+
+We want to write a transformation so that the generator declaration is hoisted to a constant declaration
+with the same name of the generator function. The constant must be initialized to a call  
+to the function `buildGenerator`with argument the bare function.  
+The transformed declarationmust be hoisted 
+at the top of the scope where the generator is. 
+for instanc, given this input:
+
+`➜  src git:(main) ✗ cat scope/generator-transform/input-generator-declaration-local.js`
+```js
+function chuchu() {
+  function* add(a,b,c) { return a+b+c; }
+  add(2,3,4)
+}
+```
+
+It has to be transformed to:
+
+
+`➜  generator-transform git:(main) ✗ npx babel input-generator-declaration-local.js --plugins=./generator-transform-plugin.cjs`
+```js
+function chuchu() {
+  const add = buildGenerator(function (a, b, c) {
+    return a + b + c;
+  });
+  add(2, 3, 4);
+}
+chuchu();
+```
+
+If the generator is in the global scope, it has to work also:
+
+`➜  generator-transform git:(main) ✗ cat input-generator-declaration-global.js`
+```js
+function* add(a, b, c) { return a + b + c; }
+add(2, 3, 4)
+
+chuchu();
+```
+`➜  generator-transform git:(main) ✗ npx babel input-generator-declaration-global.js --plugins=./generator-transform-plugin.cjs`
+```js
+const add = buildGenerator(function (a, b, c) {
+  return a + b + c;
+});
+add(2, 3, 4);
+chuchu();
+```
