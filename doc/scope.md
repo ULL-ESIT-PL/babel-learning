@@ -212,11 +212,9 @@ function h() {
 See examples in folder [/src/scope/generator/-transform/](/src/scope/generator/-transform/).
 
 We want to write a transformation so that the generator declaration is hoisted to a constant declaration
-with the same name of the generator function. The constant must be initialized to a call  
-to the function `buildGenerator`with argument the bare function.  
-The transformed declarationmust be hoisted 
-at the top of the scope where the generator is. 
-for instanc, given this input:
+with the same name of the generator function. The constant must be initialized to a call to the function `buildGenerator`with argument the bare function.  
+The transformed declarationmust be hoisted at the top of the scope where the generator is. 
+For instance, given this input:
 
 `➜  src git:(main) ✗ cat scope/generator-transform/input-generator-declaration-local.js`
 ```js
@@ -249,6 +247,9 @@ add(2, 3, 4)
 
 chuchu();
 ```
+
+Has to be transformed into:
+
 `➜  generator-transform git:(main) ✗ npx babel input-generator-declaration-global.js --plugins=./generator-transform-plugin.cjs`
 ```js
 const add = buildGenerator(function (a, b, c) {
