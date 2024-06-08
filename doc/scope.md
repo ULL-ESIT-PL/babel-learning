@@ -212,7 +212,7 @@ function h() {
 See examples in folder [/src/scope/generator/-transform/](/src/scope/generator/-transform/).
 
 We want to write a transformation so that the generator declaration is hoisted to a constant declaration
-with the same name of the generator function. The constant must be initialized to a call to the function `buildGenerator`with argument the bare function.  
+with the same name of the generator function. The constant must be initialized to a call to the function  with name `buildGenerator`with argument the bare function.  
 The transformed declarationmust be hoisted at the top of the scope where the generator is. 
 For instance, given this input:
 
