@@ -209,7 +209,7 @@ function h() {
 
 ## Transforming a generator declaration on a constant function declaration and hoisting it
 
-See example [/src/scope/generator/-transform/](/src/scope/generator/-transform/).
+See examples in folder [/src/scope/generator/-transform/](/src/scope/generator/-transform/).
 
 We want to write a transformation so that the generator declaration is hoisted to a constant declaration
 with the same name of the generator function. The constant must be initialized to a call  
