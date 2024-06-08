@@ -71,12 +71,19 @@ There are currently three branches in the repository [ULL-ESIT-PL/babel-tanhauha
 
 The branch `feat/curry-function` is the one with Tan Li Hau's solution. 
 
-Branch `master` is the original Babel repo.  You can start from here and try to reproduce the article.
+Branch `master` is the original Babel repo.  You can start from here and try to reproduce the article. The last commit in there is from 4 years ago:
+```
+➜  babel-tanhauhau git:(master) ✗ git lg
+e498bee10 - (HEAD -> master, upstream/master, origin/master, origin/HEAD) replace whitelist by allowlist in parser-tests (#11727) (hace 4 años Huáng Jùnliàng)
+fd3c76941 - [gitpod] Run "make watch" in a second terminal (#11718) (hace 4 años Nicolò Ribaudo)
+e15a5c750 - Fix innercomments (#11697) (hace 4 años 骗你是小猫咪)
+```
 
 You can find the version I modified starting from `master` in the branch `learning`.
 
 ```sh
 ➜  babel-tanhauhau git:(learning) ✗ git diff --name-only master 
+.vscode/settings.json
 .vscode/settings.json
 packages/babel-parser/src/parser/expression.js
 packages/babel-parser/src/parser/statement.js
