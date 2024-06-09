@@ -325,7 +325,12 @@ added 52 packages in 5s
   run `npm fund` for details
 ```
 
-Once you have done the symbolic link, changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and run `make bootstrap` and `make build`, you can make use of the `packages/babel-cli/bin/babel.js` cli to transform the code in the `babel-learning/src/tan-liu-article/example.js ` folder like follows:
+Once you have done 
+- the symbolic link,
+- changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and 
+- run `make bootstrap` and `make build`, 
+
+you can make use of the `babel-tanhauhau/packages/babel-cli/bin/babel.js` cli to transform the code in the `babel-learning/src/tan-liu-article/example.js ` folder like follows:
 
 `➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  \
     --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -`
