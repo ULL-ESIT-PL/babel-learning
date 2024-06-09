@@ -107,4 +107,4 @@ we can now feed it to the node interpreter:
 6
 ```
 
-## [Back to the article](doc/tan-liu-article.md#testing-the-plugin-first-approach)
+## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-first-approach)
