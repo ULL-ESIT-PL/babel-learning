@@ -46,135 +46,6 @@ The working space is in the `learning/compiler-learning/babel-tanhauhau` folder:
 /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 ```
 
-### Symbolic link and way to work
-
-I created a symbolic link to the `babel-tanhauhau` folder containing the cloned babel inside the `learning` folder
-containing this tutorial:
-
-```sh
-➜  babel-learning git:(main) ✗ pwd -P
-/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning     # <- this tutorial
-➜  babel-learning git:(main) ls -l babel-tanhauhau 
-lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau #<- the cloned babel repo
-```
-
-So, now I can work in the `babel-tanhauhau` folder from the `babel-learning` folder.
-This way, in the future, when we have the lexical analysis and parsing phases implemented, 
-we can, for instance, use the parser o examples like this one in the `babel-learning` folder:
-
-`➜  babel-learning git:(main) ✗ cat src/tan-liu-article/example.js`
-```js
-// '@@' makes the function `foo` curried
-function @@ foo(a, b, c) {
-  return a + b + c;
-}
-console.log(foo(1, 2)(3)); // 6
-```
-
-To use the parser in the `babel-tanhauhau` folder, I can simply call the `/bin/babel-parser.js` script from the `babel-tanhauhau` folder[^jq]:
-
-[^jq]: I am using the `jq '.program.body[0]'` command to select only the `FunctionDeclaration` and pretty print the JSON
-```sh
-➜  babel-learning git:(main) babel-tanhauhau/packages/babel-parser/bin/babel-parser.js src/tan-liu-article/example.js | jq '.program.body[0]' > salida.json
-```
-Of course, this assumes that the working copy of the `babel-tanhauhau` folder is in a branch with the changes implemented, like `feat/curry-function`:
-  
-```sh
-➜  babel-learning git:(main) (cd babel-tanhauhau/ && git -P branch )                                       
-* feat/curry-function
-  learning
-  master
-```
-
-And here is the AST that was stored in `salida.json`  in `yml` format[^compast]:
-[^compast]: I am using the `compast` command from the  `https://www.npmjs.com/package/compact-js-ast` package to convert the AST to `yml` format.
-
-`➜  babel-learning git:(main) ✗ compast -n salida.json`
-```yml
-type: "FunctionDeclaration"
-id:
-  type: "Identifier"
-  name: "foo"
-generator: false
-async: false
-curry: true
-params:
-  - type: "Identifier"
-    name: "a"
-  - type: "Identifier"
-    name: "b"
-  - type: "Identifier"
-    name: "c"
-body:
-  type: "BlockStatement"
-  body:
-    - type: "ReturnStatement"
-      argument:
-        type: "BinaryExpression"
-        left:
-          type: "BinaryExpression"
-          left:
-            type: "Identifier"
-            name: "a"
-          operator: "+"
-          right:
-            type: "Identifier"
-            name: "b"
-        operator: "+"
-        right:
-          type: "Identifier"
-          name: "c"
-  directives: []
-```
-Notice the `curry: true` attribute in the AST marking the function  as one to be curried during the subsequent transformation phases.
-
-I advise you to do the same while you are learning.
-
-### Running Tan Li Hau's Babel fork
-
-Once you have done the symbolic link, changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and run `make bootstrap` and `make build`:
-you can make use of the parser and the plugin to transform the code in the `babel-learning` folder like this:
-
-First, let ius install the `js-beautify` package:
-
-
-```sh
-babel-learning git:(main) npm -g install js-beautify
-
-added 52 packages in 5s
-
-14 packages are looking for funding
-  run `npm fund` for details
-```
-
-Then we can run the parser and the plugin to transform the code in the `babel-learning` folder like this:
-
-`➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  \
-    --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -`
-```js
-// '@@' makes the function `foo` curried
-const foo = _currying(function(a, b, c) {
-    return a + b + c;
-});
-
-function _currying(fn) {
-    const numParamsRequired = fn.length;
-
-    function curryFactory(params) {
-        return function(...args) {
-            const newParams = params.concat(args);
-            if (newParams.length >= numParamsRequired) {
-                return fn(...newParams);
-            }
-            return curryFactory(newParams);
-        };
-    }
-    return curryFactory([]);
-}
-
-console.log(foo(1, 2)(3)); // 6
-```
-
 ### Machine Configuration
 
 ```sh
@@ -354,6 +225,136 @@ See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) 
 ## git configuration: Husky and git Hooks
 
 See section [doc/git-hooks-configuration.md](doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
+
+
+## Symbolic link and way to work
+
+I created a symbolic link to the `babel-tanhauhau` folder containing the cloned babel inside the `learning` folder
+containing this tutorial:
+
+```sh
+➜  babel-learning git:(main) ✗ pwd -P
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning     # <- this tutorial
+➜  babel-learning git:(main) ls -l babel-tanhauhau 
+lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau #<- the cloned babel repo
+```
+
+So, now I can work in the `babel-tanhauhau` folder from the `babel-learning` folder.
+This way, in the future, when we have the lexical analysis and parsing phases implemented, 
+we can, for instance, use the parser o examples like this one in the `babel-learning` folder:
+
+`➜  babel-learning git:(main) ✗ cat src/tan-liu-article/example.js`
+```js
+// '@@' makes the function `foo` curried
+function @@ foo(a, b, c) {
+  return a + b + c;
+}
+console.log(foo(1, 2)(3)); // 6
+```
+
+To use the parser in the `babel-tanhauhau` folder, I can simply call the `/bin/babel-parser.js` script from the `babel-tanhauhau` folder[^jq]:
+
+[^jq]: I am using the `jq '.program.body[0]'` command to select only the `FunctionDeclaration` and pretty print the JSON
+```sh
+➜  babel-learning git:(main) babel-tanhauhau/packages/babel-parser/bin/babel-parser.js src/tan-liu-article/example.js | jq '.program.body[0]' > salida.json
+```
+Of course, this assumes that the working copy of the `babel-tanhauhau` folder is in a branch with the changes implemented, like `feat/curry-function`:
+  
+```sh
+➜  babel-learning git:(main) (cd babel-tanhauhau/ && git -P branch )                                       
+* feat/curry-function
+  learning
+  master
+```
+
+And here is the AST that was stored in `salida.json`  in `yml` format[^compast]:
+[^compast]: I am using the `compast` command from the  `https://www.npmjs.com/package/compact-js-ast` package to convert the AST to `yml` format.
+
+`➜  babel-learning git:(main) ✗ compast -n salida.json`
+```yml
+type: "FunctionDeclaration"
+id:
+  type: "Identifier"
+  name: "foo"
+generator: false
+async: false
+curry: true
+params:
+  - type: "Identifier"
+    name: "a"
+  - type: "Identifier"
+    name: "b"
+  - type: "Identifier"
+    name: "c"
+body:
+  type: "BlockStatement"
+  body:
+    - type: "ReturnStatement"
+      argument:
+        type: "BinaryExpression"
+        left:
+          type: "BinaryExpression"
+          left:
+            type: "Identifier"
+            name: "a"
+          operator: "+"
+          right:
+            type: "Identifier"
+            name: "b"
+        operator: "+"
+        right:
+          type: "Identifier"
+          name: "c"
+  directives: []
+```
+Notice the `curry: true` attribute in the AST marking the function  as one to be curried during the subsequent transformation phases.
+
+I advise you to do the same while you are learning.
+
+## Running Tan Li Hau's Babel fork
+
+Once you have done the symbolic link, changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and run `make bootstrap` and `make build`:
+you can make use of the parser and the plugin to transform the code in the `babel-learning` folder like this:
+
+First, let ius install the `js-beautify` package:
+
+
+```sh
+babel-learning git:(main) npm -g install js-beautify
+
+added 52 packages in 5s
+
+14 packages are looking for funding
+  run `npm fund` for details
+```
+
+Then we can run the parser and the plugin to transform the code in the `babel-learning` folder like this:
+
+`➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  \
+    --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -`
+```js
+// '@@' makes the function `foo` curried
+const foo = _currying(function(a, b, c) {
+    return a + b + c;
+});
+
+function _currying(fn) {
+    const numParamsRequired = fn.length;
+
+    function curryFactory(params) {
+        return function(...args) {
+            const newParams = params.concat(args);
+            if (newParams.length >= numParamsRequired) {
+                return fn(...newParams);
+            }
+            return curryFactory(newParams);
+        };
+    }
+    return curryFactory([]);
+}
+
+console.log(foo(1, 2)(3)); // 6
+```
 
 ## The Babel monorepo
 
