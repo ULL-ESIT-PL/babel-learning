@@ -77,12 +77,12 @@ To use the parser in the `babel-tanhauhau` folder, I can simply call the `/bin/b
 ```sh
 ➜  babel-learning git:(main) babel-tanhauhau/packages/babel-parser/bin/babel-parser.js src/tan-liu-article/example.js | jq '.program.body[0]' > salida.json
 ```
-Of course, this assumes that the working copy of the `babel-tanhauhau` folder is in your `learning` branch:
+Of course, this assumes that the working copy of the `babel-tanhauhau` folder is in a branch with the changes implemented, like `feat/curry-function`:
   
 ```sh
-➜  babel-learning git:(main) (cd babel-tanhauhau/ && git -P branch )
-  feat/curry-function
-* learning
+➜  babel-learning git:(main) (cd babel-tanhauhau/ && git -P branch )                                       
+* feat/curry-function
+  learning
   master
 ```
 
