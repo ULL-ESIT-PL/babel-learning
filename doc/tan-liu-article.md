@@ -196,6 +196,7 @@ babel-tanhauhau git:(master) npm i -g gulp
 ```
 
 Here are the versions I installed (Notice I'm in the `babel-learning` folder corresponding to the tutorial, not in the `babel-tanhauhau` folder corresponding to the cloned repo):
+
 ```sh
 ➜  babel-learning git:(main) yarn --version
 1.22.22
@@ -211,7 +212,7 @@ then I proceed to make the bootstrap:
 ```sh
 ➜  babel-tanhauhau git:(master) make bootstrap
 ```
-I was using node v21.2.0 and nvm 0.35.3.
+the first time I was using node v21.2.0 and nvm 0.35.3.
 There were errors with node-gyp. 
 I found that node-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js. 
 It contains a vendored copy of the `gyp-next` project that was previously used by the 
@@ -268,6 +269,9 @@ It took a while to build the project, but there were no errors:
 [12:33:49] Skipped minification of 'babel-tanhauhau/packages/babel-standalone/babel.js' because not publishing
 [12:33:49] Finished 'build-babel-standalone' after 29 s
 ```
+
+I have later tried with version 22.2.0 and it worked. So be aware of the version of node you are using.
+
 
 ### make build
 
