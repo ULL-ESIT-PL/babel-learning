@@ -116,7 +116,7 @@ body:
           name: "c"
   directives: []
 ```
-Notice the `curry: true` attribute in the AST marking the function  as one to be curried during the susequent transformation phases.
+Notice the `curry: true` attribute in the AST marking the function  as one to be curried during the subsequent transformation phases.
 
 I advise you to do the same while you are learning.
 
