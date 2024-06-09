@@ -46,6 +46,13 @@ The working space is in the `learning/compiler-learning/babel-tanhauhau` folder:
 /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 ```
 
+I created a symbolic link to the `babel-tanhauhau` folder in the `learning` folder:
+
+```sh
+➜  babel-learning git:(main) ls -l babel-tanhauhau 
+lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
+```
+
 ### Machine Configuration
 
 ```sh
