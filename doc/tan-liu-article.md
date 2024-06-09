@@ -39,6 +39,13 @@ at https://github.com/ULL-ESIT-PL/babel-tanhauhau:
 gh repo clone ULL-ESIT-PL/babel-tanhauhau
 ```
 
+The working space is in the `learning/compiler-learning/babel-tanhauhau` folder:
+
+```
+➜  babel-tanhauhau git:(learning) ✗ pwd -P
+/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
+```
+
 ### Machine Configuration
 
 ```sh
