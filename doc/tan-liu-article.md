@@ -116,6 +116,7 @@ body:
           name: "c"
   directives: []
 ```
+Notice the `curry: true` attribute in the AST.
 
 I advise you to do the same while you are learning.
 
