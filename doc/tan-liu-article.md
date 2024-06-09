@@ -53,14 +53,14 @@ containing this tutorial:
 
 ```sh
 ➜  babel-learning git:(main) ✗ pwd -P
-/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning     # <- this tutorial
 ➜  babel-learning git:(main) ls -l babel-tanhauhau 
-lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
+lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau #<- the cloned babel repo
 ```
 
 So, now I can work in the `babel-tanhauhau` folder from the `babel-learning` folder.
 This way, in the future, when we have the lexical analysis and parsing phases implemented, 
-we can use the parser o examples like this one in the `babel-learning` folder:
+we can, for instance, use the parser o examples like this one in the `babel-learning` folder:
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/example.js`
 ```js
