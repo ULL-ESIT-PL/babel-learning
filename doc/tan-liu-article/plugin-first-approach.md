@@ -1,3 +1,5 @@
+# Testing the plugin: first approach
+
 Let us start by writing the plugin in our learning workspace:
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/babel-transform-curry-function.cjs`
