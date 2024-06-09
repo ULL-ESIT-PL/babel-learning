@@ -46,6 +46,7 @@ module.exports = function (babel) {
 We can now run the babel compiler with the plugin for this input:
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/example.js`
+```js
 // '@@' makes the function `foo` curried
 function @@ foo(a, b, c) {
   return a + b + c;
