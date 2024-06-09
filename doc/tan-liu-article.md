@@ -1597,7 +1597,7 @@ See also branch [curry-function](https://github.com/tanhauhau/babel/tree/feat/cu
 
 ## Acknowledgements
 
-I would like to thank [Tan Li Hau](https://twitter.com/lihautan) for his awesome work on Babel 
-and for sharing his knowledge with the community.
+I would like to thank [Tan Li Hau](https://twitter.com/lihautan) for his awesome work on Babel, his wonderful articles
+and videos, and for sharing his knowledge with the community.
 
 # [Back to /README.md](/README.md) (Learning Babel)
