@@ -71,8 +71,9 @@ function @@ foo(a, b, c) {
 console.log(foo(1, 2)(3)); // 6
 ```
 
-To use the parser in the `babel-tanhauhau` folder, I can simply call the `/bin/babel-parser.js` script from the `babel-tanhauhau` folder:
+To use the parser in the `babel-tanhauhau` folder, I can simply call the `/bin/babel-parser.js` script from the `babel-tanhauhau` folder[^jq]:
 
+[^jq]: I am using the `jq '.program.body[0]'` command to select only the `FunctionDeclaration` and pretty print the JSON
 ```sh
 ➜  babel-learning git:(main) babel-tanhauhau/packages/babel-parser/bin/babel-parser.js src/tan-liu-article/example.js | jq '.program.body[0]' > salida.json
 ```
