@@ -46,11 +46,13 @@ The working space is in the `learning/compiler-learning/babel-tanhauhau` folder:
 /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 ```
 
-## Symbolic link and way to work
+### Symbolic link and way to work
 
 I created a symbolic link to the `babel-tanhauhau` folder in the `learning` folder:
 
 ```sh
+➜  babel-learning git:(main) ✗ pwd -P
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning
 ➜  babel-learning git:(main) ls -l babel-tanhauhau 
 lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 ```
