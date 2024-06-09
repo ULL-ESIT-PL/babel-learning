@@ -117,7 +117,7 @@ body:
   directives: []
 ```
 
-I advice you to do the same while you are learning.
+I advise you to do the same while you are learning.
 
 ### Machine Configuration
 
