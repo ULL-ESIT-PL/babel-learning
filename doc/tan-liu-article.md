@@ -141,12 +141,12 @@ ProductVersion:         14.5
 BuildVersion:           23F79
 ➜  babel-learning git:(main) uname          
 Darwin
-➜  babel-learning git:(main) node --version
-v21.2.0
+➜  babel-learning git:(main) node --version                         
+v22.2.0
+➜  babel-learning git:(main) npm --version
+10.7.0
 ➜  babel-learning git:(main) nvm --version
 0.35.3
-➜  babel-learning git:(main) npm --version
-10.2.3
 ```
 
 ### Branches `learning`,`feat/curry-function` and `master`
@@ -193,6 +193,15 @@ Then I realized that I have to install yarn and gulp to build the project.
 /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 babel-tanhauhau git:(master) npm i -g yarn 
 babel-tanhauhau git:(master) npm i -g gulp
+```
+
+Here are the versions I installed (Notice I'm in the `babel-learning` folder corresponding to the tutorial, not in the `babel-tanhauhau` folder corresponding to the cloned repo):
+```sh
+➜  babel-learning git:(main) yarn --version
+1.22.22
+➜  babel-learning git:(main) ✗ (cd babel-tanhauhau/ && gulp --version)
+CLI version: 3.0.0
+Local version: 4.0.2
 ```
 
 ### make bootstrap
