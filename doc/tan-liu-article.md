@@ -46,6 +46,8 @@ The working space is in the `learning/compiler-learning/babel-tanhauhau` folder:
 /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 ```
 
+## Symbolic link and way to work
+
 I created a symbolic link to the `babel-tanhauhau` folder in the `learning` folder:
 
 ```sh
@@ -53,6 +55,64 @@ I created a symbolic link to the `babel-tanhauhau` folder in the `learning` fold
 lrwxr-xr-x  1 casianorodriguezleon  staff  90 30 may 12:02 babel-tanhauhau -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau
 ```
 
+So, now I can work in the `babel-tanhauhau` folder from the `babel-learning` folder.
+This way, in the future, when we have the lexical analysis and parsing phases implemented, 
+we can use the parser o examples like this one in the `babel-learning` folder:
+
+`➜  babel-learning git:(main) ✗ cat src/tan-liu-article/example.js`
+```js
+// '@@' makes the function `foo` curried
+function @@ foo(a, b, c) {
+  return a + b + c;
+}
+console.log(foo(1, 2)(3)); // 6
+```
+
+To use the parser in the `babel-tanhauhau` folder, I can do:
+
+```sh
+➜  babel-learning git:(main) babel-tanhauhau/packages/babel-parser/bin/babel-parser.js src/tan-liu-article/example.js | jq '.program.body[0]' > salida.json
+```
+
+And here is the AST in yml format:
+
+`➜  babel-learning git:(main) ✗ compast -n salida.json`
+```yml
+type: "FunctionDeclaration"
+id:
+  type: "Identifier"
+  name: "foo"
+generator: false
+async: false
+curry: true
+params:
+  - type: "Identifier"
+    name: "a"
+  - type: "Identifier"
+    name: "b"
+  - type: "Identifier"
+    name: "c"
+body:
+  type: "BlockStatement"
+  body:
+    - type: "ReturnStatement"
+      argument:
+        type: "BinaryExpression"
+        left:
+          type: "BinaryExpression"
+          left:
+            type: "Identifier"
+            name: "a"
+          operator: "+"
+          right:
+            type: "Identifier"
+            name: "b"
+        operator: "+"
+        right:
+          type: "Identifier"
+          name: "c"
+  directives: []
+```
 ### Machine Configuration
 
 ```sh
