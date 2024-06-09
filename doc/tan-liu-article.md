@@ -130,6 +130,51 @@ Notice the `curry: true` attribute in the AST marking the function  as one to be
 
 I advise you to do the same while you are learning.
 
+### Running Tan Li Hau's Babel fork
+
+Once you have done the symbolic link, changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and run `make bootstrap` and `make build`:
+you can make use of the parser and the plugin to transform the code in the `babel-learning` folder like this:
+
+First, let ius install the `js-beautify` package:
+
+
+```sh
+babel-learning git:(main) npm -g install js-beautify
+
+added 52 packages in 5s
+
+14 packages are looking for funding
+  run `npm fund` for details
+```
+
+Then we can run the parser and the plugin to transform the code in the `babel-learning` folder like this:
+
+`➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  \
+    --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -`
+```js
+// '@@' makes the function `foo` curried
+const foo = _currying(function(a, b, c) {
+    return a + b + c;
+});
+
+function _currying(fn) {
+    const numParamsRequired = fn.length;
+
+    function curryFactory(params) {
+        return function(...args) {
+            const newParams = params.concat(args);
+            if (newParams.length >= numParamsRequired) {
+                return fn(...newParams);
+            }
+            return curryFactory(newParams);
+        };
+    }
+    return curryFactory([]);
+}
+
+console.log(foo(1, 2)(3)); // 6
+```
+
 ### Machine Configuration
 
 ```sh
