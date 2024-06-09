@@ -61,6 +61,7 @@ we compile it using the symbolic link to the babel compiler:
      src/tan-liu-article/example.js\
      --plugins=./src/tan-liu-article/babel-transform-curry-function.cjs
 ```
+Which gives the output:
 ```js
 "use strict";
 
