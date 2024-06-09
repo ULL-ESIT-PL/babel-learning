@@ -314,11 +314,7 @@ I advise you to do the same while you are learning.
 
 ## Running Tan Li Hau's Babel fork
 
-Once you have done the symbolic link, changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and run `make bootstrap` and `make build`:
-you can make use of the parser and the plugin to transform the code in the `babel-learning` folder like this:
-
-First, let ius install the `js-beautify` package:
-
+First, let us install the `js-beautify` package:
 
 ```sh
 babel-learning git:(main) npm -g install js-beautify
@@ -329,7 +325,7 @@ added 52 packages in 5s
   run `npm fund` for details
 ```
 
-Then we can run the parser and the plugin to transform the code in the `babel-learning` folder like this:
+Once you have done the symbolic link, changed to branch `feat/curry-function` on the Tan's Babel cloned workspace and run `make bootstrap` and `make build`, you can make use of the `packages/babel-cli/bin/babel.js` cli to transform the code in the `babel-learning/src/tan-liu-article/example.js ` folder like follows:
 
 `➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  \
     --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -`
