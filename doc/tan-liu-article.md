@@ -332,7 +332,7 @@ Once you have done
 
 you can make use of the `babel-tanhauhau/packages/babel-cli/bin/babel.js` cli to transform the code in the `babel-learning/src/tan-liu-article/example.js ` folder like follows:
 
-`➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  \
+`➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js \
     --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -`
 ```js
 // '@@' makes the function `foo` curried
