@@ -359,6 +359,14 @@ function _currying(fn) {
 
 console.log(foo(1, 2)(3)); // 6
 ```
+We can even pipe the output to node and see it running!
+
+```sh
+➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js \
+      src/tan-liu-article/example.js \
+      --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | node        
+6
+```
 
 ## The Babel monorepo
 
