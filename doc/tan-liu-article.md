@@ -48,7 +48,8 @@ The working space is in the `learning/compiler-learning/babel-tanhauhau` folder:
 
 ### Symbolic link and way to work
 
-I created a symbolic link to the `babel-tanhauhau` folder in the `learning` folder:
+I created a symbolic link to the `babel-tanhauhau` folder containing the cloned babel inside the `learning` folder
+containing this tutorial:
 
 ```sh
 ➜  babel-learning git:(main) ✗ pwd -P
@@ -115,6 +116,9 @@ body:
           name: "c"
   directives: []
 ```
+
+I advice you to do the same while you are learning.
+
 ### Machine Configuration
 
 ```sh
