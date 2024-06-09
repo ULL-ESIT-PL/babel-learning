@@ -279,7 +279,7 @@ id:
   name: "foo"
 generator: false
 async: false
-curry: true  <-- look at this!!
+curry: true ◀︎ look at this 🔔!!
 params:
   - type: "Identifier"
     name: "a"
