@@ -71,13 +71,22 @@ function @@ foo(a, b, c) {
 console.log(foo(1, 2)(3)); // 6
 ```
 
-To use the parser in the `babel-tanhauhau` folder, I can do:
+To use the parser in the `babel-tanhauhau` folder, I can simply call the `/bin/babel-parser.js` script from the `babel-tanhauhau` folder:
 
 ```sh
 ➜  babel-learning git:(main) babel-tanhauhau/packages/babel-parser/bin/babel-parser.js src/tan-liu-article/example.js | jq '.program.body[0]' > salida.json
 ```
+Of course, this assumes that the working copy of the `babel-tanhauhau` folder is in your `learning` branch:
+  
+```sh
+➜  babel-learning git:(main) (cd babel-tanhauhau/ && git -P branch )
+  feat/curry-function
+* learning
+  master
+```
 
-And here is the AST in yml format:
+And here is the AST that was stored in `salida.json`  in `yml` format[^compast]:
+[^compast]: I am using the `compast` command from the  `https://www.npmjs.com/package/compact-js-ast` package to convert the AST to `yml` format.
 
 `➜  babel-learning git:(main) ✗ compast -n salida.json`
 ```yml
