@@ -1548,12 +1548,14 @@ I believe the question Tan is posing here is how to provide the `currying` funct
 
 > So probably you have to educate the users to install `currying` polyfills in order to use your `babel-plugin-transformation-curry-function`.
 
-This solution will be s.t. like this:
+> This solution will be s.t. like this:
 
-1. We publish an npm module `currying` that contains the `currying` function.
-2. The user of our plugin will have to install the `currying` module in their project.
-3. The user will have to import the `currying` function in their code.
+> 1. We publish an npm module `currying` that contains the `currying` function.
+> 2. The user of our plugin will have to install the `currying` module in their project.
+> 3. The user will have to import the `currying` function in their code.
   
+A first approach is explained in section 
+[/doc/tan-liu-article/plugin-first-approach.md](/doc/tan-liu-article/plugin-first-approach.md)
 
 > ### Option 2: Use the @babel/helpers
 
