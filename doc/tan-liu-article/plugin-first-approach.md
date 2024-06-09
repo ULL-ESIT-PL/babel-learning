@@ -73,3 +73,29 @@ console.log(foo(1, 2)(3)); // 6
 ```
 Now, if we want to run it we have to provide the `currying` function.
 
+```sh
+➜  babel-learning git:(main) ✗ cat src/tan-liu-article/{currying.cjs,output.js}       
+function currying(fn) {
+  const numParamsRequired = fn.length;
+  function curryFactory(params) {
+    return function (...args) {
+      const newParams = params.concat(args);
+      if (newParams.length >= numParamsRequired) {
+        return fn(...newParams);
+      }
+      return curryFactory(newParams);
+    }
+  }
+  return curryFactory([]);
+}
+"use strict";
+
+// '@@' makes the function `foo` curried
+const foo = currying(function (a, b, c) {
+  return a + b + c;
+});
+console.log(foo(1, 2)(3)); // 6
+➜  babel-learning git:(main) ✗ cat src/tan-liu-article/{currying.cjs,output.js} | node
+6
+```
+
