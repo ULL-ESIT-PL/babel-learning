@@ -54,7 +54,7 @@ function @@ foo(a, b, c) {
 console.log(foo(1, 2)(3)); // 6
 ```
 
-we compilet it using the symbolic link to the babel compiler:
+we compile it using the symbolic link to the babel compiler:
 `➜  babel-learning git:(main) ✗ babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js  --plugins=./src/tan-liu-article/babel-transform-curry-function.cjs`
 ```js
 "use strict";
