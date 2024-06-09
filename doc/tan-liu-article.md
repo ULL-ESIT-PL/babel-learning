@@ -1580,20 +1580,20 @@ See also branch [curry-function](https://github.com/tanhauhau/babel/tree/feat/cu
 
 [^champion]: The person who is responsible for the ES proposal. Either the champion or a co-champion must be a member of [TC39](https://tc39.es/). See https://www.proposals.es/stages/stage1
 
-## Further Reading
-
-### About compilers:
-
-- Crafting Interpreters by Robert Nystrom
-- [Free Udacity course: "Compilers: Theory and Practice"](https://learn.udacity.com/courses/ud168), offered by Georgia Tech
-- Leveling Up One’s Parsing Game With ASTs by Vaidehi Joshi
-
-###  Misc:
-
-- [Understanding hoisting in JavaScript](https://scotch.io/tutorials/understanding-hoisting-in-javascript) by [Mabishi Wakio](https://github.com/andela-emabishi)
-- [Currying in JS by Shirsh Zibbu](https://twitter.com/zhirzh)
-- [TC39 Proposals](https://github.com/tc39/proposals)
-- [TC39 Process Document](https://tc39.es/process-document/)
+> ## Further Reading
+> 
+> ### About compilers:
+> 
+> - Crafting Interpreters by Robert Nystrom
+> - [Free Udacity course: "Compilers: Theory and Practice"](https://learn.udacity.com/courses/ud168), offered by Georgia Tech
+> - Leveling Up One’s Parsing Game With ASTs by Vaidehi Joshi
+> 
+> ###  Misc:
+> 
+> - [Understanding hoisting in JavaScript](https://scotch.io/tutorials/understanding-hoisting-in-javascript) by [Mabishi Wakio](https://github.com/andela-emabishi)
+> - [Currying in JS by Shirsh Zibbu](https://twitter.com/zhirzh)
+> - [TC39 Proposals](https://github.com/tc39/proposals)
+> - [TC39 Process Document](https://tc39.es/process-document/)
 
 ## Acknowledgements
 
