@@ -1595,4 +1595,9 @@ See also branch [curry-function](https://github.com/tanhauhau/babel/tree/feat/cu
 - [TC39 Proposals](https://github.com/tc39/proposals)
 - [TC39 Process Document](https://tc39.es/process-document/)
 
+## Acknowledgements
+
+I would like to thank [Tan Li Hau](https://twitter.com/lihautan) for his awesome work on Babel 
+and for sharing his knowledge with the community.
+
 # [Back to /README.md](/README.md) (Learning Babel)
