@@ -73,6 +73,7 @@ console.log(foo(1, 2)(3)); // 6
 ```
 Now, if we want to run it we have to provide the `currying` function.
 
+We can concatenate as prefix file the `currying` function followed by the output:
 ```sh
 ➜  babel-learning git:(main) ✗ cat src/tan-liu-article/{currying.cjs,output.js}       
 function currying(fn) {
@@ -95,6 +96,13 @@ const foo = currying(function (a, b, c) {
   return a + b + c;
 });
 console.log(foo(1, 2)(3)); // 6
+➜  babel-learning git:(main) ✗ cat src/tan-liu-article/{currying.cjs,output.js} | node
+6
+```
+
+we can now feed it to the node interpreter:
+
+```sh
 ➜  babel-learning git:(main) ✗ cat src/tan-liu-article/{currying.cjs,output.js} | node
 6
 ```
