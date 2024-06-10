@@ -90,7 +90,7 @@ function @@ foo(a, b, c) {
 console.log(foo(1, 2)(3)); // 6
 ```
 
-we compile it using the symbolic link to the babel compiler and save the output to a file 
+we compile it using the symbolic link to our version of the babel compiler and save the output to a file 
 `src/tan-liu-article/salida.cjs`:
 
 ```
