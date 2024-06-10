@@ -5,11 +5,18 @@ Let us start by writing the plugin in our learning workspace:
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/babel-transform-curry-function.cjs`
 ```js
 module.exports = function (babel) {
-  const { types: t } = babel;
+  const { types: t, template } = babel;
+  const curryTemplate = template(`const currying = require("./currying.cjs")`)();
 
   return {
     name: "curry-function",
     visitor: {
+      Program: {
+        exit(path) {
+          let node = path.node;
+          node.body.unshift(curryTemplate);
+        }
+      },
       FunctionDeclaration(path) {
         if (path.get("curry").node) { 
           const functionName = path.get("id.name").node;
@@ -43,6 +50,7 @@ module.exports = function (babel) {
   };
 }
 ```
+
 We can now run the babel compiler with the plugin for this input:
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/example.js`

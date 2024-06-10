@@ -1,4 +1,4 @@
-function currying(fn) {
+module.exports = function currying(fn) {
   const numParamsRequired = fn.length;
   function curryFactory(params) {
     return function (...args) {

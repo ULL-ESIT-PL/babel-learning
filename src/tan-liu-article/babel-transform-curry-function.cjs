@@ -1,9 +1,16 @@
 module.exports = function (babel) {
-  const { types: t } = babel;
+  const { types: t, template } = babel;
+  const curryTemplate = template(`const currying = require("./currying.cjs")`)();
 
   return {
     name: "curry-function",
     visitor: {
+      Program: {
+        exit(path) {
+          let node = path.node;
+          node.body.unshift(curryTemplate);
+        }
+      },
       FunctionDeclaration(path) {
         if (path.get("curry").node) { 
           const functionName = path.get("id.name").node;
