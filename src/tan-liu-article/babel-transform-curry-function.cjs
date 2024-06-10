@@ -1,6 +1,6 @@
 module.exports = function (babel) {
   const { types: t, template } = babel;
-  const curryTemplate = template(`const currying = require("./currying.cjs")`)();
+  const curryTemplate = template(`const currying = require("currying")`)();
 
   return {
     name: "curry-function",
