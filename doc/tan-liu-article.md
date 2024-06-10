@@ -1554,9 +1554,9 @@ This solution will be s.t. like this:
 
 1. We publish an npm module `currying` that contains the `currying` function.
 2. The user of our plugin will have to install the `currying` module in their project.
-3. The user will have to explictly import the `currying` function in their code or we can add to the plugin additional code to import the `currying` function.
+3. The user will have to explicitly import the `currying` function in their code or we can add to the plugin additional code to import the `currying` function.
 
-This first approach  to test the plugin is explained in section 
+This approach  to test the plugin is explained in section 
 [/doc/tan-liu-article/plugin-first-approach.md](/doc/tan-liu-article/plugin-first-approach.md)
 
 > ### Option 2: Use the @babel/helpers
