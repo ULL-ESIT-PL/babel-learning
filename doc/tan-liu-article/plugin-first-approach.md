@@ -1,5 +1,8 @@
 # Testing the plugin: first approach
 
+
+## Write the plugin
+
 Let us start by writing the plugin in our learning workspace:
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/babel-transform-curry-function.cjs`
@@ -50,6 +53,8 @@ module.exports = function (babel) {
 }
 ```
 
+## Write and publish the npm module
+
 We can now prepare a npm module for the `currying` function:
 
 ```sh
@@ -74,10 +79,14 @@ module.exports = function currying(fn) {
 ```
 Once is ready, we install it:
 
+## User: install the module
+
 ```sh
 ➜  babel-learning git:(main) ✗ npm install src/tan-liu-article/currying
 added 1 package, and audited 231 packages in 1s
 ```
+
+## User: run the babel compiler with the plugin
 
 We can now run the babel compiler with the plugin for this input:
 

@@ -328,6 +328,11 @@ We can take advantage of `npx` to have at hand the executables of our babel vers
 7.10.1 (@babel/core 7.10.2)
 ```
 
+## git worktree: Having working spaces for each branch
+
+The  `make bootstrap` and `make build` are unbearable slow and you have to issue them every time you change branches. One way to overcome this is to use `git worktree` to have a working space for each branch.
+
+
 ## Running Tan Li Hau's Babel fork
 
 The version of the babel-cli I  cloned from Tan Li Hau's repo is:
