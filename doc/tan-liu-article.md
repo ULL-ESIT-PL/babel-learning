@@ -314,6 +314,13 @@ I advise you to do the same while you are learning.
 
 ## Running Tan Li Hau's Babel fork
 
+The version of the babel-cli I  cloned from Tan Li Hau's repo is:
+
+```sh
+➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js --version
+7.10.1 (@babel/core 7.10.2)
+```
+
 First, let us install the `js-beautify` package:
 
 ```sh
