@@ -27,7 +27,6 @@ module.exports = function (babel) {
             t.variableDeclaration("const", [
               t.variableDeclarator(
                 t.identifier(functionName),
-                // t.callExpression(this.addHelper("currying"), [
                 t.callExpression(t.identifier("currying"), [ 
                   t.toExpression(path.node),
                 ]),
