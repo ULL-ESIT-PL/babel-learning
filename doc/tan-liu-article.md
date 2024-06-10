@@ -354,14 +354,16 @@ Npw that we have Tan's Babel version in the `babel-tanhauhau-feat-curry-function
 7.6.0 (@babel/core 7.6.0)
 ```
 
+Let us also make a symbolic link to Tan's version of Babel:
+```
+➜  babel-learning git:(main) ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-feat-curry-function
+➜  babel-learning git:(main) ✗ ls -tr | tail -1
+babel-tanhauhau-feat-curry-function
+```
+
 ## Running Tan Li Hau's Babel fork
 
 The version of the babel-cli I  cloned from Tan Li Hau's repo is:
-
-```sh
-➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js --version
-7.10.1 (@babel/core 7.10.2)
-```
 
 First, let us install the `js-beautify` package:
 
@@ -382,15 +384,13 @@ Once you have done
 you can make use of the `babel-tanhauhau/packages/babel-cli/bin/babel.js` cli to transform the code in the `babel-learning/src/tan-liu-article/example.js ` folder like follows:
 
 ```
-➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js \
-    --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -
+➜  babel-learning git:(main) ✗ babel-tanhauhau-feat-curry-function/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js --plugins=./babel-tanhauhau-feat-curry-function/packages/babel-plugin-transform-curry-function | js-beautify - 
 ```
 
 or better, alternatively:
 
 ```sh
-➜  babel-learning git:(main) ✗ npx mybabel src/tan-liu-article/example.js \ 
-    --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -
+➜  babel-learning git:(main) ✗ npx tanbabel src/tan-liu-article/example.js --plugins=./babel-tanhauhau-feat-curry-function/packages/babel-plugin-transform-curry-function | js-beautify - 
 ```
 ```js
 // '@@' makes the function `foo` curried
