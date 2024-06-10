@@ -344,6 +344,15 @@ Now using node v20.5.0 (npm v9.8.0)
 
 Now we can switch between the two workspaces at no cost.
 
+## Making a symbolic link to Tan's Babel version
+
+Npw that we have Tan's Babel version in the `babel-tanhauhau-feat-curry-function` folder, we can make a symbolic link to Tan's version of the `babel` executable and run it with `npx`:
+
+```sh
+➜  babel-learning git:(main) ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-feat-curry-function/packages/babel-cli/bin/babel.js node_modules/.bin/tanbabel 
+➜  babel-learning git:(main) npx tanbabel --version
+7.6.0 (@babel/core 7.6.0)
+```
 
 ## Running Tan Li Hau's Babel fork
 
