@@ -6,6 +6,8 @@ You can find the files for this section in the folder [/src/tan-liu-article](htt
 /Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/tan-liu-article
 ```
 
+## t.callExpression(this.addHelper("currying")
+
 Here is the code for the plugin:
 
 `➜  tan-liu-article git:(main) ✗ cat babel-transform-curry-function-withhelper.cjs`
@@ -52,6 +54,8 @@ module.exports = function (babel) {
 }
 ```
 
+## npx mybabel example.js --plugins=./babel-transform-curry-function-withhelper.cjs
+
 We can execute it using the `npx mybabel` command containing the symbolic link pointing 
 to the babel version in our `learning` workspace that we created in a previous step:
 
@@ -85,3 +89,5 @@ We can pipe it to `node` and see it working:
 ➜  tan-liu-article git:(main) ✗ npx mybabel example.js --plugins=./babel-transform-curry-function-withhelper.cjs | node       
 6
 ```
+
+## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-first-approach)
