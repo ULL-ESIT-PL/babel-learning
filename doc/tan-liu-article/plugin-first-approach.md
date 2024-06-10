@@ -119,4 +119,6 @@ we can now run it using the node interpreter:
 6
 ```
 
+Notice that the user has to be aware that the word `currying` is a word reserved for the plugin.
+
 ## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-first-approach)
