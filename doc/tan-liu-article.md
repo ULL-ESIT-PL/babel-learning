@@ -57,11 +57,14 @@ ProductVersion:         14.5
 BuildVersion:           23F79
 ➜  babel-learning git:(main) uname          
 Darwin
-➜  babel-learning git:(main) node --version                         
-v22.2.0
-➜  babel-learning git:(main) npm --version
-10.7.0
-➜  babel-learning git:(main) nvm --version
+```
+
+```
+➜  babel-tanhauhau git:(feat/curry-function) ✗ node --version
+v20.5.0
+➜  babel-tanhauhau git:(feat/curry-function) ✗ npm --version
+9.8.0
+➜  babel-tanhauhau git:(feat/curry-function) ✗ nvm --version
 0.35.3
 ```
 
@@ -186,7 +189,7 @@ It took a while to build the project, but there were no errors:
 [12:33:49] Finished 'build-babel-standalone' after 29 s
 ```
 
-I have later tried with version 22.2.0 and it worked. So be aware of the version of node you are using.
+I have later tried with version 22.2.0 and also with problems. So be aware of the version of node you are using.
 
 
 ### make build
@@ -312,6 +315,19 @@ Notice the `curry: true` attribute in the AST marking the function  as one to be
 
 I advise you to do the same while you are learning.
 
+## Symbolic links to the executables
+
+We can take advantage of `npx` to have at hand the executables of our babel version:
+
+```sh
+➜  babel-learning git:(main) ✗ cd node_modules/.bin 
+➜  .bin git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-cli/bin/babel.js mybabel
+➜  babel-learning git:(main) ✗ cd ../..
+➜  babel-learning git:(main) ✗ chmod a+x node_modules/.bin/mybabel 
+➜  babel-learning git:(main) ✗ npx mybabel --version          
+7.10.1 (@babel/core 7.10.2)
+```
+
 ## Running Tan Li Hau's Babel fork
 
 The version of the babel-cli I  cloned from Tan Li Hau's repo is:
@@ -341,6 +357,13 @@ you can make use of the `babel-tanhauhau/packages/babel-cli/bin/babel.js` cli to
 
 ```
 ➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js src/tan-liu-article/example.js \
+    --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -
+```
+
+or better, alternatively:
+
+```sh
+➜  babel-learning git:(main) ✗ npx mybabel src/tan-liu-article/example.js \ 
     --plugins=./babel-tanhauhau/packages/babel-plugin-transform-curry-function | js-beautify -
 ```
 ```js
