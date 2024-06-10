@@ -12,7 +12,7 @@ Here is the code for the plugin:
 
 `➜  tan-liu-article git:(main) ✗ cat babel-transform-curry-function-withhelper.cjs`
 ``` 
-```
+```js
 module.exports = function (babel) {
   const { types: t, template } = babel;
   const curryTemplate = template(`const currying = require("currying")`)();
