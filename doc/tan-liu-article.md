@@ -1701,6 +1701,8 @@ helpers.typeof = helper("7.0.0-beta.0")`
 
 > The `this.addHelper` will inject the helper at the top of the file if needed, and returns an `Identifier` to the injected function.
 
+See section [/doc/tan-liu-article/plugin-second-approach.md](/doc/tan-liu-article/plugin-second-approach.md) for the implementation of the second approach.
+
 > ## Closing Note
 > 
 > The steps we've gone through above is similar to part of the [TC39 proposal process](https://github.com/tc39/proposals) when defining a new JavaScript specification. 
