@@ -1576,7 +1576,7 @@ This approach  to test the plugin is explained in section
 
 > Adding a new helper function into `@babel/helpers` is very easy.
 >
-> Head over to packages/babel-helpers/src/helpers.js and add a new entry:
+> Head over to `packages/babel-helpers/src/helpers.js` and add a new entry:
 
 > ```js
 > helpers.currying = helper("7.6.0")`
