@@ -50,6 +50,8 @@ module.exports = function (babel) {
 }
 ```
 
+We can now prepare a npm module for the `currying` function:
+
 ```sh
 ➜  babel-learning git:(main) ✗ tree src/tan-liu-article/currying 
 src/tan-liu-article/currying
@@ -69,19 +71,12 @@ module.exports = function currying(fn) {
   }
   return curryFactory([]);
 }
+```
+Once is ready, we install it:
+
+```sh
 ➜  babel-learning git:(main) ✗ npm install src/tan-liu-article/currying
-
 added 1 package, and audited 231 packages in 1s
-
-15 packages are looking for funding
-  run `npm fund` for details
-
-2 critical severity vulnerabilities
-
-Some issues need review, and may require choosing
-a different dependency.
-
-Run `npm audit` for details.
 ```
 
 We can now run the babel compiler with the plugin for this input:
@@ -95,7 +90,8 @@ function @@ foo(a, b, c) {
 console.log(foo(1, 2)(3)); // 6
 ```
 
-we compile it using the symbolic link to the babel compiler:
+we compile it using the symbolic link to the babel compiler and save the output to a file 
+`src/tan-liu-article/salida.cjs`:
 
 ```
 ➜  babel-learning git:(main) ✗ babel-tanhauhau/packages/babel-cli/bin/babel.js \
@@ -115,7 +111,8 @@ const foo = currying(function (a, b, c) {
 });
 console.log(foo(1, 2)(3)); // 6
 ```
-we can now feed it to the node interpreter:
+
+we can now run it using the node interpreter:
 
 ```sh
 ➜  babel-learning git:(main) ✗ node src/tan-liu-article/salida.cjs
