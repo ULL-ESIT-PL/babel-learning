@@ -83,6 +83,7 @@ function _currying(fn) {
 
 console.log(foo(1, 2)(3)); // 6
 ```
+
 We can pipe it to `node` and see it working:
 
 ```
@@ -90,4 +91,4 @@ We can pipe it to `node` and see it working:
 6
 ```
 
-## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-first-approach)
+## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-second-approach)
