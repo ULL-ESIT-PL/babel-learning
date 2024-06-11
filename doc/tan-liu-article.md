@@ -1732,6 +1732,7 @@ See section [/doc/tan-liu-article/plugin-second-approach.md](/doc/tan-liu-articl
 
 ### packages/babel-plugin-transform-curry-function/package.json in branch learning
 
+Add a package.json to the plugin. 
 See https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-plugin-transform-curry-function/package.json
 
 > ## Closing Note
