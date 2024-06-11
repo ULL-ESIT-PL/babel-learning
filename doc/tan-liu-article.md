@@ -1539,7 +1539,7 @@ export default function ourBabelPlugin() {
 
 > Ok, to make our function curryable, we can wrap it with a currying helper higher-order function[^limitation]:
 
-> `src/tan-liu-article/currying/index.js` in this repo `ULL-ESIT-PL/babel-learning`
+> File `src/tan-liu-article/currying/index.js` in this repo `ULL-ESIT-PL/babel-learning`
 > ```js
 > function currying(fn) {
 >   const numParamsRequired = fn.length;
