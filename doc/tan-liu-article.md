@@ -330,11 +330,15 @@ We can take advantage of `npx` to have at hand the executables of our babel vers
 
 ## git worktree: Having working spaces for each branch
 
-The  `make bootstrap` and `make build` are unbearable slow and you have to issue them every time you change branches. One way to overcome this is to use `git worktree add` to have a working space for each branch.
+The  `make bootstrap` and `make build` are unbearable slow and you have to issue them every time you change branches. One way to overcome this is to use `git worktree add` to have a working space for each branch.  A git repository can support multiple working trees, allowing you to check out more than one branch at a time. With `git worktree add` a new working tree is associated with the repository. This new working tree is called a "*linked working tree*" as opposed to the "*main working tree*" prepared by "`git init`" or "`git clone`". A repository has one *main working tree* and zero or more *linked working trees*. When you are done with a linked working tree, remove it with `git worktree remove`.
 
 ```
 ➜  babel-tanhauhau git:(learning) ✗ git worktree add ../babel-tanhauhau-feat-curry-function feat/curry-function
 HEAD está ahora en b793efad1 function hoisting
+```
+Now we have a new working tree in the `babel-tanhauhau-feat-curry-function` folder. We can switch to it and set the Babel project there:
+
+```
 ➜  babel-tanhauhau git:(learning) ✗ cd ../babel-tanhauhau-feat-curry-function
 ➜  babel-tanhauhau-feat-curry-function git:(feat/curry-function) nvm use default
 Now using node v20.5.0 (npm v9.8.0)
