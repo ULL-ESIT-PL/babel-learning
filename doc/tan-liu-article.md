@@ -1730,6 +1730,10 @@ helpers.typeof = helper("7.0.0-beta.0")`
 
 See section [/doc/tan-liu-article/plugin-second-approach.md](/doc/tan-liu-article/plugin-second-approach.md) for the implementation of the second approach.
 
+### packages/babel-plugin-transform-curry-function/package.json in branch learning
+
+See https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-plugin-transform-curry-function/package.json
+
 > ## Closing Note
 > 
 > The steps we've gone through above is similar to part of the [TC39 proposal process](https://github.com/tc39/proposals) when defining a new JavaScript specification. 
