@@ -348,6 +348,16 @@ Now using node v20.5.0 (npm v9.8.0)
 
 Now we can switch between the two workspaces at no cost.
 
+```sh
+➜  compiler-learning pwd -P
+/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning
+➜  compiler-learning ls -l | grep babel
+480 27 sep  2023 ast-traversal-babel
+ 71 28 may 13:51 babel-learning -> ~/campus-virtual/2324/learning/babel-learning
+ 41 10 jun 13:25 babel-tanhauhau
+ 36 10 jun 13:45 babel-tanhauhau-feat-curry-function 
+```
+
 ## Making a symbolic link to Tan's Babel version
 
 Npw that we have Tan's Babel version in the `babel-tanhauhau-feat-curry-function` folder, we can make a symbolic link to Tan's version of the `babel` executable and run it with `npx`:
