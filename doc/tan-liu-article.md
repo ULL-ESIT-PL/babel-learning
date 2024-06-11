@@ -1578,7 +1578,7 @@ export default function ourBabelPlugin() {
 >
 > If you have read my [step-by-step guide on babel transformation](https://lihautan.com/step-by-step-guide-for-writing-a-babel-transformation), writing this transformation should be manageable:
 
-> `babel-plugin-transformation-curry-function.js`
+> `packages/babel-plugin-transform-curry-function/src/index.cjs`
 > ```js
 > export default function ourBabelPlugin() {
 >   return {
@@ -1648,6 +1648,7 @@ This approach  to test the plugin is explained in section
 >
 > Head over to `packages/babel-helpers/src/helpers.js` and add a new entry:
 
+`packages/babel-helpers/src/helpers.js`
 > ```js
 > helpers.currying = helper("7.6.0")`
 >   export default function currying(fn) {
