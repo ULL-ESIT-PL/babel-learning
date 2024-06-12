@@ -1619,7 +1619,7 @@ I believe the question Tan is posing here is how to provide the `currying` funct
 
 > So probably you have to educate the users to install `currying` polyfills in order to use your `babel-plugin-transformation-curry-function`.
 
-#### Testing the plugin: first approach 
+#### Testing the parser and the plugin: first approach 
 
 This solution will be s.t. like this:
 
@@ -1726,13 +1726,13 @@ helpers.typeof = helper("7.0.0-beta.0")`
 
 > The `this.addHelper` will inject the helper at the top of the file if needed, and returns an `Identifier` to the injected function.
 
-#### Testing the plugin: second approach
+#### Testing the parser and the plugin: second approach
 
 See section [/doc/tan-liu-article/plugin-second-approach.md](/doc/tan-liu-article/plugin-second-approach.md) for the implementation of the second approach.
 
 ### packages/babel-plugin-transform-curry-function/package.json in branch learning
 
-Add a package.json to the plugin. 
+Add a `package.json` to the plugin. 
 See https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-plugin-transform-curry-function/package.json
 
 > ## Closing Note
