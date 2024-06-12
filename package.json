@@ -1,7 +1,7 @@
 {
   "name": "babel-learning",
   "version": "1.0.0",
-  "description": "See this introduction by Matt Zeunert and the associated [GitHub repository](https://github.com/mattzeunert/babel-plugin-demo)  for a simple example of how to create a Babel plugin.",
+  "description": "See https://lihautan.com/creating-custom-javascript-syntax-with-babel",
   "main": "index.js",
   "scripts": {
     "b": "babel src --out-dir lib",
