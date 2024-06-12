@@ -6,9 +6,11 @@ You can find the files for this section in the folder [/src/tan-liu-article](htt
 /Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/tan-liu-article
 ```
 
-## t.callExpression(this.addHelper("currying")
+## Substitute t.identifier("currying") by this.addHelper("currying")
 
-Here is the code for the plugin:
+Once we have written the [helpers.currying](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) we can write the plugin that uses it.
+
+Here is the code for the `babel-transform-curry-function-withhelper.cjs` plugin:
 
 `➜  tan-liu-article git:(main) ✗ cat babel-transform-curry-function-withhelper.cjs`
 ```js
@@ -53,7 +55,7 @@ module.exports = function (babel) {
 }
 ```
 
-## npx mybabel example.js --plugins=./babel-transform-curry-function-withhelper.cjs
+## Run with our version of babel using the new plugin withs the helper
 
 We can execute it using the `npx mybabel` command containing the symbolic link pointing 
 to our babel version[^symbolicLink] in our `learning` workspace that we created in a previous step:
