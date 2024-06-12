@@ -59,7 +59,10 @@ We can execute it using the `npx mybabel` command containing the symbolic link p
 to the babel version in our `learning` workspace that we created in a previous step:
 
 ```
-➜  tan-liu-article git:(main) npx mybabel example.js --plugins=./babel-transform-curry-function-withhelper.cjs | js-beautify
+➜  tan-liu-article git:(main) npx mybabel example.js \
+     --plugins=./babel-transform-curry-function-withhelper.cjs | js-beautify
+```  
+```js
 // '@@' makes the function `foo` curried
 const foo = _currying(function(a, b, c) {
     return a + b + c;
