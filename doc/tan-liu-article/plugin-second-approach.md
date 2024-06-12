@@ -56,7 +56,8 @@ module.exports = function (babel) {
 ## npx mybabel example.js --plugins=./babel-transform-curry-function-withhelper.cjs
 
 We can execute it using the `npx mybabel` command containing the symbolic link pointing 
-to the babel version in our `learning` workspace that we created in a previous step:
+to our babel version[^symbolicLink] in our `learning` workspace that we created in a previous step:
+[^symbolicLink]: Remember: `node_modules/.bin/mybabel` `->` `/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-cli/bin/babel.js`
 
 ```
 ➜  tan-liu-article git:(main) npx mybabel example.js \
