@@ -26,11 +26,10 @@ and here found a line that sets the `generator` attribute.
 
 See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
 
-## Babel AST specification
-
-See repo https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md
 
 ### Parser Output
+
+The  Babel AST specification is at file `spec.md` in repo https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md
 
 The Babel parser generates AST according to [Babel AST format][].
 It is based on [ESTree spec][] with the following deviations:
@@ -46,9 +45,7 @@ It is based on [ESTree spec][] with the following deviations:
 - [ImportExpression][] is replaced with a [CallExpression][] whose `callee` is an [Import] node. This change will be reversed in Babel 8.
 - [ExportAllDeclaration][] with `exported` field is replaced with an [ExportNamedDeclaration][] containing an [ExportNamespaceSpecifier][] node.
 
-:::tip
-There is now an `estree` plugin which reverts these deviations
-:::
+Here is aChatGPT answer to the question [How can I convert a Babel.js AST to Estree format?](/doc/parser/babelAST2estree.md)
 
 AST for JSX code is based on [Facebook JSX AST][].
 
