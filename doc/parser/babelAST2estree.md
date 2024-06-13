@@ -1,3 +1,5 @@
+# ChatGPT answer to *How can I convert a Babel.js AST to Estree format?*
+
 To convert a Babel AST to ESTree format, you can use the `babel-eslint` parser, which provides the functionality to parse Babel-compatible JavaScript code and produce an ESTree-compatible AST. This is particularly useful if you need to work with tools that expect an ESTree-compliant AST, such as ESLint.
 
 Here's a step-by-step guide to accomplish this:
