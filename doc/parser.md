@@ -121,6 +121,10 @@ with the community to maintain and evolve the definition of JavaScript.
 
 See [tc39.md](/doc/parser/tc39.md) 
 
+## Tokenizer
+
+See section [/doc/tokenizer.md](/doc/tokenizer.md).
+
 ## References
 
 See section [References](docs/references.md).
