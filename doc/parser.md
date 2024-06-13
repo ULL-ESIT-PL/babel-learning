@@ -33,7 +33,7 @@ and here found a line that sets the `generator` attribute.
 See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
 
 
-### Parser Output
+### Parser Output: The Babel AST
 
 The  Babel AST specification is at file `spec.md` in repo https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md
 
