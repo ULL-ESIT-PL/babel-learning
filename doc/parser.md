@@ -26,6 +26,69 @@ and here found a line that sets the `generator` attribute.
 
 See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
 
+## Babel AST specification
+
+See repo https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md
+
+### Output
+
+The Babel parser generates AST according to [Babel AST format][].
+It is based on [ESTree spec][] with the following deviations:
+
+- [Literal][] token is replaced with [StringLiteral][], [NumericLiteral][], [BigIntLiteral][], [BooleanLiteral][], [NullLiteral][], [RegExpLiteral][]
+- [Property][] token is replaced with [ObjectProperty][] and [ObjectMethod][]
+- [MethodDefinition][] is replaced with [ClassMethod][] and [ClassPrivateMethod][]
+- [PropertyDefinition][] is replaced with [ClassProperty][] and [ClassPrivateProperty][]
+- [PrivateIdentifier][] is replaced with [PrivateName][]
+- [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]
+- [ClassMethod][], [ClassPrivateMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.
+- [ChainExpression][] is replaced with [OptionalMemberExpression][] and [OptionalCallExpression][]
+- [ImportExpression][] is replaced with a [CallExpression][] whose `callee` is an [Import] node. This change will be reversed in Babel 8.
+- [ExportAllDeclaration][] with `exported` field is replaced with an [ExportNamedDeclaration][] containing an [ExportNamespaceSpecifier][] node.
+
+:::tip
+There is now an `estree` plugin which reverts these deviations
+:::
+
+AST for JSX code is based on [Facebook JSX AST][].
+
+[babel ast format]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md
+[estree spec]: https://github.com/estree/estree
+[literal]: https://github.com/estree/estree/blob/master/es5.md#literal
+[property]: https://github.com/estree/estree/blob/master/es5.md#property
+[methoddefinition]: https://github.com/estree/estree/blob/master/es2015.md#methoddefinition
+[propertydefinition]: https://github.com/estree/estree/blob/master/es2022.md#propertydefinition
+[chainexpression]: https://github.com/estree/estree/blob/master/es2020.md#chainexpression
+[importexpression]: https://github.com/estree/estree/blob/master/es2020.md#importexpression
+[exportalldeclaration]: https://github.com/estree/estree/blob/master/es2020.md#exportalldeclaration
+[privateidentifier]: https://github.com/estree/estree/blob/master/es2022.md#privateidentifier
+[stringliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#stringliteral
+[numericliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#numericliteral
+[bigintliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#bigintliteral
+[booleanliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#booleanliteral
+[nullliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#nullliteral
+[regexpliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#regexpliteral
+[objectproperty]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#objectproperty
+[objectmethod]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#objectmethod
+[classmethod]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#classmethod
+[classproperty]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#classproperty
+[classprivateproperty]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#classprivateproperty
+[classprivatemethod]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#classprivatemethod
+[privatename]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#privatename
+[program]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#programs
+[blockstatement]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#blockstatement
+[directive]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#directive
+[directiveliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#directiveliteral
+[functionexpression]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#functionexpression
+[optionalmemberexpression]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#optionalmemberexpression
+[optionalcallexpression]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#optionalcallexpression
+[callexpression]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#callexpression
+[import]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#import
+[exportnameddeclaration]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#exportnameddeclaration
+[exportnamespacespecifier]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#exportnamespacespecifier
+[facebook jsx ast]: https://github.com/facebook/jsx/blob/master/AST.md
+
+
 ## tc39 
 
 See [tc39.md](/doc/parser/tc39.md) 
