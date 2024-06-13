@@ -190,89 +190,93 @@ finishOp(type: TokenType, size: number): void {
 ## readNumber
 
 ```js
-// Read an integer, octal integer, or floating-point number.
-readNumber(startsWithDot: boolean): void {
-    const start = this.state.pos;
-    let isFloat = false;
-    let isBigInt = false;
-    let isNonOctalDecimalInt = false;
+export default class Tokenizer extends ParserErrors {
+  ...
+  // Read an integer, octal integer, or floating-point number.
+  readNumber(startsWithDot: boolean): void {
+      const start = this.state.pos;
+      let isFloat = false;
+      let isBigInt = false;
+      let isNonOctalDecimalInt = false;
 
-    if (!startsWithDot && this.readInt(10) === null) {
-      this.raise(start, Errors.InvalidNumber);
-    }
-    let octal =
-      this.state.pos - start >= 2 &&
-      this.input.charCodeAt(start) === charCodes.digit0;
-    if (octal) {
-      if (this.state.strict) {
-        this.raise(start, Errors.StrictOctalLiteral);
+      if (!startsWithDot && this.readInt(10) === null) {
+        this.raise(start, Errors.InvalidNumber);
       }
-      if (/[89]/.test(this.input.slice(start, this.state.pos))) {
-        octal = false;
-        isNonOctalDecimalInt = true;
+      let octal =
+        this.state.pos - start >= 2 &&
+        this.input.charCodeAt(start) === charCodes.digit0;
+      if (octal) {
+        if (this.state.strict) {
+          this.raise(start, Errors.StrictOctalLiteral);
+        }
+        if (/[89]/.test(this.input.slice(start, this.state.pos))) {
+          octal = false;
+          isNonOctalDecimalInt = true;
+        }
       }
-    }
 
-    let next = this.input.charCodeAt(this.state.pos);
-    if (next === charCodes.dot && !octal) {
-      ++this.state.pos;
-      this.readInt(10);
-      isFloat = true;
-      next = this.input.charCodeAt(this.state.pos);
-    }
-
-    if (
-      (next === charCodes.uppercaseE || next === charCodes.lowercaseE) &&
-      !octal
-    ) {
-      next = this.input.charCodeAt(++this.state.pos);
-      if (next === charCodes.plusSign || next === charCodes.dash) {
+      let next = this.input.charCodeAt(this.state.pos);
+      if (next === charCodes.dot && !octal) {
         ++this.state.pos;
+        this.readInt(10);
+        isFloat = true;
+        next = this.input.charCodeAt(this.state.pos);
       }
-      if (this.readInt(10) === null) this.raise(start, "Invalid number");
-      isFloat = true;
-      next = this.input.charCodeAt(this.state.pos);
-    }
 
-    // disallow numeric separators in non octal decimals and legacy octal likes
-    if (this.hasPlugin("numericSeparator") && (octal || isNonOctalDecimalInt)) {
-      const underscorePos = this.input
-        .slice(start, this.state.pos)
-        .indexOf("_");
-      if (underscorePos > 0) {
-        this.raise(underscorePos + start, Errors.ZeroDigitNumericSeparator);
+      if (
+        (next === charCodes.uppercaseE || next === charCodes.lowercaseE) &&
+        !octal
+      ) {
+        next = this.input.charCodeAt(++this.state.pos);
+        if (next === charCodes.plusSign || next === charCodes.dash) {
+          ++this.state.pos;
+        }
+        if (this.readInt(10) === null) this.raise(start, "Invalid number");
+        isFloat = true;
+        next = this.input.charCodeAt(this.state.pos);
       }
-    }
 
-    if (next === charCodes.underscore) {
-      this.expectPlugin("numericSeparator", this.state.pos);
-    }
-
-    if (next === charCodes.lowercaseN) {
-      // disallow floats, legacy octal syntax and non octal decimals
-      // new style octal ("0o") is handled in this.readRadixNumber
-      if (isFloat || octal || isNonOctalDecimalInt) {
-        this.raise(start, "Invalid BigIntLiteral");
+      // disallow numeric separators in non octal decimals and legacy octal likes
+      if (this.hasPlugin("numericSeparator") && (octal || isNonOctalDecimalInt)) {
+        const underscorePos = this.input
+          .slice(start, this.state.pos)
+          .indexOf("_");
+        if (underscorePos > 0) {
+          this.raise(underscorePos + start, Errors.ZeroDigitNumericSeparator);
+        }
       }
-      ++this.state.pos;
-      isBigInt = true;
+
+      if (next === charCodes.underscore) {
+        this.expectPlugin("numericSeparator", this.state.pos);
+      }
+
+      if (next === charCodes.lowercaseN) {
+        // disallow floats, legacy octal syntax and non octal decimals
+        // new style octal ("0o") is handled in this.readRadixNumber
+        if (isFloat || octal || isNonOctalDecimalInt) {
+          this.raise(start, "Invalid BigIntLiteral");
+        }
+        ++this.state.pos;
+        isBigInt = true;
+      }
+
+      if (isIdentifierStart(this.input.codePointAt(this.state.pos))) {
+        throw this.raise(this.state.pos, Errors.NumberIdentifier);
+      }
+
+      // remove "_" for numeric literal separator, and "n" for BigInts
+      const str = this.input.slice(start, this.state.pos).replace(/[_n]/g, "");
+
+      if (isBigInt) {
+        this.finishToken(tt.bigint, str); // create a BigInt token 
+        return;
+      }
+
+      const val = octal ? parseInt(str, 8) : parseFloat(str);
+      this.finishToken(tt.num, val); // create a number token
     }
-
-    if (isIdentifierStart(this.input.codePointAt(this.state.pos))) {
-      throw this.raise(this.state.pos, Errors.NumberIdentifier);
-    }
-
-    // remove "_" for numeric literal separator, and "n" for BigInts
-    const str = this.input.slice(start, this.state.pos).replace(/[_n]/g, "");
-
-    if (isBigInt) {
-      this.finishToken(tt.bigint, str); // create a BigInt token 
-      return;
-    }
-
-    const val = octal ? parseInt(str, 8) : parseFloat(str);
-    this.finishToken(tt.num, val); // create a number token
-  }
+  ...
+}
 ```
 
 is called from:
@@ -303,31 +307,35 @@ export default class Tokenizer extends ParserErrors {
 }
 ```
 
-and 
+and from:
 
 ```js
-getTokenFromCode(code: number): void {
-  switch (code) {
-      // The interpretation of a dot depends on whether it is followed
-      // by a digit or another two dots.
-      ...
-      // Anything else beginning with a digit is an integer, octal
-      // number, or float. (fall through)
-      ...
-      case charCodes.digit1:
-      case charCodes.digit2:
-      case charCodes.digit3:
-      case charCodes.digit4:
-      case charCodes.digit5:
-      case charCodes.digit6:
-      case charCodes.digit7:
-      case charCodes.digit8:
-      case charCodes.digit9:
-        this.readNumber(false);
-        return;
+export default class Tokenizer extends ParserErrors {
+  ...
+  getTokenFromCode(code: number): void {
+    switch (code) {
+        // The interpretation of a dot depends on whether it is followed
+        // by a digit or another two dots.
+        ...
+        // Anything else beginning with a digit is an integer, octal
+        // number, or float. (fall through)
+        ...
+        case charCodes.digit1:
+        case charCodes.digit2:
+        case charCodes.digit3:
+        case charCodes.digit4:
+        case charCodes.digit5:
+        case charCodes.digit6:
+        case charCodes.digit7:
+        case charCodes.digit8:
+        case charCodes.digit9:
+          this.readNumber(false);
+          return;
 
-      // Quotes produce strings.
-      case charCodes.quotationMark:
-      ...
+        // Quotes produce strings.
+        case charCodes.quotationMark:
+        ...
+    }
+    ...
   }
 }
