@@ -33,7 +33,7 @@ and here found a line that sets the `generator` attribute.
 See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
 
 
-### Parser Output: The Babel AST
+## Parser Output: The Babel AST
 
 The  Babel AST specification is at file `spec.md` in repo https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md
 
@@ -90,6 +90,28 @@ AST for JSX code is based on [Facebook JSX AST][].
 [exportnameddeclaration]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#exportnameddeclaration
 [exportnamespacespecifier]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#exportnamespacespecifier
 [facebook jsx ast]: https://github.com/facebook/jsx/blob/master/AST.md
+
+## Error codes
+
+Error codes are useful for handling the errors thrown by `@babel/parser`.
+
+There are two error codes, `code` and `reasonCode`.
+
+- `code`
+  - Rough classification of errors (e.g. `BABEL_PARSER_SYNTAX_ERROR`, `BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED`).
+- `reasonCode`
+  - Detailed classification of errors (e.g. `MissingSemicolon`, `VarRedeclaration`).
+
+See example at [/src/parser/error-example.cjs](/src/parser/error-example.cjs):
+
+```js 
+const { parse } = require("@babel/parser");
+
+const ast = parse(`a b`, { errorRecovery: true });
+
+console.log(ast.errors[0].code); // BABEL_PARSER_SYNTAX_ERROR
+console.log(ast.errors[0].reasonCode); // MissingSemicolon
+```
 
 
 ## tc39 

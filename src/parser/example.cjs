@@ -1,4 +1,4 @@
-const code = `const element = <a href="https://www.google.com">Hello, world!</a>;`;
+const code = `const element : React.Element = <a href="https://www.google.com">Hello, world!</a>;`;
 let parse = require("@babel/parser").parse;
 let ast = parse(code, {
   // parse in strict mode and allow module declarations
