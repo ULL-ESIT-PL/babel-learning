@@ -21,6 +21,7 @@
     "@babel/preset-env": "^7.24.6"
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "babel-template": "^6.26.0",
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",

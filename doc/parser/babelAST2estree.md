@@ -6,12 +6,14 @@ Here's a step-by-step guide to accomplish this:
 
 ### 1. Install Dependencies
 
-First, you need to install the necessary packages:
+First, you need to install the necessary packages[ˆnodeversion]:
 
 ```sh
 npm install @babel/parser @babel/traverse @babel/types @babel/generator
 npm install babel-eslint
 ```
+
+[^nodeversion]: The `babel-eslint` package gave errors. Only with verson 22 worked.
 
 ### 2. Parse JavaScript Code with Babel Parser
 
