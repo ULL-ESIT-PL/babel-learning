@@ -94,6 +94,9 @@ AST for JSX code is based on [Facebook JSX AST][].
 
 ## tc39 
 
+Ecma International's TC39 is a group of JavaScript developers, implementers, and academics collaborating 
+with the community to maintain and evolve the definition of JavaScript.
+
 See [tc39.md](/doc/parser/tc39.md) 
 
 ## References
