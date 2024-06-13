@@ -11,6 +11,52 @@ src/tokenizer
 └── types.js
 ```
 
+## context.js
+
+The `context.js` is code to deal with the ambiguity in js produced by regexps and division. See https://github.com/sweet-js/sweet-core/wiki/design
+
+## state.js
+
+I believe that `state.js` contains a `State` class, which has the current parsing position — the number of characters we are into the code — and an array of tokens and a lot of other things too.
+
+```js 
+export default class State {
+  strict: boolean;
+  curLine: number;
+
+  // And, if locations are used, the {line, column} object
+  // corresponding to those offsets
+  startLoc: Position;
+  endLoc: Position;
+  ...
+  // Tokens length in token store
+  tokensLength: number = 0;
+
+  curPosition(): Position {
+    return new Position(this.curLine, this.pos - this.lineStart);
+  }
+  ...
+  clone(skipArrays?: boolean): State {
+    const state = new State();
+    const keys = Object.keys(this);
+    for (let i = 0, length = keys.length; i < length; i++) {
+      const key = keys[i];
+      // $FlowIgnore
+      let val = this[key];
+
+      if (!skipArrays && Array.isArray(val)) {
+        val = val.slice();
+      }
+
+      // $FlowIgnore
+      state[key] = val;
+    }
+
+    return state;
+  }
+}
+```
+
 ## types.js 
 
 Let us review our notes about this file:
