@@ -17,6 +17,8 @@ Let us review our notes about this file:
 
 > Let's first look at where a token type is defined: [packages/babel-parser/src/tokenizer/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/types.js#L86-L203).
 
+### The constant types: an object with the token types
+
 > Here you see a list of tokens, so let's add our new token definition in as well:
 >
 > ```js
@@ -35,11 +37,63 @@ Let us review our notes about this file:
 > };
 > ```
 
+### The TokenType class
+
+We see that we call the token constructor 
+
+```js
+constructor(label: string, conf: TokenOptions = {})
+```
+
+with `new TokenType('@@')` with the `label` set to `@@` but no `conf`iguration option. 
+
+The `startsExpr` property used for tokens `num`, `bigint`, `regexp`, `string`, `name`, `#`, etc.
+is used to determine whether an expression
+may be the `argument` subexpression of a `yield` expression or
+`yield` statement. It is set on all token types that may be at the
+start of a subexpression.
+
+
 By calling the [constructor](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/types.js#L45-L71) we are setting the `label` property of the token `atat` to `@@`
+
+```ts
+export class TokenType {
+  label: string;
+  keyword: ?string;
+  beforeExpr: boolean;
+  startsExpr: boolean;
+  rightAssociative: boolean;
+  isLoop: boolean;
+  isAssign: boolean;
+  prefix: boolean;
+  postfix: boolean;
+  binop: ?number;
+  updateContext: ?(prevType: TokenType) => void;
+
+  constructor(label: string, conf: TokenOptions = {}) {
+    this.label = label;
+    this.keyword = conf.keyword;
+    this.beforeExpr = !!conf.beforeExpr;
+    this.startsExpr = !!conf.startsExpr;
+    this.rightAssociative = !!conf.rightAssociative;
+    this.isLoop = !!conf.isLoop;
+    this.isAssign = !!conf.isAssign;
+    this.prefix = !!conf.prefix;
+    this.postfix = !!conf.postfix;
+    this.binop = conf.binop != null ? conf.binop : null;
+    this.updateContext = null;
+  }
+}
+...
+```
+
+
 
 ## index.js
 
 > Next, let's find out where the token gets created during tokenization. A quick search for `tt.at` within `babel-parser/src/tokenizer` lead us to [packages/babel-parser/src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js#L891-L894)
+
+### The `getTokenFromCode` method 
 
 Here is the general structure of the code of the `getTokenFromCode` function inside 
 the `babel-parser/src/tokenizer/index.js` file:
@@ -108,6 +162,8 @@ The Babel parser uses [charcodes constants](https://github.com/xtuc/charcodes?ta
 
 See  the actual code at [src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-parser/src/tokenizer/index.js#L891-L899)
 
+### The `finishOp` method
+
 The function `finishOp`  receives the token type and the size of the token, sets the token value and advances the position by calling [finishToken](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js#L382-L390)
 
 ```js
@@ -117,3 +173,161 @@ finishOp(type: TokenType, size: number): void {
     this.finishToken(type, str);
   }
 ```
+
+
+```js 
+  finishToken(type: TokenType, val: any): void {
+    this.state.end = this.state.pos;
+    this.state.endLoc = this.state.curPosition();
+    const prevType = this.state.type;
+    this.state.type = type;
+    this.state.value = val;
+
+    if (!this.isLookahead) this.updateContext(prevType);
+  }
+```
+
+## readNumber
+
+```js
+// Read an integer, octal integer, or floating-point number.
+readNumber(startsWithDot: boolean): void {
+    const start = this.state.pos;
+    let isFloat = false;
+    let isBigInt = false;
+    let isNonOctalDecimalInt = false;
+
+    if (!startsWithDot && this.readInt(10) === null) {
+      this.raise(start, Errors.InvalidNumber);
+    }
+    let octal =
+      this.state.pos - start >= 2 &&
+      this.input.charCodeAt(start) === charCodes.digit0;
+    if (octal) {
+      if (this.state.strict) {
+        this.raise(start, Errors.StrictOctalLiteral);
+      }
+      if (/[89]/.test(this.input.slice(start, this.state.pos))) {
+        octal = false;
+        isNonOctalDecimalInt = true;
+      }
+    }
+
+    let next = this.input.charCodeAt(this.state.pos);
+    if (next === charCodes.dot && !octal) {
+      ++this.state.pos;
+      this.readInt(10);
+      isFloat = true;
+      next = this.input.charCodeAt(this.state.pos);
+    }
+
+    if (
+      (next === charCodes.uppercaseE || next === charCodes.lowercaseE) &&
+      !octal
+    ) {
+      next = this.input.charCodeAt(++this.state.pos);
+      if (next === charCodes.plusSign || next === charCodes.dash) {
+        ++this.state.pos;
+      }
+      if (this.readInt(10) === null) this.raise(start, "Invalid number");
+      isFloat = true;
+      next = this.input.charCodeAt(this.state.pos);
+    }
+
+    // disallow numeric separators in non octal decimals and legacy octal likes
+    if (this.hasPlugin("numericSeparator") && (octal || isNonOctalDecimalInt)) {
+      const underscorePos = this.input
+        .slice(start, this.state.pos)
+        .indexOf("_");
+      if (underscorePos > 0) {
+        this.raise(underscorePos + start, Errors.ZeroDigitNumericSeparator);
+      }
+    }
+
+    if (next === charCodes.underscore) {
+      this.expectPlugin("numericSeparator", this.state.pos);
+    }
+
+    if (next === charCodes.lowercaseN) {
+      // disallow floats, legacy octal syntax and non octal decimals
+      // new style octal ("0o") is handled in this.readRadixNumber
+      if (isFloat || octal || isNonOctalDecimalInt) {
+        this.raise(start, "Invalid BigIntLiteral");
+      }
+      ++this.state.pos;
+      isBigInt = true;
+    }
+
+    if (isIdentifierStart(this.input.codePointAt(this.state.pos))) {
+      throw this.raise(this.state.pos, Errors.NumberIdentifier);
+    }
+
+    // remove "_" for numeric literal separator, and "n" for BigInts
+    const str = this.input.slice(start, this.state.pos).replace(/[_n]/g, "");
+
+    if (isBigInt) {
+      this.finishToken(tt.bigint, str); // create a BigInt token 
+      return;
+    }
+
+    const val = octal ? parseInt(str, 8) : parseFloat(str);
+    this.finishToken(tt.num, val); // create a number token
+  }
+```
+
+is called from:
+
+```js
+export default class Tokenizer extends ParserErrors {
+  ...
+
+  readToken_dot(): void {
+    const next = this.input.charCodeAt(this.state.pos + 1);
+    if (next >= charCodes.digit0 && next <= charCodes.digit9) {
+      this.readNumber(true);
+      return;
+    }
+
+    if (
+      next === charCodes.dot &&
+      this.input.charCodeAt(this.state.pos + 2) === charCodes.dot
+    ) {
+      this.state.pos += 3;
+      this.finishToken(tt.ellipsis);
+    } else {
+      ++this.state.pos;
+      this.finishToken(tt.dot);
+    }
+  }
+  ...
+}
+```
+
+and 
+
+```js
+getTokenFromCode(code: number): void {
+  switch (code) {
+      // The interpretation of a dot depends on whether it is followed
+      // by a digit or another two dots.
+      ...
+      // Anything else beginning with a digit is an integer, octal
+      // number, or float. (fall through)
+      ...
+      case charCodes.digit1:
+      case charCodes.digit2:
+      case charCodes.digit3:
+      case charCodes.digit4:
+      case charCodes.digit5:
+      case charCodes.digit6:
+      case charCodes.digit7:
+      case charCodes.digit8:
+      case charCodes.digit9:
+        this.readNumber(false);
+        return;
+
+      // Quotes produce strings.
+      case charCodes.quotationMark:
+      ...
+  }
+}
