@@ -281,6 +281,8 @@ export default class Tokenizer extends ParserErrors {
 
 is called from:
 
+### readToken_dot
+
 ```js
 export default class Tokenizer extends ParserErrors {
   ...
@@ -309,6 +311,7 @@ export default class Tokenizer extends ParserErrors {
 
 and from:
 
+### getTokenFromCode: numbers
 ```js
 export default class Tokenizer extends ParserErrors {
   ...
