@@ -123,7 +123,7 @@ See [tc39.md](/doc/parser/tc39.md)
 
 ## Tokenizer
 
-See section [/doc/tokenizer.md](/doc/tokenizer.md).
+See section [/doc/parser/tokenizer.md](/doc/parser/tokenizer.md).
 
 ## References
 
