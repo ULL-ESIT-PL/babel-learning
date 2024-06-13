@@ -26,6 +26,9 @@ and here found a line that sets the `generator` attribute.
 
 See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
 
+## tc39 proposals
+
+See [tc39.md](/docs/parser/tc39.md) 
 
 ## References
 

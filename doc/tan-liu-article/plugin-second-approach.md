@@ -8,8 +8,7 @@ You can find the files for this section in the folder [/src/tan-liu-article](htt
 
 ## Substitute t.identifier("currying") by this.addHelper("currying")
 
-Once we have written the [helpers.currying](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) we can write the plugin that uses it.
-
+Once we have written the [helpers.currying](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) in our version of Babel, we can write the plugin that uses it.
 Here is the code for the `babel-transform-curry-function-withhelper.cjs` plugin:
 
 `➜  tan-liu-article git:(main) ✗ cat babel-transform-curry-function-withhelper.cjs`
