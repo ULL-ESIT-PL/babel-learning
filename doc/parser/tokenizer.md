@@ -57,6 +57,8 @@ export default class State {
 }
 ```
 
+See [Adding Custom Syntax to Babel](https://medium.com/@jacobp100/adding-custom-syntax-to-babel-e1a1315c6a90) by Jacob Parker, 2016
+
 ## types.js 
 
 Let us review our notes about this file:
