@@ -28,7 +28,7 @@ See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experien
 
 ## tc39 proposals
 
-See [tc39.md](/docs/parser/tc39.md) 
+See [tc39.md](/doc/parser/tc39.md) 
 
 ## References
 
