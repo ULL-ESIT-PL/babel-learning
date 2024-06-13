@@ -30,7 +30,7 @@ See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experien
 
 See repo https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md
 
-### Output
+### Parser Output
 
 The Babel parser generates AST according to [Babel AST format][].
 It is based on [ESTree spec][] with the following deviations:
@@ -42,7 +42,7 @@ It is based on [ESTree spec][] with the following deviations:
 - [PrivateIdentifier][] is replaced with [PrivateName][]
 - [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]
 - [ClassMethod][], [ClassPrivateMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.
-- [ChainExpression][] is replaced with [OptionalMemberExpression][] and [OptionalCallExpression][]
+- [ChainExpression][] is the kind of node produced by espree for expressions like `obj?.aaa?.bbb`. It will be replaced with [OptionalMemberExpression][] and [OptionalCallExpression][]
 - [ImportExpression][] is replaced with a [CallExpression][] whose `callee` is an [Import] node. This change will be reversed in Babel 8.
 - [ExportAllDeclaration][] with `exported` field is replaced with an [ExportNamedDeclaration][] containing an [ExportNamespaceSpecifier][] node.
 
