@@ -1,6 +1,10 @@
 # The Babel Parser
 
+## Example
+
 See a simple example of how to use the parser at [/src/parser/example.cjs](/src/parser/example.cjs).
+
+## Docs
 
 The docs for the parser are at https://babeljs.io/docs/babel-parser
 
