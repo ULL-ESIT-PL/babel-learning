@@ -229,6 +229,14 @@ export default class Tokenizer extends ParserErrors {
 
 The Babel parser uses [charcodes constants](https://github.com/xtuc/charcodes?tab=readme-ov-file) to represent characters.
 
+```js
+➜  babel-parser git:(learning) ✗ node
+> const cc = require("charcodes")
+undefined
+> "i".charCodeAt(0) == cc.lowercaseI
+true
+```
+
 > Well, token types are import as `tt` throughout the babel-parser.
 >
 
