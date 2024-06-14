@@ -89,11 +89,12 @@ Let us review our notes about this file:
 
 ### Keywords and Binary Operations
 
-The `keywords` object is a map of keyword strings to token types:
+The `keywords` object is a map of keyword strings to token types[^types]:
 
 ```js 
 export const keywords = new Map<string, TokenType>();
 ```
+[^types]: The Map<string, TokenType>() syntax in TypeScript indicates the creation of a new `Map` instance with specific types for the keys and values. Here, `<string, TokenType>` specifies that the `Map` keys must be of type `string` and the values ​​must be of type `TokenType`. The parentheses `()` after `Map<string, TokenType>` are required **to invoke the `Map` constructor and create a new instance of it**. Without the parentheses, you would be referring to the `Map` type itself, rather than creating an instance of it.
 
 There are a few helper functions to create keyword tokens and binary operators:
 
