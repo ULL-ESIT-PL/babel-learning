@@ -69,7 +69,7 @@ Let us review our notes about this file:
 
 ### The constant types: an object with the token types
 
-> Here you see a list of tokens, so let's add our new token definition in as well:
+> Here you see a list of tokens, so let's add our new token definition in as well[^brackets]:
 >
 > ```js
 > export const types: { [name: string]: TokenType } = {
@@ -86,6 +86,8 @@ Let us review our notes about this file:
 >   ...
 > };
 > ```
+
+[^brackets]: The curly braces `{}` in the TypeScript declaration export `const types: { [name: string]: TokenType }` are used to define an object type. Within these braces, `[name: string]: TokenType` specifies a **signing index**. This means that the types object **can have any number of properties** whose keys are `string` and whose values ​​are of type `TokenType`. In other words, it is an object that can have multiple properties with dynamic names of type `string`, and each of these properties must be of type `TokenType`.
 
 ### Keywords and Binary Operations
 
