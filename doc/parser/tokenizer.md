@@ -275,7 +275,7 @@ finishOp(type: TokenType, size: number): void {
   }
 ```
 
-## readNumber
+## Numbers: readNumber
 
 ```js
 export default class Tokenizer extends ParserErrors {
