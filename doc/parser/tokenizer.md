@@ -367,7 +367,26 @@ export default class Tokenizer extends ParserErrors {
 }
 ```
 
-is called from:
+The `isIdentifierStart` function is defined in the `@/babel/babel-helper-validator-identifier` package and checks whether a given character code starts an identifier.
+
+```js
+// Test whether a given character code starts an identifier.
+
+export function isIdentifierStart(code: number): boolean {
+  if (code < charCodes.uppercaseA) return code === charCodes.dollarSign;
+  if (code <= charCodes.uppercaseZ) return true;
+  if (code < charCodes.lowercaseA) return code === charCodes.underscore;
+  if (code <= charCodes.lowercaseZ) return true;
+  if (code <= 0xffff) {
+    return (
+      code >= 0xaa && nonASCIIidentifierStart.test(String.fromCharCode(code))
+    );
+  }
+  return isInAstralSet(code, astralIdentifierStartCodes);
+}
+``` 
+
+`readNumber` is called from:
 
 ### readToken_dot
 
