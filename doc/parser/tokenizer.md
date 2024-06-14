@@ -227,7 +227,8 @@ export default class Tokenizer extends ParserErrors {
   }
 ```
 
-The Babel parser uses [charcodes constants](https://github.com/xtuc/charcodes?tab=readme-ov-file) to represent characters.
+The Babel parser uses [charcodes constants](https://github.com/xtuc/charcodes?tab=readme-ov-file) to represent characters. See  also my notes on [Unicode, UTF-16 and JavaScript
+](https://ull-pl.vercel.app/topics/expresiones-regulares-y-analisis-lexico/unicode-utf-16-and-js#the-unicode-standard)
 
 ```js
 ➜  babel-parser git:(learning) ✗ node
