@@ -87,7 +87,7 @@ Let us review our notes about this file:
 > };
 > ```
 
-## Keywords and Binary Operations
+### Keywords and Binary Operations
 
 The `keywords` object is a map of keyword strings to token types:
 
