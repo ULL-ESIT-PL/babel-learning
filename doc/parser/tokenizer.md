@@ -87,6 +87,41 @@ Let us review our notes about this file:
 > };
 > ```
 
+## Keywords and Binary Operations
+
+The `keywords` object is a map of keyword strings to token types:
+
+```js 
+export const keywords = new Map<string, TokenType>();
+```
+
+There are a few helper functions to create keyword tokens and binary operators:
+
+```js
+function createKeyword(name: string, options: TokenOptions = {}): TokenType {
+  options.keyword = name;
+  const token = new TokenType(name, options);
+  keywords.set(name, token);
+  return token;
+}
+
+function createBinop(name: string, binop: number) {
+  return new TokenType(name, { beforeExpr, binop });
+}
+```
+
+The keywords are built in the same file [types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/types.js#L165C2-L202) later:
+
+```js
+ // Keywords
+  // Don't forget to update packages/babel-helper-validator-identifier/src/keyword.js
+  // when new keywords are added
+  _break: createKeyword("break"),
+  _case: createKeyword("case", { beforeExpr }),
+  ...
+```
+
+
 ### The TokenType class
 
 We see that we call the token constructor 
