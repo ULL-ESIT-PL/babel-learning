@@ -94,6 +94,7 @@ The execution shows that the `type` field is now `Literal` instead of `NumericLi
 }
 ```
 
+### AST for JSX code
 
 AST for JSX code is based on [Facebook JSX AST][].
 
