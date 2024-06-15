@@ -26,6 +26,7 @@
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
     "compact-js-ast": "^4.1.2",
-    "currying": "file:src/tan-liu-article/currying"
+    "currying": "file:src/tan-liu-article/currying",
+    "recast": "^0.23.9"
   }
 }

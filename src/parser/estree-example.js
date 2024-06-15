@@ -19,3 +19,7 @@ console.log(JSON.stringify(
     return value;
   },2),
 );
+//const generate = require("@babel/generator").default;
+//console.log(generate(ast).code); // throws an error
+const recast = require('recast');
+console.log(recast.print(ast).code) // '4;'
