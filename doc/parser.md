@@ -53,6 +53,46 @@ It is based on [ESTree spec][] with the following deviations:
 
 <!-- NOT WORKING: around commit d8bc310 Here is aChatGPT answer to the question [How can I convert a Babel.js AST to Estree format?](/doc/parser/babelAST2estree.md) -->
 
+This example shows how to produce a estree compatible AST using the babel parser using the plugin `estree`:
+
+`➜  babel-learning git:(main) ✗ cat src/parser/estree-example.js`
+```js
+const babel = require('@babel/core');
+const source = '4';
+
+const options = {
+  parserOpts: { // https://babeljs.io/docs/en/babel-parser#options
+    plugins: [ 'estree', ],
+  },
+};
+
+const ast = babel.parseSync(source, options);
+
+console.log(JSON.stringify(
+  ast, 
+  function skip(key, value) {
+    if ([ 'loc', 'start', 'end', 'directives', 'comments' ].includes(key)) {
+      return undefined;
+    }
+    return value;
+  },2),
+);
+``` 
+The execution shows that the `type` field is now `Literal` instead of `NumericLiteral`:
+
+`➜  babel-learning git:(main) ✗ node src/parser/estree-example.js | jq '.program.body[0]'`
+```json
+{
+  "type": "ExpressionStatement",
+  "expression": {
+    "type": "Literal",
+    "value": 4,
+    "raw": "4"
+  }
+}
+```
+
+
 AST for JSX code is based on [Facebook JSX AST][].
 
 [babel ast format]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md
