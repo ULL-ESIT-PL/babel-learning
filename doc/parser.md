@@ -53,6 +53,8 @@ It is based on [ESTree spec][] with the following deviations:
 
 <!-- NOT WORKING: around commit d8bc310 Here is aChatGPT answer to the question [How can I convert a Babel.js AST to Estree format?](/doc/parser/babelAST2estree.md) -->
 
+### Producing a estree compatible AST with the babel parser
+
 This example shows how to produce a estree compatible AST using the babel parser using the plugin `estree`:
 
 `➜  babel-learning git:(main) ✗ cat src/parser/estree-example.js`
