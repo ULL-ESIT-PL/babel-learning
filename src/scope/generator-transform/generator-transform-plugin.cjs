@@ -1,3 +1,12 @@
+/* A transformation so that a generator declaration 
+`function* xxx(...) { ...}` 
+is hoisted to a constant declaration with the same name of the generator function. 
+The constant must be initialized to a call to the function  with name 
+`buildGenerator`with argument the bare function.  
+`const xxx = buildGenerator(function(...) { ... })`.
+
+`npx babel input-generator-declaration-local.js --plugins=./generator-transform-plugin.cjs`
+*/
 module.exports = function (babel) {
   const { types: t } = babel;
 
