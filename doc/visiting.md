@@ -116,6 +116,8 @@ BinaryExpression(path) {
 
 ## Check if an identifier is referenced
 
+### path.isReferencedIdentifier
+
 ```js
 Identifier(path) {
   if (path.isReferencedIdentifier()) {
@@ -129,7 +131,7 @@ See the example at [src/visiting/input-isreferenced-example.js](/src/visiting/in
 `➜  babel-learning git:(main) ✗ cat src/visiting/input-isreferenced-example.js`
 ```js
 let x = 1, y = 2, z = 3;
-function f(a,b)  { let c; return a+b; }
+function f(a,b)  { let c; w; return a+b; }
 f(x,y);
 ```
 and the corresponding plugin [src/visiting/plugin-isreferenced-example.cjs](/src/visiting/plugin-isreferenced-example.cjs):
@@ -143,12 +145,15 @@ declared  f  at line  2  col  9
 declared  a  at line  2  col  11
 declared  b  at line  2  col  13
 declared  c  at line  2  col  23
-referenced  a  at line  2  col  33
-referenced  b  at line  2  col  35
+referenced  w  at line  2  col  26
+referenced  a  at line  2  col  36
+referenced  b  at line  2  col  38
 referenced  f  at line  3  col  0
 referenced  x  at line  3  col  2
 referenced  y  at line  3  col  4
 ```
+
+## t.isReferenced
 
 Alternatively, we can call `t.isReferenced` with the node and the parent node as arguments:
 

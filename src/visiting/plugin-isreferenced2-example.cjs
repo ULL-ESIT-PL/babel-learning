@@ -1,11 +1,12 @@
 module.exports = function (babel) {
-  
+  const { types: t } = babel; // types: t is equivalent to types: babel.types
+
   return {
-    name: "get-surrounding-function-or-program",
+    name: "isreferenced2",
     
     visitor: {
       Identifier(path) {
-        if (path.isReferencedIdentifier()) {
+        if (t.isReferenced(path.node, path.parent)) {
             console.log('referenced ',path.node.name, ' at line ',path.node.loc.start.line,' col ',path.node.loc.start.column );
         }
         else {
