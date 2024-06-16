@@ -1,9 +1,8 @@
 module.exports = function (babel) {
-  const t = babel.types;
   const generate = require("@babel/generator").default;
 
   return {
-    name: "ast-transform", // not required
+    name: "get-surrounding-function-or-program",
     
     visitor: {
       BinaryExpression(path) {

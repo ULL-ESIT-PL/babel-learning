@@ -148,6 +148,16 @@ path.findParent((path) => path.isObjectExpression());
 Call the provided `callback` with the `NodePath`s of all the parents.
 When the `callback` returns a **truthy** value, we return that `NodePath`.
 
+See the example at [src/visiting/input-getfunctionparent-example.js](/src/visiting/input-getfunctionparent-example.js) and the corresponding plugin [src/visiting/plugin-getoperator-example.cjs](/src/visiting/plugin-getoperator-example.cjs):
+
+```
+➜  babel-learning git:(main) ✗ npx babel src/visiting/input-getfunctionparent-example.js --plugins=./src/visiting/plugin-getoperator-example.cjs -o /dev/null
+2  surrounded by  +  in  2 + 3  at line  1  col  23
+3  surrounded by  +  in  2 + 3  at line  1  col  25
+4  surrounded by  *  in  4 * 5  at line  2  col  0
+5  surrounded by  *  in  4 * 5  at line  2  col  2
+```
+
 ### path.find
 
 If the current path should be included as well:
