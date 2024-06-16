@@ -19,4 +19,4 @@ a = 2n + 3n;
 b = 4n + 5n;
 c = 6n + 7n;
 ```
-See solution in [/src/exercises/bigint-conversion/](/src/exercises/bigint-conversion/).
+See solution in [/src/exercises/bigint-conversion/plugin-bigint-conversion.cjs](/src/exercises/bigint-conversion/plugin-bigint-conversion.cjs).
