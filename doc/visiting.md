@@ -157,7 +157,13 @@ Find the closest parent function or program:
 path.getFunctionParent();
 ```
 
-Walk up the tree until we hit a parent node path in a list
+Walk up the tree until we hit a parent node path in a list. See the example at [src/visiting/input-getfunctionparent-example.js](/src/visiting/input-getfunctionparent-example.js) and the corresponding plugin [src/visiting/plugin-getfunctionparent-example.cjs](/src/visiting/plugin-getfunctionparent-example.cjs):
+
+```
+➜  babel-learning git:(main) ✗ npx babel src/visiting/input-getfunctionparent-example.js --plugins=./src/visiting/plugin-getfunctionparent-example.cjs -o /dev/null  
+function  f  surrounds  2 + 3
+no surrounding function for *
+```
 
 ```js
 path.getStatementParent();
