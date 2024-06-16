@@ -8,7 +8,7 @@ module.exports = function (babel) {
       BinaryExpression(path) {
         let node = path.node;
         if (t.isBigIntLiteral(node.left) && (t.isNumericLiteral(node.right) && Number.isInteger(node.right.value))) {
-          path.get("right").replaceWith(t.bigIntLiteral(String(node.right.value)));
+          path.get("right").replaceWith(t.bigIntLiteral(String(BigInt(node.right.value))));
         }
         else if (t.isBigIntLiteral(node.right) && (t.isNumericLiteral(node.left) && Number.isInteger(node.left.value))) {
           node.left.type = 'BigIntLiteral';
