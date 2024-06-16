@@ -138,12 +138,17 @@ Identifier(path) {
 
 Sometimes you will need to traverse the tree upwards from a path until a condition is satisfied.
 
-Call the provided `callback` with the `NodePath`s of all the parents.
-When the `callback` returns a truthy value, we return that `NodePath`.
+
+### path.findParent
 
 ```js
 path.findParent((path) => path.isObjectExpression());
 ```
+
+Call the provided `callback` with the `NodePath`s of all the parents.
+When the `callback` returns a **truthy** value, we return that `NodePath`.
+
+### path.find
 
 If the current path should be included as well:
 
@@ -152,6 +157,8 @@ path.find((path) => path.isObjectExpression());
 ```
 
 Find the closest parent function or program:
+
+### path.getFunctionParent();
 
 ```js
 path.getFunctionParent();
@@ -164,6 +171,8 @@ Walk up the tree until we hit a parent node path in a list. See the example at [
 function  f  surrounds  2 + 3
 no surrounding function for *
 ```
+
+### path.getStatementParent();
 
 ```js
 path.getStatementParent();
