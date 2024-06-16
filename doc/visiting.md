@@ -174,7 +174,7 @@ Find the closest parent function or program:
 path.getFunctionParent();
 ```
 
-Walk up the tree until we hit a parent node path in a list. See the example at [src/visiting/input-getfunctionparent-example.js](/src/visiting/input-getfunctionparent-example.js) and the corresponding plugin [src/visiting/plugin-getfunctionparent-example.cjs](/src/visiting/plugin-getfunctionparent-example.cjs):
+Walk up the tree until we hit a parent node path in a list. See the example at [src/visiting/input-getfunctionparent-example.js](/src/visiting/input-getfunctionparent-example.js) and the plugin [src/visiting/plugin-getfunctionparent-example.cjs](/src/visiting/plugin-getfunctionparent-example.cjs):
 
 ```
 ➜  babel-learning git:(main) ✗ npx babel src/visiting/input-getfunctionparent-example.js --plugins=./src/visiting/plugin-getfunctionparent-example.cjs -o /dev/null  
@@ -186,6 +186,16 @@ no surrounding function for *
 
 ```js
 path.getStatementParent();
+```
+
+Stops at the first parent that is a statement.
+
+See the example at [src/visiting/input-getfunctionparent-example.js](/src/visiting/input-getfunctionparent-example.js) and the plugin [src/visiting/plugin-getstatement-example.cjs](/src/visiting/plugin-getstatement-example.cjs):
+
+```
+➜  babel-learning git:(main) ✗ npx babel src/visiting/input-getfunctionparent-example.js --plugins=./src/visiting/plugin-getstatement-example.cjs -o /dev/null
+statement  ReturnStatement  surrounds  2 + 3
+statement  ExpressionStatement  surrounds  4 * 5
 ```
 
 ## Get Sibling Paths
