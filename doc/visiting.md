@@ -124,6 +124,32 @@ Identifier(path) {
 }
 ```
 
+See the example at [src/visiting/input-isreferenced-example.js](/src/visiting/input-isreferenced-example.js) 
+
+`➜  babel-learning git:(main) ✗ cat src/visiting/input-isreferenced-example.js`
+```js
+let x = 1, y = 2, z = 3;
+function f(a,b)  { let c; return a+b; }
+f(x,y);
+```
+and the corresponding plugin [src/visiting/plugin-isreferenced-example.cjs](/src/visiting/plugin-isreferenced-example.cjs):
+
+```
+➜  babel-learning git:(main) ✗ npx babel src/visiting/input-isreferenced-example.js  --plugins=./src/visiting/plugin-isreferenced-example.cjs -o  /dev/null
+declared  x  at line  1  col  4
+declared  y  at line  1  col  11
+declared  z  at line  1  col  18
+declared  f  at line  2  col  9
+declared  a  at line  2  col  11
+declared  b  at line  2  col  13
+declared  c  at line  2  col  23
+referenced  a  at line  2  col  33
+referenced  b  at line  2  col  35
+referenced  f  at line  3  col  0
+referenced  x  at line  3  col  2
+referenced  y  at line  3  col  4
+```
+
 Alternatively:
 
 ```js
