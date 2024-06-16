@@ -150,7 +150,7 @@ referenced  x  at line  3  col  2
 referenced  y  at line  3  col  4
 ```
 
-Alternatively:
+Alternatively, we can call `t.isReferenced` with the node and the parent node as arguments:
 
 ```js
 Identifier(path) {
