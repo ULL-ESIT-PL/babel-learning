@@ -274,3 +274,23 @@ program:
 function square(x){return x*x;}
 ```
 
+## TOC
+
+- [Learning Babel](/#learning-babel)
+  - [Babel Configuration](/#babel-configuration)
+  - [Babel Help](/#babel-help)
+  - [Compile JavaScript with Babel](/#compile-javascript-with-babel)
+    - [npx babel src/input.js --out-dir lib --presets=@babel/env](/#npx-babel-srcinputjs---out-dir-lib---presetsbabelenv)
+    - [babel.transformSync](/#babeltransformsync)
+  - [Babylon](/#babylon)
+  - [Traversal](/#traversal)
+  - [Writing my first Babel Plugin](/#writing-my-first-babel-plugin)
+  - [Visiting the AST in a Babel Plugin](/#visiting-the-ast-in-a-babel-plugin)
+  - [Manipulating the AST in a Babel Plugin](/#manipulating-the-ast-in-a-babel-plugin)
+  - [Babel Template and Babel Types and Babel Generator](/#babel-template-and-babel-types-and-babel-generator)
+  - [Scope](/#scope)
+  - [Babel Handbook at jamiebuilds/babel-handbook](/#babel-handbook-at-jamiebuildsbabel-handbook)
+    - [Babel Plugin Examples](/#babel-plugin-examples)
+  - [The Babel Parser](/#the-babel-parser)
+  - [Project "Creating custom JavaScript syntax with Babel"](/#project-creating-custom-javascript-syntax-with-babel)
+  - [References](/#references)
