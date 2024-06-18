@@ -1,0 +1,5 @@
+{
+  "plugins": [
+    ["./hello-state-plugin.cjs", { "targetIdentifier": "myVar" }]
+  ]
+}
