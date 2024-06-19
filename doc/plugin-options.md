@@ -1,23 +1,29 @@
-# <a id="toc-plugin-options"></a>Plugin Options
+# Plugin Options
 
 If you would like to let your users customize the behavior of your Babel plugin
-you can accept plugin specific options which users can specify like this:
+you can accept plugin specific options which users can specify like in the file [/src/state/babel.config2.json](/src/state/babel.config2.json):
 
+`➜  state git:(main) ✗ cat babel.config2.json`
 ```js
 {
-  plugins: [
-    ["my-plugin", {
-      "option1": true,
-      "option2": false
-    }]
+  "plugins": [
+    [
+      "./hello-options-plugin.cjs",
+      {
+        "option1": true,
+        "option2": false
+      }
+    ]
   ]
 }
 ```
 
-These options then get passed into plugin visitors through the `state` object:
+These options then get passed into a plugin like  the one at [/src/state/hello-options-plugin.cjs](/src/state/hello-options-plugin.cjs) 
+using the `state` argument passed to the `visitor` methods:
 
 ```js
-export default function({ types: t }) {
+➜  state git:(main) ✗ cat hello-options-plugin.cjs 
+module.exports = function({ types: t }) {
   return {
     visitor: {
       FunctionDeclaration(path, state) {
@@ -30,9 +36,15 @@ export default function({ types: t }) {
 ```
 
 These options are plugin-specific and you cannot access options from other
-plugins.
+plugins. **Curiously enough**, when you run the plugin redirecting the output to `/dev/null`
+you can still see the options printed to the console:
 
-## <a id="toc-pre-and-post-in-plugins"></a> Pre and Post in Plugins
+```
+➜  state git:(main) ✗ npx babel hello-state-input.js  --config-file ./babel.config2.json  -o /dev/null
+{ option1: true, option2: false }
+```
+
+## Pre and Post in Plugins
 
 Plugins can have functions that are run before or after plugins.
 They can be used for setup or cleanup/analysis purposes.
