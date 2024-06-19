@@ -179,3 +179,57 @@ function example() {
 example();
 console.log("Identifier '" + "myVar" + "' was used " + 3 + " times");
 ```
+
+## Conditionally Disabling plugins 
+
+See the configuration file [/src/state/babel.config3.json](/src/state/babel.config3.json) which has two environments `test1` and `test2` with different plugins:
+
+
+`➜  state git:(main) cat babel.config3.json`
+```json
+{
+  "env": {
+    "test1": {
+      "plugins": [
+        ["./hello-options-plugin.cjs", { "option1": true, "option2": false }]
+      ]
+    },
+    "test2": {
+      "plugins": [
+        ["./hello-state-plugin.cjs", { "targetIdentifier": "myVar" }]
+      ]
+    }
+  }
+}
+```
+
+Here are three executions, one with `test1`, one with `test2` and one without specifying an environment: 
+
+```js
+➜  state git:(main) npx babel hello-state-input.js  --config-file ./babel.config3.json  --env-name test1
+{ option1: true, option2: false }
+function example() {
+  var myVar = 1;
+  myVar += 2;
+  console.log(myVar);
+}
+example();
+
+➜  state git:(main) ✗ npx babel hello-state-input.js  --config-file ./babel.config3.json  --env-name test2
+Identifier "myVar" was used 3 times.
+function example() {
+  var myVar = 1;
+  myVar += 2;
+  console.log(myVar);
+}
+example();
+console.log("Identifier '" + "myVar" + "' was used " + 3 + " times");
+
+➜  state git:(main) ✗ npx babel hello-state-input.js  --config-file ./babel.config3.json                  
+function example() {
+  var myVar = 1;
+  myVar += 2;
+  console.log(myVar);
+}
+example();
+```
