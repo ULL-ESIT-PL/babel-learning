@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "./hello-options-plugin.cjs",
+      {
+        "option1": true,
+        "option2": false
+      }
+    ]
+  ]
+}

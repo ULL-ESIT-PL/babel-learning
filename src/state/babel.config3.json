@@ -1,0 +1,14 @@
+{
+  "env": {
+    "test1": {
+      "plugins": [
+        ["./hello-options-plugin.cjs", { "option1": true, "option2": false }]
+      ]
+    },
+    "test2": {
+      "plugins": [
+        ["./hello-state-plugin.cjs", { "targetIdentifier": "myVar" }]
+      ]
+    }
+  }
+}
