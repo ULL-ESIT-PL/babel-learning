@@ -33,7 +33,7 @@ module.exports = function (babel) {
 };
 ```
 
-The `targetIdentifier` is passed as an option to the plugin:
+The `targetIdentifier` is passed as an option to the plugin in  the configuration file [/src/state/babel.config.json](/src/state/babel.config.json):
 
 `➜  state git:(main) ✗ cat babel.config.json`
 ```json
@@ -41,7 +41,7 @@ The `targetIdentifier` is passed as an option to the plugin:
   "plugins": [["./hello-state-plugin.cjs", { "targetIdentifier": "myVar" }]]
 }
 ```
-Given the input code:
+Given the input code at [/src/state/hello-state-input.js](/src/state/hello-state-input.js):
 
 `➜  state git:(main) ✗ cat hello-state-input.js`
 ```js
