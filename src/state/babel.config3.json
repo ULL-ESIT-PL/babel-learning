@@ -9,6 +9,7 @@
       "plugins": [
         ["./hello-state-plugin.cjs", { "targetIdentifier": "myVar" }]
       ]
-    }
+    },
+    "test3": { "plugins": [["./hello-prepost-plugin.cjs"]] }
   }
 }

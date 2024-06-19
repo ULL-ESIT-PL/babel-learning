@@ -47,23 +47,46 @@ you can still see the options printed to the console:
 ## Pre and Post in Plugins
 
 Plugins can have functions that are run before or after plugins.
-They can be used for setup or cleanup/analysis purposes.
+They can be used for setup or cleanup/analysis purposes. See example at 
+[/src/state/hello-prepost-plugin.cjs](/src/state/hello-prepost-plugin.cjs):
 
+`➜  state git:(main) ✗ cat hello-prepost-plugin.cjs`
 ```js
-export default function({ types: t }) {
+module.exports = function({ types: t }) {
   return {
     pre(state) {
-      this.cache = new Map();
+      this.numbers = new Set();
     },
     visitor: {
-      StringLiteral(path) {
-        this.cache.set(path.node.value, 1);
+      NumericLiteral(path) {
+        this.numbers.add(path.node.value);
       }
     },
     post(state) {
-      console.log(this.cache);
+      console.log(this.numbers);
     }
   };
+}
+```
+
+When you run the plugin, you can see the set with the numbers in the input program 
+printed to the console:
+
+```
+➜  state git:(main) ✗ npx babel hello-state-input.js --plugins=./hello-prepost-plugin.cjs --config-file ./babel.config3.json --env-name test3 -o /dev/null
+Set(2) { 1, 2 }
+```
+
+The configuration file [/src/state/babel.config3.json](/src/state/babel.config3.json) has the environment `test3` with the plugin `hello-prepost-plugin.cjs`:
+
+`➜  state git:(main) ✗ jq '.env.test3'  ./babel.config3.json`
+```json
+{
+  "plugins": [
+    [
+      "./hello-prepost-plugin.cjs"
+    ]
+  ]
 }
 ```
 
