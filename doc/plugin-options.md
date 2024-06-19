@@ -1,5 +1,7 @@
 # Plugin Options
 
+## Passing plugin options to the visitor methods
+
 If you would like to let your users customize the behavior of your Babel plugin
 you can accept plugin specific options which users can specify like in the file [/src/state/babel.config2.json](/src/state/babel.config2.json):
 
