@@ -1,3 +1,5 @@
+## Options and State in a Babel Plugin
+
 In a Babel plugin, the `state` parameter is an object that is passed to visitor methods during the traversal of the Abstract Syntax Tree (AST). This `state` object is used to store and share information across different visitor methods and parts of the plugin. It can hold any kind of data that the plugin might need to maintain state across different nodes of the AST.
 
 The example at [/src/state/hello-state-plugin.cjs](/src/state/hello-state-plugin.cjs) demonstrates how to use the `state` object to keep track of the number of times a specific identifier is used in the code. The plugin counts the occurrences of the target identifier and both logs a message at the end of the program with the total count and inserts the message at the end of the source code.
