@@ -18,16 +18,16 @@ It is quite accurate the list of observations on the disadvantages of crating cu
 
 This is the whole point of language design. Wonderfully summarized.
 
-## The case of facebookincubator/idx
+## The case of facebook/idx
 
-[facebookincubator/idx][] is a  library that preceded JS [optional chaining](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Optional_chaining). 
+[facebook/idx][] is a  library that preceded JS [optional chaining](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Optional_chaining). 
 It provides a function `idx`, which is a utility function for traversing properties on objects and arrays,
 where intermediate properties may be null or undefined.
 A difference between `idx` and optional chaining is what happens when
 an intermediate property is `null` or `undefined`. With `idx`, the `null` or `undefined`
 value is returned, whereas optional chaining would resolve to `undefined`.
 
-> Well, if you look at the [facebookincubator/idx][] library, it uses a Babel plugin to search through require or imports of `idx` and replaces all its usages, for example when you write:
+> Well, if you look at the [facebook/idx][] library, it uses a Babel plugin to search through require or imports of `idx` and replaces all its usages, for example when you write:
 
 > ```js
 > import idx from 'idx';
@@ -50,4 +50,4 @@ value is returned, whereas optional chaining would resolve to `undefined`.
 > }
 > ```
 
-[facebookincubator/idx]: https://github.com/facebookincubator/idx
+[facebook/idx]: https://github.com/facebook/idx
