@@ -51,3 +51,44 @@ value is returned, whereas optional chaining would resolve to `undefined`.
 > ```
 
 [facebook/idx]: https://github.com/facebook/idx
+
+> While maintaining a good developer experience (DX), we've shifted the runtime overhead to compile time.
+
+To see it working, install it:
+
+```
+➜  babel-learning git:(main) ✗ npm install idx babel-plugin-idx
+```
+There is an example you can use as input at [src/tan-liu-babel-macros/getfrieds.js](src/tan-liu-babel-macros/getfrieds.js):
+`➜  babel-learning git:(main) ✗ cat src/tan-liu-babel-macros/getfrieds.js`
+```js
+import idx from 'idx';
+
+let props = { user: { friends: [{ friends: [] } ] }}
+
+function getFriends() {
+  return idx(props, _ => _.user.friends[0].friends);
+}
+
+console.log(getFriends())
+```
+
+To transform the `src/tan-liu-babel-macros/getfrieds.js` example:
+
+`➜  babel-learning git:(main) ✗ npx babel src/tan-liu-babel-macros/getfrieds.js --plugins=idx`
+```js
+"use strict";
+
+let props = {
+  user: {
+    friends: [{
+      friends: []
+    }]
+  }
+};
+function getFriends() {
+  var _ref;
+  return (_ref = props) != null ? (_ref = _ref.user) != null ? (_ref = _ref.friends) != null ? (_ref = _ref[0]) != null ? _ref.friends : _ref : _ref : _ref : _ref;
+}
+console.log(getFriends());
+```
