@@ -50,11 +50,11 @@ value is returned, whereas optional chaining would resolve to `undefined`.
 > }
 > ```
 
-[facebook/idx]: https://github.com/facebook/idx
-
 > While maintaining a good developer experience (DX), we've shifted the runtime overhead to compile time.
 
-To see it working, install it:
+### Running babel with idx
+
+To see it working, install `idx` and `babel-plugin-idx`:
 
 ```
 ➜  babel-learning git:(main) ✗ npm install idx babel-plugin-idx
@@ -92,3 +92,44 @@ function getFriends() {
 }
 console.log(getFriends());
 ```
+
+### Running flow with idx
+
+See the file [src/tan-liu-babel-macros/getfriends-flow.flow](src/tan-liu-babel-macros/getfriends-flow.flow):
+
+`➜  tan-liu-babel-macros git:(main) ✗ cat getfriends-flow.flow`
+```js
+import idx from 'idx';
+
+let props = { user: { friends: [{ friends: [] } ] }}
+
+function getFriends() {
+  return idx(props, _ => _.user.friends[0].friends);
+}
+
+console.log(getFriends())
+```
+
+`➜  tan-liu-babel-macros git:(main) ✗ npx babel --presets @babel/preset-flow  --plugins=idx  getfriends-flow.flow`
+```js
+"use strict";
+
+let props = {
+  user: {
+    friends: [{
+      friends: []
+    }]
+  }
+};
+function getFriends() {
+  var _ref;
+  return (_ref = props) != null ? (_ref = _ref.user) != null ? (_ref = _ref.friends) != null ? (_ref = _ref[0]) != null ? _ref.friends : _ref : _ref : _ref : _ref;
+}
+console.log(getFriends());
+```
+
+
+
+
+
+[facebook/idx]: https://github.com/facebook/idx
