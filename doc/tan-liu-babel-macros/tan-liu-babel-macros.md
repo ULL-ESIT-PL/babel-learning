@@ -93,7 +93,7 @@ function getFriends() {
 console.log(getFriends());
 ```
 
-### Running flow with idx
+### Running flow through Babel  with idx
 
 See the file [src/tan-liu-babel-macros/getfriends-flow.flow](src/tan-liu-babel-macros/getfriends-flow.flow):
 
