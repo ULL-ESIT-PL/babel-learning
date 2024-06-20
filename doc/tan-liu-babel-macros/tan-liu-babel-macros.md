@@ -109,6 +109,7 @@ function getFriends() {
 
 console.log(getFriends())
 ```
+Then we can run flow with the following command:
 
 `➜  tan-liu-babel-macros git:(main) ✗ npx babel --presets @babel/preset-flow  --plugins=idx  getfriends-flow.flow`
 ```js
@@ -127,6 +128,8 @@ function getFriends() {
 }
 console.log(getFriends());
 ```
+
+Notice how the flow type annotations are removed.
 
 
 
