@@ -135,7 +135,7 @@ Notice how the flow type annotations are removed.
 
 > Besides, the bug may be due to the configuration of the Babel plugin instead of the code logic itself. However *if you change the configuration, it could affect all the usages of the `idx` function, because babel configuration is global*.
 
-> To summarise, I think that this solution is a win-win for DX vs User Experience (UX), however, if we can make > the transform plugin more accessible to all developers, eg: without having to update babel configuration for
+> To summarise, I think that this solution is a win-win for DX vs User Experience (UX), however, if we can make the transform plugin more accessible to all developers, eg: without having to update babel configuration for
 > every new transform plugin, easier to debug, and a localized configuration.
 
 
