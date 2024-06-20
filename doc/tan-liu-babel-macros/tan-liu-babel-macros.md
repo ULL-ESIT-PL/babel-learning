@@ -14,7 +14,7 @@ It is quite accurate the list of observations on the disadvantages of crating cu
 
 >  This is the hardest part of creating a new syntax. An added syntax is an added mental concept for the language users, so the new mental model should be transferable to every scenario of the language.
 >
-> Take our `@@` syntax, for example, if it works for a normal function declaration, it's expected to work for anonymous functions, arrow functions, class methods. Have you thought about how it would work with generator functions and async functions? If a curried function returns another function, does that make the returned function curried as well?
+> Take our []`@@` syntax, for example](/doc/tan-liu-article.md), if it works for a normal function declaration, it's expected to work for anonymous functions, arrow functions, class methods. Have you thought about how it would work with generator functions and async functions? If a curried function returns another function, does that make the returned function curried as well?
 
 This is the whole point of language design. Wonderfully summarized.
 
