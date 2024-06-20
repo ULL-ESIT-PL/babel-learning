@@ -6,7 +6,7 @@ The article can be found at https://lihautan.com/babel-macros.
 
 It is quite accurate the list of observations on the disadvantages of crating custom syntax.
 
-- Documentaion and community support
+- Documentation and community support
 - Tooling: Linting, Editor syntax higlighting, etc.
 - Maintainability: It is impossible to keep the pace and at surely the future of any extension depends on the acceptance of the community.
 
