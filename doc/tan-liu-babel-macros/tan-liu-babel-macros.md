@@ -29,4 +29,25 @@ value is returned, whereas optional chaining would resolve to `undefined`.
 
 > Well, if you look at the [facebookincubator/idx][] library, it uses a Babel plugin to search through require or imports of `idx` and replaces all its usages, for example when you write:
 
+> ```js
+> import idx from 'idx';
+> 
+> function getFriends() {
+>   return idx(props, _ => _.user.friends[0].friends);
+> }
+> ```
+> it gets transformed into:
+> 
+> ```js
+> function getFriends() {
+>   return props.user == null // Notice that  undefined == null is true in JS
+>     ? props.user
+>     : props.user.friends == null
+>     ? props.user.friends
+>     : props.user.friends[0] == null
+>     ? props.user.friends[0]
+>     : props.user.friends[0].friends;
+> }
+> ```
+
 [facebookincubator/idx]: https://github.com/facebookincubator/idx
