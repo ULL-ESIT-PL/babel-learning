@@ -2,9 +2,9 @@
 
 The article can be found at https://lihautan.com/babel-macros.
 
-It is quite accurate the list of observations on the disadvantages of crating custom syntax.
-
 ## Disadvantages of creating a syntax extension
+
+It is quite accurate the list of observations on the disadvantages of crating custom syntax.
 
 - Documentaion and community support
 - Tooling: Linting, Editor syntax higlighting, etc.
