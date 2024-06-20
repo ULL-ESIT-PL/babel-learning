@@ -1,9 +1,14 @@
+// @flow
+
 import idx from 'idx';
 
-let props = { user: { friends: [{ friends: [] } ] }}
+type User = {
+  user: ?{
+    name: string,
+    friends: ?Array<User>,
+  },
+};
 
-function getFriends() {
-  return idx(props, _ => _.user.friends[0].friends);
+function getName(props: User): ?string {
+  return idx(props, _ => _.user.name);
 }
-
-console.log(getFriends())

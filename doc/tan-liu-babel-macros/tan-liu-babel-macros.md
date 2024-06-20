@@ -99,34 +99,29 @@ See the file [src/tan-liu-babel-macros/getfriends-flow.flow](src/tan-liu-babel-m
 
 `➜  tan-liu-babel-macros git:(main) ✗ cat getfriends-flow.flow`
 ```js
+// @flow
+
 import idx from 'idx';
 
-let props = { user: { friends: [{ friends: [] } ] }}
+type User = {
+  user: ?{
+    name: string,
+    friends: ?Array<User>,
+  },
+};
 
-function getFriends() {
-  return idx(props, _ => _.user.friends[0].friends);
+function getName(props: User): ?string {
+  return idx(props, _ => _.user.name);
 }
-
-console.log(getFriends())
 ```
 Then we can run flow with the following command:
 
 `➜  tan-liu-babel-macros git:(main) ✗ npx babel --presets @babel/preset-flow  --plugins=idx  getfriends-flow.flow`
 ```js
-"use strict";
-
-let props = {
-  user: {
-    friends: [{
-      friends: []
-    }]
-  }
-};
-function getFriends() {
+function getName(props) {
   var _ref;
-  return (_ref = props) != null ? (_ref = _ref.user) != null ? (_ref = _ref.friends) != null ? (_ref = _ref[0]) != null ? _ref.friends : _ref : _ref : _ref : _ref;
+  return (_ref = props) != null ? (_ref = _ref.user) != null ? _ref.name : _ref : _ref;
 }
-console.log(getFriends());
 ```
 
 Notice how the flow type annotations are removed.
