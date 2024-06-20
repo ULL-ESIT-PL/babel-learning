@@ -20,7 +20,7 @@ This is the whole point of language design. Wonderfully summarized.
 
 ## The case of facebookincubator/idx
 
-[facebookincubator/idx][] is a  library that preceded [optional chaining](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Optional_chaining). 
+[facebookincubator/idx][] is a  library that preceded JS [optional chaining](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Optional_chaining). 
 
 It provided `idx`, which is a utility function for traversing properties on objects and arrays,
 where intermediate properties may be null or undefined.
