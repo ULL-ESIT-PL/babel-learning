@@ -118,6 +118,8 @@ BinaryExpression(path) {
 
 ### path.isReferencedIdentifier
 
+According to ChatGPT `path.isReferencedIdentifier()` is `true` "means it checks if the identifier is used in a context where its value is being read, rather than just being declared or defined." See [/src/awesome/version/chatgpt-isreferencedidentifier.md](/src/awesome/version/chatgpt-isreferencedidentifier.md).
+
 ```js
 Identifier(path) {
   if (path.isReferencedIdentifier()) {

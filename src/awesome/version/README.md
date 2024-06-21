@@ -107,6 +107,8 @@ Identifier(path) {
 }
 ```
 
+## isReferencedIdentifier
+
 According to ChatGPT `path.isReferencedIdentifier()` is `true` "means it checks if the identifier is used in a context where its value is being read, rather than just being declared or defined." See [chatgpt-isreferencedidentifier.md](chatgpt-isreferencedidentifier.md).
 
 For instance in the example [input.js](input.js) the identifiers which are referenced are this (format is id, line. column):
@@ -124,4 +126,5 @@ The `a` appears because of the line 3:
 const b = a === "1.0.0";
 ```
 
+See [/doc/visiting.md#check-if-an-identifier-is-referenced](/doc/visiting.md#check-if-an-identifier-is-referenced) for more details.
 
