@@ -161,7 +161,12 @@ See section [Babel Plugin Examples](/src/awesome/README.md)
 
 ## The Babel Parser
 
-See section [parser.md](doc/parser.md)
+See 
+
+- See section /doc/parser/tokenizer.md.
+- Section [parser.md](doc/parser.md)
+- /doc/tan-liu-article.md
+- /doc/parser/tc39.md
 
 ## Project "Creating custom JavaScript syntax with Babel"
 
