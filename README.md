@@ -159,6 +159,13 @@ See section [Babel Plugin Examples](/src/awesome/README.md)
 * [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)
   * [babel-plugin-transform-remove-debugger at GitHub](https://github.com/babel/minify/tree/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger)
 
+## Babel Macros
+
+See 
+
+- Section [Reading "Babel Macros" by Tan Liu](/doc/tan-liu-babel-macros/tan-liu-babel-macros.md)
+- [Learning Babel Macros](https://github.com/ULL-ESIT-PL/learning-babel-macros/tree/main) at ULL-ESIT-PL/learning-babel-macros repo by Casiano
+
 ## The Babel Parser
 
 See 
