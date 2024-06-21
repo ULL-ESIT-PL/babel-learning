@@ -1,4 +1,4 @@
-# Learning Babel
+# Learning Babel: Yet Another Babel Tutorial
 
 
 ## Babel Configuration
