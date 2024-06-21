@@ -163,10 +163,10 @@ See section [Babel Plugin Examples](/src/awesome/README.md)
 
 See 
 
-- See section /doc/parser/tokenizer.md.
+- See section [tokenizer.md](/doc/parser/tokenizer.md).
 - Section [parser.md](doc/parser.md)
-- /doc/tan-liu-article.md
-- /doc/parser/tc39.md
+- [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
+- [tc39](/doc/parser/tc39.md)
 
 ## Project "Creating custom JavaScript syntax with Babel"
 
