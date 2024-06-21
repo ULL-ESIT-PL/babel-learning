@@ -1,4 +1,4 @@
-# Learning Babel. YATBABEL: Yet Another Babel Tutorial
+# YATBABEL: Yet Another Babel Tutorial
 
 
 ## Babel Configuration
