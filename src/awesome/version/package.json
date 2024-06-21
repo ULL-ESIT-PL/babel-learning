@@ -1,0 +1,15 @@
+{
+  "name": "version",
+  "version": "1.0.0",
+  "main": "input.js",
+  "scripts": {
+    "test": "babel input.js"
+  },
+  "keywords": [],
+  "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "babel-plugin-version": "^0.2.3"
+  }
+}
