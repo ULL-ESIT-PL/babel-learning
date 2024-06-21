@@ -150,7 +150,7 @@ See section [Plugin Options](doc/plugin-options.md)
 * [Babel Handbook at jamiebuilds/babel-handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md) This document covers how to create Babel plugins and is recommended by the Babel people.
   * [kentcdodds babel-plugin-handbook](https://github.com/kentcdodds/babel-plugin-handbook) forked from jamiebuilds/babel-handbook.
   
-### Babel Plugin Examples
+## Babel Plugin Examples
 
 See section [Babel Plugin Examples](/src/awesome/README.md)
 
