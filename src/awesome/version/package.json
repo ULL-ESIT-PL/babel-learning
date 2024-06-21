@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "input.js",
   "scripts": {
-    "test": "babel input.js"
+    "test": "babel input.js",
+    "save": "(cd ../../../ && npm run save)"
   },
   "keywords": [],
   "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
