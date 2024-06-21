@@ -1,6 +1,9 @@
+## Installing
+
 ```
 npm i 
 ```
+
 ## input.js
 `➜  version git:(main) ✗ cat input.js`
 ```js  

@@ -1,4 +1,4 @@
-# ChatGPT: When is isReferencedIdentifier(path) true in Babel.js?
+# ChatGPT: When is `isReferencedIdentifier(path)` `true` in Babel.js?
 
 ## Status
 
