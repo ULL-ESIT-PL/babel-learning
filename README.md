@@ -155,7 +155,7 @@ See section [Plugin Options](doc/plugin-options.md)
 See section [Babel Plugin Examples](/src/awesome/README.md)
 
 * [version](/src/awesome/version)
-* [Reading "Babel Macros" by Tan Liu. The case of facebook/idx](/tan-liu-babel-macros/tan-liu-babel-macros.md#the-case-of-facebookidx)
+* [Reading "Babel Macros" by Tan Liu: The case of facebook/idx](/tan-liu-babel-macros/tan-liu-babel-macros.md#the-case-of-facebookidx)
 * [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)
   * [babel-plugin-transform-remove-debugger at GitHub](https://github.com/babel/minify/tree/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger)
 
