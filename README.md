@@ -152,8 +152,8 @@ See section [Plugin Options](doc/plugin-options.md)
   
 ## Babel Plugin Examples
 
-See section [Babel Plugin Examples](/src/awesome/README.md)
 
+* See section [Babel Plugin Examples](/src/awesome/README.md)
 * [version](/src/awesome/version)
 * [Reading "Babel Macros" by Tan Liu: The case of facebook/idx](/tan-liu-babel-macros/tan-liu-babel-macros.md#the-case-of-facebookidx)
 
