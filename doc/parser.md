@@ -59,40 +59,54 @@ This example shows how to produce a estree compatible AST using the babel parser
 
 `➜  babel-learning git:(main) ✗ cat src/parser/estree-example.js`
 ```js
+// This example shows how to produce a estree compatible AST using the babel parser.
 const babel = require('@babel/core');
 const source = '4';
-
 const options = {
-  parserOpts: { // https://babeljs.io/docs/en/babel-parser#options
-    plugins: [ 'estree', ],
-  },
+  parserOpts: {
+    // https://babeljs.io/docs/en/babel-parser#options
+    plugins: ['estree']
+  }
 };
-
 const ast = babel.parseSync(source, options);
-
-console.log(JSON.stringify(
-  ast, 
-  function skip(key, value) {
-    if ([ 'loc', 'start', 'end', 'directives', 'comments' ].includes(key)) {
-      return undefined;
-    }
-    return value;
-  },2),
-);
+console.log(JSON.stringify(ast, function skip(key, value) {
+  if (['loc', 'start', 'end', 'directives', 'comments'].includes(key)) {
+    return undefined;
+  }
+  return value;
+}, 2));
+//const generate = require("@babel/generator").default;
+//console.log(generate(ast).code); // throws an error
+const recast = require('recast');
+console.log(recast.print(ast).code); // '4;'
 ``` 
 The execution shows that the `type` field is now `Literal` instead of `NumericLiteral`:
 
-`➜  babel-learning git:(main) ✗ node src/parser/estree-example.js | jq '.program.body[0]'`
-```json
+`➜  babel-learning git:(main) ✗ ➜  node src/parser/estree-example.js`
+```json 
 {
-  "type": "ExpressionStatement",
-  "expression": {
-    "type": "Literal",
-    "value": 4,
-    "raw": "4"
+  "type": "File",
+  "errors": [],
+  "program": {
+    "type": "Program",
+    "sourceType": "module",
+    "interpreter": null,
+    "body": [
+      {
+        "type": "ExpressionStatement",
+        "expression": {
+          "type": "Literal",
+          "value": 4,
+          "raw": "4"
+        }
+      }
+    ]
   }
 }
+4;
 ```
+
+See Tan Li Hau youtube video [[Q&A] Is there specs for babel AST?](https://youtu.be/C4ikq5iGuQs?si=IGTJrOO2kngLCvzH9Q1J8A). Recorded in 2021. 
 
 ### AST for JSX code
 
