@@ -159,9 +159,10 @@ The assignment `program.interpreter = this.parseInterpreterDirective();` parses 
 [InterpreterDirective](https://tc39.es/ecma262/#sec-ecmascript-language-directives-and-prologues) `/#!.*/` if any.
 
 The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of the program. 
-- The first `true` argument indicates that the body is a top-level body. 
-- The second `true` argument indicates that the body is a function body. 
-- The third argument `tt.eof` is the token type of the end of file.
+- The first argument is the node to which the body will be attached.
+- The first `true` argument `allowDirectives` indicates that directives are allowed in the body. 
+- The second `true` argument indicates that the body is top level. 
+- The third argument `tt.eof` is the token type tha signals the end of the body.
 
 ```js
 parseBlockBody(
