@@ -42,6 +42,8 @@ export default class StatementParser extends ExpressionParser {
 The assignment `program.interpreter = this.parseInterpreterDirective();` parses the 
 [InterpreterDirective](https://tc39.es/ecma262/#sec-ecmascript-language-directives-and-prologues) `/#!.*/` if any.
 
+### parseBlockBody
+
 The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of the program. 
 - The first argument is the node to which the body will be attached.
 - The first `true` argument `allowDirectives` indicates that directives are allowed in the body. 
@@ -66,6 +68,8 @@ parseBlockBody(
 }
 ```
 
+### parseIfStatement
+
 The structure of all the `parse`Something functions is similar. They start by calling `this.next()` to move to the next token, then they
 continue following the grammar rules using the token if needed. Finally, they call `this.finishNode` to create the AST node.
 Here it the case of the `parseIfStatement` function that follows the [IfStatement](https://tc39.es/ecma262/#sec-if-statement-static-semantics-early-errors) grammar rule:
@@ -79,6 +83,8 @@ Here it the case of the `parseIfStatement` function that follows the [IfStatemen
     return this.finishNode(node, "IfStatement");
   }
 ```
+
+### Methods consuming tokens
 
 We can see the difference between `this.eat(tt._else)` and `this.next()`. The former consumes the token if it is an `else` token, while the latter just moves to the next token without consuming it. There is also `this.expect(tt._else)` that raises an error if the next token is not an `else` token and consumes it if it is:
 
