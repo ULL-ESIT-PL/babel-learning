@@ -158,14 +158,16 @@ export default class StatementParser extends ExpressionParser {
 
 The structure of all the `parse`Something functions is similar. They start by calling `this.next()` to move to the next token, then they
 continue following the grammar rules using the token if needed. Finally, they call `this.finishNode` to create the AST node.
-Here it the case of the `parseIfStatement` function:
+Here it the case of the `parseIfStatement` function that follows the [IfStatement](https://tc39.es/ecma262/#sec-if-statement-static-semantics-early-errors) grammar rule:
 
 ```js
   parseIfStatement(node: N.IfStatement): N.IfStatement {
-    this.next();
-    node.test = this.parseHeaderExpression();
-    node.consequent = this.parseStatement("if");
-    node.alternate = this.eat(tt._else) ? this.parseStatement("if") : null;
+    this.next(); // eat `if`
+    node.test = this.parseHeaderExpression();    // parse the test expression
+    node.consequent = this.parseStatement("if"); // parse the consequent statement
+    node.alternate = this.eat(tt._else) ? this.parseStatement("if") : null; // eat `else` and parse the alternate statement if any
     return this.finishNode(node, "IfStatement");
   }
 ```
+
+We can see the difference between `this.eat(tt._else)` and `this.next()`. The former consumes the token if it is an `else` token, while the latter just moves to the next token without consuming it. There is also `this.expect(tt._else)` that raises an error if the next token is not an `else` token and consumes it if it is.
