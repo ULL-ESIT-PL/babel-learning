@@ -205,6 +205,10 @@ Notice how some AST is still generated despite the syntax error:
   }
   ```
 
+## The Parser: Files and organization
+
+See [/doc/parser/organization.md](/doc/parser/organization.md).
+
 ## tc39 
 
 Ecma International's TC39 is a group of JavaScript developers, implementers, and academics collaborating 
