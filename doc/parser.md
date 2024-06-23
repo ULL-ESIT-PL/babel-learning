@@ -170,6 +170,40 @@ console.log(ast.errors[0].code); // BABEL_PARSER_SYNTAX_ERROR
 console.log(ast.errors[0].reasonCode); // MissingSemicolon
 ```
 
+Notice how some AST is still generated despite the syntax error:
+
+```json
+{
+  "type": "File",
+  "errors": [
+    {
+      "code": "BABEL_PARSER_SYNTAX_ERROR",
+      "reasonCode": "MissingSemicolon",
+      "pos": 1
+    }
+  ],
+  "program": {
+    "type": "Program",
+    "sourceType": "script",
+    "interpreter": null,
+    "body": [
+      {
+        "type": "ExpressionStatement",
+        "expression": {
+          "type": "Identifier",
+          "name": "a"
+        }
+      },
+      {
+        "type": "ExpressionStatement",
+        "expression": {
+          "type": "Identifier",
+          "name": "b"
+        }
+      }
+    ]
+  }
+  ```
 
 ## tc39 
 
