@@ -55,7 +55,7 @@ It is based on [ESTree spec][] with the following deviations:
 
 ### Producing a estree compatible AST with the babel parser
 
-This example shows how to produce a estree compatible AST using the babel parser using the plugin `estree`:
+The example [/src/parser/estree-example.js](/src/parser/estree-example.js) shows how to produce a estree compatible AST using the babel parser using the plugin `estree`:
 
 `➜  babel-learning git:(main) ✗ cat src/parser/estree-example.js`
 ```js
