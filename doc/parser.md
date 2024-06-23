@@ -209,6 +209,10 @@ Notice how some AST is still generated despite the syntax error:
 
 See [/doc/parser/organization.md](/doc/parser/organization.md).
 
+## Top Level and parseBlockBody
+
+See [/doc/parser/top-level.md](/doc/parser/top-level.md).
+
 ## tc39 
 
 Ecma International's TC39 is a group of JavaScript developers, implementers, and academics collaborating 
