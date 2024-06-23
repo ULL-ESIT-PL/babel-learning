@@ -155,6 +155,31 @@ export default class StatementParser extends ExpressionParser {
   ...
 }
 ```
+The assignment `program.interpreter = this.parseInterpreterDirective();` parses the 
+[InterpreterDirective](https://tc39.es/ecma262/#sec-ecmascript-language-directives-and-prologues) `/#!.*/` if any.
+
+The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of the program. 
+- The first `true` argument indicates that the body is a top-level body. 
+- The second `true` argument indicates that the body is a function body. 
+- The third argument `tt.eof` is the token type of the end of file.
+
+```js
+parseBlockBody(
+    node: N.BlockStatementLike,
+    allowDirectives: ?boolean, topLevel: boolean, end: TokenType,
+    afterBlockParse?: (hasStrictModeDirective: boolean) => void,
+  ): void {
+    const body = (node.body = []);
+    const directives = (node.directives = []);
+    this.parseBlockOrModuleBlockBody(
+      body,
+      allowDirectives ? directives : undefined,
+      topLevel,
+      end,
+      afterBlockParse,
+    );
+}
+```
 
 The structure of all the `parse`Something functions is similar. They start by calling `this.next()` to move to the next token, then they
 continue following the grammar rules using the token if needed. Finally, they call `this.finishNode` to create the AST node.
@@ -170,4 +195,17 @@ Here it the case of the `parseIfStatement` function that follows the [IfStatemen
   }
 ```
 
-We can see the difference between `this.eat(tt._else)` and `this.next()`. The former consumes the token if it is an `else` token, while the latter just moves to the next token without consuming it. There is also `this.expect(tt._else)` that raises an error if the next token is not an `else` token and consumes it if it is.
+We can see the difference between `this.eat(tt._else)` and `this.next()`. The former consumes the token if it is an `else` token, while the latter just moves to the next token without consuming it. There is also `this.expect(tt._else)` that raises an error if the next token is not an `else` token and consumes it if it is:
+
+```js
+  expect(type: TokenType, pos?: ?number): void {
+    this.eat(type) || this.unexpected(pos, type);
+  }
+  ```
+Another method is `this.match` that returns `true` if the next token is of the given type without consuming it:
+
+```js
+  match(type: TokenType): boolean {
+    return this.state.type === type;
+  }
+```
