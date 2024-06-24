@@ -230,6 +230,8 @@ export default class Parser extends StatementParser { ... }
 Here is the constructor of the `Parser` class:
 
 ```ts
+export default class Parser extends StatementParser {
+  ...
   constructor(options: ?Options, input: string) {
     options = getOptions(options);
     super(options, input);
@@ -244,6 +246,8 @@ Here is the constructor of the `Parser` class:
     this.plugins = pluginsMap(this.options.plugins);
     this.filename = options.sourceFilename;
   }
+  ...
+}
 ```
 
 and the `parse` method in which we see that the scope analysis is done during the parsing.
