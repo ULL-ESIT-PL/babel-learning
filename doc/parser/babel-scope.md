@@ -143,9 +143,9 @@ import type ClassScopeHandler from "../util/class-scope";
 
 export default class BaseParser {
   // Properties set by constructor in index.js
-  options: Options;
-  inModule: boolean;
-  scope: ScopeHandler<*>;
+  options: Options;       // Configurations options
+  inModule: boolean;      // True if the code is in a module
+  scope: ScopeHandler<*>; // Generic type
   classScope: ClassScopeHandler;
   ...
 
@@ -154,8 +154,8 @@ export default class BaseParser {
   // not want to ever copy them, which happens if state gets cloned
   input: string;
   length: number;
-  hasPlugin(name: string): boolean { return this.plugins.has(name); }
-  getPluginOption(plugin: string, name: string) { if (this.hasPlugin(plugin)) return this.plugins.get(plugin)[name]; }
+  hasPlugin(name: string): boolean { return this.plugins.has(name); } // checks if a given plugin is available in the plugins map
+  getPluginOption(plugin: string, name: string) { if (this.hasPlugin(plugin)) return this.plugins.get(plugin)[name]; } // Retrieves an option for a specified plugin
 }
 ```
 
