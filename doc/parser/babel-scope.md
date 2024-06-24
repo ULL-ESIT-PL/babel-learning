@@ -30,10 +30,13 @@ and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tan
 ```ts
 export class ClassScope {
   privateNames: Set<string> = new Set();
-  loneAccessors: Map<string, ClassElementTypes> = new Map();
+  loneAccessors: Map<string, ClassElementTypes> = new Map(); // for getters and setters
   undefinedPrivateNames: Map<string, number> = new Map();
 }
 ```
+
+The `loneAccessors` attribute is for getters and setters.
+See [Property getters and setters](https://javascript.info/property-accessors#getters-and-setters) for an introduction to getters and setters in JS.
 
 ### ClassScopeHandler
 
