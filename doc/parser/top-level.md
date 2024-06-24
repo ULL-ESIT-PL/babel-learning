@@ -4,10 +4,12 @@
 The class `StatementParser` implements the `Statement` parsing.
 
 The function `parseTopLevel` parses a `program`. 
-
+It receives a `file` node and a `program` node as parameters.
 The `program` parameter is a `N.Program` node that is going to represent 
 the top-level structure of the program. 
-It contains the interpreter directive (if any) and the body of the program.
+It will contain the interpreter directive (if any) and the body AST of the program.
+The function returns a `file` node that contains the `program` node, the comments 
+and optionally the tokens of the program.
 
 ```ts
 export default class StatementParser extends ExpressionParser {
