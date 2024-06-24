@@ -114,4 +114,4 @@ The parsing functions usually start with the prefix `parse` followed by the name
     54    parseImportSpecifier(node: N.ImportDeclaration): void {
 ```
 
-[To next section top-level.md](top-level.md) [Up: ../parser.md](../parser.md)
+[**To next section**: top-level.md](top-level.md) [**Up**: ../parser.md](../parser.md)
