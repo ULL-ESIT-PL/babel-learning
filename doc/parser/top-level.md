@@ -8,9 +8,19 @@ It receives a `file` node and a `program` node as parameters.
 The `program` parameter is a `N.Program` node that is going to represent 
 the top-level structure of the program. 
 It will contain the interpreter directive (if any) and the body AST of the program.
-The function returns a `file` node that contains the `program` node, the comments 
-and optionally the tokens of the program.
+The function returns a `file` node that contains the `program` node, the `comments` 
+and optionally the `tokens` of the program. Here is the definition of the Program node:
 
+```ts 
+Program <: Node {
+  type: "Program";
+  interpreter: InterpreterDirective | null;
+  sourceType: "script" | "module";
+  body: [ Statement | ModuleDeclaration ];
+  directives: [ Directive ];
+}
+```
+This is the code of the `parseTopLevel` function:
 ```ts
 export default class StatementParser extends ExpressionParser {
 
