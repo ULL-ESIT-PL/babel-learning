@@ -131,10 +131,10 @@ export default class ClassScopeHandler {
   }
 }
 ```
-
+<!--
 ## src/parser/base.js: BaseParser
 
-This code is imported, reformatted and exported again by the [babel-parser/src/parser/base.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/base.js#L7) module:
+`scope.js` and `class-scope.js`  types are imported, reformatted and exported again by the [babel-parser/src/parser/base.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/base.js#L7) module:
 
 ```ts
 ...
@@ -170,7 +170,27 @@ import BaseParser from "./base";
 export default class CommentsParser extends BaseParser { ... }
 ```
 
-Whis is itself imported by the `error.js` module:
+## error.js 
+
+The `CommentsParser` class is imported by the `error.js` module. 
+
+```
+ src
+  ├── parser
+  │   ├── base.js
+  │   ├── comments.js
+  │   ├── error-message.js
+  │   ├── error.js
+  │   ├── expression.js
+  │   ├── index.js
+  │   ├── lval.js
+  │   ├── node.js
+  │   ├── statement.js
+  │   └── util.js
+```
+
+The 
+`ParserError` class inherits from the `CommentsParser`:
 
 ```ts
 import { getLineInfo, type Position } from "../util/location";
@@ -185,3 +205,4 @@ type ErrorContext = {
 export { ErrorMessages as Errors } from "./error-message.js";
 export default class ParserError extends CommentsParser { ... }
 ```
+-->
