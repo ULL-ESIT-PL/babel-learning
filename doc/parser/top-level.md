@@ -50,12 +50,46 @@ The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of 
 - The second `true` argument indicates that the body is top level. 
 - The third argument `tt.eof` is the token type tha signals the end of the body.
 
-After parsing the body, we check if we are in a module and if there are undefined exports.
+After parsing the body, we check if we are in a module and if there are `undefined` exports.
 This ensures that exports are always defined before exporting them.
 This is required according to the spec here: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-module-semantics-static-semantics-early-errors. See [pull request 9589](https://github.com/babel/babel/pull/9589).
 
 The `[name]` part in the expression `for (const [name] of Array.from(this.scope.undefinedExports))` uses array destructuring to extract the first element of each iterable element in `this.scope.undefinedExports`. 
 
+
+```ts
+  finishNode<T: NodeType>(node: T, type: string): T {
+    return this.finishNodeAt(
+      node,
+      type,
+      this.state.lastTokEnd,
+      this.state.lastTokEndLoc,
+    );
+  }
+```
+The `finishNodeAt` function is responsible for finishing the construction of an AST node, assigning it final properties before it is considered complete. The function accepts a *generic* `node T`, which must be a node type (`NodeType`), along with 
+- a `type` that indicates the type of node to end, 
+- a `pos` position that represents the end of the node in the source code, and 
+- a `loc` object which contains location information, specifically the end of the node location.
+
+The first step within the function is a safety check for `production` that raises an error if an attempt is made to terminate a node that has already been terminated previously, which is indicated by `node.end > 0`. 
+
+```js
+  finishNodeAt<T: NodeType>(node: T, type: string, pos: number, loc: Position, ): T {
+    if (process.env.NODE_ENV !== "production" && node.end > 0) {
+      throw new Error(
+        "Do not call finishNode*() twice on the same node." +
+          " Instead use resetEndLocation() or change type directly.",
+      );
+    }
+    node.type = type;
+    node.end = pos;
+    node.loc.end = loc;
+    if (this.options.ranges) node.range[1] = pos;
+    this.processComment(node);
+    return node;
+  }
+  ```
 
 
 ### parseBlockBody
