@@ -220,10 +220,7 @@ import StatementParser from "./statement";
 import { SCOPE_PROGRAM } from "../util/scopeflags";
 import ScopeHandler from "../util/scope";
 import ClassScopeHandler from "../util/class-scope";
-import ProductionParameterHandler, {
-  PARAM_AWAIT,
-  PARAM,
-} from "../util/production-parameter";
+import ProductionParameterHandler, { PARAM_AWAIT, PARAM, } from "../util/production-parameter";
 
 export type PluginsMap = Map<string, { [string]: any }>;
 
