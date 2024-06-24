@@ -64,9 +64,51 @@ The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of 
 - The second `true` argument indicates that the body is top level. 
 - The third argument `tt.eof` is the token type tha signals the end of the body.
 
+### Scope Analysis
+
+After parsing the body has finished, the scope analysis phase has also been completed. 
+
+The code for the scope analysis associated with the parser seems to be in the folder [/packages/babel-parser/src/util](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/util) and mainly in the [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-L212).
+
+This code is imported, reformatted and exported again by the [babel-parser/src/parser/base.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/base.js#L7) module:
+
+```ts
+...
+import type ScopeHandler from "../util/scope";
+import type ClassScopeHandler from "../util/class-scope";
+
+export default class BaseParser {
+  // Properties set by constructor in index.js
+  options: Options;
+  inModule: boolean;
+  scope: ScopeHandler<*>;
+  classScope: ClassScopeHandler;
+  ...
+
+  hasPlugin(name: string): boolean { return this.plugins.has(name); }
+  getPluginOption(plugin: string, name: string) { if (this.hasPlugin(plugin)) return this.plugins.get(plugin)[name]; }
+}
+```
+
+You can check that by visiting the 
+
 ### Checking for undefined exports if it is a module
 
-After parsing the body, we check if we are in a module and if there are `undefined` exports.
+In the section:
+
+```ts
+ if ( // check for undefined exports if it is a module
+      this.inModule && !this.options.allowUndeclaredExports && this.scope.undefinedExports.size > 0
+    ) { // raise an error if there are undefined exports
+      for (const [name] of Array.from(this.scope.undefinedExports)) {
+        const pos = this.scope.undefinedExports.get(name);
+        // $FlowIssue
+        this.raise(pos, Errors.ModuleExportUndefined, name);
+      }
+    }
+```
+
+We check if we are in a module and if there are `undefined` exports.
 This ensures that exports are always defined before exporting them.
 This is required according to the spec here: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-module-semantics-static-semantics-early-errors. See [pull request 9589](https://github.com/babel/babel/pull/9589).
 
