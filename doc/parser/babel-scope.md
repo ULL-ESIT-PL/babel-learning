@@ -20,7 +20,7 @@ babel-parser
          └── whitespace.js
 ```
 
-and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34) inside `src/util/scope.js`
+and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34) and the class [ClassScopeHandler](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L40-L212) inside `src/util/scope.js`
 
 - `privateNames` is a `Set` of private named declared in the current class
 - `undefinedPrivateNames` is a `Map` of private names used before being defined, mapping to their position.
@@ -32,7 +32,8 @@ export class ClassScope {
   undefinedPrivateNames: Map<string, number> = new Map();
 }
 ```
-and the class [ClassScopeHandler](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L40-L212):
+
+The class [ClassScopeHandler](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L40-L212):
 
 ```ts
 export default class ClassScopeHandler {
