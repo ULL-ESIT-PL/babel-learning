@@ -5,7 +5,23 @@ After parsing the body has finished, the scope analysis phase has also been comp
 
 ## src/util/scope.js: ClassScope and ClassScopeHandler
 
-The code for the scope analysis associated with the parser seems to be in the folder [/packages/babel-parser/src/util](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/util) and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34)
+The code for the scope analysis associated with the parser seems to be in the folder [/packages/babel-parser/src/util](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/util) 
+
+```
+babel-parser
+└── src
+     └── util
+         ├── class-scope.js
+         ├── identifier.js
+         ├── location.js
+         ├── production-parameter.js
+         ├── scope.js
+         ├── scopeflags.js
+         └── whitespace.js
+```
+
+
+and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34)
 
 - `privateNames` is a `Set` of private named declared in the current class
 - `undefinedPrivateNames` is a `Map` of private names used before being defined, mapping to their position.
