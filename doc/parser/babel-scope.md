@@ -226,3 +226,41 @@ export type PluginsMap = Map<string, { [string]: any }>;
 
 export default class Parser extends StatementParser { ... } 
 ```
+
+Here is the constructor of the `Parser` class:
+
+```ts
+  constructor(options: ?Options, input: string) {
+    options = getOptions(options);
+    super(options, input);
+
+    const ScopeHandler = this.getScopeHandler();
+
+    this.options = options;
+    this.inModule = this.options.sourceType === "module";
+    this.scope = new ScopeHandler(this.raise.bind(this), this.inModule);
+    this.prodParam = new ProductionParameterHandler();
+    this.classScope = new ClassScopeHandler(this.raise.bind(this));
+    this.plugins = pluginsMap(this.options.plugins);
+    this.filename = options.sourceFilename;
+  }
+```
+
+and the `parse` method in which we see that the scope analysis is done during the parsing.
+
+```ts
+  parse(): File {
+    let paramFlags = PARAM;
+    if (this.hasPlugin("topLevelAwait") && this.inModule) { paramFlags |= PARAM_AWAIT; }
+    this.scope.enter(SCOPE_PROGRAM);
+    this.prodParam.enter(paramFlags);
+    const file = this.startNode();
+    const program = this.startNode();
+    this.nextToken();
+    file.errors = null;
+    this.parseTopLevel(file, program);
+    file.errors = this.state.errors;
+    return file;
+  }
+}
+```
