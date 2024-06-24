@@ -1,4 +1,4 @@
-## The class StatementParser and the parseTopLevel function
+## The Class StatementParser and the parseTopLevel function
 
 
 The class `StatementParser` implements the `Statement` parsing.
@@ -14,10 +14,10 @@ and optionally the `tokens` of the program. Here is the [definition of the Progr
 ```ts 
 Program <: Node {
   type: "Program";
-  interpreter: InterpreterDirective | null;
+  interpreter: InterpreterDirective | null; // #!/usr/bin/env node
   sourceType: "script" | "module";
-  body: [ Statement | ModuleDeclaration ];
-  directives: [ Directive ];
+  body: [ Statement | ModuleDeclaration ];  // Array of expressions or statements or import or export declarations
+  directives: [ Directive ]; // "use strict" directives
 }
 ```
 This is the code of the `parseTopLevel` function:
