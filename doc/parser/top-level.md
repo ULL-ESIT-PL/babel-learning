@@ -17,11 +17,11 @@ export default class StatementParser extends ExpressionParser {
 
     this.parseBlockBody(program, true, true, tt.eof);
 
-    if (
+    if ( // check for undefined exports if it is a module
       this.inModule &&
       !this.options.allowUndeclaredExports &&
       this.scope.undefinedExports.size > 0
-    ) {
+    ) { // raise an error if there are undefined exports
       for (const [name] of Array.from(this.scope.undefinedExports)) {
         const pos = this.scope.undefinedExports.get(name);
         // $FlowIssue
