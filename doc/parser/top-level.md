@@ -85,6 +85,11 @@ export default class BaseParser {
   classScope: ClassScopeHandler;
   ...
 
+  state: State;  // Initialized by Tokenizer
+  // input and length are not in state as they are constant and we do
+  // not want to ever copy them, which happens if state gets cloned
+  input: string;
+  length: number;
   hasPlugin(name: string): boolean { return this.plugins.has(name); }
   getPluginOption(plugin: string, name: string) { if (this.hasPlugin(plugin)) return this.plugins.get(plugin)[name]; }
 }
