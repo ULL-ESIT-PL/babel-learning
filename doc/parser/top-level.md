@@ -50,11 +50,15 @@ The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of 
 - The second `true` argument indicates that the body is top level. 
 - The third argument `tt.eof` is the token type tha signals the end of the body.
 
+### Checking for undefined exports if it is a module
+
 After parsing the body, we check if we are in a module and if there are `undefined` exports.
 This ensures that exports are always defined before exporting them.
 This is required according to the spec here: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-module-semantics-static-semantics-early-errors. See [pull request 9589](https://github.com/babel/babel/pull/9589).
 
 The `[name]` part in the expression `for (const [name] of Array.from(this.scope.undefinedExports))` uses array destructuring to extract the first element of each iterable element in `this.scope.undefinedExports`. 
+
+### finishNode and finishNodeAt
 
 The `finishNode` function is responsible for finishing the construction of an AST node, assigning it final properties before it is considered complete. The function accepts a *generic* `node T`, which must be a node type (`NodeType`), along with a `type` that indicates the type of node to end, 
 
