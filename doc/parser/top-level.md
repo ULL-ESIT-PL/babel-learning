@@ -56,18 +56,15 @@ This is required according to the spec here: https://www.ecma-international.org/
 
 The `[name]` part in the expression `for (const [name] of Array.from(this.scope.undefinedExports))` uses array destructuring to extract the first element of each iterable element in `this.scope.undefinedExports`. 
 
+The `finishNode` function is responsible for finishing the construction of an AST node, assigning it final properties before it is considered complete. The function accepts a *generic* `node T`, which must be a node type (`NodeType`), along with a `type` that indicates the type of node to end, 
 
 ```ts
-  finishNode<T: NodeType>(node: T, type: string): T {
-    return this.finishNodeAt(
-      node,
-      type,
-      this.state.lastTokEnd,
-      this.state.lastTokEndLoc,
-    );
-  }
+finishNode<T: NodeType>(node: T, type: string): T {
+  return this.finishNodeAt(node, type, this.state.lastTokEnd, this.state.lastTokEndLoc);
+}
 ```
-The `finishNodeAt` function is responsible for finishing the construction of an AST node, assigning it final properties before it is considered complete. The function accepts a *generic* `node T`, which must be a node type (`NodeType`), along with 
+
+The helper function `finishNodeAt` is responsible for the actual finishing. The function accepts a *generic* `node T`, which must be a node type (`NodeType`), along with 
 - a `type` that indicates the type of node to end, 
 - a `pos` position that represents the end of the node in the source code, and 
 - a `loc` object which contains location information, specifically the end of the node location.
