@@ -206,3 +206,26 @@ export { ErrorMessages as Errors } from "./error-message.js";
 export default class ParserError extends CommentsParser { ... }
 ```
 -->
+
+## src/parser/index.js: Parser Class
+
+The `ScopeHandler` and `ClassScopeHandler` classes are imported by the `Parser` class in the [babel-parser/src/parser/index.js]() module:
+
+```ts
+import type { Options } from "../options";
+import type { File /*::, JSXOpeningElement */ } from "../types";
+import type { PluginList } from "../plugin-utils";
+import { getOptions } from "../options";
+import StatementParser from "./statement";
+import { SCOPE_PROGRAM } from "../util/scopeflags";
+import ScopeHandler from "../util/scope";
+import ClassScopeHandler from "../util/class-scope";
+import ProductionParameterHandler, {
+  PARAM_AWAIT,
+  PARAM,
+} from "../util/production-parameter";
+
+export type PluginsMap = Map<string, { [string]: any }>;
+
+export default class Parser extends StatementParser { ... } 
+```
