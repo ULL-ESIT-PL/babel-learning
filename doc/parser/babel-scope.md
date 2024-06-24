@@ -20,8 +20,7 @@ babel-parser
          └── whitespace.js
 ```
 
-
-and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34)
+and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34) inside `src/util/scope.js`
 
 - `privateNames` is a `Set` of private named declared in the current class
 - `undefinedPrivateNames` is a `Map` of private names used before being defined, mapping to their position.
