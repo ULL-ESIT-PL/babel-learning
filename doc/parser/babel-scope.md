@@ -20,7 +20,12 @@ babel-parser
          └── whitespace.js
 ```
 
-and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34) and the class [ClassScopeHandler](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L40-L212) inside `src/util/scope.js`
+and mainly in the files 
+[scopeflags.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scopeflags.js),
+[class-scope.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/class-scope.js) and
+[scope.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js).
+
+Let us have a look at classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34) and the class [ClassScopeHandler](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L40-L212) inside `src/util/scope.js`
 
 ### ClassScope
 
@@ -231,13 +236,26 @@ Here is the class `Parser` in full:
 
 ```ts
 export default class Parser extends StatementParser {
-  // Forward-declaration so typescript plugin can override jsx plugin
-  /*::
-  +jsxParseOpeningElementAfterName: (
-    node: JSXOpeningElement,
-  ) => JSXOpeningElement;
-  */
+  constructor(options: ?Options, input: string) { ... }
 
+  getScopeHandler(): Class<ScopeHandler<*>> { return ScopeHandler; }
+
+  parse(): File { ... }
+}
+
+function pluginsMap(plugins: PluginList): PluginsMap {
+  const pluginMap: PluginsMap = new Map();
+  for (const plugin of plugins) {
+    const [name, options] = Array.isArray(plugin) ? plugin : [plugin, {}];
+    if (!pluginMap.has(name)) pluginMap.set(name, options || {});
+  }
+  return pluginMap;
+}
+```
+
+### Constructor
+
+```ts
   constructor(options: ?Options, input: string) {
     options = getOptions(options);
     super(options, input);
@@ -252,18 +270,22 @@ export default class Parser extends StatementParser {
     this.plugins = pluginsMap(this.options.plugins);
     this.filename = options.sourceFilename;
   }
+```
 
-  // This can be overwritten, for example, by the TypeScript plugin.
-  getScopeHandler(): Class<ScopeHandler<*>> {
-    return ScopeHandler;
-  }
+### `parse` method
 
+
+The call `this.scope.enter(SCOPE_PROGRAM)` enters the program scope.
+
+The call to `this.parseTopLevel(file, program);`  starts the parsing at the top level.
+
+```ts
   parse(): File {
     let paramFlags = PARAM;
     if (this.hasPlugin("topLevelAwait") && this.inModule) {
       paramFlags |= PARAM_AWAIT;
     }
-    this.scope.enter(SCOPE_PROGRAM);
+    this.scope.enter(SCOPE_PROGRAM); 
     this.prodParam.enter(paramFlags);
     const file = this.startNode();
     const program = this.startNode();
@@ -274,14 +296,4 @@ export default class Parser extends StatementParser {
     return file;
   }
 }
-
-function pluginsMap(plugins: PluginList): PluginsMap {
-  const pluginMap: PluginsMap = new Map();
-  for (const plugin of plugins) {
-    const [name, options] = Array.isArray(plugin) ? plugin : [plugin, {}];
-    if (!pluginMap.has(name)) pluginMap.set(name, options || {});
-  }
-  return pluginMap;
-}
 ```
-
