@@ -1,6 +1,7 @@
-## Top Level 
+## The class StatementParser and the parseTopLevel function
 
- The class `StatementParser` implements the `Statement` parsing.
+
+The class `StatementParser` implements the `Statement` parsing.
 
 The function `parseTopLevel` parses a `program`. 
 
