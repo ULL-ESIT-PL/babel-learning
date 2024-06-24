@@ -9,7 +9,7 @@ The `program` parameter is a `N.Program` node that is going to represent
 the top-level structure of the program. 
 It will contain the interpreter directive (if any) and the body AST of the program.
 The function returns a `file` node that contains the `program` node, the `comments` 
-and optionally the `tokens` of the program. Here is the definition of the Program node:
+and optionally the `tokens` of the program. Here is the [definition of the Program node](https://github.com/babel/babel/blob/master/packages/babel-parser/ast/spec.md#programs):
 
 ```ts 
 Program <: Node {
