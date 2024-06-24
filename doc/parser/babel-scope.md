@@ -36,7 +36,7 @@ export class ClassScope {
 ```
 
 The `loneAccessors` attribute is for getters and setters.
-See [Property getters and setters](https://javascript.info/property-accessors#getters-and-setters) for an introduction to getters and setters in JS.
+Read [Property getters and setters](https://javascript.info/property-accessors#getters-and-setters) for a gentle introduction to getters and setters in JS.
 
 ### ClassScopeHandler
 
