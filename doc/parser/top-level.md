@@ -5,7 +5,8 @@ The class `StatementParser` implements the `Statement` parsing.
 
 The function `parseTopLevel` parses a `program`. 
 
-The `program` is a `N.Program` node that represents the top-level structure of the program. 
+The `program` parameter is a `N.Program` node that is going to represent 
+the top-level structure of the program. 
 It contains the interpreter directive (if any) and the body of the program.
 
 ```ts
