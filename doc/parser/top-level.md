@@ -2,10 +2,10 @@
 
  The class `StatementParser` implements the `Statement` parsing.
 
-The function `parseTopLevel` parses a program. Initializes the parser, reads any number of
-statements, and wraps them in a `Program` node.  Optionally takes a
-`program` argument.  If present, the statements will be appended
-to its `body` instead of creating a new node.
+The function `parseTopLevel` parses a `program`. 
+
+The `program` is a `N.Program` node that represents the top-level structure of the program. 
+It contains the interpreter directive if any and the body of the program.
 
 ```ts
 export default class StatementParser extends ExpressionParser {
@@ -42,13 +42,25 @@ export default class StatementParser extends ExpressionParser {
 The assignment `program.interpreter = this.parseInterpreterDirective();` parses the 
 [InterpreterDirective](https://tc39.es/ecma262/#sec-ecmascript-language-directives-and-prologues) `/#!.*/` if any.
 
-### parseBlockBody
-
 The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of the program. 
 - The first argument is the node to which the body will be attached.
 - The first `true` argument `allowDirectives` indicates that directives are allowed in the body. 
+  Directives are special instructions or statements that are processed differently by the JavaScript engine compared to regular code,
+  like `"use strict"` and `use asm`. 
 - The second `true` argument indicates that the body is top level. 
 - The third argument `tt.eof` is the token type tha signals the end of the body.
+
+After parsing the body, we check if we are in a module and if there are undefined exports.
+This ensures that exports are always defined before exporting them.
+This is required according to the spec here: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-module-semantics-static-semantics-early-errors. See [pull request 9589](https://github.com/babel/babel/pull/9589).
+
+The `[name]` part in the expression `for (const [name] of Array.from(this.scope.undefinedExports))` uses array destructuring to extract the first element of each iterable element in `this.scope.undefinedExports`. 
+
+
+
+### parseBlockBody
+
+Here is the `parseBlockBody` function that is called by `parseTopLevel`:
 
 ```js
 parseBlockBody(
