@@ -3,6 +3,8 @@
 
 After parsing the body has finished, the scope analysis phase has also been completed. 
 
+## src/util/scope.js: ClassScope and ClassScopeHandler
+
 The code for the scope analysis associated with the parser seems to be in the folder [/packages/babel-parser/src/util](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/util) and mainly in the classes [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-34)
 
 - `privateNames` is a `Set` of private named declared in the current class
@@ -107,6 +109,8 @@ export default class ClassScopeHandler {
 }
 ```
 
+## src/parser/base.js: BaseParser
+
 This code is imported, reformatted and exported again by the [babel-parser/src/parser/base.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/base.js#L7) module:
 
 ```ts
@@ -132,6 +136,8 @@ export default class BaseParser {
 }
 ```
 
+## src/parser/comments.js: CommentsParser Class
+
 [The `BaseParser` class is imported by the `comments.js` module](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/comments.js#L34) which adds the `CommentsParser` class to it:
 
 ```ts
@@ -156,4 +162,3 @@ type ErrorContext = {
 export { ErrorMessages as Errors } from "./error-message.js";
 export default class ParserError extends CommentsParser { ... }
 ```
-You can check that by visiting the 
