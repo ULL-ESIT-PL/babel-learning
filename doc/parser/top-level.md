@@ -51,7 +51,7 @@ export default class StatementParser extends ExpressionParser {
     return this.finishNode(file, "File");
   }
   ...
-}
+} // End of class StatementParser
 ```
 The assignment `program.interpreter = this.parseInterpreterDirective();` parses the 
 [InterpreterDirective](https://tc39.es/ecma262/#sec-ecmascript-language-directives-and-prologues) `/#!.*/` if any.
@@ -66,36 +66,7 @@ The call `this.parseBlockBody(program, true, true, tt.eof);` parses the body of 
 
 ### Scope Analysis
 
-After parsing the body has finished, the scope analysis phase has also been completed. 
-
-The code for the scope analysis associated with the parser seems to be in the folder [/packages/babel-parser/src/util](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/util) and mainly in the [Scope Class](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js#L22-L212).
-
-This code is imported, reformatted and exported again by the [babel-parser/src/parser/base.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/base.js#L7) module:
-
-```ts
-...
-import type ScopeHandler from "../util/scope";
-import type ClassScopeHandler from "../util/class-scope";
-
-export default class BaseParser {
-  // Properties set by constructor in index.js
-  options: Options;
-  inModule: boolean;
-  scope: ScopeHandler<*>;
-  classScope: ClassScopeHandler;
-  ...
-
-  state: State;  // Initialized by Tokenizer
-  // input and length are not in state as they are constant and we do
-  // not want to ever copy them, which happens if state gets cloned
-  input: string;
-  length: number;
-  hasPlugin(name: string): boolean { return this.plugins.has(name); }
-  getPluginOption(plugin: string, name: string) { if (this.hasPlugin(plugin)) return this.plugins.get(plugin)[name]; }
-}
-```
-
-You can check that by visiting the 
+See section [babel-scope.md](babel-scope.md)
 
 ### Checking for undefined exports if it is a module
 
