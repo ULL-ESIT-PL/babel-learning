@@ -5,7 +5,7 @@
 The function `parseTopLevel` parses a `program`. 
 
 The `program` is a `N.Program` node that represents the top-level structure of the program. 
-It contains the interpreter directive if any and the body of the program.
+It contains the interpreter directive (if any) and the body of the program.
 
 ```ts
 export default class StatementParser extends ExpressionParser {
