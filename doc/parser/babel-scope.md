@@ -227,11 +227,17 @@ export type PluginsMap = Map<string, { [string]: any }>;
 export default class Parser extends StatementParser { ... } 
 ```
 
-Here is the constructor of the `Parser` class:
+Here is the class `Parser` in full:
 
 ```ts
 export default class Parser extends StatementParser {
-  ...
+  // Forward-declaration so typescript plugin can override jsx plugin
+  /*::
+  +jsxParseOpeningElementAfterName: (
+    node: JSXOpeningElement,
+  ) => JSXOpeningElement;
+  */
+
   constructor(options: ?Options, input: string) {
     options = getOptions(options);
     super(options, input);
@@ -246,16 +252,17 @@ export default class Parser extends StatementParser {
     this.plugins = pluginsMap(this.options.plugins);
     this.filename = options.sourceFilename;
   }
-  ...
-}
-```
 
-and the `parse` method in which we see that the scope analysis is done during the parsing.
+  // This can be overwritten, for example, by the TypeScript plugin.
+  getScopeHandler(): Class<ScopeHandler<*>> {
+    return ScopeHandler;
+  }
 
-```ts
   parse(): File {
     let paramFlags = PARAM;
-    if (this.hasPlugin("topLevelAwait") && this.inModule) { paramFlags |= PARAM_AWAIT; }
+    if (this.hasPlugin("topLevelAwait") && this.inModule) {
+      paramFlags |= PARAM_AWAIT;
+    }
     this.scope.enter(SCOPE_PROGRAM);
     this.prodParam.enter(paramFlags);
     const file = this.startNode();
@@ -267,4 +274,14 @@ and the `parse` method in which we see that the scope analysis is done during th
     return file;
   }
 }
+
+function pluginsMap(plugins: PluginList): PluginsMap {
+  const pluginMap: PluginsMap = new Map();
+  for (const plugin of plugins) {
+    const [name, options] = Array.isArray(plugin) ? plugin : [plugin, {}];
+    if (!pluginMap.has(name)) pluginMap.set(name, options || {});
+  }
+  return pluginMap;
+}
 ```
+
