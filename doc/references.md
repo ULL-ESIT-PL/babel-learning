@@ -23,4 +23,6 @@
 * [Babel plugin Remove debugger transform. This plugin removes all `debugger;` statements](https://github.com/babel/minify/tree/master/packages/babel-plugin-transform-remove-debugger)
 * [babel-plugin-transform-remove-debugger at GitHub](https://github.com/babel/minify/tree/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger)
 * [A boilerplate monorepo for people writing babel plugins in normal plugin form as well as babel-plugin-macros form](https://github.com/swyxio/babel-plugin-macro-boilerplate) by Shawn "swyx" Wang
-  
+* [JavaScript engines - how do they even?](https://youtu.be/p-iiEDtpy6I?si=TfGRu4ceTsb3ECHB) by Franziska Hinkelmann from the V8 Team. Youtubes. JSConf EU 2017
+* [Parsing JavaScript - better lazy than eager?](https://youtu.be/Fg7niTmNNLg?si=KQt2HhxbacmlW0kq) by Marja Hölttä from the V8 Team. JSConf EU 2017
+
