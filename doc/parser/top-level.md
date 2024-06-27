@@ -1,6 +1,10 @@
 ## src/parser/index.js: Parser Class
 
-The `ScopeHandler` and `ClassScopeHandler` classes are imported by the `Parser` class in the [babel-parser/src/parser/index.js]() module:
+The `ScopeHandler` is imported in the [babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from 
+[src/util/scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js) 
+
+The  `ClassScopeHandler` class is imported by the `Parser` class in the 
+[babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from [src/util/class-scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/class-scope.js)
 
 ```ts
 import type { Options } from "../options";
@@ -18,7 +22,9 @@ export type PluginsMap = Map<string, { [string]: any }>;
 export default class Parser extends StatementParser { ... } 
 ```
 
-Here is the class `Parser` in full:
+Tthe class `Parser` is declared in the file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js).
+
+It has the `constructor`, the `getScopeHandler` method, and the `parse` method. The `pluginsMap` function is used to create a map of plugins from a list of plugins.
 
 ```ts
 export default class Parser extends StatementParser {
@@ -41,6 +47,8 @@ function pluginsMap(plugins: PluginList): PluginsMap {
 
 ### Constructor
 
+The constructor of the `Parser` class is defined as follows:
+
 ```ts
   constructor(options: ?Options, input: string) {
     options = getOptions(options);
@@ -59,7 +67,6 @@ function pluginsMap(plugins: PluginList): PluginsMap {
 ```
 
 ### `parse` method
-
 
 The call `this.scope.enter(SCOPE_PROGRAM)` enters the program scope.
 
@@ -84,11 +91,14 @@ The call to `this.parseTopLevel(file, program);`  starts the parsing at the top 
 }
 ```
 
+Since the `Parser` class extends the `StatementParser` class, it inherits all the methods of the `StatementParser` class and thus it has access to the `parseTopLevel` method.
+
 ## The Class StatementParser and the parseTopLevel function
 
-The class `StatementParser` implements the `Statement` parsing.
+The class `StatementParser` implements the `Statement` parsing. It is defined 
+in the file [src/parser/statement.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js)
 
-The function `parseTopLevel` parses a `program`. 
+The function [parseTopLevel](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js#L50) parses a `program`. 
 It receives a `file` node and a `program` node as parameters.
 The `program` parameter is a `N.Program` node that is going to represent 
 the top-level structure of the program. 
