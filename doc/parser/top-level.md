@@ -29,7 +29,9 @@ export default class Parser extends StatementParser { ... }
 ```
 
 
-It has the `constructor`, the `getScopeHandler` method, and the `parse` method. The `pluginsMap` function is used to create a map of plugins from a list of plugins.
+The class `Parser` extends `StatementParser` and 
+has the `constructor`, the `getScopeHandler` method, and the `parse` method. 
+The `pluginsMap` function is used to create a map of plugins from a list of plugins.
 
 ```ts
 export default class Parser extends StatementParser {
