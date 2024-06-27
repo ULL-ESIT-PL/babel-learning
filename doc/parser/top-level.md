@@ -1,4 +1,10 @@
 ## src/parser/index.js: Parser Class
+The class `Parser` is declared in the file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js).
+
+It starts by importing the `Options` type, the `File` type, and the `PluginList` type from the `options`, `types`, and `plugin-utils` modules respectively.
+
+It imports the class `StatementParser` which implements the `Statement` parsing. Such class is defined 
+in the file [src/parser/statement.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js)
 
 The `ScopeHandler` is imported in the [babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from 
 [src/util/scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js) 
@@ -22,7 +28,6 @@ export type PluginsMap = Map<string, { [string]: any }>;
 export default class Parser extends StatementParser { ... } 
 ```
 
-Tthe class `Parser` is declared in the file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js).
 
 It has the `constructor`, the `getScopeHandler` method, and the `parse` method. The `pluginsMap` function is used to create a map of plugins from a list of plugins.
 
