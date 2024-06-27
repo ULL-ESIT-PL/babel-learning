@@ -52,7 +52,9 @@ function pluginsMap(plugins: PluginList): PluginsMap {
 }
 ```
 
-### Constructor
+In the following sections, we will describe the `Parser` class and its methods.
+
+### Constructor of the `Parser` class
 
 The constructor of the `Parser` class is defined as follows:
 
@@ -72,6 +74,53 @@ The constructor of the `Parser` class is defined as follows:
     this.filename = options.sourceFilename;
   }
 ```
+
+The class inherits from `StatementParser`  which itslef inherits from `ExpressionParser` which inherits from `BaseParser`.
+
+```ts
+export default class StatementParser extends ExpressionParser { ... }
+```
+
+```ts
+export default class ExpressionParser extends LValParser { ... }
+```
+
+`src/parser/lval.js`
+```ts
+export default class LValParser extends NodeUtils { ... }
+```
+
+`src/parser/node.js`
+```ts
+export class NodeUtils extends UtilParser { ... }
+```
+
+`src/parser/util.js`
+```ts
+export default class UtilParser extends Tokenizer {
+```
+
+```ts
+export default class Tokenizer extends ParserErrors {
+
+  isLookahead: boolean;
+
+  // Token store.
+  tokens: Array<Token | N.Comment> = [];
+
+  constructor(options: Options, input: string) {
+    super();
+    this.state = new State();
+    this.state.init(options);
+    this.input = input;
+    this.length = input.length;
+    this.isLookahead = false;
+  }
+  ...
+}
+```
+We can see that `Parser` objects have a `state` object  contain among other things information from the `options`. They also have properties containing the `input` string and the `length` of the input string.
+
 
 ### `parse` method
 
