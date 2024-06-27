@@ -75,7 +75,7 @@ The constructor of the `Parser` class is defined as follows:
   }
 ```
 
-The class inherits from `StatementParser`  which itslef inherits from `ExpressionParser` which inherits from `BaseParser`.
+The class inherits from `StatementParser`  which itself inherits from `ExpressionParser` which inherits from `BaseParser`.
 
 ```ts
 export default class StatementParser extends ExpressionParser { ... }
