@@ -87,6 +87,8 @@ The constructor of the `Parser` class is defined as follows:
   }
 ```
 
+### The inheritance hierarchy
+
 The class inherits from `StatementParser`  which itself inherits from `ExpressionParser` which inherits from `BaseParser`.
 
 ```ts
