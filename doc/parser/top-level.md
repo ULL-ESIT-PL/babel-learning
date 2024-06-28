@@ -27,6 +27,7 @@ from the
     tokens: $ReadOnlyArray<Token | Comment>,
   };
   ```
+  [$ReadOnlyArray](https://flow.org/en/docs/types/arrays/#toc-readonlyarray) is the way to say in Flow that is a read-only array. The equivalent in TypeScript is [ReadOnlyArray](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#a-new-syntax-for-readonlyarray).  
 - [src/plugin-utils.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js) (the type `Plugin` can be a string or a tuple of a string and an object. `PluginList` is a read-only array of Plugin elements).
 
 modules.
