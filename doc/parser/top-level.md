@@ -164,7 +164,7 @@ export default class CommentsParser extends BaseParser {
 And at last we reach the `BaseParser` class:
 
 `src/parser/base.js`
-```flow
+```ts
 export default class BaseParser {
   // Properties set by constructor in index.js
   options: Options;
