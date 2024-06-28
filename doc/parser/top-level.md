@@ -1,6 +1,13 @@
 ## src/parser/index.js: Parser Class
 The class `Parser` is declared in the file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js).
 
+Here are the first lines in the file:
+
+```ts
+import type { Options } from "../options";
+import type { File /*::, JSXOpeningElement */ } from "../types";
+import type { PluginList } from "../plugin-utils";
+``` 
 It starts by importing types:
 
 - the `Options` type, 
@@ -15,22 +22,13 @@ from the
 
 modules.
 
-It imports the class `StatementParser` which implements the `Statement` parsing. Such class is defined 
-in the file [src/parser/statement.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js)
 
-The `ScopeHandler` is imported in the [babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from 
-[src/util/scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js) 
-
-The  `ClassScopeHandler` class is imported by the `Parser` class in the 
-[babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from [src/util/class-scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/class-scope.js)
+The file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js) continues like this:
 
 ```ts
-import type { Options } from "../options";
-import type { File /*::, JSXOpeningElement */ } from "../types";
-import type { PluginList } from "../plugin-utils";
 import { getOptions } from "../options";
 import StatementParser from "./statement";
-import { SCOPE_PROGRAM } from "../util/scopeflags"; // const SCOPE_PROGRAM      = 0b00000001
+import { SCOPE_PROGRAM } from "../util/scopeflags"; // const SCOPE_PROGRAM = 0b00000001
 import ScopeHandler from "../util/scope";
 import ClassScopeHandler from "../util/class-scope";
 import ProductionParameterHandler, { PARAM_AWAIT, PARAM, } from "../util/production-parameter";
@@ -39,6 +37,14 @@ export type PluginsMap = Map<string, { [string]: any }>;
 
 export default class Parser extends StatementParser { ... } 
 ```
+It imports the class `StatementParser` which implements the `Statement` parsing. Such class is defined 
+in the file [src/parser/statement.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js)
+
+The `ScopeHandler` is imported in the [babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from 
+[src/util/scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/scope.js) 
+
+The  `ClassScopeHandler` class is imported by the `Parser` class in the 
+[babel-parser/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js#L9-L10) module from [src/util/class-scope](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/util/class-scope.js)
 
 
 The class `Parser` extends `StatementParser` and 
