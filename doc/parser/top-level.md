@@ -9,9 +9,9 @@ It starts by importing types:
 
 from the 
 
-- `[options](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js)`, 
-- `[types](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js)`, and 
-- `[plugin-utils](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js)` 
+- [options](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js), 
+- [types](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js), and 
+- [plugin-utils](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js)
 
 modules respectively.
 
