@@ -1,10 +1,20 @@
 # Configuring Visual Studio Code (VS Code) to Support TypeScript Syntax in JavaScript Files
 
-I've got several warnings in VSCode stating that 
+Babel.js is written in Flow, a static type checker for JavaScript. It is not written in TypeScript. 
+
+When you're writing JavaScript files but want to use Flow features like type checking, you need to istall 
+the [Flow Language Support Extension](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode). 
+
+
+## Initial problems
+
+When editing the Babel project files, I've got several warnings in VSCode stating that 
 
 ["type annotations can only be used in typescript"](https://stackoverflow.com/questions/48859169/error-types-can-only-be-used-in-a-ts-file-visual-studio-code-using-ts-che)
 
 The solution of  disabling the configuration variable `"javascript.validate.enable"` in the settings is not recommended.
+
+## Configuring VS Code to support TypeScript syntax in files with a `.js` extension
 
 To configure Visual Studio Code (VS Code) to support TypeScript syntax in files with a `.js` extension, you need to set up a few configurations. This is useful when you're writing JavaScript files but want to use TypeScript features like type checking and IntelliSense.
 
