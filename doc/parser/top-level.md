@@ -111,7 +111,7 @@ export class NodeUtils extends UtilParser { ... }
 
 `src/parser/util.js`
 ```ts
-export default class UtilParser extends Tokenizer {
+export default class UtilParser extends Tokenizer { ... }
 ```
 
 ```ts
@@ -176,6 +176,20 @@ export default class BaseParser {
     // $FlowIssue
     if (this.hasPlugin(plugin)) return this.plugins.get(plugin)[name];
   }
+```
+
+```mermaid
+graph TD;
+  Parser-->StatementParser;
+  StatementParser-->ExpressionParser;
+  ExpressionParser-->LValParser;
+  LValParser-->NodeUtils;
+  NodeUtils-->UtilParser;
+  UtilParser-->Tokenizer;
+  Tokenizer-->ParserErrors;
+  ParserErrors-->ParserError;
+  ParserError-->CommentsParser;
+  CommentsParser-->BaseParser;
 ```
 
 ### `parse` method
