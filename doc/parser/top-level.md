@@ -17,7 +17,7 @@ It starts by importing types:
 from the 
 
 - [src/options.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js), (parser options like `sourceType`, `strictMode` or `tokens`)
-- [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js).  It defines the types of nodes like `Nodebase`, `Node`, `Expression`, `Declaration`, `Literal`,  `StringLiteral`, etc. The type `File` is defined as follows:
+- [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js).  It defines the types of nodes like `Nodebase`, `Node`, `Expression`, `Declaration`, `Literal`,  `StringLiteral`, etc. The type `File` corresponds to the root of the AST and is defined as follows:
   
   ```ts
   export type File = NodeBase & {
