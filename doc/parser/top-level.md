@@ -9,8 +9,8 @@ It starts by importing types:
 
 from the 
 
-- [src/options.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js), 
-- [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js), and 
+- [src/options.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js), (parser options like `sourceType`, `strictMode` or `tokens`)
+- [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js), (define the types of nodes like `Nodebase`, `Node`, Èxpression`, `Declaration`, `Literal`,  `StrngLiteral`, etc.) and 
 - [src/plugin-utils.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js)
 
 modules.
@@ -30,7 +30,7 @@ import type { File /*::, JSXOpeningElement */ } from "../types";
 import type { PluginList } from "../plugin-utils";
 import { getOptions } from "../options";
 import StatementParser from "./statement";
-import { SCOPE_PROGRAM } from "../util/scopeflags";
+import { SCOPE_PROGRAM } from "../util/scopeflags"; // const SCOPE_PROGRAM      = 0b00000001
 import ScopeHandler from "../util/scope";
 import ClassScopeHandler from "../util/class-scope";
 import ProductionParameterHandler, { PARAM_AWAIT, PARAM, } from "../util/production-parameter";
