@@ -1397,6 +1397,107 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 
 > I am going to briefly explain how parsing works, and in the process hopefully, you understood what that one-liner change did.
 
+
+### flow-bin
+
+Babel.js is written in Flow, a static type checker for JavaScript. The `flow-bin` package is a binary wrapper for `flow` that makes it easy to use the Flow static type checker from the command line. If we check with flow the file `src/index.js` we get the following error:
+
+
+```sh
+  babel-parser git:(learning) ✗ npx flow check src/index.js 
+Error ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ src/parser/statement.js:1055:5
+
+Cannot assign this.eat(...) to node.curry because:
+ • Either property curry is missing in NodeBase [1].
+ • Or property curry is missing in object type [2].
+ • Or property curry is missing in object type [3].
+ • Or property curry is missing in object type [4].
+ • Or property curry is missing in object type [5].
+ • Or property curry is missing in NodeBase [6].
+ • Or property curry is missing in object type [7].
+ • Or property curry is missing in object type [8].
+ • Or property curry is missing in object type [9].
+
+        src/parser/statement.js
+        1052│       this.raise(this.state.start, Errors.GeneratorInSingleStatementContext);
+        1053│     }
+        1054│     node.generator = this.eat(tt.star);
+        1055│     node.curry = this.eat(tt.atat);
+        1056│
+        1057│     if (isStatement) {
+        1058│       node.id = this.parseFunctionId(requireId);
+
+        src/types.js
+ [6][7]   60│ export type DeclarationBase = NodeBase & {
+          61│   // TypeScript allows declarations to be prefixed by `declare`.
+          62│   //TODO: a FunctionDeclaration is never "declare", because it's a TSDeclareFunction instead.
+          63│   declare?: true,
+          64│ };
+          65│
+          66│ // TODO: Not in spec
+ [1][2]   67│ export type HasDecorators = NodeBase & {
+          68│   decorators?: $ReadOnlyArray<Decorator>,
+          69│ };
+            :
+    [3]  161│ export type BodilessFunctionOrMethodBase = HasDecorators & {
+         162│   // TODO: Remove this. Should not assign "id" to methods.
+         163│   // https://github.com/babel/babylon/issues/535
+         164│   id: ?Identifier,
+         165│
+         166│   params: $ReadOnlyArray<Pattern | TSParameterProperty>,
+         167│   body: BlockStatement,
+         168│   generator: boolean,
+         169│   async: boolean,
+         170│
+         171│   // TODO: All not in spec
+         172│   expression: boolean,
+         173│   typeParameters?: ?TypeParameterDeclarationBase,
+         174│   returnType?: ?TypeAnnotationBase,
+         175│ };
+         176│
+    [4]  177│ export type BodilessFunctionBase = BodilessFunctionOrMethodBase & {
+         178│   id: ?Identifier,
+         179│ };
+         180│
+    [5]  181│ export type FunctionBase = BodilessFunctionBase & {
+         182│   body: BlockStatement,
+         183│ };
+            :
+    [8]  322│   DeclarationBase & {
+         323│     type: "FunctionDeclaration",
+         324│   };
+         325│
+    [9]  326│ export type FunctionDeclaration = OptFunctionDeclaration & {
+         327│   id: Identifier,
+         328│ };
+```
+
+If we follow the instructions and modify the `src/types.js` file to include the proeprty `curry` in the type 
+`BodilessFunctionOrMethodBase`: 
+
+```diff
+➜  babel-parser git:(learning) ✗ git -P diff src/types.js
+diff --git a/packages/babel-parser/src/types.js b/packages/babel-parser/src/types.js
+index 17f96dc49..802986c4a 100644
+--- a/packages/babel-parser/src/types.js
++++ b/packages/babel-parser/src/types.js
+@@ -167,6 +167,7 @@ export type BodilessFunctionOrMethodBase = HasDecorators & {
+   body: BlockStatement,
+   generator: boolean,
+   async: boolean,
++  curry: boolean, // TODO: Not in spec
+ 
+   // TODO: All not in spec
+   expression: boolean,
+```
+
+the error disappears.
+
+```sh
+➜  babel-parser git:(learning) ✗ npx flow check src/index.js
+Found 0 errors
+```
+
 ### [How parsing works](https://lihautan.com/creating-custom-javascript-syntax-with-babel#how-parsing-works)
 
 > With the list of tokens from the tokenizer, the parser consumes the token one by one and constructs the AST. 

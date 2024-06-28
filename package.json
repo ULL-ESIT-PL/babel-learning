@@ -19,7 +19,8 @@
     "@babel/cli": "^7.24.6",
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
-    "@babel/preset-flow": "^7.24.7"
+    "@babel/preset-flow": "^7.24.7",
+    "flow-bin": "^0.238.3"
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",
