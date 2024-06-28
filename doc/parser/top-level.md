@@ -11,7 +11,7 @@ from the
 
 - [src/options.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js), (parser options like `sourceType`, `strictMode` or `tokens`)
 - [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js), (define the types of nodes like `Nodebase`, `Node`, `Expression`, `Declaration`, `Literal`,  `StringLiteral`, etc.) and 
-- [src/plugin-utils.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js)
+- [src/plugin-utils.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js) (the type `Plugin` can be a string or a tuple of a string and an object. `PluginList` is a read-only array of Plugin elements).
 
 modules.
 
