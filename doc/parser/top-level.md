@@ -1,7 +1,19 @@
 ## src/parser/index.js: Parser Class
 The class `Parser` is declared in the file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js).
 
-It starts by importing the `Options` type, the `File` type, and the `PluginList` type from the `options`, `types`, and `plugin-utils` modules respectively.
+It starts by importing types:
+
+- the `Options` type, 
+- the `File` type, and 
+- the `PluginList` type 
+
+from the 
+
+- `[options](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js)`, 
+- `[types](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js)`, and 
+- `[plugin-utils](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js)` 
+
+modules respectively.
 
 It imports the class `StatementParser` which implements the `Statement` parsing. Such class is defined 
 in the file [src/parser/statement.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/statement.js)
