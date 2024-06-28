@@ -164,12 +164,12 @@ export default class CommentsParser extends BaseParser {
 And at last we reach the `BaseParser` class:
 
 `src/parser/base.js`
-```ts
+```flow
 export default class BaseParser {
   // Properties set by constructor in index.js
   options: Options;
   inModule: boolean;
-  scope: ScopeHandler<*>;
+  scope: ScopeHandler<*>; // In Flow, the * symbol is used to indicate a generic type that Flow itself should infer,
   classScope: ClassScopeHandler;
   prodParam: ProductionParameterHandler;
   plugins: PluginsMap;
