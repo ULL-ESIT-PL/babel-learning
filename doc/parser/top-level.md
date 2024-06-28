@@ -10,7 +10,7 @@ It starts by importing types:
 from the 
 
 - [src/options.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/options.js), (parser options like `sourceType`, `strictMode` or `tokens`)
-- [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js), (define the types of nodes like `Nodebase`, `Node`, Èxpression`, `Declaration`, `Literal`,  `StrngLiteral`, etc.) and 
+- [src/types.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/types.js), (define the types of nodes like `Nodebase`, `Node`, `Expression`, `Declaration`, `Literal`,  `StringLiteral`, etc.) and 
 - [src/plugin-utils.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugin-utils.js)
 
 modules.
