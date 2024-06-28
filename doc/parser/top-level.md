@@ -1,9 +1,14 @@
 ## src/parser/index.js: Parser Class
 The class `Parser` is declared in the file [src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/parser/index.js).
 
-Here are the first lines in the file:
+Babel.js is written in [Flow](https://flow.org/en/docs/getting-started/). This choice allows the Babel team to leverage Flow's type-checking capabilities while maintaining a JavaScript codebase. However, Babel remains highly compatible with TypeScript through its plugins and is a popular tool for TypeScript users.
+
+Here are the first lines in the file.
+The `// @flow` initial comment indicates that the file is being type-checked by Flow, and the type annotations specify the expected types.
 
 ```ts
+// @flow
+
 import type { Options } from "../options";
 import type { File } from "../types";
 import type { PluginList } from "../plugin-utils";
