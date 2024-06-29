@@ -1,17 +1,16 @@
 // This example shows how to produce a estree compatible AST using the babel parser.
-const babel = require('@babel/core');
+const parse = require("@babel/parser").parse;
+
 const source = '4';
 
-const options = {
-  parserOpts: { // https://babeljs.io/docs/en/babel-parser#options
+const options = { // For the full set of options visit https://babeljs.io/docs/en/babel-parser#options
     plugins: [ 'estree', ],
     sourceType: 'script', // module, script
     tokens: true, // default false
     sourceFilename: 'estree-example-tokens.js',
-  },
 };
 
-const ast = babel.parseSync(source, options);
+const ast = parse(source, options);
 
 console.log(JSON.stringify(
   ast, 
