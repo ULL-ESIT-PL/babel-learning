@@ -80,6 +80,11 @@ console.log(JSON.stringify(ast, function skip(key, value) {
 const recast = require('recast');
 console.log(recast.print(ast).code); // '4;'
 ``` 
+
+The `parseSync` method receives the source code and options `babel.parseSync(code: string, options?: Object)` and returns an AST.
+Referenced presets and plugins will be loaded such that *optional syntax plugins* are automatically enabled.
+
+
 The execution shows that the `type` field is now `Literal` instead of `NumericLiteral`:
 
 `➜  babel-learning git:(main) ✗ ➜  node src/parser/estree-example.js`
@@ -103,6 +108,8 @@ The execution shows that the `type` field is now `Literal` instead of `NumericLi
     ]
   }
 }
+```
+```
 4;
 ```
 
