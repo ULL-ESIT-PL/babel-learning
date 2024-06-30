@@ -179,7 +179,7 @@ See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/t
 
 ## Exercises
 
-See section [Exercises](doc/exercises.md).
+See section [Exercises](doc/exercises/README.md).
 
 ## References
 
