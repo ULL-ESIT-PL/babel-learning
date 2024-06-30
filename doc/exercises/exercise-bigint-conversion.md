@@ -59,3 +59,9 @@ We need to convert `Number`s like `3e30` to a `BigInt` without losing precision 
 See the partial solution in [/src/exercises/bigint-conversion/plugin-bigint-conversion.cjs](/src/exercises/bigint-conversion/plugin-bigint-conversion.cjs).
 
 **Improve the solution to handle this cases.**
+
+## See also
+
+*  TC39 Proposal [bigint enhancements](https://es.discourse.group/t/bigint-enhancements/100/1)
+*  TC39 [Why is BigInt broken?](https://es.discourse.group/t/why-is-bigint-broken/567/1)
+*  TC39 [GitHub - js-choi/proposal-bigint-math: Draft specification for supporting...](https://es.discourse.group/t/github-js-choi-proposal-bigint-math-draft-specification-for-supporting/942/1)

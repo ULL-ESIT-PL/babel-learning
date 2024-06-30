@@ -27,5 +27,5 @@
 * [Parsing JavaScript - better lazy than eager?](https://youtu.be/Fg7niTmNNLg?si=KQt2HhxbacmlW0kq) by Marja Hölttä from the V8 Team. JSConf EU 2017
 * Parsing Javascript - Programming Languages: https://youtu.be/sWA_53OX4L0?si=UeygRvs9S9K0ysxb. Udacity. 2012. 
   The ull list "Programming lLnaguages" is at https://www.youtube.com/playlist?list=PLAwxTw4SYaPlI9QCVVfXxwJYqJWyts10f
-
+* [Babel videos](https://babeljs.io/videos)
 * [Babel repo: issues with label *help wanted*](https://github.com/babel/babel/labels/help%20wanted)
