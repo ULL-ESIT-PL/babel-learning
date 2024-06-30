@@ -3,9 +3,6 @@
 
 The semantics of the `BigInt` type are similar to the `Number` type.
 When operating a `BigInt` with a number the result is an exception. 
-To convert a `Number` to a `BigInt` use the `BigInt()` constructor.
-
-Write a Babel plugin to promote the number to a `BigInt` when the constant is an integer one.
 
 `➜  babel-learning git:(main) ✗ cat src/exercises/bigint-conversion/input-1-bigint-conversion.js`
 ```js
@@ -15,6 +12,19 @@ let c = 6n + 7n;
 console.log(a);
 console.log(b);
 ```
+When we try to run the code we get an error:
+
+``` 
+➜  babel-learning git:(main) node src/exercises/bigint-conversion/input-1-bigint-conversion.js 
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/exercises/bigint-conversion/input-1-bigint-conversion.js:1
+let a = 2n+3e30;
+          ^
+TypeError: Cannot mix BigInt and other types, use explicit conversions
+```
+To convert a `Number` to a `BigInt` use the `BigInt()` constructor.
+
+**Write a Babel plugin to promote the number to a `BigInt` when the constant is an integer one.**
+
 ```js
 ➜  babel-learning git:(main) ✗ npx babel src/exercises/bigint-conversion/input-1-bigint-conversion.js --plugins=./src/exercises/bigint-conversion/plugin-bigint-conversion.cjs      
 "use strict";
@@ -48,4 +58,4 @@ We need to convert `Number`s like `3e30` to a `BigInt` without losing precision 
 
 See the partial solution in [/src/exercises/bigint-conversion/plugin-bigint-conversion.cjs](/src/exercises/bigint-conversion/plugin-bigint-conversion.cjs).
 
-Improve the solution to handle this cases.
+**Improve the solution to handle this cases.**
