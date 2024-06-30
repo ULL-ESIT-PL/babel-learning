@@ -1,5 +1,7 @@
 # Nicolo Ribaldo  "@babel/how-to talk" at  HolyJS 2019
 
+## References
+
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
 * See the associated repo at GitHub: https://github.com/nicolo-ribaudo/conf-holyjs-moscow-2019, 
 * [Nicolo slides](/pdfs/holyjs-2019-Nicolo_Ribaudo_babelhow-to.pdf)
