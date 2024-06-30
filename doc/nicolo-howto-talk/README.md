@@ -1,4 +1,4 @@
-# Nicolo Ribaldo  "@babel/how-to talk" at  HolyJS 2019
+# Nicolo Ribaldo  "@babel/how-to" talk at  HolyJS 2019
 
 ## References
 
