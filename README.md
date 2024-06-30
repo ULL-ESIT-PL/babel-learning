@@ -177,6 +177,10 @@ See
 
 See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
 
+## Exercises
+
+See section [Exercises](doc/exercises.md).
+
 ## References
 
 See section [References](doc/references.md).
