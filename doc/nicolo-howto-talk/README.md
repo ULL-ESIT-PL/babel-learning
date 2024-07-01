@@ -35,6 +35,35 @@ module.exports = function myPlugin({types: t, template}, options) {
 At this point we need to review the properties of an `OptionalMemberExpression` node: `object`, `property`, `computed` and  `optional`.
 See section [optional-property.md](/doc/nicolo-howto-talk/optional-property.md) for a Explanation of the `optional` Property in an `OptionalMemberExpression` node in a Babel AST.
 
+At minute [29:40](https://youtu.be/UeVq_U5obnE?t=1775) he has filled the `OptionalMemberExpression` visitor with the following code:
+
+```js
+module.exports = function myPlugin({types: t, template}, options) {
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression(path) {
+        let { object, property} = path.node;
+        let memberExp = t.memberExpression(object, property);
+        path.replaceWith(
+          template.expression.ast`
+             ${object} == null? undefined :
+             ${memberExp}
+          `
+        )
+      } 
+    }
+  }
+}
+```
+that for an input like `obj?.foo` will produce the output:
+
+```js
+obj == null ? undefined : obj.foo;
+```
 
 ## References
 
