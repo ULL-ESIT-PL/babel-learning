@@ -49,10 +49,7 @@ module.exports = function myPlugin({types: t, template}, options) {
         let { object, property} = path.node;
         let memberExp = t.memberExpression(object, property);
         path.replaceWith(
-          template.expression.ast`
-             ${object} == null? undefined :
-             ${memberExp}
-          `
+          template.expression.ast`${object} == null? undefined : ${memberExp}`
         )
       } 
     }
@@ -64,6 +61,12 @@ that for an input like `obj?.foo` will produce the output:
 ```js
 obj == null ? undefined : obj.foo;
 ```
+
+The `template.expression`, `template.statements`, are variants of the [`template` function](https://babeljs.io/docs/babel-template). By default `@babel/template` returns a function which is invoked with an optional object of replacements, but when using `.ast` as in this example, the AST is returned directly.
+
+Notice that you write the code but are interpolating the `object` and `memberExp` variables which contain 
+ASTs!
+
 
 ## References
 

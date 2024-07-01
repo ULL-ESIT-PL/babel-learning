@@ -3,7 +3,6 @@
 `@babel/types` is a package that contains a lot of utility functions for AST nodes.
 
 `@babel/template` is a tiny but incredibly useful module. 
-Babel Template is another tiny but incredibly useful module. 
 It allows you to write strings of code with placeholders 
 that you can use instead of manually building up a massive AST.
 
