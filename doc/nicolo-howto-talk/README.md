@@ -7,7 +7,7 @@ This chapter contains my attempt to reproduce and learn from Nicolo Ribaudo's ta
 The target is to build a Babel plugin that transforms the optional chaining proposal `obj?.prop` (now a part of the JavaScript language) into a sequence of tests and assignments that check if the object and its properties are defined.
 
 See folder
-[/src/nicolo-howto-talk/production-example/README.md](/src/ nicolo-howto-talk/production-example/README.md) and 
+[/src/nicolo-howto-talk/production-example/README.md](/src/ nicolo-howto-talk/production-example/README.md) and the file
 [/src/nicolo-howto-talk/production-example/README.md](/src/nicolo-howto-talk/production-example/README.md) for an input example and the output of the current production plugin.
 
 Nicolo starts using an editor that resembles asttree explorer, but it is not clear which one he is using. I will go with the [AST Explorer](https://astexplorer.net/).
