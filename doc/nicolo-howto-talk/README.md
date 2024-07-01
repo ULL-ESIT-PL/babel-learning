@@ -90,10 +90,10 @@ export default function() {
   > Thats why we need to add a file which manipulates the parser, name it as jsx-syntax-parser.js
   ```js
   module.exports = function () {
-  return {
-    manipulateOptions: function manipulateOptions(opts, parserOpts) {
-      parserOpts.plugins.push("jsx");
-    }
+    return {
+      manipulateOptions: function manipulateOptions(opts, parserOpts) {
+        parserOpts.plugins.push("jsx");
+      }
+    };
   };
-};
 ```
