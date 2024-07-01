@@ -53,7 +53,7 @@ The Babel AST representation of this optional chaining operation will include `O
   
 - **Inner `OptionalMemberExpression`**: Represents the access to `foo` (`obj?.foo`). The `optional` property is also `true`, indicating that if `obj` is nullish, the access will return `undefined` instead of causing an error.
 
-For instance, for the expression `obj?.foo.bar` the outer `optional` property would be `false` and the inner `optional` property would be `true`. See [/doc/nicolo-howto-talk/production-example/optional-chain.md](/doc/nicolo-howto-talk/production-example/optional-chain.md) for the corresponding AST.
+For instance, for the expression `obj?.foo.bar` the outer `optional` property would be `false` and the inner `optional` property would be `true`. See [/doc/nicolo-howto-talk/optional-chain.md](/doc/nicolo-howto-talk/optional-chain.md) for the corresponding AST.
 
 
 If the `optional` property were `false` in any of these nodes, it would mean that the member access at that level is not using optional chaining, and an attempt to access a property on a nullish value would throw an error.
