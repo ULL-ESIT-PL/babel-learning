@@ -78,3 +78,5 @@ const baz = obj === null                       ||  // check for null
 ```
 
 You can also run it with: `npx babel --plugins @babel/plugin-transform-optional-chaining script.js`
+
+## [Go to Nicolo's talk @babel/how-to](/doc/nicolo-howto-talk/README.md)
