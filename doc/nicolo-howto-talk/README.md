@@ -49,7 +49,7 @@ export default function() {
    };
   }
   ```
-* Tan Li Hau in his article [Codemod with babel](https://lihautan.com/codemod-with-babel/) (2019) mentions the `manipulateOptions` method. He also mentions the `parserOpts` object that is passed to the `manipulateOptions` method. The `parserOpts` object is used to modify the behavior of the parser.
+* Tan Li Hau in his article [Codemod with babel](https://lihautan.com/codemod-with-babel/) (2019) mentions the `manipulateOptions` method. He recommends this template to start a babel transformation:
 
   ```js
   const babel = require('@babel/core');
