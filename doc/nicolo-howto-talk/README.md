@@ -8,23 +8,10 @@ The target is to build a Babel plugin that transforms the optional chaining prop
 
 See [/src/nicolo-howto-talk/production-example/README.md](/src/nicolo-howto-talk/production-example/README.md) for an input example and the output of the current production plugin.
 
-
 Nicolo starts using an editor that resembles asttree explorer, but it is not clear which one he is using. I will go with the [AST Explorer](https://astexplorer.net/).
 
-In the returned object it introduces the `manipulateOptions` method that is used to modify the behavior of the parser. A plugin could manipulate Babel options by `manipulateOptions()`
+In the returned object it introduces the `manipulateOptions` method that is used to modify the behavior of the parser. A plugin could manipulate the parser options using  `manipulateOptions(opts, parserOpts)` and adding plugins to `parserOpts.plugins`. Unfortunately, parser plugins are not real plugins: they are just a way to enable syntax features already implemented in the Babel parser.
 
-https://babeljs.io/docs/v7-migration-api
-
-```js
-export default function() {
-  return {
-    manipulateOptions(opts, parserOpts) {
-      parserOpts.tokens = true;
-    },
-    ...
-  };
-}
-```
 
 ## References
 
