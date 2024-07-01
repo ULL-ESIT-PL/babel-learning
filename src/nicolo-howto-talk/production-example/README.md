@@ -2,8 +2,8 @@
 
 ### babel.config.json
 
+`➜  babel-learning git:(main) cat src/nicolo-howto-talk/production-example/babel.config.json`
 ```json
-➜  babel-learning git:(main) cat src/nicolo-howto-talk/production-example/babel.config.json 
 {
   "plugins": ["@babel/plugin-transform-optional-chaining"]
 }
