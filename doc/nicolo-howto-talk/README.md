@@ -39,6 +39,16 @@ export default function() {
 ### References to manipulateOptions
 
 * `manipulateOptions` is mentioned in https://babeljs.io/docs/v7-migration-api
+  ```js
+  export default function() {
+   return {
+     manipulateOptions(opts, parserOpts) {
+       parserOpts.tokens = true;
+     },
+     ...
+   };
+  }
+  ```
 * Tan Li Hau in his article [Codemod with babel](https://lihautan.com/codemod-with-babel/) mentions the `manipulateOptions` method. He also mentions the `parserOpts` object that is passed to the `manipulateOptions` method. The `parserOpts` object is used to modify the behavior of the parser.
 * [Transpile JSX using your own custom built babel plugin](https://dev.to/pulkitnagpal/transpile-jsx-using-your-own-custom-built-babel-plugin-4888)
 
