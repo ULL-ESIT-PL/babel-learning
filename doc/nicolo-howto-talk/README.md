@@ -32,7 +32,8 @@ module.exports = function myPlugin({types: t, template}, options) {
 }
 ```
 
-See [optional-property.md](/doc/nicolo-howto-talk/optional-property.md) for a Explanation of the `optional` Property in an `OptionalMemberExpression` node in a Babel AST.
+At this point we need to review the properties of a `OptionalMemberExpression` node: `object`, `property`, `computed` and  `optional`.
+See section [optional-property.md](/doc/nicolo-howto-talk/optional-property.md) for a Explanation of the `optional` Property in an `OptionalMemberExpression` node in a Babel AST.
 
 
 ## References
