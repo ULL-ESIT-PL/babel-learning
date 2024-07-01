@@ -1,4 +1,15 @@
-## Execution
+## Example of Execution of the production plugin
+
+### babel.config.json
+
+```json
+➜  babel-learning git:(main) cat src/nicolo-howto-talk/production-example/babel.config.json 
+{
+  "plugins": ["@babel/plugin-transform-optional-chaining"]
+}
+```
+
+### Input optional-chaining-input.js
 
 `➜  production-example git:(main) ✗ cat optional-chaining-input.js`
 ```js
@@ -22,14 +33,13 @@ obj?.foo.bar?.baz; // Only access `foo` if `obj` exists, and `baz` if
 obj?.["foo"]?.bar?.baz; // 42
 ```
 
+### Output of the production plugin
+
 Notice the declaration of auxiliar variables `_obj$foo`, `_obj$qux`, `_obj$foo$bar`, `_obj$foo2` in the output.
 
 `➜  production-example git:(main) ✗ npx babel optional-chaining-input.js`
 ```js
 var _obj$foo, _obj$qux, _obj$foo$bar, _obj$foo2;
-// Example Accessing deeply nested properties 
-// https://babeljs.io/docs/babel-plugin-transform-optional-chaining#accessing-deeply-nested-properties
-// Run it with: npx babel --plugins @babel/plugin-transform-optional-chaining script.js
 const obj = {
   foo: {
     bar: {
@@ -66,3 +76,5 @@ const baz = obj === null                       ||  // check for null
             _obj$foo === void 0 ? void 0       :   // check for obj.foo.bar undefined
                             _obj$foo.baz;          // 42
 ```
+
+You can also run it with: `npx babel --plugins @babel/plugin-transform-optional-chaining script.js`
