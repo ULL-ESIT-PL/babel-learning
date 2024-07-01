@@ -86,7 +86,7 @@ export default function() {
   ```
 * [Transpile JSX using your own custom built babel plugin](https://dev.to/pulkitnagpal/transpile-jsx-using-your-own-custom-built-babel-plugin-4888)
 
-  > When you try to parse this jsx using your local babel cli, you will get a syntax error. Because the parser does not know anything about the jsx syntax.
+  > ... When you try to parse this jsx using your local babel cli, you will get a syntax error. Because the parser does not know anything about the jsx syntax.
   > Thats why we need to add a file which manipulates the parser, name it as jsx-syntax-parser.js
   ```js
   module.exports = function () {
