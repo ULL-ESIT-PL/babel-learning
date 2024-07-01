@@ -1,11 +1,10 @@
-## Babel.js  AST
+## Babel.js  AST for `obj?.foo.bar`
 
 ```json
 {
   "type": "File",
     "program": {
     "type": "Program",
-    "source": "obj?.foo.bar",
     "body": [
       {
         "type": "ExpressionStatement",
@@ -37,7 +36,7 @@
 }
 ```
 
-## Espree AST
+## Espree AST for `obj?.foo.bar`
 
 The ASt produced by Babel.js is different from the one produced by Espree. The `OptionalMemberExpression` node is not present in the Espree AST. Instead, the `ChainExpression` node is used to represent the optional chaining operation.
 
