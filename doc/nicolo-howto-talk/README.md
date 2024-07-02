@@ -79,6 +79,8 @@ By default `@babel/template` returns a function which is invoked with an optiona
 ASTs using ordinary JS backquotes!** 
 
 
+## The `undefined` problem
+
 > ... But (the code `template.expression.ast`${object} == null? undefined : ${memberExp}``) it has 
 > a few problems. Someone could write this in their code:
 > ```js
@@ -86,8 +88,6 @@ ASTs using ordinary JS backquotes!**
 > a == null ? undefined : a.b;
 > ```
 >
-
-## The `undefined` problem
 
 We have to cope with this kind of bad code and have access to the original `undefined`.
 The expression `void 0` always returns `undefined` and we are going to use it instead. 
