@@ -91,6 +91,7 @@ ASTs using ordinary JS backquotes!**
 
 We have to cope with this kind of bad code and have access to the original `undefined`.
 The expression `void 0` always returns `undefined` and we are going to use it instead. 
+Let us switch from [astexplorer](https://astexplorer.net/#/gist/e48001e11fe9ad94b5e90a24bb4c4340/b51a7d45d97647ea9580c04de28dc08583806aa4) to VSCode:
 
 `➜  nicolo-howto-talk git:(main) cat `[input.js](/src/nicolo-howto-talk/input.js)
 ```js
