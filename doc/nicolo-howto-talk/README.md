@@ -135,6 +135,8 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
+## Computed properties 
+
 At minute [31.14](https://youtu.be/UeVq_U5obnE?t=1867) Nicolo considers the more general case of accessing a computed property like in:
 
 `➜  nicolo-howto-talk git:(main) ✗ cat input-array.js`
