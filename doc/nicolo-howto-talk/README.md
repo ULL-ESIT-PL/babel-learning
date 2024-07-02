@@ -15,7 +15,8 @@ Nicolo starts using an editor that resembles https://astexplorer.net, but it is 
 
 ## manipulateOptions: sending options to the parser
 
-In the returned object it introduces the [manipulateOptions](https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/nicolo-howto-talk/README.md#references-to-manipulateoptions) method that is used to modify the behavior of the parser. A plugin could manipulate the parser options using  `manipulateOptions(opts, parserOpts)` and adding plugins to `parserOpts.plugins`. Unfortunately, parser plugins are not real plugins: they are just a way to enable syntax features already implemented in the Babel parser.
+In the returned object it introduces the [manipulateOptions](https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/nicolo-howto-talk/README.md#references-to-manipulateoptions) method that is used to modify the behavior of the parser. A plugin could manipulate the parser options using  `manipulateOptions(opts, parserOpts)` and adding plugins to `parserOpts.plugins`. Unfortunately, parser plugins are not real plugins: they are just a way to enable syntax features already implemented in the Babel parser. It is almost impossible to
+create a JavaScript parser complaiant with the Open-Closed Principle.
 
 At [26:44](https://youtu.be/UeVq_U5obnE) Nicolo has this preliminary code for the plugin:
 
