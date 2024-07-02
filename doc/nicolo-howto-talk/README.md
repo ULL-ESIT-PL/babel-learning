@@ -11,7 +11,7 @@ See folder
 and the file
 [/src/nicolo-howto-talk/production-example/README.md](/src/nicolo-howto-talk/production-example/README.md) for an input example and the output using the current production plugin (2024).
 
-Nicolo starts using an editor that resembles https://astexplorer.net, but it is not clear which one he is using. I will go with the [AST Explorer](https://astexplorer.net/).
+Nicolo starts using an editor that resembles https://astexplorer.net, but it is not clear which one he is using. I will initially go with the [AST Explorer](https://astexplorer.net/) and later with VSCode (see folder [/src/nicolo-howto-talk](src/nicolo-howto-talk)).
 
 ## manipulateOptions: sending options to the parser
 
