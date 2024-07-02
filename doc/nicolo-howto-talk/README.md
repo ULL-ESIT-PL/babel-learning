@@ -78,6 +78,10 @@ ASTs!
 > ```
 >
 
+We have to cope with this kind of bad code and have access to the original `undefined`.
+The expression `void 0` always returns `undefined` and we are going to use it instead. 
+
+
 
 ## References
 
