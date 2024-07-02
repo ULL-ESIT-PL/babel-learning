@@ -91,7 +91,8 @@ a?.b
   "plugins": [
     "./optionalchaining-plugin.cjs"
   ]
-}```
+}
+```
 `➜  nicolo-howto-talk git:(main) cat `[optionalchaining-plugin.cjs](/src/nicolo-howto-talk/optionalchaining-plugin.cjs)
 ```js
 module.exports = function myPlugin(babel, options) {
