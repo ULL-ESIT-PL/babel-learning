@@ -83,11 +83,15 @@ ASTs using ordinary JS backquotes!**
 
 > ... But (the code `template.expression.ast`${object} == null? undefined : ${memberExp}``) it has 
 > a few problems. Someone could write this in their code:
-> ```js
-> var undefined = 2;
-> a == null ? undefined : a.b;
-> ```
 >
+
+`➜  nicolo-howto-talk git:(main) ✗ cat redefine-undefined.cjs`
+```js
+var undefined = 42;
+console.log(undefined); // 42                                                                                                                     
+➜  nicolo-howto-talk git:(main) ✗ node redefine-undefined.cjs 
+42
+```
 
 We have to cope with this kind of bad code and have access to the original `undefined`.
 The expression [void 0](/doc/nicolo-howto-talk/void.md) always returns `undefined` and we are going to use it instead. 
