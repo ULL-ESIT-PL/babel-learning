@@ -81,7 +81,42 @@ ASTs!
 We have to cope with this kind of bad code and have access to the original `undefined`.
 The expression `void 0` always returns `undefined` and we are going to use it instead. 
 
-
+`➜  nicolo-howto-talk git:(main) cat `[input.js](/src/nicolo-howto-talk/input.js)
+```js
+a?.b
+```
+`➜  nicolo-howto-talk git:(main) cat babel.config.json`
+```json
+{
+  "plugins": [
+    "./optionalchaining-plugin.cjs"
+  ]
+}```
+`➜  nicolo-howto-talk git:(main) cat `[optionalchaining-plugin.cjs](/src/nicolo-howto-talk/optionalchaining-plugin.cjs)
+```js
+module.exports = function myPlugin(babel, options) {
+  const {types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression(path) {
+        let { object, property} = path.node;
+        let memberExp = t.memberExpression(object, property);
+        let undef = path.scope.buildUndefinedNode();
+        path.replaceWith(
+          template.expression.ast`
+             ${object} == null? ${undef} :
+             ${memberExp}
+          `
+        )
+      } 
+    }
+  }
+}
+```
 
 ## References
 
