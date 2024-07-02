@@ -11,7 +11,9 @@ See folder
 and the file
 [/src/nicolo-howto-talk/production-example/README.md](/src/nicolo-howto-talk/production-example/README.md) for an input example and the output using the current production plugin (2024).
 
-Nicolo starts using an editor that resembles asttree explorer, but it is not clear which one he is using. I will go with the [AST Explorer](https://astexplorer.net/).
+Nicolo starts using an editor that resembles https://astexplorer.net, but it is not clear which one he is using. I will go with the [AST Explorer](https://astexplorer.net/).
+
+## manipulateOptions: sending options to the parser
 
 In the returned object it introduces the [manipulateOptions](https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/nicolo-howto-talk/README.md#references-to-manipulateoptions) method that is used to modify the behavior of the parser. A plugin could manipulate the parser options using  `manipulateOptions(opts, parserOpts)` and adding plugins to `parserOpts.plugins`. Unfortunately, parser plugins are not real plugins: they are just a way to enable syntax features already implemented in the Babel parser.
 
@@ -33,9 +35,15 @@ module.exports = function myPlugin({types: t, template}, options) {
 ```
 
 At this point we need to review the properties of an `OptionalMemberExpression` node: `object`, `property`, `computed` and  `optional`.
-See section [optional-property.md](/doc/nicolo-howto-talk/optional-property.md) for a Explanation of the `optional` Property in an `OptionalMemberExpression` node in a Babel AST.
+
+## Differences between Babel and Espree ASTs with Optional Chaining
+
+See section [optional-property.md](/doc/nicolo-howto-talk/optional-property.md) for a Explanation of the `optional` Property in an `OptionalMemberExpression` node in a Babel AST. In section [optional-chain.md](/doc/nicolo-howto-talk/optional-chain.md) we compare the Babel and Espree ASTs for `obj?.foo.bar`.
+
+## template.expression.ast 
 
 At minute [29:40](https://youtu.be/UeVq_U5obnE?t=1775) he has filled the `OptionalMemberExpression` visitor with the following code:
+
 
 ```js
 module.exports = function myPlugin({types: t, template}, options) {
@@ -77,6 +85,8 @@ ASTs!
 > a == null ? undefined : a.b;
 > ```
 >
+
+## The `undefined` problem
 
 We have to cope with this kind of bad code and have access to the original `undefined`.
 The expression `void 0` always returns `undefined` and we are going to use it instead. 
