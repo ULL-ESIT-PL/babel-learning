@@ -62,10 +62,21 @@ that for an input like `obj?.foo` will produce the output:
 obj == null ? undefined : obj.foo;
 ```
 
-The `template.expression`, `template.statements`, are variants of the [`template` function](https://babeljs.io/docs/babel-template). By default `@babel/template` returns a function which is invoked with an optional object of replacements, but when using `.ast` as in this example, the AST is returned directly.
+The `template.expression`, `template.statements`, are variants of the 
+[`template` function](https://babeljs.io/docs/babel-template). 
+By default `@babel/template` returns a function which is invoked with an optional object of replacements, but when using `.ast` as in this example, the AST is returned directly.
 
 Notice that you write the code but are interpolating the `object` and `memberExp` variables which contain 
 ASTs!
+
+
+> ... But (the code `template.expression.ast`${object} == null? undefined : ${memberExp}``) it has 
+> a few problems. Someone could write this in their code:
+> ```js
+> var undefined = 2;
+> a == null ? undefined : a.b;
+> ```
+>
 
 
 ## References

@@ -1,5 +1,8 @@
 ## Babel.js  AST for `obj?.foo.bar`
 
+It looks strange to me the decision to consider  all the chain (dots) as the type 
+`OptionalMemberExpression` and not just the first one
+
 ```json
 {
   "type": "File",
@@ -38,7 +41,7 @@
 
 ## Espree AST for `obj?.foo.bar`
 
-The ASt produced by Babel.js is different from the one produced by Espree. The `OptionalMemberExpression` node is not present in the Espree AST. Instead, the `ChainExpression` node is used to represent the optional chaining operation.
+Curiously the ASt produced by Babel.js is different from the one produced by Espree. The `OptionalMemberExpression` node is not present in the Espree AST. Instead, the `ChainExpression` node is used to represent the optional chaining operation. It appears a `ChainExpression` node followed by the inners `MemberExpression` nodes.
 
 
 `➜  babel-learning git:(main) ✗ compast -lp 'obj?.foo.bar'`
