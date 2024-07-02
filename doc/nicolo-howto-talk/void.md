@@ -14,6 +14,7 @@ void expression
    Using `void` can be useful in contexts where you need an expression to explicitly return `undefined`. For example:
 
    ```javascript
+   undefined = 3;
    void 0; // returns undefined
    void (0); // returns undefined
    void "hello"; // returns undefined
