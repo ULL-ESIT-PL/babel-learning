@@ -135,6 +135,22 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
+At minute [31.14](https://youtu.be/UeVq_U5obnE?t=1867) Nicolo considers the more general case of accessing a computed property like in:
+
+`➜  nicolo-howto-talk git:(main) ✗ cat input-array.js`
+```js 
+a?.[0]
+```
+When we feed this input to the plugin we get the output:
+
+```
+➜  nicolo-howto-talk git:(main) ✗ npx babel input-array.js
+TypeError: /Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/nicolo-howto-talk/input-array.js:
+Property property of MemberExpression expected node to be 
+of a type ["Identifier","PrivateName"] but instead got "NumericLiteral"
+```
+
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
