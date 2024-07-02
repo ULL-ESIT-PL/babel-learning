@@ -1,7 +1,7 @@
 const generate = require('@babel/generator').default;
 
 module.exports = function myPlugin(babel, options) {
-  const {types: t, template, _generate} = babel;
+  const {types: t, template } = babel;
   return {
     name: "optional-chaining-plugin",
     manipulateOptions(opts) {
