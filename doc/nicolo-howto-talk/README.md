@@ -151,7 +151,31 @@ TypeError: /Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learni
 Property property of MemberExpression expected node to be 
 of a type ["Identifier","PrivateName"] but instead got "NumericLiteral"
 ```
+This is because the `property` of the `OptionalMemberExpression` is in this case a `NumericLiteral`:
 
+`➜  nicolo-howto-talk git:(main) compast -blp 'a?.[0]' | yq '.program.body[0]'`
+```json 
+{
+  "type": "ExpressionStatement",
+  "expression": {
+    "type": "OptionalMemberExpression",
+    "object": {
+      "type": "Identifier",
+      "name": "a"
+    },
+    "computed": true,
+    "property": {
+      "type": "NumericLiteral",
+      "extra": {
+        "rawValue": 0,
+        "raw": "0"
+      },
+      "value": 0
+    },
+    "optional": true
+  }
+}
+```
 
 ## References
 
