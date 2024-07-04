@@ -3,7 +3,7 @@
 ## Introduction
 
 Babel is a JavaScript transpiler that converts not only ECMAScript 2015+ but also JS extensions like JSX, Flow, TypeScript, and other proposals into JavaScript code that can run in any browser or JavaScript environment.  You can see examples of how Babel is used to study new syntactic and semantic proposals in 
-sections [/doc/nicolo-howto-talk/privatename.md](/doc/nicolo-howto-talk/privatename.md) and [/src/record-and-tuple](/main/src/record-and-tuple/README.md). This tutorial is a collection of notes and examples on how to use Babel to extend JavaScript syntax and semantics. 
+sections [/doc/nicolo-howto-talk/privatename.md](/doc/nicolo-howto-talk/privatename.md) and [/src/record-and-tuple](/src/record-and-tuple/README.md). This tutorial is a collection of notes and examples on how to use Babel to extend JavaScript syntax and semantics. 
 
 ## Babel Configuration
 
