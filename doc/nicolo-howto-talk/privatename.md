@@ -205,3 +205,12 @@ The `PrivateName` node typically has the following structure:
 
 - `type`: A string with the value `"PrivateName"`.
 - `id`: An `Identifier` node that contains the name of the private field or method.
+
+## Implementations
+
+The class fields proposal has been implemented in various JavaScript engines and transpilers, including node.js: 
+
+```sh
+➜  babel-learning git:(main) node src/nicolo-howto-talk/privatename-example.js 
+1
+```
