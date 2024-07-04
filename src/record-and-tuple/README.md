@@ -44,7 +44,9 @@ let b = _Tuple(1, 2, 3);
 console.log(a == b)
 ```
 
-```
+The execution of the above code will print `true` to the console while the equivalent arrays code will print `false`, since the 
+`==` operator compares the references of the objects and not the values.
+
 record-and-tuple git:(main) ✗ npx babel hello.js -o hello.mjs
 ```
 
