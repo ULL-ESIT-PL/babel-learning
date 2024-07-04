@@ -29,3 +29,4 @@
   The ull list "Programming lLnaguages" is at https://www.youtube.com/playlist?list=PLAwxTw4SYaPlI9QCVVfXxwJYqJWyts10f
 * [Babel videos](https://babeljs.io/videos)
 * [Babel repo: issues with label *help wanted*](https://github.com/babel/babel/labels/help%20wanted)
+* [ECMA TC39, TC53 presentations](https://youtube.com/playlist?list=PLzDw4TTug5O3vIAd4IR1Gp5t_46co_dv9&si=R-rjgT_IARxta7zf) at Youtube
