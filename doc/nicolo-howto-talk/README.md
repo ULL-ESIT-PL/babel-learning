@@ -176,6 +176,9 @@ This is because the `property` of the `OptionalMemberExpression` is in this case
   }
 }
 ```
+The error is caused due to the fact that by default value for `MemberExpression`s the `computed` property is `false`
+and since in the previous code we haven't specified it, it is assumed to be `false`. The consequence being that the `property` 
+is expected to be an `Identifier` or a [PrivateName](privatename.md) and not a `NumericLiteral`. 
 
 ## References
 
