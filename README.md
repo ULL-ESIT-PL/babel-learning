@@ -1,5 +1,7 @@
 # YATBABEL: Yet Another Babel Tutorial
 
+Babel is a JavaScript transpiler that converts not only ECMAScript 2015+ but also JSX, Flow, TypeScript, and other proposals into JavaScript code that can run in any browser or JavaScript environment.  You can see examples of how Babel is used to study new syntactic and semantic proposals in 
+sections [/doc/nicolo-howto-talk/privatename.md](/doc/nicolo-howto-talk/privatename.md) and [/src/record-and-tuple](/src/record-and-tuple.md)
 
 ## Babel Configuration
 
