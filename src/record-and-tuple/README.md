@@ -35,8 +35,20 @@ npm ERR! code EBADENGINE
 
 ## Run babel
 
+Consider the input file `hello.js`:
+
 ```js
-➜  record-and-tuple git:(main) ✗ npx babel hello.js       
+➜  record-and-tuple git:(main) cat hello.js 
+let a = #[1, 2, 3];
+let b = #[1, 2, 3];
+
+console.log( a == b);
+```
+
+When we run babel on the above file, it will transpile the code to the following:
+
+`➜  record-and-tuple git:(main) ✗ npx babel hello.js`
+```js 
 import { Tuple as _Tuple } from "@bloomberg/record-tuple-polyfill";
 let a = _Tuple(1, 2, 3);
 let b = _Tuple(1, 2, 3);
