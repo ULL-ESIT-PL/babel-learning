@@ -17,9 +17,8 @@ npm ERR! code EBADENGINE
 
 ## babel.config.json
 
-
+`➜  record-and-tuple git:(main) ✗ cat babel.config.json`
 ```json 
-➜  record-and-tuple git:(main) ✗ cat babel.config.json 
 {
     "plugins": [
         [ "@babel/plugin-proposal-record-and-tuple", { "importPolyfill": true} ]
