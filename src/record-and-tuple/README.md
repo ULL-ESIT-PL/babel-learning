@@ -1,3 +1,11 @@
+## Proposal JavaScript Records & Tuples Proposal
+
+See https://github.com/tc39/proposal-record-tuple
+
+A record is analogous to an Object in JavaScript with the exception that the Record is not an Object but a deeply immutable primitive value. 
+Likewise, a Tuple is like an Array but is a deeply immutable primitive value.
+
+
 ## node version
 
 Does not work wit node v20.0.0.
