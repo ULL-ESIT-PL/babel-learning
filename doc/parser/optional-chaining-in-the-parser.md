@@ -173,7 +173,7 @@ This can be particularly useful in situations where the function you are calling
       return node;
     }
 ```
-Tagged Template Expression Parsing: If a backquote token is matched, it indicates the start of a tagged template expression, which is then parsed accordingly.
+**Tagged Template Expression Parsing**: If a backquote token is matched, it indicates the start of a tagged template expression, which is then parsed accordingly.
 ```js
     else if (this.match(tt.backQuote)) {
       return this.parseTaggedTemplateExpression(
@@ -189,6 +189,6 @@ Tagged Template Expression Parsing: If a backquote token is matched, it indicate
   }
 ```
 
-Stopping Condition: If none of the conditions for specific subscript types are met, the method sets the parsing state to stop, indicating that no further subscript parsing should occur for the current expression.
+**Stopping Condition**: If none of the conditions for specific subscript types are met, the method sets the parsing state to stop, indicating that no further subscript parsing should occur for the current expression.
 
-Throughout the parsing process, the method makes extensive use of the parser's `state` and utility methods to accurately construct the abstract syntax tree (AST) nodes representing the parsed expressions. This method is crucial for enabling the parsing of complex expression syntax in JavaScript, handling both standard features and more recent additions like optional chaining.
+Throughout the parsing process, the method makes extensive use of the parser's `state` and utility methods to accurately construct the abstract syntax tree (AST) nodes representing the parsed expressions. 
