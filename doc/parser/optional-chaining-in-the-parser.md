@@ -1,6 +1,6 @@
 ## parseSubscript
 
-In `packages/babel-parser/src/expression.js` we have the `parseSubscript` method inside the class `ExpressionParser`
+In [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/parser) we have the `parseSubscript` method inside the class `ExpressionParser`
 which is in charge of parsing the subscript expressions. 
 
 ```js
