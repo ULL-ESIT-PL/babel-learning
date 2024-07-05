@@ -9,9 +9,9 @@ which is in charge of parsing the subscript expressions.
    *   state.optionalChainMember to indicate that the member is currently in OptionalChain
    */
   parseSubscript(
-    base: N.Expression,
+    base: N.Expression, // The base expression to parse subscripts for. In a.b the base is a.
     startPos: number, startLoc: Position,
-    noCalls: ?boolean,
+    noCalls: ?boolean,              // If true, don't parse call expressions.
     state: N.ParseSubscriptState,
     maybeAsyncArrow: boolean,
   ): N.Expression {
