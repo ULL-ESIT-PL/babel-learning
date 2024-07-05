@@ -69,6 +69,26 @@ Optional Chaining: When the `questionDot` token is found, it indicates the start
     } 
 ```
 
+The expression `a?.(0)` does make sense in JavaScript. It utilizes the optional chaining operator (`?.`) in combination with a function call. The optional chaining operator (`?.`) when used with a function call, it conditionally calls the function only if the function reference is not `null` or `undefined`.
+
+Consider the following example:
+
+```javascript
+const obj = {
+  func: (x) => x * 2,
+};
+
+// Using optional chaining with function call
+const result1 = obj.func?.(2); // 4
+const result2 = obj.nonExistentFunc?.(2); // undefined
+
+console.log(result1); // Output: 4
+console.log(result2); // Output: undefined
+```
+
+This can be particularly useful in situations where the function you are calling might not always be defined:
+
+
 Property Access and Computed Property Access: The method also handles regular property access (`a.b`) and computed property access (`a[b]`) by checking for the presence of a dot or an opening bracket, respectively. It constructs the corresponding expression nodes accordingly.
 
 ```js
