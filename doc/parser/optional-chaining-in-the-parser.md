@@ -15,6 +15,11 @@ which is in charge of parsing the subscript expressions.
     state: N.ParseSubscriptState,
     maybeAsyncArrow: boolean,
   ): N.Expression {
+```
+
+Bind Expression Parsing: If the `doubleColon` token is encountered and `noCalls` is `false`, it parses a bind expression (e.g., `a::b`), marking the parsing state to `stop` further subscript parsing.
+
+```js
     if (!noCalls && this.eat(tt.doubleColon)) { // S.t. like a::b a binding expression
       const node = this.startNodeAt(startPos, startLoc);
       node.object = base;
@@ -26,7 +31,12 @@ which is in charge of parsing the subscript expressions.
         startLoc,
         noCalls,
       );
-    } else if (this.match(tt.questionDot)) { // S.t. like a?.b
+    } 
+```
+Optional Chaining: When the `questionDot` token is found, it indicates the start of an optional chaining expression (e.g., `a?.b`). The method then checks for different scenarios like `computed` property access (`a?.[0]`), optional call expressions (`a?.()`), and direct property access with optional chaining (`a?.b`). Each of these scenarios is handled by creating a node representing the expression, setting properties on the node to reflect the parsed structure, and then finishing the node with the appropriate type.
+
+```js
+    else if (this.match(tt.questionDot)) { // S.t. like a?.b
       this.expectPlugin("optionalChaining");
       state.optionalChainMember = true;
       if (noCalls && this.lookahead().type === tt.parenL) { // S.t. like a?.(0)
@@ -56,7 +66,13 @@ which is in charge of parsing the subscript expressions.
         node.optional = true;
         return this.finishNode(node, "OptionalMemberExpression");
       }
-    } else if (this.eat(tt.dot)) {
+    } 
+```
+
+Property Access and Computed Property Access: The method also handles regular property access (`a.b`) and computed property access (`a[b]`) by checking for the presence of a dot or an opening bracket, respectively. It constructs the corresponding expression nodes accordingly.
+
+```js
+    else if (this.eat(tt.dot)) {
       const node = this.startNodeAt(startPos, startLoc);
       node.object = base;
       node.property = this.parseMaybePrivateName();
@@ -77,7 +93,12 @@ which is in charge of parsing the subscript expressions.
         return this.finishNode(node, "OptionalMemberExpression");
       }
       return this.finishNode(node, "MemberExpression");
-    } else if (!noCalls && this.match(tt.parenL)) {
+    } 
+```    
+Function Call Parsing: If a parenthesis token is encountered and noCalls is false, it indicates a function call. The method parses the arguments of the call, handles potential async arrow functions, and finishes the call expression node. It also adjusts parser state variables related to async and yield parsing.
+
+```js 
+    else if (!noCalls && this.match(tt.parenL)) {
       const oldMaybeInArrowParameters = this.state.maybeInArrowParameters;
       const oldYieldPos = this.state.yieldPos;
       const oldAwaitPos = this.state.awaitPos;
@@ -130,7 +151,11 @@ which is in charge of parsing the subscript expressions.
       this.state.commaAfterSpreadAt = oldCommaAfterSpreadAt;
 
       return node;
-    } else if (this.match(tt.backQuote)) {
+    }
+```
+Tagged Template Expression Parsing: If a backquote token is matched, it indicates the start of a tagged template expression, which is then parsed accordingly.
+```js
+    else if (this.match(tt.backQuote)) {
       return this.parseTaggedTemplateExpression(
         startPos,
         startLoc,
@@ -144,18 +169,6 @@ which is in charge of parsing the subscript expressions.
   }
 ```
 
-The method's body consists of a series of conditional checks that determine the specific type of subscript expression being parsed. It uses methods like eat, match, and next to consume tokens from the source code and to advance the parser's position. These tokens represent syntax elements such as dots for property access, brackets for computed property access or array indexing, and parentheses for function calls.
-
-Bind Expression Parsing: If the doubleColon token is encountered and noCalls is false, it parses a bind expression (e.g., a::b), marking the parsing state to stop further subscript parsing.
-
-Optional Chaining: When the questionDot token is found, it indicates the start of an optional chaining expression (e.g., a?.b). The method then checks for different scenarios like computed property access (a?.[0]), optional call expressions (a?.()), and direct property access with optional chaining (a?.b). Each of these scenarios is handled by creating a node representing the expression, setting properties on the node to reflect the parsed structure, and then finishing the node with the appropriate type.
-
-Property Access and Computed Property Access: The method also handles regular property access (a.b) and computed property access (a[b]) by checking for the presence of a dot or an opening bracket, respectively. It constructs the corresponding expression nodes accordingly.
-
-Function Call Parsing: If a parenthesis token is encountered and noCalls is false, it indicates a function call. The method parses the arguments of the call, handles potential async arrow functions, and finishes the call expression node. It also adjusts parser state variables related to async and yield parsing.
-
-Tagged Template Expression Parsing: If a backquote token is matched, it indicates the start of a tagged template expression, which is then parsed accordingly.
-
 Stopping Condition: If none of the conditions for specific subscript types are met, the method sets the parsing state to stop, indicating that no further subscript parsing should occur for the current expression.
 
-Throughout the parsing process, the method makes extensive use of the parser's state and utility methods to accurately construct the abstract syntax tree (AST) nodes representing the parsed expressions. This method is crucial for enabling the parsing of complex expression syntax in JavaScript, handling both standard features and more recent additions like optional chaining.
+Throughout the parsing process, the method makes extensive use of the parser's `state` and utility methods to accurately construct the abstract syntax tree (AST) nodes representing the parsed expressions. This method is crucial for enabling the parsing of complex expression syntax in JavaScript, handling both standard features and more recent additions like optional chaining.
