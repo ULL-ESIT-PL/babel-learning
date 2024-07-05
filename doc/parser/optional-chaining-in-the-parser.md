@@ -1,3 +1,5 @@
+## parseSubscript
+
 In `packages/babel-parser/src/expression.js` we have the `parseSubscript` method inside the class `ExpressionParser`
 which is in charge of parsing the subscript expressions. 
 

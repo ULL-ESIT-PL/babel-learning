@@ -1400,7 +1400,7 @@ Ran all test suites matching /packages\/babel-parser\/test\/curry-function.js/i.
 
 ### Checking with flow-bin
 
-The Babel.js team uses Flow, a static type checker for JavaScript. The `flow-bin` package is a binary wrapper for `flow` that makes it easy to use the Flow static type checker from the command line. Although the JS test pass, if we check with flow the file `src/index.js` we get an error in the assignment `node.curry = this.eat(tt.atat)` at line 1055 of file `src/parser/statement.js` complaining that the property `curry` is missing in the type `NodeBase` or other of the object types:
+Although the [current version of the Babel parser](https://github.com/babel/babel/tree/main/packages/babel-parser/src) seems to be rewritten in TypeScript, the version we are using of Babel.js was developed using Flow, a static type checker for JavaScript. The `flow-bin` package is a binary wrapper for `flow` that makes it easy to use the Flow static type checker from the command line. Although the JS test pass, if we check with flow the file `src/index.js` we get an error in the assignment `node.curry = this.eat(tt.atat)` at line 1055 of file `src/parser/statement.js` complaining that the property `curry` is missing in the type `NodeBase` or other of the object types:
 
 ```js
   babel-parser git:(learning) ✗ npx flow check src/index.js 
