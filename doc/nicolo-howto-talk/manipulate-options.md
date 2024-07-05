@@ -14,11 +14,11 @@ export default function normalizeOptions(config: ResolvedConfig): {} {
 
   const opts = config.options;
 
-  const options = { ... },
+  const options = { ...opts, parserOpts: {  ... }, generatorOpts: { ... } };
 
   for (const plugins of config.passes) {
     for (const plugin of plugins) {
-      if (plugin.manipulateOptions) {
+      if (plugin.manipulateOptions) { // give the plugin a chance to manipulate the options
         plugin.manipulateOptions(options, options.parserOpts);
       }
     }
