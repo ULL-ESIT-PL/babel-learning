@@ -1,3 +1,56 @@
+## packages/babel-parser/typings/babel-parser.d.ts
+
+See [babel-parser/typings/babel-parser.d.ts](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/e498bee10f0123bb208baa228ce6417542a2c3c4/packages/babel-parser/typings/babel-parser.d.ts#L97-L136)
+
+```ts
+export interface ParserOptions {
+    ... // other options
+    /* Array containing the plugins that you want to enable.  */
+    plugins?: ParserPlugin[];
+    tokens?: boolean;
+}
+export type ParserPlugin =
+    'asyncGenerators' |
+    'bigInt' |
+    'classPrivateMethods' |
+    'classPrivateProperties' |
+    'classProperties' |
+    'decorators' |
+    'decorators-legacy' |
+    'doExpressions' |
+    'dynamicImport' |
+    'estree' |
+    'exportDefaultFrom' |
+    'exportNamespaceFrom' | // deprecated
+    'flow' |
+    'flowComments' |
+    'functionBind' |
+    'functionSent' |
+    'importMeta' |
+    'jsx' |
+    'logicalAssignment' |
+    'moduleAttributes' |
+    'nullishCoalescingOperator' |
+    'numericSeparator' |
+    'objectRestSpread' |
+    'optionalCatchBinding' |
+    'optionalChaining' |
+    'partialApplication' |
+    'pipelineOperator' |
+    'placeholders' |
+    'privateIn' |
+    'throwExpressions' |
+    'topLevelAwait' |
+    'typescript' |
+    'v8intrinsic' |
+    ParserPluginWithOptions;
+
+export type ParserPluginWithOptions =
+    ['decorators', DecoratorsPluginOptions] |
+    ['pipelineOperator', PipelineOperatorPluginOptions] |
+    ['flow', FlowPluginOptions];
+```
+
 ## parseSubscript
 
 In [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/parser) we have the `parseSubscript` method inside the class `ExpressionParser`
@@ -12,7 +65,7 @@ which is in charge of parsing the subscript expressions.
     base: N.Expression, // The base expression to parse subscripts for. In a.b the base is a.
     startPos: number, startLoc: Position,
     noCalls: ?boolean,              // If true, don't parse call expressions.
-    state: N.ParseSubscriptState,
+    state: N.ParseSubscriptState, 
     maybeAsyncArrow: boolean,
   ): N.Expression {
 ```
