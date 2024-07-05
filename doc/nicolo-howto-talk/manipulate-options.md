@@ -10,24 +10,7 @@ import path from "path";
 import type { ResolvedConfig } from "../config";
 
 export default function normalizeOptions(config: ResolvedConfig): {} {
-  const {
-    filename,
-    cwd,
-    filenameRelative = typeof filename === "string"
-      ? path.relative(cwd, filename)
-      : "unknown",
-    sourceType = "module",
-    inputSourceMap,
-    sourceMaps = !!inputSourceMap,
-
-    moduleRoot,
-    sourceRoot = moduleRoot,
-
-    sourceFileName = path.basename(filenameRelative),
-
-    comments = true,
-    compact = "auto",
-  } = config.options;
+  const { ... } = config.options;
 
   const opts = config.options;
 
