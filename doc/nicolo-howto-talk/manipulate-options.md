@@ -1,5 +1,84 @@
 # manipulateOptions
 
+In the package `@babel/core`, the `manipulateOptions` method is used to manipulate the options.
+Inside the [src/transformation/normalize-opts.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/transformation/normalize-opts.js#L61-L67) file  we can see this hook code:
+
+```js
+// @flow
+
+import path from "path";
+import type { ResolvedConfig } from "../config";
+
+export default function normalizeOptions(config: ResolvedConfig): {} {
+  const {
+    filename,
+    cwd,
+    filenameRelative = typeof filename === "string"
+      ? path.relative(cwd, filename)
+      : "unknown",
+    sourceType = "module",
+    inputSourceMap,
+    sourceMaps = !!inputSourceMap,
+
+    moduleRoot,
+    sourceRoot = moduleRoot,
+
+    sourceFileName = path.basename(filenameRelative),
+
+    comments = true,
+    compact = "auto",
+  } = config.options;
+
+  const opts = config.options;
+
+  const options = {
+    ...opts,
+
+    parserOpts: {
+      sourceType:
+        path.extname(filenameRelative) === ".mjs" ? "module" : sourceType,
+
+      sourceFileName: filename,
+      plugins: [],
+      ...opts.parserOpts,
+    },
+
+    generatorOpts: {
+      // General generator flags.
+      filename,
+
+      auxiliaryCommentBefore: opts.auxiliaryCommentBefore,
+      auxiliaryCommentAfter: opts.auxiliaryCommentAfter,
+      retainLines: opts.retainLines,
+      comments,
+      shouldPrintComment: opts.shouldPrintComment,
+      compact,
+      minified: opts.minified,
+
+      // Source-map generation flags.
+      sourceMaps,
+
+      sourceRoot,
+      sourceFileName,
+      ...opts.generatorOpts,
+    },
+  };
+
+  for (const plugins of config.passes) {
+    for (const plugin of plugins) {
+      if (plugin.manipulateOptions) {
+        plugin.manipulateOptions(options, options.parserOpts);
+      }
+    }
+  }
+
+  return options;
+}
+```
+
+The `manipulateOptions` plugin methods are called before the parser is initialized and can be used to modify the parser options.
+
+
 ### References to manipulateOptions
 
 * `manipulateOptions` is mentioned in https://babeljs.io/docs/v7-migration-api
