@@ -17,7 +17,7 @@ which is in charge of parsing the subscript expressions.
   ): N.Expression {
 ```
 
-Bind Expression Parsing: If the `doubleColon` token is encountered and `noCalls` is `false`, it parses a bind expression (e.g., `a::b`), marking the parsing state to `stop` further subscript parsing.
+**Bind Expression Parsing**: If the `doubleColon` token is encountered and `noCalls` is `false`, it parses a bind expression (e.g., `a::b`), marking the parsing state to `stop` further subscript parsing.
 
 ```js
     if (!noCalls && this.eat(tt.doubleColon)) { // S.t. like a::b a binding expression
@@ -33,7 +33,7 @@ Bind Expression Parsing: If the `doubleColon` token is encountered and `noCalls`
       );
     } 
 ```
-Optional Chaining: When the `questionDot` token is found, it indicates the start of an optional chaining expression (e.g., `a?.b`). The method then checks for different scenarios like `computed` property access (`a?.[0]`), optional call expressions (`a?.()`), and direct property access with optional chaining (`a?.b`). Each of these scenarios is handled by creating a node representing the expression, setting properties on the node to reflect the parsed structure, and then finishing the node with the appropriate type.
+**Optional Chaining**: When the `questionDot` token is found, it indicates the start of an optional chaining expression (e.g., `a?.b`). The method then checks for different scenarios like `computed` property access (`a?.[0]`), optional call expressions (`a?.()`), and direct property access with optional chaining (`a?.b`). Each of these scenarios is handled by creating a node representing the expression, setting properties on the node to reflect the parsed structure, and then finishing the node with the appropriate type.
 
 ```js
     else if (this.match(tt.questionDot)) { // S.t. like a?.b
@@ -69,7 +69,7 @@ Optional Chaining: When the `questionDot` token is found, it indicates the start
     } 
 ```
 
-The expression `a?.(0)` does make sense in JavaScript. It utilizes the optional chaining operator (`?.`) in combination with a function call. The optional chaining operator (`?.`) when used with a function call, it conditionally calls the function only if the function reference is not `null` or `undefined`.
+Notice that the expression `a?.(0)` does make sense in JavaScript. It utilizes the optional chaining operator (`?.`) in combination with a function call. The optional chaining operator (`?.`) when used with a function call, it conditionally calls the function only if the function reference is not `null` or `undefined`.
 
 Consider the following example:
 
