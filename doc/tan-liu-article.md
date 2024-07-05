@@ -1471,7 +1471,7 @@ Cannot assign this.eat(...) to node.curry because:
          328│ };
 ```
 
-If we follow the instructions and modify the `src/types.js` file to include the proeprty `curry` in the type 
+If we follow the instructions and modify the `src/types.js` file to include the property `curry` in the type 
 `BodilessFunctionOrMethodBase`: 
 
 ```diff
