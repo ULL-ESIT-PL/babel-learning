@@ -1,6 +1,6 @@
 # manipulateOptions
 
-In the package `@babel/core`, the `manipulateOptions` method is used to manipulate the options.
+In the package `@babel/core`, the `manipulateOptions` methods of all the plugins are used to manipulate the options.
 Inside the [src/transformation/normalize-opts.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/transformation/normalize-opts.js#L61-L67) file  of the `@babel/core`package we can see this hook code:
 
 ```js
