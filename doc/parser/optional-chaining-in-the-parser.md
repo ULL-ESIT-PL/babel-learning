@@ -89,7 +89,7 @@ console.log(result2); // Output: undefined
 This can be particularly useful in situations where the function you are calling might not always be defined:
 
 
-Property Access and Computed Property Access: The method also handles regular property access (`a.b`) and computed property access (`a[b]`) by checking for the presence of a dot or an opening bracket, respectively. It constructs the corresponding expression nodes accordingly.
+**Property Access and Computed Property Access**: The method also handles regular property access (`a.b`) and computed property access (`a[b]`) by checking for the presence of a dot or an opening bracket, respectively. It constructs the corresponding expression nodes accordingly.
 
 ```js
     else if (this.eat(tt.dot)) {
@@ -115,7 +115,7 @@ Property Access and Computed Property Access: The method also handles regular pr
       return this.finishNode(node, "MemberExpression");
     } 
 ```    
-Function Call Parsing: If a parenthesis token is encountered and noCalls is false, it indicates a function call. The method parses the arguments of the call, handles potential async arrow functions, and finishes the call expression node. It also adjusts parser state variables related to async and yield parsing.
+**Function Call Parsing**: If a parenthesis token is encountered and `noCalls` is false, it indicates a function call. The method parses the arguments of the call using `parseCallExpressionArguments`, handles potential `async` arrow functions, and finishes the call expression node. It also adjusts parser state variables related to `async` and `yield` parsing.
 
 ```js 
     else if (!noCalls && this.match(tt.parenL)) {
