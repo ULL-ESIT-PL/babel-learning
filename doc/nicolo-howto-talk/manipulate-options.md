@@ -33,7 +33,7 @@ export default function normalizeOptions(config: ResolvedConfig): {} {
 The `manipulateOptions` method of plugins are called before the parser is initialized and can be used to modify the parser options.
 
 
-### References to manipulateOptions
+## References to manipulateOptions
 
 * `manipulateOptions` is mentioned in https://babeljs.io/docs/v7-migration-api
   ```js
