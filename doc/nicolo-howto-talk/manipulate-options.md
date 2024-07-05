@@ -28,7 +28,7 @@ export default function normalizeOptions(config: ResolvedConfig): {} {
 }
 ```
 
-The `manipulateOptions` plugin methods are called before the parser is initialized and can be used to modify the parser options.
+The `manipulateOptions` method of plugins are called before the parser is initialized and can be used to modify the parser options.
 
 
 ### References to manipulateOptions
