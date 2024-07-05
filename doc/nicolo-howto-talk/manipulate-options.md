@@ -26,26 +26,7 @@ export default function normalizeOptions(config: ResolvedConfig): {} {
       ...opts.parserOpts,
     },
 
-    generatorOpts: {
-      // General generator flags.
-      filename,
-
-      auxiliaryCommentBefore: opts.auxiliaryCommentBefore,
-      auxiliaryCommentAfter: opts.auxiliaryCommentAfter,
-      retainLines: opts.retainLines,
-      comments,
-      shouldPrintComment: opts.shouldPrintComment,
-      compact,
-      minified: opts.minified,
-
-      // Source-map generation flags.
-      sourceMaps,
-
-      sourceRoot,
-      sourceFileName,
-      ...opts.generatorOpts,
-    },
-  };
+    generatorOpts: { /* General generator flags */ ... };
 
   for (const plugins of config.passes) {
     for (const plugin of plugins) {
