@@ -14,19 +14,7 @@ export default function normalizeOptions(config: ResolvedConfig): {} {
 
   const opts = config.options;
 
-  const options = {
-    ...opts,
-
-    parserOpts: {
-      sourceType:
-        path.extname(filenameRelative) === ".mjs" ? "module" : sourceType,
-
-      sourceFileName: filename,
-      plugins: [],
-      ...opts.parserOpts,
-    },
-
-    generatorOpts: { /* General generator flags */ ... };
+  const options = { ... },
 
   for (const plugins of config.passes) {
     for (const plugin of plugins) {
