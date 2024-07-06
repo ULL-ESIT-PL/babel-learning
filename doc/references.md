@@ -32,3 +32,4 @@
 * [ECMA TC39, TC53 presentations](https://youtube.com/playlist?list=PLzDw4TTug5O3vIAd4IR1Gp5t_46co_dv9&si=R-rjgT_IARxta7zf) at Youtube
 * [So how does Babel even work?](https://youtu.be/fntd0sPMOtQ?si=WYsOxh3dAUKzxd7Y) by Henry Zhu. 2017. Youtube
 * [On BabelJS ](https://youtu.be/m-HjKwyQoQg?si=u6oFpIOZ4dc4C7RK) by James Kyle. 2016. Youtube. ([Slides](https://es.slideshare.net/slideshow/babeljs-james-kyle-at-modern-web-ui/57705487#1))
+* [Babel Podcast](https://podcast.babeljs.io/)
