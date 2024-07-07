@@ -219,6 +219,13 @@ var _a;
 (_a = a) === null || _a === void 0 ? void 0 : _a[0];
 ```
 
+## Be sure `undefined`  is `undefined`
+
+At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo introduces the `void 0` trick to ensure that `undefined` is `undefined`:
+
+```js
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
