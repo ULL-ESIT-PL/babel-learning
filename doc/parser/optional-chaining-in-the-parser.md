@@ -118,7 +118,7 @@ After attempting to use all plugin overrides, the function checks the results:
 
 ## parseSubscript
 
-This section shows a snippet of the `parseSubscript` method in the Babel parser that deals with parsing subscript expressions, including optional chaining which was a new feature. 
+This section shows a snippet of the `parseSubscript` method in the Babel parser that deals with parsing subscript expressions, including optional chaining which was a new feature at the time of Nicolas's talk [@babel/howto](https://youtu.be/UeVq_U5obnE?t=3119). 
 
 In [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/parser) we have the `parseSubscript` method inside the class `ExpressionParser`
 which is in charge of parsing the subscript expressions. 
