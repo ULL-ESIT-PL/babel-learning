@@ -1,3 +1,10 @@
+## Introduction
+
+At the end of Nicolo Ribaudo's talk [@babel/howto](https://youtu.be/UeVq_U5obnE?t=3119) the interviewer asks him about how to add syntax to Babel. 
+
+> ... The Babel parser does not support plugins. The one I was using was a parser plugin, which is not a real plugin. It's just a way to enable syntax features that are already implemented in the Babel parser. There is a list of featurs that the parser supports but are disabled by default. 
+> If you want to test your custom syntax, we don't provide an API to do so and we suggest you fork (the Babel repo) and then you can provide your custom syntax as a Babel option. 
+
 ## packages/babel-parser/typings/babel-parser.d.ts
 
 See [babel-parser/typings/babel-parser.d.ts](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/e498bee10f0123bb208baa228ce6417542a2c3c4/packages/babel-parser/typings/babel-parser.d.ts#L97-L136)
