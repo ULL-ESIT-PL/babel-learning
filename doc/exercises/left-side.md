@@ -1,5 +1,5 @@
 Starting from the ideas set in lab [left-side](https://ull-pl.vercel.app/labs/left-side) extend the JS language so that it supports
-function modification visa assignments:
+function modification via assignments:
 
 ```js
 function f(x) {
