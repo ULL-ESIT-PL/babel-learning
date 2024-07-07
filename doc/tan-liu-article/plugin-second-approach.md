@@ -76,7 +76,7 @@ helpers.typeof = helper("7.0.0-beta.0")`
 
 > The helper tag function specifies the `@babel/core` version required. The trick here is to `export default` the `currying` function.
 
-> To use the helper, just call the `this.addHelper()`:
+> To use the helper, just call the `this.addHelper("currying")` in the plugin:
 
 > ```js
 > // ...
@@ -105,7 +105,7 @@ You can find the files for this section in the folder [/src/tan-liu-article](htt
 ## Substitute t.identifier("currying") by this.addHelper("currying")
 
 Once we have written the [helpers.currying](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) in our version of Babel, we can write the plugin that uses it.
-Here is the code for the `babel-transform-curry-function-withhelper.cjs` plugin:
+Here is the code for the [babel-transform-curry-function-withhelper.cjs](/src/tan-liu-article/babel-transform-curry-function-withhelper.cjs) plugin:
 
 `➜  tan-liu-article git:(main) ✗ cat babel-transform-curry-function-withhelper.cjs`
 ```js
