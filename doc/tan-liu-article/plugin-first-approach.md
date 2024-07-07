@@ -120,12 +120,24 @@ we compile it using the symbolic link to our version of the babel compiler and s
 `src/tan-liu-article/salida.cjs`:
 
 ```
-➜  babel-learning git:(main) ✗ babel-tanhauhau/packages/babel-cli/bin/babel.js \
-     src/tan-liu-article/example.js\
+➜  babel-learning git:(main) babel-tanhauhau/packages/babel-cli/bin/babel.js \
+     src/tan-liu-article/example.js \
      --plugins=./src/tan-liu-article/babel-transform-curry-function.cjs \ 
      -o src/tan-liu-article/salida.cjs
 ```
+
+Or, if you made a symbolic link in `node_modules/.bin/mybabel` to your version of the babel compiler:
+
+```sh
+➜  babel-learning git:(main) ✗ npx mybabel \   
+     src/tan-liu-article/example.js \
+     --plugins=./src/tan-liu-article/babel-transform-curry-function.cjs \
+     -o src/tan-liu-article/salida.cjs
+```
+
 Which gives the output:
+
+`➜  babel-learning git:(main) cat src/tan-liu-article/salida.cjs`
 ```js
 "use strict";
 
