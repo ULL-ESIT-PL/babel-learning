@@ -261,12 +261,21 @@ module.exports = function myPlugin(babel, options) {
   }
 }
 ```
+When we execute it we get:
+
 `➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
 ```js
 "use strict";
 
 var _a;
 (_a = a) === null || _a === void 0 ? void 0 : _a[0];
+```
+`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input.js`
+```js
+"use strict";
+
+var _a;
+(_a = a) === null || _a === void 0 ? void 0 : _a.b;
 ```
 
 ## References
