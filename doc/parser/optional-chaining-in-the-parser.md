@@ -78,14 +78,14 @@ Follows the code of the generator `parser` at [packages/babel-core/src/parser/in
 ```ts
 export default function* parser(pluginPasses: PluginPasses,  { parserOpts, highlightCode = true, filename = "unknown" }: Object,  code: string,): Handler<ParseResult> {
   try {
-    const results = [];
+    const results = []; // array of ASTs?
     for (const plugins of pluginPasses) {
       for (const plugin of plugins) {
         const { parserOverride } = plugin;
         if (parserOverride) {
           const ast = parserOverride(code, parserOpts, parse);
 
-          if (ast !== undefined) results.push(ast);
+          if (ast !== undefined) results.push(ast); // push the AST to the results array
         }
       }
     }
