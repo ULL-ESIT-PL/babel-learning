@@ -19,7 +19,7 @@ This solution will be s.t. like this:
 
 ## 1. Write the plugin
 
-Let us start by writing the plugin in our learning workspace:
+Let us start by [writing the plugin in our learning workspace](/src/tan-liu-article/babel-transform-curry-function.cjs):
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/babel-transform-curry-function.cjs`
 ```js
