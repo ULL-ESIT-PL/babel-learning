@@ -1,5 +1,101 @@
 # Plugin Second Approach: using the Babel Helpers
 
+> You can add a new helper to `@babel/helpers`, which of course you are unlikely to merge that into the official `@babel/helpers`, so you would have to figure a way to make `@babel/core` to resolve to your `@babel/helpers`:
+
+`package.json`
+```json
+{
+  "resolutions": {
+    "@babel/helpers": "7.6.0--your-custom-forked-version",
+  }
+}
+```
+
+> Disclaimer: *I have not personally tried this, but I believe it will work. If you encountered problems trying this, [DM me](https://twitter.com/lihautan), I am very happy to discuss it with you*.
+
+> Adding a new helper function into `@babel/helpers` is very easy.
+>
+> Head over to `packages/babel-helpers/src/helpers.js` and add a new entry:
+
+`packages/babel-helpers/src/helpers.js`
+> ```js
+> helpers.currying = helper("7.6.0")`
+>   export default function currying(fn) {
+>     const numParamsRequired = fn.length;
+>     function curryFactory(params) {
+>       return function (...args) {
+>         const newParams = params.concat(args);
+>         if (newParams.length >= numParamsRequired) {
+>           return fn(...newParams);
+>         }
+>         return curryFactory(newParams);
+>       }
+>     }
+>     return curryFactory([]);
+>   }
+> `;
+> ```
+
+The file `packages/babel-helpers/src/helpers.js` is a file that exports functions that are available inside 
+the Babel transformations. It is a huge file with the following structure:
+
+```js
+// @flow
+
+import template from "@babel/template";
+
+const helpers = Object.create(null);
+export default helpers;
+
+const helper = (minVersion: string) => tpl => ({
+  minVersion,
+  ast: () => template.program.ast(tpl),
+});
+
+helpers.typeof = helper("7.0.0-beta.0")`
+  export default function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) { return typeof obj; };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype
+          ? "symbol"
+          : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+`;
+/*
+... hundreds of lines with helpers.something = helper(versionString)`...`
+*/
+```
+
+> The helper tag function specifies the `@babel/core` version required. The trick here is to `export default` the `currying` function.
+
+> To use the helper, just call the `this.addHelper()`:
+
+> ```js
+> // ...
+> path.replaceWith(
+>   t.variableDeclaration('const', [
+>     t.variableDeclarator(
+>       t.identifier(path.get('id.name').node),
+>       t.callExpression(this.addHelper("currying"), [
+>         t.toExpression(path.node),
+>       ])
+>     ),
+>   ])
+> );
+> ```
+
+> The `this.addHelper` will inject the helper at the top of the file if needed, and returns an `Identifier` to the injected function.
+
+## Testing the parser and the plugin: second approach
+
 You can find the files for this section in the folder [/src/tan-liu-article](https://github.com/ULL-ESIT-PL/babel-learning/tree/main/src/tan-liu-article):
 
 ```
