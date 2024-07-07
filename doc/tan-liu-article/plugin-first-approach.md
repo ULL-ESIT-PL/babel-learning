@@ -214,7 +214,9 @@ module.exports = {
 }
 ```
 
-Now we can run [example.js](/src/tan-liu-article/example.js) using **the installed Babel compiler** using our parser and the plugin:
+Now we can run [example.js](/src/tan-liu-article/example.js) using **the installed Babel compiler** with the 
+`--config` option  set to the configuration described above.
+This leads the compiler to using our parser:
 
 ```sh
 ➜  tan-liu-article git:(main) ✗ npx babel --config-file ./myParser.babel.config.js example.js
