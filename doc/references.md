@@ -30,6 +30,8 @@
 * [Babel videos](https://babeljs.io/videos)
 * [Babel repo: issues with label *help wanted*](https://github.com/babel/babel/labels/help%20wanted)
 * [ECMA TC39, TC53 presentations](https://youtube.com/playlist?list=PLzDw4TTug5O3vIAd4IR1Gp5t_46co_dv9&si=R-rjgT_IARxta7zf) at Youtube
+* [TC39: From the Proposal to ECMAScript, Step by Step](https://youtu.be/h5pUuz2qqVQ?si=71l8doQsc9fYljq7). Romulo Cintra. Feb 2024. Youtube 
+  [Slides}(https://es.slideshare.net/slideshow/from-the-proposal-to-ecmascript-step-by-step/264286515 )
 * [So how does Babel even work?](https://youtu.be/fntd0sPMOtQ?si=WYsOxh3dAUKzxd7Y) by Henry Zhu. 2017. Youtube
 * [On BabelJS ](https://youtu.be/m-HjKwyQoQg?si=u6oFpIOZ4dc4C7RK) by James Kyle. 2016. Youtube. ([Slides](https://es.slideshare.net/slideshow/babeljs-james-kyle-at-modern-web-ui/57705487#1))
 * [Babel Podcast](https://podcast.babeljs.io/)
