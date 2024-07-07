@@ -4,7 +4,7 @@
 
 At the end of Nicolo Ribaudo's talk [@babel/howto](https://youtu.be/UeVq_U5obnE?t=3119) the interviewer asks him about how to add syntax to Babel. 
 
-> ... The Babel parser does not support plugins. That parasing option I was using in the code is just a list of features which the parser
+> ... The Babel parser does not support plugins. That parsing option I was using in the code is just a list of features which the parser
 >  already supports but are disabled by default. 
 > If you want to test your custom syntax, we don't yet at least provide an API to do so and **we suggest you to just fork the parser (the Babel mono repo) and then you can provide your custom parser as a Babel option**. 
 > 
