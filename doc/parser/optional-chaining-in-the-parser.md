@@ -123,6 +123,12 @@ The parser function is an asynchronous generator (indicated by the `function*` s
 
  Inside the function, it attempts to parse the code using any provided plugin overrides. If a plugin provides a `parserOverride` function, this function is called with the `code`, parser options, and a reference to the default Babel parser. If the override returns an AST, it is added to the `results` array.
 
+After attempting to use all plugin overrides, the function checks the results:
+
+- If no plugins returned an AST, it falls back to the default Babel parser.
+- If exactly one plugin returned an AST, that AST is returned as the result.
+- If more than one plugin returned an AST, an error is thrown, as only one parser override should be effective.
+
 ## parseSubscript
 
 In [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-parser/src/parser) we have the `parseSubscript` method inside the class `ExpressionParser`
