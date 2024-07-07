@@ -17,7 +17,6 @@ This solution will be s.t. like this:
 3. The user will have to explicitly import the `currying` function in their code or we can add to the plugin additional code to import the `currying` function.
 
 
-
 ## 1. Write the plugin
 
 Let us start by writing the plugin in our learning workspace:
