@@ -180,6 +180,45 @@ The error is caused due to the fact that by default value for `MemberExpression`
 and since in the previous code we haven't specified it, it is assumed to be `false`. The consequence being that the `property` 
 is expected to be an `Identifier` or a [PrivateName](privatename.md) and not a `NumericLiteral`. 
 
+To avoid the error we take the `computed` property of the node and pass it to the `t.memberExpression` we build
+for the replacement:
+
+`➜  babel-learning git:(main) ✗ cat src/nicolo-howto-talk/optionalchaining-plugin.cjs`
+```js
+//const generate = require('@babel/generator').default;
+module.exports = function myPlugin(babel, options) {
+  const {types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression(path) {
+        let { object, propert, computed} = path.node;
+        let memberExp = t.memberExpression(object, property, computed);
+        let undef = path.scope.buildUndefinedNode();
+        path.replaceWith(
+          template.expression.ast`
+             ${object} == null? ${undef} :
+             ${memberExp}
+          `
+        )
+      } 
+    }
+  }
+}
+```
+Now the plugin works for both cases `a?.b` and `a?.[0]`:
+
+`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
+```js
+"use strict";
+
+var _a;
+(_a = a) === null || _a === void 0 ? void 0 : _a[0];
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
