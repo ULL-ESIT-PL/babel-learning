@@ -71,7 +71,7 @@ module.exports = function (babel) {
 
 ## 2. Write and publish the npm module
 
-We can now prepare a npm module for the `currying` function:
+We can now prepare [a npm module exporting the `currying` function](/src/tan-liu-article/currying ):
 
 ```sh
 ➜  babel-learning git:(main) ✗ tree src/tan-liu-article/currying 
