@@ -221,7 +221,7 @@ var _a;
 
 ## Be sure `undefined`  is `undefined`
 
-At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo introduces the `void 0` trick to ensure that `undefined` is `undefined`:
+At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo uses `path.scop.buildUndefined()`to produce `void 0` to ensure that `undefined` is `undefined`:
 
 ```js
 ```
