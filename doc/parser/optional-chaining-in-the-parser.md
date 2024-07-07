@@ -14,7 +14,7 @@ At the end of Nicolo Ribaudo's talk [@babel/howto](https://youtu.be/UeVq_U5obnE?
 
 ## packages/babel-parser/typings/babel-parser.d.ts
 
-See [babel-parser/typings/babel-parser.d.ts](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/e498bee10f0123bb208baa228ce6417542a2c3c4/packages/babel-parser/typings/babel-parser.d.ts#L97-L136)
+See [babel-parser/typings/babel-parser.d.ts](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/e498bee10f0123bb208baa228ce6417542a2c3c4/packages/babel-parser/typings/babel-parser.d.ts#L97-L136). This is the list of plugins that can be enabled in the parser:
 
 ```ts
 export interface ParserOptions {
