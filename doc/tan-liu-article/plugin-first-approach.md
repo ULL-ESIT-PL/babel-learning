@@ -163,7 +163,7 @@ They  aren't willing to change the  API to support plugins
 because it's not clear how to make that API effective, and it would limit 
 their ability to refactor and optimize the codebase.
 
-## Overriting the parser 
+## Running with the installed compiler using `parserOverride`
 
 You can modify the parser used by your intalled Babel by your own custom parser.
 For that we can add a plugin to our [options](https://babeljs.io/docs/options#plugins) 
@@ -214,7 +214,7 @@ module.exports = {
 }
 ```
 
-Now we can run the installed Babel compiler using our parser and the plugin:
+Now we can run [example.js](/src/tan-liu-article/example.js) using **the installed Babel compiler** using our parser and the plugin:
 
 ```sh
 ➜  tan-liu-article git:(main) ✗ npx babel --config-file ./myParser.babel.config.js example.js
