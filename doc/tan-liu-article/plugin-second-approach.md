@@ -157,6 +157,8 @@ to our babel version[^symbolicLink] in our `learning` workspace that we created 
 [^symbolicLink]: Remember: `node_modules/.bin/mybabel` `->` `/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-cli/bin/babel.js`
 
 ```
+➜  babel-learning git:(main) ls -l node_modules/.bin/mybabel 
+lrwxr-xr-x  1 casianorodriguezleon  staff  122  7 jul 10:54 node_modules/.bin/mybabel -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-cli/bin/babel.js
 ➜  tan-liu-article git:(main) npx mybabel example.js \
      --plugins=./babel-transform-curry-function-withhelper.cjs | js-beautify
 ```  
