@@ -8,7 +8,7 @@
 > So probably you have to educate the users to install `currying` polyfills in order to use your `babel-plugin-transformation-curry-function`.
 >  ...
 
-## Steps
+## Steps to use the new Parser by a developer
 
 This solution will be s.t. like this:
 
