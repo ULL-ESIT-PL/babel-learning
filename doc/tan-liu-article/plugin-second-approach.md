@@ -187,7 +187,7 @@ console.log(foo(1, 2)(3)); // 6
 ```
 We can see how the `_currying` function is inlined in the file.
 
-We can pipe it to `node` and see it working:
+We can pipe the output of the compilation to `node` and see it working:
 
 ```
 ➜  tan-liu-article git:(main) ✗ npx mybabel example.js --plugins=./babel-transform-curry-function-withhelper.cjs | node       
