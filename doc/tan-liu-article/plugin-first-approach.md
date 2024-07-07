@@ -93,9 +93,10 @@ module.exports = function currying(fn) {
   return curryFactory([]);
 }
 ```
-Once is ready, we install it:
 
 ## 3. User: install the module
+
+Once the module is available, the developer can install it:
 
 ```sh
 ➜  babel-learning git:(main) ✗ npm install src/tan-liu-article/currying
