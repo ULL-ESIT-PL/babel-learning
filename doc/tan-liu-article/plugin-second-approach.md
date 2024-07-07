@@ -36,7 +36,7 @@
 > `;
 > ```
 
-The file [packages/babel-helpers/src/helpers.j](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) is a file that exports functions that are available inside 
+The file [packages/babel-helpers/src/helpers.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) is a file that exports functions that are available inside 
 the Babel transformations. It is a huge file with the following structure:
 
 ```js
