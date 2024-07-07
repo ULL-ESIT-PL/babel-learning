@@ -193,7 +193,7 @@ We start making a symbolic link to the parser we want to use:
 ➜  tan-liu-article git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/index.js my-parser.js
 ```
 
-Then we write [our configuration file `myParser.babel.config.js`](/src/tan-li-article/myParser.babel.config.js):
+Then we write [our configuration file `myParser.babel.config.js`](/src/tan-liu-article/myParser.babel.config.js):
 
 `➜  tan-liu-article git:(main) ✗ cat myParser.babel.config.js`
 ```js
