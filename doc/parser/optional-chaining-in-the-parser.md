@@ -73,7 +73,6 @@ So, if you add a new syntax feature to Babel like the curry syntax explained in 
 
 The [@babel/core](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-core/src) package wraps 
 the actual parser. The involved code is in files [src/parse.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parse.js) and thos in the folder [/src/parser/](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-core/src/parser), namely the file [index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js).
-
 Follows the code at [packages/babel-core/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js) 
 
 ```ts
