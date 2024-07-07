@@ -195,7 +195,7 @@ Since we haven't published the plugin, we start making a symbolic link to the pa
 ```
 
 Then we write [our configuration file `myParser.babel.config.js`](/src/tan-liu-article/myParser.babel.config.js) in which 
-we load our parser, override the parser and set the plugin [babel-transform-curry-function.cjs](/src/tan-liu-article/babel-transform-curry-function.cjs) which loads the `currying` function and applies the transformation to the `FunctionDeclaration` nodes whose `curry` property is set to `true`:
+we load our parser, override the parser and set the plugin [babel-transform-curry-function.cjs](/src/tan-liu-article/babel-transform-curry-function.cjs). This plugin loads the `currying` function and applies the transformation to the `FunctionDeclaration` nodes whose `curry` property is set to `true`:
 
 `➜  tan-liu-article git:(main) ✗ cat myParser.babel.config.js`
 ```js
