@@ -32,6 +32,9 @@ and here found a line that sets the `generator` attribute.
 
 See [tan-liu-article.md](/doc/tan-liu-article.md) for the summary of my experience reproducing Tan Liu Hau's article.
 
+## Babel Parser Plugins 
+
+See section [/doc/parser/optional-chaining-in-the-parser.md](/doc/parser/optional-chaining-in-the-parser.md)
 
 ## Parser Output: The Babel AST
 
