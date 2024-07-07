@@ -71,6 +71,11 @@ So, if you add a new syntax feature to Babel like the curry syntax explained in 
 
 ## packages/babel-core/src/parser/index.js
 
+The code in this file is responsible for parsing overwrite plugins. 
+You can see an example of parsing overwrite in the subsection *Running with the installed compiler using parserOverride
+* of the file  
+[/doc/tan-liu-article/plugin-first-approach.md](https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/tan-liu-article/plugin-first-approach.md#running-with-the-installed-compiler-using-parseroverride)
+
 The [@babel/core](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-core/src) package wraps 
 the actual parser. The involved code is in files [src/parse.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parse.js) and those files in the folder [/src/parser/](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-core/src/parser), namely the file [index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js).
 Follows the code of the generator `parser` at [packages/babel-core/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js) 
