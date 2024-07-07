@@ -15,7 +15,7 @@
 
 > Adding a new helper function into `@babel/helpers` is very easy.
 >
-> Head over to [packages/babel-helpers/src/helpers.j](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) and add a new entry:
+> Head over to [packages/babel-helpers/src/helpers.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-helpers/src/helpers.js#L2168-L2182) and add a new entry:
 
 `packages/babel-helpers/src/helpers.js`
 > ```js
