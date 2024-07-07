@@ -159,8 +159,6 @@ we can now run it using the node interpreter:
 
 Notice that the user has to be aware that the word `currying` is a word reserved for the plugin.
 
-## 4. User: run the installed Babel compiler with the plugin
-
 They  aren't willing to change the  API to support plugins
 because it's not clear how to make that API effective, and it would limit 
 their ability to refactor and optimize the codebase.
@@ -195,7 +193,7 @@ We start making a symbolic link to the parser we want to use:
 ➜  tan-liu-article git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/index.js my-parser.js
 ```
 
-Then we write our configuration file `myParser.babel.config.js`:
+Then we write [our configuration file `myParser.babel.config.js`](/src/tan-li-article/myParser.babel.config.js):
 
 `➜  tan-liu-article git:(main) ✗ cat myParser.babel.config.js`
 ```js
