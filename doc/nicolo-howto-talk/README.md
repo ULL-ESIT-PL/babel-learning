@@ -249,10 +249,10 @@ module.exports = function myPlugin(babel, options) {
       OptionalMemberExpression(path) {
         let { object, propert, computed} = path.node;
         let memberExp = t.memberExpression(object, property, computed);
-        let undef = path.scope.buildUndefinedNode();
+        let undef = path.scope.buildUndefinedNode(); // Create a "void 0" nodes
         path.replaceWith(
           template.expression.ast`
-             ${object} == null? ${undef} :
+             ${object} == null? ${undef} : // Use the "void 0" node
              ${memberExp}
           `
         )
