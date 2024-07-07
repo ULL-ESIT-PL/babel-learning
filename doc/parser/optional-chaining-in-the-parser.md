@@ -73,23 +73,10 @@ So, if you add a new syntax feature to Babel like the curry syntax explained in 
 
 The [@babel/core](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-core/src) package wraps 
 the actual parser. The involved code is in files [src/parse.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parse.js) and those files in the folder [/src/parser/](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/master/packages/babel-core/src/parser), namely the file [index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js).
-Follows the code at [packages/babel-core/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js) 
+Follows the code of the generator `parser` at [packages/babel-core/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js) 
 
 ```ts
-import type { Handler } from "gensync";
-import { parse } from "@babel/parser";
-import { codeFrameColumns } from "@babel/code-frame";
-import generateMissingPluginMessage from "./util/missing-plugin-helper";
-
-type AstRoot = BabelNodeFile | BabelNodeProgram;
-
-export type ParseResult = AstRoot;
-
-export default function* parser(
-  pluginPasses: PluginPasses,
-  { parserOpts, highlightCode = true, filename = "unknown" }: Object,
-  code: string,
-): Handler<ParseResult> {
+export default function* parser(pluginPasses: PluginPasses,  { parserOpts, highlightCode = true, filename = "unknown" }: Object,  code: string,): Handler<ParseResult> {
   try {
     const results = [];
     for (const plugins of pluginPasses) {
@@ -103,50 +90,28 @@ export default function* parser(
       }
     }
 
-    if (results.length === 0) {
-      return parse(code, parserOpts);
-    } else if (results.length === 1) {
+    if (results.length === 0) { return parse(code, parserOpts); } 
+    else if (results.length === 1) {
       yield* []; // If we want to allow async parsers
-      if (typeof results[0].then === "function") {
-        throw new Error(
-          `You appear to be using an async parser plugin, ` +
-            `which your current version of Babel does not support. ` +
-            `If you're using a published plugin, you may need to upgrade ` +
-            `your @babel/core version.`,
-        );
-      }
+      if (typeof results[0].then === "function") { throw new Error(`You appear to be using an async parser plugin, ` +  `which your current version of Babel does not support. ` + `If you're using a published plugin, you may need to upgrade ` +   `your @babel/core version.`, ); }
       return results[0];
     }
     throw new Error("More than one plugin attempted to override parsing.");
   } catch (err) {
     if (err.code === "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED") {
-      err.message +=
-        "\nConsider renaming the file to '.mjs', or setting sourceType:module " +
-        "or sourceType:unambiguous in your Babel config for this file.";
-      // err.code will be changed to BABEL_PARSE_ERROR later.
+      err.message += "\nConsider renaming the file to '.mjs', or setting sourceType:module " + "or sourceType:unambiguous in your Babel config for this file.";
     }
 
     const { loc, missingPlugin } = err;
     if (loc) {
       const codeFrame = codeFrameColumns(
         code,
-        {
-          start: {
-            line: loc.line,
-            column: loc.column + 1,
-          },
+        { start: { line: loc.line,  column: loc.column + 1,   },
         },
-        {
-          highlightCode,
-        },
+        {   highlightCode, },
       );
       if (missingPlugin) {
-        err.message =
-          `${filename}: ` +
-          generateMissingPluginMessage(missingPlugin[0], loc, codeFrame);
-      } else {
-        err.message = `${filename}: ${err.message}\n\n` + codeFrame;
-      }
+        err.message =  `${filename}: ` +    generateMissingPluginMessage(missingPlugin[0], loc, codeFrame);  } else {    err.message = `${filename}: ${err.message}\n\n` + codeFrame;      }
       err.code = "BABEL_PARSE_ERROR";
     }
     throw err;
