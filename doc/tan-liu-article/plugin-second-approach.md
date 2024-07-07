@@ -185,6 +185,7 @@ function _currying(fn) {
 
 console.log(foo(1, 2)(3)); // 6
 ```
+We can see how the `_currying` function is inlined in the file.
 
 We can pipe it to `node` and see it working:
 
