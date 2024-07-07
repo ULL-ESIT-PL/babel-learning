@@ -65,6 +65,8 @@ export type ParserPluginWithOptions =
     ['flow', FlowPluginOptions];
 ```
 
+So, if you add a new syntax feature to Babel like the curry syntax explained in [Tan Li Hau's talk](/tan-liu-article.md), add it here.
+
 ## packages/babel-core/src/parser/index.js
 
 In [packages/babel-core/src/parser/index.js]() 
