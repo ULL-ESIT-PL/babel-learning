@@ -166,7 +166,7 @@ their ability to refactor and optimize the codebase.
 ## Running with the installed compiler using `parserOverride`
 
 You can modify the parser used by your intalled Babel by your own custom parser.
-For that we can add a plugin to our [options](https://babeljs.io/docs/options#plugins) 
+For that we can add a plugin to our configuration [options](https://babeljs.io/docs/options#plugins) 
 to call the parser via 
 
 - its npm package name or 
@@ -174,6 +174,7 @@ to call the parser via
 
 Here is an example of how to do it using JavaScript:
 
+`babel.config.js`
 ```js
 const parse = require("custom-fork-of-babel-parser-on-npm-here");
 
