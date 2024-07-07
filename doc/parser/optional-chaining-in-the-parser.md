@@ -76,7 +76,7 @@ the actual parser. The involved code is in files [src/parse.js](https://github.c
 Follows the code of the generator `parser` at [packages/babel-core/src/parser/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-core/src/parser/index.js) 
 
 ```ts
-export default function* parser(pluginPasses: PluginPasses,  { parserOpts, highlightCode = true, filename = "unknown" }: Object,  code: string,): Handler<ParseResult> {
+export default function* parser(pluginPasses: PluginPasses, { parserOpts, highlightCode = true, filename = "unknown" }: Object,  code: string,): Handler<ParseResult> {
   try {
     const results = []; // array of ASTs?
     for (const plugins of pluginPasses) {
@@ -117,8 +117,11 @@ export default function* parser(pluginPasses: PluginPasses,  { parserOpts, highl
     throw err;
   }
 }
-
 ```
+
+The parser function is an asynchronous generator (indicated by the `function*` syntax) that takes three parameters: `pluginPasses`, an object containing parser options, and the `code` to be parsed. It returns a `Handler` that yields a `ParseResult`, which is an AST node.
+
+ Inside the function, it attempts to parse the code using any provided plugin overrides. If a plugin provides a `parserOverride` function, this function is called with the `code`, parser options, and a reference to the default Babel parser. If the override returns an AST, it is added to the `results` array.
 
 ## parseSubscript
 
