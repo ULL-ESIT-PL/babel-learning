@@ -7,7 +7,9 @@ At the end of Nicolo Ribaudo's talk [@babel/howto](https://youtu.be/UeVq_U5obnE?
 > ... The Babel parser does not support plugins. That parsing option I was using in the code is just a list of features which the parser
 >  already supports but are disabled by default. 
 > If you want to test your custom syntax, we don't yet at least provide an API to do so and **we suggest you to just fork the parser (the Babel mono repo) and then you can provide your custom parser as a Babel option**. 
-> 
+
+When asked about the process of adding a new JS syntax proposals to Babel, Nicolo says:
+
 > ... We don't have like a rule for this. We try to implement "parser plugins" soon unless the proposal is really unstable. For example, there is currently a pattern matching proposal which I think is stage one, may be is stage 2, I'm not sure and we have not implemented yet, just because 
 > the syntax is changing really fast and so we aren't willing to commit to these frequent changes.
 
