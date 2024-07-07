@@ -4,8 +4,13 @@
 
 At the end of Nicolo Ribaudo's talk [@babel/howto](https://youtu.be/UeVq_U5obnE?t=3119) the interviewer asks him about how to add syntax to Babel. 
 
-> ... The Babel parser does not support plugins. The one I was using was a parser plugin, which is not a real plugin. It's just a way to enable syntax features that are already implemented in the Babel parser. There is a list of featurs that the parser supports but are disabled by default. 
-> If you want to test your custom syntax, we don't provide an API to do so and we suggest you fork (the Babel repo) and then you can provide your custom syntax as a Babel option. 
+> ... The Babel parser does not support plugins. That parasing option I was using in the code is just a list of features which the parser
+>  already supports but are disabled by default. 
+> If you want to test your custom syntax, we don't yet at least provide an API to do so and **we suggest you to just fork the parser (the Babel mono repo) and then you can provide your custom parser as a Babel option**. 
+> 
+> ... We don't have like a rule for this. We try to implement "parser plugins" soon unless the proposal is really unstable.For example, there is currently a pattern matching proposal which I think is stage one, may be is stage 2, I'm not sure and we have not implemented yet, just because 
+> the syntax is changing really fast and so we aren't willing to commit to these frequent changes.
+
 
 ## packages/babel-parser/typings/babel-parser.d.ts
 
