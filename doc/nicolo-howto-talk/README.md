@@ -138,19 +138,6 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
-## Be sure `undefined`  is `undefined`
-
-A source of errors is that `undefined` can be redefined. Here is an example:
-
-`➜  babel-learning git:(main) cat src/nicolo-howto-talk/redefine-undefined.cjs`
-```js
-var undefined = 42;
-console.log(undefined); // 42
-```
-```sh
-➜  babel-learning git:(main) node src/nicolo-howto-talk/redefine-undefined.cjs 
-42
-```
 
 At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo uses `path.scope.buildUndefined()`to produce `void 0` to ensure that `undefined` is `undefined`:
 
