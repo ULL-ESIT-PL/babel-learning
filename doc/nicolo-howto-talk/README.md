@@ -81,7 +81,7 @@ ASTs using ordinary JS backquotes!**
 
 ## The `undefined` problem
 
-> ... But (the code `template.expression.ast`${object} == null? undefined : ${memberExp}``) it has 
+> ... But (the code `template.expression.ast\`${object} == null? undefined : ${memberExp}\``) it has 
 > a few problems. Someone could write this in their code:
 >
 
