@@ -129,34 +129,6 @@ module.exports = function myPlugin(babel, options) {
       OptionalMemberExpression(path) {
         let { object, property} = path.node;
         let memberExp = t.memberExpression(object, property);
-        let undef = path.scope.buildUndefinedNode();
-        path.replaceWith(
-          template.expression.ast`
-             ${object} == null? ${undef} :
-             ${memberExp}
-          `
-        )
-      } 
-    }
-  }
-}
-```
-
-
-```js
-➜  babel-learning git:(main) cat src/nicolo-howto-talk/optionalchaining-plugin.cjs 
-//const generate = require('@babel/generator').default;
-module.exports = function myPlugin(babel, options) {
-  const {types: t, template } = babel;
-  return {
-    name: "optional-chaining-plugin",
-    manipulateOptions(opts) {
-      opts.parserOpts.plugins.push("OptionalChaining")
-    },
-    visitor: {
-      OptionalMemberExpression(path) {
-        let { object, propert, computed} = path.node;
-        let memberExp = t.memberExpression(object, property, computed);
         let undef = path.scope.buildUndefinedNode(); // Create a "void 0" nodes
         path.replaceWith(
           template.expression.ast`
@@ -169,6 +141,8 @@ module.exports = function myPlugin(babel, options) {
   }
 }
 ```
+
+
 When we execute it we get:
 
 `➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
