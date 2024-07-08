@@ -135,6 +135,66 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
+## Be sure `undefined`  is `undefined`
+
+A source of errors is that `undefined` can be redefined. Here is an example:
+
+`➜  babel-learning git:(main) cat src/nicolo-howto-talk/redefine-undefined.cjs`
+```js
+var undefined = 42;
+console.log(undefined); // 42
+```
+```sh
+➜  babel-learning git:(main) node src/nicolo-howto-talk/redefine-undefined.cjs 
+42
+```
+
+At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo uses `path.scope.buildUndefined()`to produce `void 0` to ensure that `undefined` is `undefined`:
+
+```js
+➜  babel-learning git:(main) cat src/nicolo-howto-talk/optionalchaining-plugin.cjs 
+//const generate = require('@babel/generator').default;
+module.exports = function myPlugin(babel, options) {
+  const {types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression(path) {
+        let { object, propert, computed} = path.node;
+        let memberExp = t.memberExpression(object, property, computed);
+        let undef = path.scope.buildUndefinedNode(); // Create a "void 0" nodes
+        path.replaceWith(
+          template.expression.ast`
+             ${object} == null? ${undef} : // Use the "void 0" node
+             ${memberExp}
+          `
+        )
+      } 
+    }
+  }
+}
+```
+When we execute it we get:
+
+`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
+```js
+"use strict";
+
+var _a;
+(_a = a) === null || _a === void 0 ? void 0 : _a[0];
+```
+`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input.js`
+```js
+"use strict";
+
+var _a;
+(_a = a) === null || _a === void 0 ? void 0 : _a.b;
+```
+
+
 ## Computed properties 
 
 At minute [31.14](https://youtu.be/UeVq_U5obnE?t=1867) Nicolo considers the more general case of accessing a computed property like in:
@@ -217,65 +277,6 @@ Now the plugin works for both cases `a?.b` and `a?.[0]`:
 
 var _a;
 (_a = a) === null || _a === void 0 ? void 0 : _a[0];
-```
-
-## Be sure `undefined`  is `undefined`
-
-A source of errors is that `undefined` can be redefined. Here is an example:
-
-`➜  babel-learning git:(main) cat src/nicolo-howto-talk/redefine-undefined.cjs`
-```js
-var undefined = 42;
-console.log(undefined); // 42
-```
-```sh
-➜  babel-learning git:(main) node src/nicolo-howto-talk/redefine-undefined.cjs 
-42
-```
-
-At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo uses `path.scope.buildUndefined()`to produce `void 0` to ensure that `undefined` is `undefined`:
-
-```js
-➜  babel-learning git:(main) cat src/nicolo-howto-talk/optionalchaining-plugin.cjs 
-//const generate = require('@babel/generator').default;
-module.exports = function myPlugin(babel, options) {
-  const {types: t, template } = babel;
-  return {
-    name: "optional-chaining-plugin",
-    manipulateOptions(opts) {
-      opts.parserOpts.plugins.push("OptionalChaining")
-    },
-    visitor: {
-      OptionalMemberExpression(path) {
-        let { object, propert, computed} = path.node;
-        let memberExp = t.memberExpression(object, property, computed);
-        let undef = path.scope.buildUndefinedNode(); // Create a "void 0" nodes
-        path.replaceWith(
-          template.expression.ast`
-             ${object} == null? ${undef} : // Use the "void 0" node
-             ${memberExp}
-          `
-        )
-      } 
-    }
-  }
-}
-```
-When we execute it we get:
-
-`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
-```js
-"use strict";
-
-var _a;
-(_a = a) === null || _a === void 0 ? void 0 : _a[0];
-```
-`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input.js`
-```js
-"use strict";
-
-var _a;
-(_a = a) === null || _a === void 0 ? void 0 : _a.b;
 ```
 
 ## References
