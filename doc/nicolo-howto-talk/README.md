@@ -112,6 +112,10 @@ a?.b
   ]
 }
 ```
+
+At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo uses `path.scope.buildUndefined()`to produce `void 0` to ensure that `undefined` is `undefined`:
+
+
 `➜  nicolo-howto-talk git:(main) cat `[optionalchaining-plugin.cjs](/src/nicolo-howto-talk/optionalchaining-plugin.cjs)
 ```js
 module.exports = function myPlugin(babel, options) {
@@ -138,8 +142,6 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
-
-At minute [29:47](https://youtu.be/UeVq_U5obnE?t=1785) Nicolo uses `path.scope.buildUndefined()`to produce `void 0` to ensure that `undefined` is `undefined`:
 
 ```js
 ➜  babel-learning git:(main) cat src/nicolo-howto-talk/optionalchaining-plugin.cjs 
