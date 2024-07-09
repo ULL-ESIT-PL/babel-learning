@@ -142,6 +142,15 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
+Execution:
+
+`➜  babel-learning git:(29m47s) npx babel src/nicolo-howto-talk/input.js --plugins=./src/nicolo-howto-talk/optionalchaining-plugin.cjs`
+```js
+"use strict";
+
+a == null ? void 0 : a.b;
+```
+
 ## Computed properties 
 
 At minute [31.14](https://youtu.be/UeVq_U5obnE?t=1867) Nicolo considers the more general case of accessing a computed property like in:
