@@ -284,8 +284,45 @@ let _obj = null;
 _obj = a() == null ? void 0 : _obj.x;
 ```
 
+## Larger Chainings with more than one dot
 
+At minute [34:08](https://youtu.be/UeVq_U5obnE?t=2052) Nicolo considers the case of a larger chain of optional properties like `a?.x.y.z` whose AST is like follows:
 
+`➜  babel-learning git:(34m08s) ✗ compast -blp 'a?.x.y.z' | yq '.program.body[0].expression'`
+```json 
+{
+  "type": "OptionalMemberExpression",
+  "object": {
+    "type": "OptionalMemberExpression",
+    "object": {
+      "type": "OptionalMemberExpression",
+      "object": {
+        "type": "Identifier",
+        "name": "a"
+      },
+      "computed": false,
+      "property": {
+        "type": "Identifier",
+        "name": "x"
+      },
+      "optional": true
+    },
+    "computed": false,
+    "property": {
+      "type": "Identifier",
+      "name": "y"
+    },
+    "optional": false
+  },
+  "computed": false,
+  "property": {
+    "type": "Identifier",
+    "name": "z"
+  },
+  "optional": false
+}
+```
+> We 
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
