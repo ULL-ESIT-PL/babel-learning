@@ -322,6 +322,13 @@ At minute [34:08](https://youtu.be/UeVq_U5obnE?t=2052) Nicolo considers the case
   "optional": false
 }
 ```
+
+`((a?.x).y).z)` is the way to interpret the chain of properties.  Not only the inner `a?.x` is 
+an `OptionalMemberExpression` but also the `a?.x.y` is an `OptionalMemberExpression`. The difference
+is that the `optional` property of the `a?.x` is `true` and the `optional` property of the `a?.x.y` is `false`. In the same way the `a?.x.y.z` is an `OptionalMemberExpression` but the `optional` property is `false`.
+
+
+
 > We 
 ## References
 
