@@ -103,7 +103,13 @@ function tutu(x) {
 
 ## Pushing a variable declaration to a parent scope
 
-Sometimes you may want to push a `VariableDeclaration` so you can assign to it.
+This example shows how to 
+
+- The `path.scope.generateUidIdentifierBasedOnNode(path.node.id)` generates a unique identifier based on the node id
+- The function declaration is converted to an expression `t.toExpression(path.node)` and
+- remove a function declaration from its current scope `path.remove()` 
+- push it to the parent scope.
+- the expression is pushed to the parent scope.
 
 ```js
 module.exports = function(babel) {
