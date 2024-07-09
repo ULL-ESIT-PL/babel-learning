@@ -106,19 +106,31 @@ function tutu(x) {
 Sometimes you may want to push a `VariableDeclaration` so you can assign to it.
 
 ```js
-FunctionDeclaration(path) {
-  const id = path.scope.generateUidIdentifierBasedOnNode(path.node.id);
-  path.remove();
-  path.scope.parent.push({ id, init: path.node });
-}
+module.exports = function(babel) {
+  const { types: t } = babel;
+
+  return {
+    name: "pushing-to-parent-plugin",
+    visitor: {
+      FunctionDeclaration(path) {
+        const id = path.scope.generateUidIdentifierBasedOnNode(path.node.id);
+        let node = t.toExpression(path.node);
+        path.remove();
+        path.scope.parent.push({ id, init: node });
+      }
+    }
+  };
+};
 ```
 
-```diff
-- function square(n) {
-+ var _square = function square(n) {
-    return n * n;
-- }
-+ };
+When we running Babel using this plugin and pipe the output to `diff -y` we get:
+
+```
+➜  scopepush git:(main) ✗ npx babel square.js --plugins=./scopeparentpush.cjs | diff -y - square.js
+var _square = function square(n) {                              |       function square(n) {
+  return n * n;                                                           return n * n;
+};                                                              |       }
+\ No newline at end of file
 ```
 
 ## Rename a binding and its references
