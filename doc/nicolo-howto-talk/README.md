@@ -142,25 +142,6 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
-
-When we execute it we get:
-
-`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
-```js
-"use strict";
-
-var _a;
-(_a = a) === null || _a === void 0 ? void 0 : _a[0];
-```
-`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input.js`
-```js
-"use strict";
-
-var _a;
-(_a = a) === null || _a === void 0 ? void 0 : _a.b;
-```
-
-
 ## Computed properties 
 
 At minute [31.14](https://youtu.be/UeVq_U5obnE?t=1867) Nicolo considers the more general case of accessing a computed property like in:
