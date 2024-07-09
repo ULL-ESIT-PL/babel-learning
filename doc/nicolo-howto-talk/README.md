@@ -273,6 +273,7 @@ module.exports = function myPlugin(babel, options) {
   }
 }
 ```
+
 Now the plugin works for the case `a()?.x` (see the input file at [src/nicolohowto-talk/input-function-object.js](/src/nicolohowto-talk/input-function-object.js)):
 
 `➜  babel-learning git:(31m31s) npx babel src/nicolo-howto-talk/input-function-object.js --plugins=./src/nicolo-howto-talk/optionalchaining-plugin.cjs `
