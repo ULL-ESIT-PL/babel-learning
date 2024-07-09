@@ -8,9 +8,7 @@ module.exports = function myPlugin(babel, options) {
     },
     visitor: {
       OptionalMemberExpression(path) {
-
-        while (!path.node.optional) path = path.get("object");
-
+        if (!path.node.optional) path.get("object").traverse();
         let { object, property, computed } = path.node;
         let tmp = path.scope.generateUidIdentifier('_obj');
         path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() });
