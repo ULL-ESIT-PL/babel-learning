@@ -246,6 +246,34 @@ At minute [31:31](https://youtu.be/UeVq_U5obnE?t=1887) Nicolo considers the case
 
 The `path.scope.push` method in Babel.js is used to add a new binding (variable) to the current scope. This method is part of the Babel API for manipulating the Abstract Syntax Tree (AST) and is particularly useful when you are developing Babel plugins or transforms and need to introduce new variables into the code. 
 
+```js
+➜  babel-learning git:(main) cat src/nicolo-howto-talk/optionalchaining-plugin.cjs 
+module.exports = function myPlugin(babel, options) {
+  const {types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression(path) {
+        let { object, property, computed} = path.node;
+        let tmp = path.scope.generateUidIdentifier('_obj');
+        path.scope.push({id: tmp, kind: let})
+        let memberExp = t.memberExpression(object, property, computed);
+        let undef = path.scope.buildUndefinedNode();
+        path.replaceWith(
+          template.expression.ast`
+             ${object} == null? ${undef} :
+             ${memberExp}
+          `
+        )
+      } 
+    }
+  }
+}
+```
+
 
 ## References
 
