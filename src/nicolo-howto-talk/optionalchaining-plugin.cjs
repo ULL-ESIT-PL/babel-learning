@@ -8,7 +8,7 @@ module.exports = function myPlugin(babel, options) {
     },
     visitor: {
       OptionalMemberExpression(path) {
-        let { object, propert, computed} = path.node;
+        let { object, property, computed} = path.node;
         let memberExp = t.memberExpression(object, property, computed);
         let undef = path.scope.buildUndefinedNode();
         path.replaceWith(
