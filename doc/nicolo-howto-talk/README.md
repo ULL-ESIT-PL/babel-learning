@@ -246,8 +246,8 @@ At minute [31:31](https://youtu.be/UeVq_U5obnE?t=1887) Nicolo considers the case
 
 The `path.scope.push` method in Babel.js is used to add a new binding (variable) to the current scope. This method is part of the Babel API for manipulating the Abstract Syntax Tree (AST) and is particularly useful when you are developing Babel plugins or transforms and need to introduce new variables into the code. 
 
+`➜  babel-learning git:(main) ✗ cat src/nicolo-howto-talk/optionalchaining-plugin.cjs`
 ```js
-➜  babel-learning git:(main) cat src/nicolo-howto-talk/optionalchaining-plugin.cjs 
 module.exports = function myPlugin(babel, options) {
   const {types: t, template } = babel;
   return {
@@ -258,13 +258,13 @@ module.exports = function myPlugin(babel, options) {
     visitor: {
       OptionalMemberExpression(path) {
         let { object, property, computed} = path.node;
-        let tmp = path.scope.generateUidIdentifier('_obj');
-        path.scope.push({id: tmp, kind: let})
-        let memberExp = t.memberExpression(object, property, computed);
-        let undef = path.scope.buildUndefinedNode();
+        let tmp = path.scope.generateUidIdentifier('_obj'); // <= Generate a unique identifier
+        path.scope.push({id: tmp, kind: "let", init: t.nullLiteral()}); // <= Add the new variable to the scope
+        let memberExp = t.memberExpression(tmp, property, computed); // <= Use the new variable as Substitute for the object to avoid calling it twice
+        let undef = path.scope.buildUndefinedNode(); // Safe undefined
         path.replaceWith(
           template.expression.ast`
-             ${object} == null? ${undef} :
+             ${tmp} = ${object} == null? ${undef} :
              ${memberExp}
           `
         )

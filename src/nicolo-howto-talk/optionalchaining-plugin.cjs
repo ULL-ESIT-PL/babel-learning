@@ -11,11 +11,11 @@ module.exports = function myPlugin(babel, options) {
         let { object, property, computed} = path.node;
         let tmp = path.scope.generateUidIdentifier('_obj');
         path.scope.push({id: tmp, kind: "let", init: t.nullLiteral()});
-        let memberExp = t.memberExpression(object, property, computed);
+        let memberExp = t.memberExpression(tmp, property, computed);
         let undef = path.scope.buildUndefinedNode();
         path.replaceWith(
           template.expression.ast`
-             ${object} == null? ${undef} :
+             ${tmp} = ${object} == null? ${undef} :
              ${memberExp}
           `
         )
