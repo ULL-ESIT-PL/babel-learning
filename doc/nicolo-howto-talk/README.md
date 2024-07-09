@@ -286,7 +286,7 @@ _obj = a() == null ? void 0 : _obj.x;
 
 ## Larger Chainings with more than one dot
 
-At minute [34:08](https://youtu.be/UeVq_U5obnE?t=2052) Nicolo considers the case of a larger chain of optional properties like `a?.x.y.z` whose AST is like follows:
+At minute [34:08](https://youtu.be/UeVq_U5obnE?t=2052) Nicolo considers the case of a larger chain of optional properties like `a?.x.y.z` whose Babel AST is like follows:
 
 `➜  babel-learning git:(34m08s) ✗ compast -blp 'a?.x.y.z' | yq '.program.body[0].expression'`
 ```json 
