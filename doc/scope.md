@@ -111,6 +111,7 @@ This example shows how to
 - push it to the parent scope.
 - the expression is pushed to the parent scope.
 
+`➜  src git:(main) cat scope/scopepush/scopeparentpush.cjs`
 ```js
 module.exports = function(babel) {
   const { types: t } = babel;
