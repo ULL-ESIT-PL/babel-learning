@@ -130,7 +130,7 @@ module.exports = function(babel) {
 };
 ```
 
-When we running Babel using this plugin and [pipe the output to `diff -y`](https://stackoverflow.com/questions/17195308/unix-diff-side-to-side-results) we get:
+When we run Babel using this plugin and [pipe the output to `diff -y`](https://stackoverflow.com/questions/17195308/unix-diff-side-to-side-results) we get:
 
 ```
 ➜  scopepush git:(main) ✗ npx babel square.js --plugins=./scopeparentpush.cjs | diff -y - square.js
