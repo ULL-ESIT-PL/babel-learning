@@ -211,12 +211,14 @@ module.exports = function myPlugin(babel, options) {
 ```
 Now the plugin works for both cases `a?.b` and `a?.[0]`:
 
-`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js`
+`➜  babel-learning git:(31m14s) npx babel src/nicolo-howto-talk/input-array.js --plugins=./src/nicolo-howto-talk/`
 ```js
+optionalchaining-plugin.cjs
+
+
 "use strict";
 
-var _a;
-(_a = a) === null || _a === void 0 ? void 0 : _a[0];
+a == null ? void 0 : a[0];
 ```
 
 ## Be sure `undefined`  is `undefined`
