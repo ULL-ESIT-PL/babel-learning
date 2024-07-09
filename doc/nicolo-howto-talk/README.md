@@ -286,7 +286,11 @@ _obj = a() == null ? void 0 : _obj.x;
 
 ## Larger Chainings with more than one dot
 
-At minute [34:08](https://youtu.be/UeVq_U5obnE?t=2052) Nicolo considers the case of a larger chain of optional properties like `a?.x.y.z` whose Babel AST is like follows:
+At minute [34:08](https://youtu.be/UeVq_U5obnE?t=2052) Nicolo considers 
+
+> But what if we have more than one nested property? 
+
+This is the case of a larger chain of optional properties like `a?.x.y.z` whose Babel AST is like follows:
 
 `➜  babel-learning git:(34m08s) ✗ compast -blp 'a?.x.y.z' | yq '.program.body[0].expression'`
 ```json 
@@ -331,7 +335,13 @@ If we change the last dot to `a?.x.y?.z` then the outer node of `(a?.x.y)?.z`
 is an `OptionalMemberExpression` with `optional` property set to `true`.
 
 
-> We 
+> We are checking if `a` is **nullish**. If it is not `nullish` we wanto to get `x.y.z`. We are not checking if those things are nullish.  Otherwise we have had other question marks like this `a?.x?.y.z`.
+>
+> We are currently visiting this starting from the outermost  node to the innermost nodes but we 
+> should only check transform (the nodes)  where  the `optional` property is `true`.
+> So we can go down in the AST until we found the "real" `optional` property.
+
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
