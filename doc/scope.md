@@ -26,8 +26,7 @@ FunctionDeclaration(path) {
 
 ## Generating a UID
 
-This will generate an identifier that doesn't collide with any locally defined
-variables.
+This will generate an identifier that doesn't collide with any locally defined variables.
 
 ```js
 FunctionDeclaration(path) {
@@ -35,6 +34,70 @@ FunctionDeclaration(path) {
   // Node { type: "Identifier", name: "_uid" }
   path.scope.generateUidIdentifier("uid");
   // Node { type: "Identifier", name: "_uid2" }
+}
+```
+
+## Pushing a variable declaration
+
+The `path.scope.push` method has the following signature:
+
+```javascript
+scope.push({
+  id: t.identifier("myVar"),
+  init: t.numericLiteral(42),
+  kind: "const"
+});
+```
+
+The method takes an object with the following properties:
+
+- `id`: The identifier node representing the variable name. This is typically created using `t.identifier(name)`.
+- `init`: (Optional) The initial value of the variable. This should be an AST node representing the value, such as `t.numericLiteral(42)` for the number `42`.
+- `kind`: (Optional) The kind of variable declaration. This can be `"var"`, `"let"`, or `"const"`. If omitted, it defaults to `"var"`.
+
+Here is an example of how you might use `path.scope.push` within a Babel plugin to add a new constant variable to the current scope:
+
+```javascript
+module.exports = function(babel) {
+  const { types: t } = babel;
+
+  return {
+    name: "add-variable-plugin",
+    visitor: {
+      FunctionDeclaration(path) {
+        path.scope.push({
+          id: t.identifier("newVar"),
+          init: t.numericLiteral(42),
+          kind: "const"
+        });
+      }
+    }
+  };
+};
+```
+
+In this example:
+- The plugin defines a visitor for `FunctionDeclaration` nodes.
+- When a function declaration is encountered, the plugin adds a new constant variable `newVar` with an initial value of `42` to the scope of that function.
+
+
+Given the input:
+
+`➜  babel-learning git:(main) ✗ cat src/scope/scopepush/input.js`
+```js
+function tutu(x) {
+  return newVar;
+}
+```
+When we run Babel using this plugin we get:
+
+`➜  babel-learning git:(main) npx babel src/scope/scopepush/input.js --plugins=./src/scope/scopepush/scopepush.cjs`
+```js
+"use strict";
+
+function tutu(x) {
+  const newVar = 42;
+  return newVar;
 }
 ```
 

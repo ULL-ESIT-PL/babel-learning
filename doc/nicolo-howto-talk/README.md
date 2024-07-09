@@ -221,7 +221,7 @@ module.exports = function myPlugin(babel, options) {
     },
     visitor: {
       OptionalMemberExpression(path) {
-        let { object, propert, computed} = path.node;
+        let { object, propert, computed} = path.node; // <= computed is defined from the node
         let memberExp = t.memberExpression(object, property, computed);
         let undef = path.scope.buildUndefinedNode();
         path.replaceWith(
@@ -244,6 +244,18 @@ Now the plugin works for both cases `a?.b` and `a?.[0]`:
 var _a;
 (_a = a) === null || _a === void 0 ? void 0 : _a[0];
 ```
+
+## What if the object part is a call expression or a `get`?
+
+At minute [31:31](https://youtu.be/UeVq_U5obnE?t=1887) Nicolo considers the case of the object part being a call expression like `a()?.x`.
+
+> ... As you cn see there is a problem, while in the input code`a()` is called once, in the output code it is called twice. Once to check if it is `null` and once to access the property. We can avoid it by storing the result of the call in a variable and then using the variable in the `alternate` part of the `conditional` expression.
+
+> To do that Babel provides the `path.scope.generateUidIdentifier` method that generates a unique identifier that can be used to store the result of the call expression. To declare that variable we use the `path.scope.push` method.
+
+
+The `path.scope.push` method in Babel.js is used to add a new binding (variable) to the current scope. This method is part of the Babel API for manipulating the Abstract Syntax Tree (AST) and is particularly useful when you are developing Babel plugins or transforms and need to introduce new variables into the code. 
+
 
 ## References
 
