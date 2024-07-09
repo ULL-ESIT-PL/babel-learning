@@ -140,6 +140,8 @@ var _square = function square(n) {                              |       function
 \ No newline at end of file
 ```
 
+Notice that since `kind` was not specified in `path.scope.parent.push({ id, init: node });` the variable is declared as `var`.
+
 ## Rename a binding and its references
 
 ```js
