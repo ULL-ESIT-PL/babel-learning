@@ -339,6 +339,15 @@ In the same way the `a?.x.y.z` is an `OptionalMemberExpression` but the `optiona
 If we change the last dot to `a?.x.y?.z` then the outer node of `(a?.x.y)?.z` 
 is an `OptionalMemberExpression` with `optional` property set to `true`.
 
+```mermaid
+graph TB
+  A --> C(("OME<br/>false"))
+  A((OME<br/>false)) -->  B((ID z))
+  C --> D((OME<br/>true))
+  C --> E((ID y))
+  D --> F((Id a))
+  D --> G((ID x))
+```
 
 > We are checking if `a` is **nullish**. If it is not `nullish` we wanto to get `x.y.z`. We are not checking if those things are nullish.  Otherwise we have had other question marks like this `a?.x?.y.z`.
 >
