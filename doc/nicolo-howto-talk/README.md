@@ -501,22 +501,21 @@ module.exports = function myPlugin(babel, options) {
 
 ## Loose mode
 
-
 At minute [40:24](https://youtu.be/UeVq_U5obnE?t=2418) Nicolo introduces `loose` mode. 
 Babel.js "loose mode" is an option that you can enable for certain plugins and presets to generate code that is simpler and potentially more performant but may not strictly adhere to the ECMAScript specification in all edge cases. This mode typically results in output that is closer to how developers might write code manually and can be more efficient in terms of performance and code size.
 
-Why Use "Loose Mode"?
+There are multiple reasons why we want to use "Loose Mode":
 
 1. **Performance**: Loose mode often generates code that executes faster.
 2. **Size**: The output code is usually smaller, which can be beneficial for reducing bundle sizes in web applications.
 3. **Simplicity**: The generated code is often simpler and easier to understand.
 
-but
+But we have to be aware of the following drawbacks:
 
 1. **Spec Compliance**: The generated code might not fully adhere to the ECMAScript specification, especially in less common edge cases.
 2. **Compatibility**: While the generated code works in most cases, there might be subtle differences in behavior compared to the spec-compliant version, which can lead to bugs if not carefully considered.
 
-You can enable loose mode by setting the `loose` option to `true` in the configuration for specific plugins or presets.
+We can enable loose mode by setting the `loose` option to `true` in the configuration for specific plugins or presets.
 
 ## References
 
