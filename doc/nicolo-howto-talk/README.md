@@ -394,6 +394,39 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
+Let us consider the following input:
+
+`➜  babel-learning git:(main) cat src/nicolo-howto-talk/input-multiple.js`
+```js
+let a = {x: {y: {z: 1}}};
+console.log(a?.x.y?.z)
+console.log(a?.x.w?.z)
+console.log(a?.x.y.z)
+```
+
+when we run the plugin we get the following output:
+
+
+`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-multiple.js --plugins=./src/nicolo-howto-talk/optionalchaining-plugin.cjs`
+```js
+"use strict";
+
+let _z = null, _x = null, _z2 = null, _x2 = null, _x3 = null;
+let a = { x: { y: { z: 1 } } };
+console.log((_z = ((_x = a) == null ? void 0 : _x.x).y) == null ? void 0 : _z.z);
+console.log((_z2 = ((_x2 = a) == null ? void 0 : _x2.x).w) == null ? void 0 : _z2.z);
+console.log(((_x3 = a) == null ? void 0 : _x3.x).y.z);
+```
+
+If we pipe the output to `node` we get:
+
+```
+➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-multiple.js --plugins=./src/nicolo-howto-talk/optionalchaining-plugin.cjs | node
+1
+undefined
+1
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
