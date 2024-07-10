@@ -217,23 +217,3 @@ function example() {
 example();
 ```
 
-## Can I set options for a babel plugin from the command line? Or it is necessarily from a configuration file? 
-
-You can set options for a Babel plugin both from a configuration file and directly from the command line. 
-When using the Babel CLI, you can pass plugin options directly using the `--plugins` flag. The syntax for passing options on the command line can be a bit more complex, as you need to ensure the options are correctly formatted as JSON within the command.
-
-Let's assume you have a plugin named `my-plugin` and you want to set options `option1` to `value1` and `option2` to `value2`.
-
-You would run Babel from the command line as follows:
-
-```bash
-npx babel src --out-dir lib --plugins '[["my-plugin", {"option1": "value1", "option2": "value2"}]]'
-```
-
-- `npx babel src --out-dir lib`: This is the basic command to run Babel, where `src` is your source directory and `lib` is your output directory.
-- `--plugins '[["my-plugin", {"option1": "value1", "option2": "value2"}]]'`: This specifies the plugins and their options in a JSON-like array format.
-
-
-- Ensure the entire plugins array is enclosed in single quotes (`'`) to avoid shell parsing issues.
-- For complex option values or deeply nested options, it might be more practical to use a configuration file for readability and maintainability.
-
