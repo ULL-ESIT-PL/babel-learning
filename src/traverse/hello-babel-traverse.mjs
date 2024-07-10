@@ -1,4 +1,4 @@
-import * as babylon from "babylon";
+import * as babylon from "@babel/parser";
 import _traverse from "@babel/traverse";
 const traverse = _traverse.default;
 //console.log(traverse)

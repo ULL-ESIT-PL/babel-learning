@@ -1,4 +1,4 @@
-import * as babylon from "babylon";
+import * as babylon from "@babel/parser";
 
 const code = `n => n * n;`;
 
