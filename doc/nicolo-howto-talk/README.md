@@ -347,6 +347,42 @@ is an `OptionalMemberExpression` with `optional` property set to `true`.
 > So we can go down in the AST until we found the "real" `optional` property.
 
 
+Here is a solution slightly different from the one Nicolo proposes
+
+`➜  babel-learning git:(main) ✗ cat src/nicolo-howto-talk/optionalchaining-plugin.cjs`
+```js 
+module.exports = function myPlugin(babel, options) {
+  const { types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression(path) {
+
+        while (!path.node.optional) path = path.get("object"); // <= Go down in the AST until we find the "real" optional property
+
+        let { object, property, computed } = path.node;
+        let tmp = path.scope.generateUidIdentifierBasedOnNode(property);  // <= Generate a unique identifier based on the property
+        path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() }); // <= Add the new variable to the scope
+
+        
+        let memberExp = t.memberExpression(tmp, property, computed);
+        let undef = path.scope.buildUndefinedNode();
+        path.replaceWith( // <= Replace the node with the new code
+          template.expression.ast`
+             (${tmp} = ${object}) == null? ${undef} :
+             ${memberExp}
+          `
+        )
+
+      }
+    }
+  }
+}
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx

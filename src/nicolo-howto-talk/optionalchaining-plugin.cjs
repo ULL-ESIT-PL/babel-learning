@@ -12,7 +12,7 @@ module.exports = function myPlugin(babel, options) {
         while (!path.node.optional) path = path.get("object");
 
         let { object, property, computed } = path.node;
-        let tmp = path.scope.generateUidIdentifier('_obj');
+        let tmp = path.scope.generateUidIdentifierBasedOnNode(property);
         path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() });
 
         
