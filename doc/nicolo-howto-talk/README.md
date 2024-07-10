@@ -435,8 +435,8 @@ undefined
 
 You can also check it against the example [src/nicolo-howto-talk/input-array.js](/src/nicolo-howto-talk/input-array.js)
 
-```js 
-➜  babel-learning git:(main) cat src/nicolo-howto-talk/input-array.js          
+`➜  babel-learning git:(main) cat src/nicolo-howto-talk/input-array.js`
+```js          
 const a = [[2,3]];
 console.log(a?.[0][1]);
 console.log(a?.[0]?.[2]);
