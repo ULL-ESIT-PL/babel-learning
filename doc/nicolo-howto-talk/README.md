@@ -433,6 +433,35 @@ undefined
 1
 ```
 
+You can also check it against the example [src/nicolo-howto-talk/input-array.js](/src/nicolo-howto-talk/input-array.js)
+
+```js 
+➜  babel-learning git:(main) cat src/nicolo-howto-talk/input-array.js          
+const a = [[2,3]];
+console.log(a?.[0][1]);
+console.log(a?.[0]?.[2]);
+console.log(a?.[0][1]?.[0]);
+```
+
+`➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js --plugins=./src/nicolo-howto-talk/optionalchaining-plugin.cjs`
+```js
+"use strict";
+
+let _ = null, _2 = null, _3 = null, _4 = null, _5 = null;
+const a = [[2, 3]];
+console.log(((_ = a) == null ? void 0 : _[0])[1]);
+console.log((_2 = (_3 = a) == null ? void 0 : _3[0]) == null ? void 0 : _2[2]);
+console.log((_4 = ((_5 = a) == null ? void 0 : _5[0])[1]) == null ? void 0 : _4[0]);
+```
+
+When we run it with `node` we get:
+```
+➜  babel-learning git:(main) npx babel src/nicolo-howto-talk/input-array.js --plugins=./src/nicolo-howto-talk/optionalchaining-plugin.cjs | node 
+3
+undefined
+undefined
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
