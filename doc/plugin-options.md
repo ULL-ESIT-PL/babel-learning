@@ -219,37 +219,8 @@ example();
 
 ## Can I set options for a babel plugin from the command line? Or it is necessarily from a configuration file? 
 
-You can set options for a Babel plugin both from a configuration file and directly from the command line. Here’s how you can do both:
-
-### Setting Plugin Options in a Configuration File
-
-In a Babel configuration file such as `.babelrc`, `babel.config.js`, or `package.json` (under the `babel` key), you can specify options for a plugin as follows:
-
-#### .babelrc or babel.config.js
-
-```json
-{
-  "plugins": [
-    ["plugin-name", { "option1": "value1", "option2": "value2" }]
-  ]
-}
-```
-
-or in `babel.config.js`:
-
-```javascript
-module.exports = {
-  plugins: [
-    ["plugin-name", { option1: "value1", option2: "value2" }]
-  ]
-};
-```
-
-### Setting Plugin Options from the Command Line
-
+You can set options for a Babel plugin both from a configuration file and directly from the command line. 
 When using the Babel CLI, you can pass plugin options directly using the `--plugins` flag. The syntax for passing options on the command line can be a bit more complex, as you need to ensure the options are correctly formatted as JSON within the command.
-
-#### Example
 
 Let's assume you have a plugin named `my-plugin` and you want to set options `option1` to `value1` and `option2` to `value2`.
 
@@ -259,16 +230,10 @@ You would run Babel from the command line as follows:
 npx babel src --out-dir lib --plugins '[["my-plugin", {"option1": "value1", "option2": "value2"}]]'
 ```
 
-### Breaking Down the Command
-
 - `npx babel src --out-dir lib`: This is the basic command to run Babel, where `src` is your source directory and `lib` is your output directory.
 - `--plugins '[["my-plugin", {"option1": "value1", "option2": "value2"}]]'`: This specifies the plugins and their options in a JSON-like array format.
 
-### Caveats
 
 - Ensure the entire plugins array is enclosed in single quotes (`'`) to avoid shell parsing issues.
 - For complex option values or deeply nested options, it might be more practical to use a configuration file for readability and maintainability.
 
-### Summary
-
-While you can set options for a Babel plugin directly from the command line using the `--plugins` flag and specifying the options in a JSON-like format, it is often more convenient and readable to set these options in a configuration file like `.babelrc` or `babel.config.js`. Both methods are valid and can be used depending on your specific needs and preferences.
