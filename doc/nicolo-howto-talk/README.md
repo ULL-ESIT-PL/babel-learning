@@ -339,6 +339,8 @@ In the same way the `a?.x.y.z` is an `OptionalMemberExpression` but the `optiona
 If we change the last dot to `a?.x.y?.z` then the outer node of `(a?.x.y)?.z` 
 is an `OptionalMemberExpression` with `optional` property set to `true`.
 
+Here is again the AST depicted as a graph. `OME` stands for `OptionalMemberExpression` and we use `true` and `false` to indicate the `optional` property of the nodes:
+
 ```mermaid
 graph TB
   A --> C(("OME<br/>false"))
