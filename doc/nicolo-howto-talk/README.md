@@ -418,6 +418,12 @@ console.log((_z2 = ((_x2 = a) == null ? void 0 : _x2.x).w) == null ? void 0 : _z
 console.log(((_x3 = a) == null ? void 0 : _x3.x).y.z);
 ```
 
+Let us consider the first expression `a?.x.y?.z`:
+
+1. `(_x = a) == null ? void 0 : _x.x)` is the transformation of `a?.x`.
+2. `(_z = ((_x = a) == null ? void 0 : _x.x).y)` is the transformation of `a?.x.y`.
+3. `console.log((_z = ((_x = a) == null ? void 0 : _x.x).y) == null ? void 0 : _z.z);` is the transformation of `a?.x.y?.z`.
+
 If we pipe the output to `node` we get:
 
 ```
