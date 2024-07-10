@@ -476,7 +476,7 @@ module.exports = function myPlugin(babel, options) {
     },
     visitor: {
       OptionalMemberExpression: {
-        exit(path) { // <= Now we substitute the "while (!path.node.optional) ..." with a return   
+        exit(path) { // <= Now we substitute the "while (!path.node.optional) ..." with a simple return   
           if (!path.node?.optional) return;
           let { object, property, computed } = path.node;
 
