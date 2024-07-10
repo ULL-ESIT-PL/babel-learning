@@ -328,6 +328,7 @@ This is the case of a larger chain of optional properties like `a?.x.y.z` whose 
 ```
 
 the chaining `a?.x.y.z` is actually interpreted as `((a?.x).y).z)`.  
+
 We can see that not only the inner `a?.x` is 
 an `OptionalMemberExpression` but also 
 the `a?.x.y` is an `OptionalMemberExpression`. 
