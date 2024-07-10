@@ -327,9 +327,13 @@ This is the case of a larger chain of optional properties like `a?.x.y.z` whose 
 }
 ```
 
-`((a?.x).y).z)` is the way to interpret the chain of properties.  Not only the inner `a?.x` is 
-an `OptionalMemberExpression` but also the `a?.x.y` is an `OptionalMemberExpression`. The difference
-is that the `optional` property of the `a?.x` is `true` and the `optional` property of the `(a?.x).y` is `false`. In the same way the `a?.x.y.z` is an `OptionalMemberExpression` but the `optional` property is `false`. 
+the chaining `a?.x.y.z` is actually interpreted as `((a?.x).y).z)`.  
+We can see that not only the inner `a?.x` is 
+an `OptionalMemberExpression` but also 
+the `a?.x.y` is an `OptionalMemberExpression`. 
+
+The difference is that the `optional` property of the `a?.x` is `true` and the `optional` property of the `(a?.x).y` is `false`. 
+In the same way the `a?.x.y.z` is an `OptionalMemberExpression` but the `optional` property is `false`. 
 
 If we change the last dot to `a?.x.y?.z` then the outer node of `(a?.x.y)?.z` 
 is an `OptionalMemberExpression` with `optional` property set to `true`.
