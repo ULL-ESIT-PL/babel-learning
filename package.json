@@ -24,6 +24,7 @@
     "flow-bin": "^0.238.3"
   },
   "dependencies": {
+    "@babel/traverse": "^7.24.7",
     "@bloomberg/record-tuple-polyfill": "^0.0.4",
     "babel-eslint": "^10.1.0",
     "babel-plugin-idx": "^3.0.3",
