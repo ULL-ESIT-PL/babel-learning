@@ -502,97 +502,22 @@ module.exports = function myPlugin(babel, options) {
 ## Loose mode
 
 
-At minute [40:24](https://youtu.be/UeVq_U5obnE?t=2418) Nicolo introduces the `loose` mode. 
+At minute [40:24](https://youtu.be/UeVq_U5obnE?t=2418) Nicolo introduces `loose` mode. 
 
 Babel.js "loose mode" is an option that you can enable for certain plugins and presets to generate code that is simpler and potentially more performant but may not strictly adhere to the ECMAScript specification in all edge cases. This mode typically results in output that is closer to how developers might write code manually and can be more efficient in terms of performance and code size.
 
-### Why Use Loose Mode?
+Why Use "Loose Mode"?
 
 1. **Performance**: Loose mode often generates code that executes faster.
 2. **Size**: The output code is usually smaller, which can be beneficial for reducing bundle sizes in web applications.
 3. **Simplicity**: The generated code is often simpler and easier to understand.
 
-### Potential Trade-offs
+but
 
 1. **Spec Compliance**: The generated code might not fully adhere to the ECMAScript specification, especially in less common edge cases.
 2. **Compatibility**: While the generated code works in most cases, there might be subtle differences in behavior compared to the spec-compliant version, which can lead to bugs if not carefully considered.
 
-### Example of Loose Mode
-
-Consider the Babel plugin for transforming classes (`@babel/plugin-transform-classes`). By default, Babel generates code that closely follows the ECMAScript 2015 (ES6) specification. In loose mode, the generated code for classes can be simpler and more performant but might not handle some edge cases correctly.
-
-#### Without Loose Mode
-
-```json
-{
-  "plugins": ["@babel/plugin-transform-classes"]
-}
-```
-
-Generated code might look like this:
-
-```javascript
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: { value: subClass, writable: true, configurable: true }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-```
-
-#### With Loose Mode
-
-```json
-{
-  "plugins": [["@babel/plugin-transform-classes", { "loose": true }]]
-}
-```
-
-Generated code might look like this:
-
-```javascript
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-}
-```
-
-### Enabling Loose Mode
-
 You can enable loose mode by setting the `loose` option to `true` in the configuration for specific plugins or presets.
-
-#### Example in `.babelrc` or `babel.config.js`
-
-```json
-{
-  "presets": [
-    ["@babel/preset-env", { "loose": true }]
-  ],
-  "plugins": [
-    ["@babel/plugin-transform-classes", { "loose": true }]
-  ]
-}
-```
-
-or in `babel.config.js`:
-
-```javascript
-module.exports = {
-  presets: [
-    ["@babel/preset-env", { loose: true }]
-  ],
-  plugins: [
-    ["@babel/plugin-transform-classes", { loose: true }]
-  ]
-};
-```
-
-### Summary
-
-Loose mode in Babel.js is an option that simplifies the generated code, potentially improving performance and reducing code size at the expense of full specification compliance in some edge cases. It can be enabled for specific plugins or presets and is useful for optimizing code, especially in performance-critical applications where the precise spec compliance of edge cases is not a concern.
 
 ## References
 
