@@ -347,7 +347,7 @@ is an `OptionalMemberExpression` with `optional` property set to `true`.
 > So we can go down in the AST until we found the "real" `optional` property.
 
 
-Here is a solution slightly different from the one Nicolo proposes
+Here is a solution slightly different from the one Nicolo proposes:
 
 `➜  babel-learning git:(main) ✗ cat src/nicolo-howto-talk/optionalchaining-plugin.cjs`
 ```js 
