@@ -462,6 +462,43 @@ undefined
 undefined
 ```
 
+The traversing for the first true `optional` property can be removed if we visit the `OptionalMemberExpression` nodes 
+in `exit` order instead of `enter` order. See the solution at [/src/nicolo-howto-talk/optionalchaining-plugin2.cjs](/src/nicolo-howto-talk/optionalchaining-plugin2.cjs):
+
+`➜  nicolo-howto-talk git:(main) ✗ cat optionalchaining-plugin2.cjs`
+```js
+module.exports = function myPlugin(babel, options) {
+  const { types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression: {
+        exit(path) { // <= Now we substitute the "while (!path.node.optional) ..." with a return   
+          if (!path.node?.optional) return;
+          let { object, property, computed } = path.node;
+
+          let tmp = path.scope.generateUidIdentifierBasedOnNode(property);
+
+          path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() });
+
+          let memberExp = t.memberExpression(tmp, property, computed);
+          let undef = path.scope.buildUndefinedNode();
+          path.replaceWith(
+            template.expression.ast`
+             (${tmp} = ${object}) == null? ${undef} :
+             ${memberExp}
+          `
+          )
+        }
+      }
+    }
+  }
+}
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
