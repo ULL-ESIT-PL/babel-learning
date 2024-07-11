@@ -2,12 +2,19 @@
 
 This chapter contains my attempt to reproduce and learn from[ Nicolo Ribaudo's talk at HolyJS 2019](https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx). 
 
-There are several branches in this repository that correspond to the different stages of the talk. The branches are named after the time in the video where the code is shown. For example, the branch `40m24s` corresponds to the code shown at minute 40:24 of the video:
+There are several branches in this repository that correspond to the different stages of the talk. The branches are named after the time in the video where Nicolo is explaining code similar to those that you can find in the files 
+
+- `/src/nicolo-howto-talk/optionalchaining-plugin.cjs` and 
+- `/src/nicolo-howto-talk/optionalchaining-plugin2.cjs` 
+- `/src/nicolo-howto-talk/input-*.js`
+- `/src/nicolo-howto-talk/loose.config.js`
+  
+is shown. For example, the branch `40m24s` corresponds to the code shown at minute 40:24 of the video:
 
 ```sh
 nicolo-howto-talk git:(40m24s) git -P branch
-  29m47s
-  31m14s
+  29m47s  # template.expression.ast
+  31m14s  # The undefined problem
   31m31s
   34m08s
 * 40m24s
