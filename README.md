@@ -4,9 +4,13 @@
 
 Babel is a JavaScript transpiler that converts not only ECMAScript 2015+ but also JS extensions like JSX, Flow, TypeScript, and other proposals into JavaScript code that can run in any browser or JavaScript environment.  
 
-This tutorial is a collection of notes and examples on how to start using Babel from scratch,
-how to write plugins, how to write macros, how to extend the parser, tokenizer and scope snalyzer 
-when extending JavaScript syntax and semantics. 
+This tutorial is a collection of notes and examples when reading tutorials on 
+
+- how to start using Babel,
+- how to write plugins, 
+- how to write macros, 
+- how to extend the parser, tokenizer and scope analyzer 
+- What is TC39 and how to make proposals to TC39
 
 ## Babel Configuration
 
