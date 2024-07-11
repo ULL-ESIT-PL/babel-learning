@@ -9,7 +9,8 @@ There are several branches in this repository that correspond to the different s
 - `/src/nicolo-howto-talk/input-*.js`
 - `/src/nicolo-howto-talk/loose.config.js`
   
-is shown. For example, the branch `40m24s` corresponds to the code shown at minute 40:24 of the video:
+For example, the branch `40m24s` corresponds to the code shown starting at minute 40:24 of the video and corresponds o the section
+[Loose mode](/doc/nicolo-howto-talk/README.md#loose-mode).
 
 ```sh
 nicolo-howto-talk git:(40m24s) git -P branch
