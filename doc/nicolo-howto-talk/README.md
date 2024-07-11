@@ -662,6 +662,13 @@ undefined
 At minute [44.50](https://youtu.be/UeVq_U5obnE?t=2693) Nicolo introduces the subject of testing Babel plugins.
 
 
+```sh
+➜  babel-learning git:(44m.50s) npm i -D babel-plugin-tester jest
+```
+
+<!-- section [Testing Babel Plugins](/doc/babel-plugin-tester.md)--> 
+See the docs at GitHub: [babel-plugin-tester](https://github.com/babel-utils/babel-plugin-tester).
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
