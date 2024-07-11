@@ -168,9 +168,9 @@ See
 - Section [Reading "Babel Macros" by Tan Liu](/doc/tan-liu-babel-macros/tan-liu-babel-macros.md)
 - [Learning Babel Macros](https://github.com/ULL-ESIT-PL/learning-babel-macros/tree/main) at ULL-ESIT-PL/learning-babel-macros repo by Casiano
 
-## Nicolo Ribaudo's talk at HolyJS 2019
+## Reproducing Nicolo Ribaudo's talk at HolyJS 2019
 
-See [Nicolo Ribaudo's talk at HolyJS 2019](/doc/nicolo-howto-talk/README.md)
+See chapter [Reproducing Nicolo Ribaudo's talk at HolyJS 2019](/doc/nicolo-howto-talk/README.md)
 
 ## The Babel Parser
 
