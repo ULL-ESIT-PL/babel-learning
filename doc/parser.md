@@ -231,6 +231,12 @@ with the community to maintain and evolve the definition of JavaScript.
 
 See [tc39.md](/doc/parser/tc39.md) 
 
+You can see examples of how Babel is used to study new syntactic and semantic proposals in 
+sections 
+
+- [/doc/nicolo-howto-talk/privatename.md](/doc/nicolo-howto-talk/privatename.md) and 
+- [/src/record-and-tuple](/src/record-and-tuple/README.md). 
+
 ## Tokenizer
 
 See section [/doc/parser/tokenizer.md](/doc/parser/tokenizer.md).
