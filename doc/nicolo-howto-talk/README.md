@@ -983,11 +983,11 @@ Ran all test suites.
 [32]: https://babeljs.io/docs/en/options#plugins
 [33]: https://babeljs.io/docs/en/presets#preset-ordering
 [34]: #tests
-[35]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#fixtures
-[36]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#codefixture
-[37]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#outputfixture
-[38]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#execfixture
-[39]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#formatting-output-with-prettier
+[35]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#fixtures
+[36]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#codefixture
+[37]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#outputfixture
+[38]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#execfixture
+[39]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#formatting-output-with-prettier
 [40]: https://nodejs.org/api/path.html#pathjoinpaths
 [41]: https://nodejs.org/api/path.html#pathdirnamepath
 [42]: #test-objects
@@ -999,8 +999,8 @@ Ran all test suites.
 [48]: https://prettier.io
 [49]: https://prettier.io/docs/en/configuration.html
 [50]: #snapshot-1
-[51]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#fixtureoutputname-1
-[52]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#fixtureoutputext-1
+[51]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#fixtureoutputname-1
+[52]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#fixtureoutputext-1
 [53]: #titlenumbering
 [54]: #filepath
 [55]: https://github.com/nodejs/node/issues/35889
