@@ -983,11 +983,11 @@ Ran all test suites.
 [32]: https://babeljs.io/docs/en/options#plugins
 [33]: https://babeljs.io/docs/en/presets#preset-ordering
 [34]: #tests
-[35]: #fixtures
-[36]: #codefixture
-[37]: #outputfixture
-[38]: #execfixture
-[39]: #formatting-output-with-prettier
+[35]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#fixtures
+[36]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#codefixture
+[37]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#outputfixture
+[38]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#execfixture
+[39]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#formatting-output-with-prettier
 [40]: https://nodejs.org/api/path.html#pathjoinpaths
 [41]: https://nodejs.org/api/path.html#pathdirnamepath
 [42]: #test-objects
