@@ -709,6 +709,24 @@ pluginTester({
 });
 ```
 
+The first time it runs, it creates the output files. Then, in the following runs, it compares the output with the expected output.
+
+```
+➜  nicolo-howto-talk git:(44m.50s) ✗ npx jest              
+ PASS  __test__/test.js
+  optional-chaining-plugin fixtures
+    ✓ 1. basic functionality (232 ms)
+    ✓ 2. nested (8 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.288 s
+Ran all test suites.
+```
+
+##### fixtures
+
 The option [fixtures](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#fixtures) must be a path to a directory with a structure similar to the following:
 
 ```
@@ -883,23 +901,6 @@ Unlike with babel-plugin-tester's options, you can safely mix plugin-specific
 properties (like `pluginOptions`) with preset-specific properties (like
 [`presetOptions`][24]) in your options files.
 
-The first time it runs, it creates the output files. Then, in the following runs, it compares the output with the expected output.
-
-1. When a specific feature of your plugin is reached  
-
-```
-➜  nicolo-howto-talk git:(44m.50s) ✗ npx jest              
- PASS  __test__/test.js
-  optional-chaining-plugin fixtures
-    ✓ 1. basic functionality (232 ms)
-    ✓ 2. nested (8 ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       2 passed, 2 total
-Snapshots:   0 total
-Time:        1.288 s
-Ran all test suites.
-```
 
 ## References
 
