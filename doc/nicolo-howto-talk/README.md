@@ -516,7 +516,18 @@ But we have to be aware of the following drawbacks:
 2. **Compatibility**: While the generated code works in most cases, there might be subtle differences in behavior compared to the spec-compliant version, which can lead to bugs if not carefully considered.
 
 We can enable loose mode by setting the `loose` option to `true` in the configuration for specific plugins or presets. Review section [Passing plugin options to the visitor methods](/doc/plugin-options.md#passing-plugin-options-to-the-visitor-methods). 
-In a Babel plugin, the visitor receives a second parameter after the `path` parameter which is usually known as the  `state` parameter. This `state` object that holds any kind of data that the plugin might need to maintain state across the visit. Namely, the property `state.opts` contains the options passed to the plugin via the configuration file.
+In a Babel plugin, the visitor receives a second parameter after the `path` parameter which is usually known as the  `state` parameter. This `state` object that holds any kind of data that the plugin might need to maintain state across the visit. Namely, the property `state.opts` contains the options passed to the plugin via the configuration file. We create the following
+configuration file:
+
+`➜  nicolo-howto-talk git:(40m24s) cat loose.config.js`
+```js 
+const path = require('path');
+module.exports = {
+  plugins: [
+    [ path.join(__dirname, 'optionalchaining-plugin2.cjs'), { loose: true} ],
+  ]
+}
+```
 
 ## References
 
