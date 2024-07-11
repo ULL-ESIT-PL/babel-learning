@@ -590,6 +590,47 @@ is the same but not always:
 > false && false.toString() // false // Not the same!
 ```
 
+Here is the new code for the plugin:
+
+
+`➜  nicolo-howto-talk git:(40m24s) cat optionalchaining-plugin2.cjs`
+```js 
+module.exports = function myPlugin(babel, options) {
+  const { types: t, template } = babel;
+  return {
+    name: "optional-chaining-plugin",
+    manipulateOptions(opts) {
+      opts.parserOpts.plugins.push("OptionalChaining")
+    },
+    visitor: {
+      OptionalMemberExpression: {
+        exit(path, state) { //  Receive the state parameter
+          if (!path.node?.optional) return;
+          let { object, property, computed } = path.node;
+
+          let tmp = path.scope.generateUidIdentifierBasedOnNode(property);
+          path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() });
+
+          let memberExp = t.memberExpression(tmp, property, computed);
+          
+          if (state?.opts?.loose) { // <= Check the loose option if so make the new translation and return
+            return path.replaceWith(template.expression.ast`(${tmp} = ${object}) && ${memberExp}`)
+          }
+
+          let undef = path.scope.buildUndefinedNode();
+          path.replaceWith(
+            template.expression.ast`
+             (${tmp} = ${object}) == null? ${undef} :
+             ${memberExp}
+          `
+          )
+        }
+      }
+    }
+  }
+}
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
