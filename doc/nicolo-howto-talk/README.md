@@ -669,6 +669,60 @@ At minute [44.50](https://youtu.be/UeVq_U5obnE?t=2693) Nicolo introduces the sub
 <!-- section [Testing Babel Plugins](/doc/babel-plugin-tester.md)--> 
 See the docs at GitHub: [babel-plugin-tester](https://github.com/babel-utils/babel-plugin-tester).
 
+```
+➜  babel-learning git:(main) tree src/nicolo-howto-talk 
+src/nicolo-howto-talk
+├── __test__
+│   ├── fixtures
+│   │   ├── basic-functionality
+│   │   │   ├── code.js  // a?.b;
+│   │   │   └── output.js
+│   │   └── nested
+│   │       ├── code.js // a?.b.c?.d
+│   │       └── output.js
+│   └── test.js
+├── input-array.js
+├── input-function-object.js
+├── input-multiple.js
+├── input.js
+├── loose.config.js
+├── optionalchaining-plugin.cjs
+├── optionalchaining-plugin2.cjs
+├── privatename-example.js
+├── production-example
+│   ├── README.md
+│   ├── babel.config.json
+│   └── optional-chaining-input.js
+└── redefine-undefined.cjs
+```
+
+
+`➜  nicolo-howto-talk git:(44m.50s) ✗ cat __test__/test.js`
+```js
+const pluginTester = require('babel-plugin-tester');
+const plugin = require('../optionalchaining-plugin2.cjs');
+const path = require('path');
+
+pluginTester({
+  plugin,
+  fixtures: path.join(__dirname, 'fixtures'),
+});
+```
+
+```
+➜  nicolo-howto-talk git:(44m.50s) ✗ npx jest              
+ PASS  __test__/test.js
+  optional-chaining-plugin fixtures
+    ✓ 1. basic functionality (232 ms)
+    ✓ 2. nested (8 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.288 s
+Ran all test suites.
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
