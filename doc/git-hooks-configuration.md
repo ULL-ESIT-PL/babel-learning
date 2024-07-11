@@ -1,6 +1,6 @@
-# git configuration: Husky and git Hooks
+# Babel monorepo git configuration: Husky and git Hooks
 
-The Babel project uses [Husky](https://typicode.github.io/husky) to manage git hooks:
+The Babel monorepo project uses [Husky](https://typicode.github.io/husky) to manage git hooks:
 
 `➜  babel-tanhauhau git:(learning) ✗ jq '.husky' package.json`
 ```json

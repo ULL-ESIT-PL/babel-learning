@@ -227,7 +227,7 @@ See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) 
 
 ## git configuration: Husky and git Hooks
 
-See section [doc/git-hooks-configuration.md](doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
+See section [/doc/git-hooks-configuration.md](/doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
 
 
 ## Symbolic link and way to work
