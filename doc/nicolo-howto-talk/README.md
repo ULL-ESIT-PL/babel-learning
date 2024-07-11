@@ -631,6 +631,32 @@ module.exports = function myPlugin(babel, options) {
 }
 ```
 
+Now if we run the plugin with the loose mode enabled we get:
+
+```sh
+➜  nicolo-howto-talk git:(40m24s) cat input-multiple.js 
+let a = {x: {y: {z: 1}}};
+console.log(a?.x.y?.z)
+console.log(a?.x.w?.z)
+console.log(a?.x.y.z)
+➜  nicolo-howto-talk git:(40m24s) npx babel input-multiple.js --config-file ./loose.config.js       
+let _x = null, _z = null, _x2 = null, _z2 = null, _x3 = null;
+let a = { x: { y: { z: 1 } } };
+console.log((_z = ((_x = a) && _x.x).y) && _z.z);
+console.log((_z2 = ((_x2 = a) && _x2.x).w) && _z2.z);
+console.log(((_x3 = a) && _x3.x).y.z);
+```
+
+We can see that the translation of `a?.x.y` is `(_x = a) && _x.x).y` and for the last optional chain 
+`(a?.x.y)?.z` we add the `_z` variable and the `&& _z.z` suffix:
+
+```sh
+➜  nicolo-howto-talk git:(40m24s) ✗ npx babel input-multiple.js --config-file ./loose.config.js | node
+1
+undefined
+1
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
