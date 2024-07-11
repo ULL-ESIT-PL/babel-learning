@@ -657,6 +657,11 @@ undefined
 1
 ```
 
+## Testing
+
+At minute [44.50](https://youtu.be/UeVq_U5obnE?t=2693) Nicolo introduces the subject of testing Babel plugins.
+
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
