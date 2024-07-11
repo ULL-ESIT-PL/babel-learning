@@ -709,7 +709,183 @@ pluginTester({
 });
 ```
 
-The first time it runs, it creates the output files. Then, in the following runs, it compares the output with the expected output:
+The option [fixtures](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#fixtures) must be a path to a directory with a structure similar to the following:
+
+```
+fixtures
+├── first-test         # test title will be: "1. first test"
+│   ├── code.js        # required
+│   └── output.js      # required (unless using the `throws` option)
+├── second-test        # test title will be: "2. second test"
+│   ├── .babelrc.js    # optional
+│   ├── options.json   # optional
+│   ├── code.ts        # required (other file extensions are allowed too)
+│   └── output.js      # required (unless using the `throws` option)
+└── nested
+    ├── options.json   # optional
+    ├── third-test     # test title will be: "3. nested > third test"
+    │   ├── code.mjs   # required (other file extensions are allowed too)
+    │   ├── output.js  # required (unless using the `throws` option)
+    │   └── options.js # optional (overrides props in nested/options.json)
+    └── x-fourth-test  # test title will be: "4. nested > x fourth test"
+        └── exec.js    # required (alternative to code/output structure)
+```
+
+And it would run four tests, one for each directory in fixtures containing a file starting with "`code`" or "`exec`".
+
+An interesting option to pass to `pluginTester`is `babel`:  This is used to provide your own implementation of babel. 
+This is particularly useful if you want to use a different version of babel.
+
+[Another is `babelOptions`](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#babeloptions). This is used to configure babel. If provided,
+
+##### `code.js`
+
+This file's contents will be used as the source code input into babel at
+transform time. Any file extension can be used, even a multi-part extension
+(e.g. `.test.js` in `code.test.js`) as long as the file name starts with
+`code.`; the [expected output file][56] will have the same file extension suffix
+(i.e. `.js` in `code.test.js`) as this file unless changed with the
+[`fixtureOutputExt`][52] option.
+
+After being transformed by babel, the resulting output will have whitespace
+trimmed, line endings [converted][57], and then get [formatted by prettier][39].
+
+Note that this file cannot appear in the same directory as [`exec.js`][58]. If
+more than one `code.*` file exists in a directory, the first one will be used
+and the rest will be silently ignored.
+
+##### `output.js`
+
+This file, if provided, will have its contents compared with babel's output,
+which is [`code.js`][59] transformed by babel and [formatted with prettier][39].
+If this file is missing and neither [`throws`][60] nor [`exec.js`][58] are being
+used, this file will be automatically generated from babel's output.
+Additionally, the name and extension of this file can be changed with the
+[`fixtureOutputName`][51] and [`fixtureOutputExt`][52] options.
+
+Before being compared to babel's output, this file's contents will have
+whitespace trimmed and line endings [converted][57].
+
+Note that this file cannot appear in the same directory as [`exec.js`][58].
+
+##### `exec.js`
+
+This file's contents will be used as the input into babel at transform time just
+like the [`code.js`][59] file, except the output will be _evaluated_ in the
+[same _CJS_ context][61] as the test runner itself, meaning it supports features
+like a/sync IIFEs, debugging breakpoints (!), and has access to mocked modules,
+`expect`, `require`, `__dirname` and `__filename` (derived from this file's
+path), and other globals/features provided by your test framework. However, the
+context does not support _`import`, top-level await, or any other ESM syntax_.
+Hence, while any file extension can be used (e.g. `.ts`, `.vue`, `.jsx`), this
+file will always be evaluated as CJS.
+
+The test will always pass unless an exception is thrown (e.g. when an `expect()`
+fails).
+
+Use this to make advanced assertions on the output. For example, to test that
+[babel-plugin-proposal-throw-expressions][62] actually throws, your `exec.js`
+file might contain:
+
+```javascript
+expect(() => throw new Error('throw expression')).toThrow('throw expression');
+```
+
+> Keep in mind that, despite sharing a global context, execution will occur in a
+> [separate realm][63], which means native/intrinsic types will be different.
+> This can lead to unexpectedly failing tests. For example:
+>
+> ```javascript
+> expect(require(`${__dirname}/imported-file.json`)).toStrictEqual({
+>   data: 'imported'
+> });
+> ```
+>
+> This may fail in some test frameworks with the message "serializes to the same
+> string". This is because the former object's `Object` prototype comes from a
+> different realm than the second object's `Object` prototype, meaning the two
+> objects are not technically _strictly_ equal. However, something like the
+> following, which creates two objects in the same realm, will pass:
+>
+> ```javascript
+> expect(
+>   Object.fromEntries(
+>     Object.entries(require(`${__dirname}/imported-file.json`))
+>   )
+> ).toStrictEqual({ data: 'imported' });
+> ```
+>
+> Or:
+>
+> ```javascript
+> expect(JSON.stringify(require(`${__dirname}/imported-file.json`))).toBe(
+>   JSON.stringify({ data: 'imported' })
+> );
+> ```
+>
+> Or even:
+>
+> ```javascript
+> expect(require(`${__dirname}/imported-file.json`)).toEqual({
+>   data: 'imported'
+> });
+> ```
+
+After being transformed by babel but before being evaluated, the babel output
+will have whitespace trimmed, line endings [converted][57], and then get
+[formatted by prettier][39].
+
+Note that this file cannot appear in the same directory as [`code.js`][59] or
+[`output.js`][56]. If more than one `exec.*` file exists in a directory, the
+first one will be used and the rest will be silently ignored.
+
+##### `options.json` (Or `options.js`)
+
+For each fixture, the contents of the entirely optional `options.json` file are
+[`lodash.mergeWith`][lodash.mergewith]'d with the options provided to
+babel-plugin-tester, with the former taking precedence. Note that arrays will be
+concatenated and explicitly undefined values will unset previously defined
+values during merging.
+
+For added flexibility, `options.json` can be specified as `options.js` instead
+so long as a JSON object is exported via [`module.exports`][64]. If both files
+exist in the same directory, `options.js` will take precedence and
+`options.json` will be ignored entirely.
+
+Fixtures support deeply nested directory structures as well as shared or "root"
+`options.json` files. For example, placing an `options.json` file in the
+`fixtures/nested` directory would make its contents the "global configuration"
+for all fixtures under `fixtures/nested`. That is: each fixture would
+[`lodash.mergeWith`][lodash.mergewith] the options provided to
+babel-plugin-tester, `fixtures/nested/options.json`, and the contents of their
+local `options.json` file as described above.
+
+What follows are the properties you may use if you provide an options file, all
+of which are optional:
+
+###### `babelOptions`
+
+This is used to configure babel. Properties specified here override
+([`lodash.mergeWith`][lodash.mergewith]) those from the [`babelOptions`][65]
+option provided to babel-plugin-tester. Note that arrays will be concatenated
+and explicitly undefined values will unset previously defined values during
+merging.
+
+###### `pluginOptions`
+
+This is used to pass options into your plugin at transform time. Properties
+specified here override ([`lodash.mergeWith`][lodash.mergewith]) those from the
+[`pluginOptions`][16] option provided to babel-plugin-tester. Note that arrays
+will be concatenated and explicitly undefined values will unset previously
+defined values during merging.
+
+Unlike with babel-plugin-tester's options, you can safely mix plugin-specific
+properties (like `pluginOptions`) with preset-specific properties (like
+[`presetOptions`][24]) in your options files.
+
+The first time it runs, it creates the output files. Then, in the following runs, it compares the output with the expected output.
+
+1. When a specific feature of your plugin is reached  
 
 ```
 ➜  nicolo-howto-talk git:(44m.50s) ✗ npx jest              
