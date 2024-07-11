@@ -581,7 +581,7 @@ is the same but not always:
 > a && a.x && a.x[0] // 4 // the same
 > a?.y?.[2]          // undefined
 > a && a.y && a.y[2] // undefined // the same
-> false.toString()          // ' false'
+> false.toString()          // 'false'
 > false && false.toString() // false // Not the same!
 ```
 
