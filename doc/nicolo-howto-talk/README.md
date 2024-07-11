@@ -911,3 +911,74 @@ Ran all test suites.
 * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
 
 
+
+56]: #outputjs
+[57]: #endofline
+[58]: #execjs
+[59]: #codejs
+[60]: #throws
+[61]: https://nodejs.org/api/vm.html#vmruninthiscontextcode-options
+[62]: https://babeljs.io/docs/en/babel-plugin-proposal-throw-expressions
+[63]: https://weizman.github.io/page-what-is-a-realm-in-js
+[64]: https://nodejs.org/api/modules.html#moduleexports
+[65]: #babeloptions
+[66]: https://jestjs.io/docs/snapshot-testing
+[67]: https://jestjs.io/docs/api#testonlyname-fn-timeout
+[68]: https://jestjs.io/docs/api#testskipname-fn
+[69]:
+  https://github.com/nodejs/node/blob/a03529d82858ed225f40837f14db71851ad5d885/lib/internal/util.js#L97-L99
+[70]: https://github.com/facebook/jest/issues/2549
+[71]:
+  https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-instanceof-array.md
+[72]: https://nodejs.org/api/vm.html#vm-executing-javascript
+[73]:
+  https://github.com/sindresorhus/eslint-plugin-unicorn/issues/723#issuecomment-627001966
+[74]: https://nodejs.org/api/util.html#utiltypesisnativeerrorvalue
+[75]:
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+[76]:
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance
+[77]: https://stackoverflow.com/a/32750746/1367414
+[78]: #outputraw
+[79]: #teardown-1
+[80]: #setup-1
+[81]: #formatresult
+[82]:
+  https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/babel-core/index.d.ts#L191-L197
+[83]: https://babeljs.io/docs/babel-core#transform
+[84]: #throws-1
+[85]: #full-example
+[86]: #code
+[87]: #output
+[88]: #outputraw-1
+[89]: #exec
+[90]: #teardown-2
+[91]: #setup-2
+[92]: https://www.npmjs.com/package/jest-snapshot
+[93]: https://jestjs.io/docs/expect#tomatchsnapshotpropertymatchers-hint
+[94]:
+  https://github.com/Xunnamius/babel-plugin-transform-rewrite-imports/blob/main/test/unit-index.test.ts
+[95]:
+  https://github.com/Xunnamius/babel-plugin-explicit-exports-references/blob/main/test/unit-index.test.ts
+[96]:
+  https://github.com/Xunnamius/babel-plugin-transform-default-named-imports/blob/main/test/unit-index.test.ts
+[97]: ./test/integration/integration-node-smoke.test.ts
+[98]: https://vitest.dev/config#globals
+[99]: https://babeljs.io/docs/en/options#config-loading-options
+[100]: #custom-plugin-and-preset-run-order
+[101]: https://babeljs.io/docs/en/config-files
+[102]: https://babeljs.io/docs/en/options#filename
+[103]: https://babeljs.io/docs/en/config-files#file-relative-configuration
+[104]:
+  https://github.com/jamiebuilds/babel-handbook/blob/c6828415127f27fedcc51299e98eaf47b3e26b5f/translations/en/plugin-handbook.md#state
+[105]: https://nodejs.org/api/process.html#processcwd
+[106]: #custom-snapshot-serialization
+[107]: https://npm.im/debug
+[108]: https://www.npmjs.com/package/debug#environment-variables
+[109]: https://www.npmjs.com/package/debug#namespace-colors
+[110]: #skip
+[111]: #only
+[112]: #skip-1
+[113]: #only-1
+[114]: #restarttitlenumbering
+[115]: https://github.com/jamiebuilds
