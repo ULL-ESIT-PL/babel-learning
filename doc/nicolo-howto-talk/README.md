@@ -549,6 +549,29 @@ module.exports = {
 }
 ```
 
+Having in mind that we will introduce a conditional in terms of the option:
+
+```diff
+@@ -8,7 +8,11 @@ module.exports = function myPlugin(babel, options) {
+     },
+     visitor: {
+       OptionalMemberExpression: {
+-        exit(path) {
++        exit(path, state) {
++          const loose = state.opts.loose;
++          if (loose) { 
++            console.log('loose', loose);
++          }
+           if (!path.node?.optional) return;
+           let { object, property, computed } = path.node;
+```
+
+```sh
+➜  nicolo-howto-talk git:(40m24s) ✗ npx babel input.js --config-file ./loose.config.js
+loose true
+...
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
