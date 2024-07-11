@@ -1,4 +1,3 @@
-//const generate = require('@babel/generator').default;
 module.exports = function myPlugin(babel, options) {
   const { types: t, template } = babel;
   return {
