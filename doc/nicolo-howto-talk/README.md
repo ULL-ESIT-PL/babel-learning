@@ -999,7 +999,7 @@ Ran all test suites.
 [48]: https://prettier.io
 [49]: https://prettier.io/docs/en/configuration.html
 [50]: #snapshot-1
-[51]: https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/nicolo-howto-talk/README.md#fixtureoutputname-1
+[51]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#fixtureoutputname-1
 [52]: https://github.com/babel-utils/babel-plugin-tester/edit/master/README.md#fixtureoutputext-1
 [53]: #titlenumbering
 [54]: #filepath
