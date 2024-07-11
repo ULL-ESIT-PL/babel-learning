@@ -35,3 +35,9 @@
 * [So how does Babel even work?](https://youtu.be/fntd0sPMOtQ?si=WYsOxh3dAUKzxd7Y) by Henry Zhu. 2017. Youtube
 * [On BabelJS ](https://youtu.be/m-HjKwyQoQg?si=u6oFpIOZ4dc4C7RK) by James Kyle. 2016. Youtube. ([Slides](https://es.slideshare.net/slideshow/babeljs-james-kyle-at-modern-web-ui/57705487#1))
 * [Babel Podcast](https://podcast.babeljs.io/)
+* Nicolo's talk `@babel/howto` at HolyJS in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
+  * See the associated repo at GitHub: https://github.com/nicolo-ribaudo/conf-holyjs-moscow-2019, 
+  * [Nicolo slides](/pdfs/holyjs-2019-Nicolo_Ribaudo_babelhow-to.pdf)
+  * [The plugin babel-plugin-transform-optional-chaining](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-optional-chaining) at GitHub Babel repo and [the way it is used](https://babeljs.io/docs/babel-plugin-transform-optional-chaining)
+  * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
+  * [babel-plugin-tester](https://www.npmjs.com/package/babel-plugin-tester)
