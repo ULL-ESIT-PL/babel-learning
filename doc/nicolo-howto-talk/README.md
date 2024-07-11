@@ -911,7 +911,99 @@ Ran all test suites.
 * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
 
 
-
+[@babel/helper-plugin-test-runner]:
+  https://github.com/babel/babel/tree/master/packages/babel-helper-plugin-test-runner
+[all-contributors]: https://github.com/all-contributors/all-contributors
+[bugs]:
+  https://github.com/babel-utils/babel-plugin-tester/issues?q=is%3Aissue+is%3Aopen+label%3A%22bug%22
+[coc]:
+  https://github.com/babel-utils/babel-plugin-tester/blob/master/.github/CODE_OF_CONDUCT.md
+[coc-badge]:
+  https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+[coverage]: https://codecov.io/github/Xunnamius/babel-plugin-tester
+[coverage-badge]:
+  https://img.shields.io/codecov/c/github/Xunnamius/babel-plugin-tester.svg?style=flat-square
+[downloads-badge]:
+  https://img.shields.io/npm/dm/babel-plugin-tester.svg?style=flat-square
+[emojis]: https://github.com/all-contributors/all-contributors#emoji-key
+[good-first-issue]:
+  https://github.com/babel-utils/babel-plugin-tester/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
+[jamestweet]: https://twitter.com/thejameskyle/status/864359438819262465
+[license]:
+  https://github.com/babel-utils/babel-plugin-tester/blob/master/LICENSE
+[license-badge]:
+  https://img.shields.io/npm/l/babel-plugin-tester.svg?style=flat-square
+[lodash.mergewith]: https://lodash.com/docs/4.17.4#mergeWith
+[node]: https://nodejs.org
+[npm]: https://www.npmjs.com
+[npmtrends]: https://www.npmtrends.com/babel-plugin-tester
+[package]: https://www.npmjs.com/package/babel-plugin-tester
+[prs]: http://makeapullrequest.com
+[prs-badge]:
+  https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[requests]:
+  https://github.com/babel-utils/babel-plugin-tester/issues?q=is%3Aissue+is%3Aopen+label%3A%22enhancement%22
+[ruletester]:
+  http://eslint.org/docs/developer-guide/working-with-rules#rule-unit-tests
+[version-badge]:
+  https://img.shields.io/npm/v/babel-plugin-tester.svg?style=flat-square
+[1]: https://www.npmjs.com/package/babel-plugin-tester?activeTab=versions
+[2]: https://babeljs.io/docs/en/plugins
+[3]: https://babeljs.io/docs/en/presets
+[4]: https://jestjs.io
+[5]: https://mochajs.org
+[6]: https://jasmine.github.io
+[7]: https://nodejs.org/api/test.html#test-runner
+[8]: https://vitest.dev
+[9]: #testing-framework-compatibility
+[10]: https://jestjs.io/docs/setup-teardown#one-time-setup
+[11]: #preset
+[12]: #plugin
+[13]: #presetname
+[14]: #presetoptions
+[15]: #pluginname
+[16]: #pluginoptions
+[17]: https://jestjs.io/docs/api#describename-fn
+[18]: https://jestjs.io/docs/api#testname-fn-timeout
+[19]:
+  https://github.com/DefinitelyTyped/DefinitelyTyped/blob/2b229cce80b334f673f1b26895007e9eca786366/types/babel-core/index.d.ts#L25
+[20]: #pluginname-inference-caveat
+[21]: #pluginoptions-2
+[22]: #pluginoptions-1
+[23]: #presetoptions-2
+[24]: #presetoptions-1
+[25]:
+  https://github.com/babel-utils/babel-plugin-tester/blob/1b413417de0f8f07764ee31e6131cee3e16f1265/src/plugin-tester.ts#L24-L31
+[26]: #babeloptions-2
+[27]: #babeloptions-1
+[28]: https://babeljs.io/docs/en/options#babelrc
+[29]: https://babeljs.io/docs/en/options#configfile
+[30]: #using-babel-for-configuration-loading
+[31]: https://babeljs.io/docs/en/configuration
+[32]: https://babeljs.io/docs/en/options#plugins
+[33]: https://babeljs.io/docs/en/presets#preset-ordering
+[34]: #tests
+[35]: #fixtures
+[36]: #codefixture
+[37]: #outputfixture
+[38]: #execfixture
+[39]: #formatting-output-with-prettier
+[40]: https://nodejs.org/api/path.html#pathjoinpaths
+[41]: https://nodejs.org/api/path.html#pathdirnamepath
+[42]: #test-objects
+[43]: #invoke
+[44]: https://github.com/babel/babel/issues/8921
+[45]: #teardown
+[46]: #setup-and-teardown-run-order
+[47]: #setup
+[48]: https://prettier.io
+[49]: https://prettier.io/docs/en/configuration.html
+[50]: #snapshot-1
+[51]: #fixtureoutputname-1
+[52]: #fixtureoutputext-1
+[53]: #titlenumbering
+[54]: #filepath
+[55]: https://github.com/nodejs/node/issues/35889
 [56]: #outputjs
 [57]: #endofline
 [58]: #execjs
