@@ -577,10 +577,10 @@ is the same but not always:
 
 ```js
 > a = { x: [4]}, y = 0 
-> a?.x?.[0]
-> a && a.x && a.x[0] // the same
-> a?.y?.[2]
-> a && a.y && a.y[2] // the same
+> a?.x?.[0]  // 4
+> a && a.x && a.x[0] // 4 // the same
+> a?.y?.[2]  // undefined
+> a && a.y && a.y[2] // undefined // the same
 > false.toString()  // ' false'
 > false && false.toString() // false // Not the same!
 ```
