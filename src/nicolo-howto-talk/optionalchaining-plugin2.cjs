@@ -9,18 +9,18 @@ module.exports = function myPlugin(babel, options) {
     visitor: {
       OptionalMemberExpression: {
         exit(path, state) {
-          const loose = state.opts.loose || false;
-          if (loose) { 
-            console.log('loose', loose);
-          }
           if (!path.node?.optional) return;
           let { object, property, computed } = path.node;
 
           let tmp = path.scope.generateUidIdentifierBasedOnNode(property);
-
           path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() });
 
           let memberExp = t.memberExpression(tmp, property, computed);
+          
+          if (state?.opts?.loose) { 
+            return path.replaceWith(template.expression.ast`(${tmp} = ${object}) && ${memberExp}`)
+          }
+
           let undef = path.scope.buildUndefinedNode();
           path.replaceWith(
             template.expression.ast`
