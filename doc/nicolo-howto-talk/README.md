@@ -569,7 +569,12 @@ Having in mind that we will introduce a conditional in terms of the option:
 ```sh
 ➜  nicolo-howto-talk git:(40m24s) ✗ npx babel input.js --config-file ./loose.config.js
 loose true
-...
+let _b = null;
+(_b = a) == null ? void 0 : _b.b;
+➜  nicolo-howto-talk git:(40m24s) npx babel input.js --plugins=./optionalchaining-plugin2.cjs
+
+let _b = null;
+(_b = a) == null ? void 0 : _b.b;
 ```
 
 We are going to use the loose mode to translate  an input like `a?.x?.[0]` onto `a && a.x && a.x[0]` which most of the time
