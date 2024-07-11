@@ -2,6 +2,18 @@
 
 This chapter contains my attempt to reproduce and learn from[ Nicolo Ribaudo's talk at HolyJS 2019](https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx). 
 
+There are several branches in this repository that correspond to the different stages of the talk. The branches are named after the time in the video where the code is shown. For example, the branch `40m24s` corresponds to the code shown at minute 40:24 of the video:
+
+```sh
+nicolo-howto-talk git:(40m24s) git -P branch
+  29m47s
+  31m14s
+  31m31s
+  34m08s
+* 40m24s
+  main
+```
+
 ## Optional Chaining Proposal obj?.prop
 
 The target is to build a Babel plugin that transforms the optional chaining proposal `obj?.prop` (now a part of the JavaScript language) into a sequence of tests and assignments that check if the object and its properties are defined.
