@@ -2,7 +2,7 @@
 
 This chapter contains my attempt to reproduce and learn from[ Nicolo Ribaudo's talk at HolyJS 2019](https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx). 
 
-There are several branches in this repository that correspond to the different stages of the talk. The branches are named after the time in the video where Nicolo is explaining code similar to those that you can find in the files 
+There are several branches in this repository that correspond to the different stages of the talk. The branches are named after the time in the video where Nicolo is explaining code leading to something similar to those that you can find in the files 
 
 - `/src/nicolo-howto-talk/optionalchaining-plugin.cjs` and 
 - `/src/nicolo-howto-talk/optionalchaining-plugin2.cjs` 
