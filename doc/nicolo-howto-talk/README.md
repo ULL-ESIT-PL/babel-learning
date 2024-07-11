@@ -675,11 +675,11 @@ src/nicolo-howto-talk
 ├── __test__
 │   ├── fixtures
 │   │   ├── basic-functionality
-│   │   │   ├── code.js  // a?.b;
-│   │   │   └── output.js
+│   │   │   ├── code.js    // a?.b;
+│   │   │   └── output.js  // automatically generated running `jest` the first time
 │   │   └── nested
-│   │       ├── code.js // a?.b.c?.d
-│   │       └── output.js
+│   │       ├── code.js    // a?.b.c?.d
+│   │       └── output.js  // automatically generated running `jest` the first time
 │   └── test.js
 ├── input-array.js
 ├── input-function-object.js
@@ -708,6 +708,8 @@ pluginTester({
   fixtures: path.join(__dirname, 'fixtures'),
 });
 ```
+
+The first time it runs, it creates the output files. Then, in the following runs, it compares the output with the expected output:
 
 ```
 ➜  nicolo-howto-talk git:(44m.50s) ✗ npx jest              
