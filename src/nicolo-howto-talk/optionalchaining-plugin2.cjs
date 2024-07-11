@@ -9,7 +9,7 @@ module.exports = function myPlugin(babel, options) {
     visitor: {
       OptionalMemberExpression: {
         exit(path, state) {
-          const loose = state.opts.loose;
+          const loose = state.opts.loose || false;
           if (loose) { 
             console.log('loose', loose);
           }

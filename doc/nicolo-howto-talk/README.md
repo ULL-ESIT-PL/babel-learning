@@ -572,6 +572,19 @@ loose true
 ...
 ```
 
+We are going to use the loose mode to translate  an input like `a?.x?.[0]` onto `a && a.x && a.x[0]` which most of the time
+is the same but not always:
+
+```js
+> a = { x: [4]}, y = 0 
+> a?.x?.[0]
+> a && a.x && a.x[0] // the same
+> a?.y?.[2]
+> a && a.y && a.y[2] // the same
+> false.toString()
+> false && false.toString() // Not the same!
+```
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
