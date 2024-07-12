@@ -860,6 +860,13 @@ At minute [56:05](https://youtu.be/UeVq_U5obnE?t=3367) Nicolo answers the questi
 > except the ones you used for life coding? like generating unique identifiers, creating 
 > predefined `undefined` and so on, or is this enough?
 
+As Nicolo mention, there is a problem if you include multiple JS files that run in the same scope,
+so if we generate a variable, let us say `time`in one file and then we transpile another file, we
+don't know if there is a variable with the same name in the first file and so there could be a conflict.
+
+A general solution to this is what I explained in my notes on compilers: prefixing all the user code 
+identifiers with a unique prefix, and avoiding such prefix when introducing new compiler identifiers.
+
 ## References
 
 * Watch the talk in Youtube: https://youtu.be/UeVq_U5obnE?si=Vl_A49__5zgITvjx
