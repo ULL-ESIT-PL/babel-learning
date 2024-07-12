@@ -65,9 +65,9 @@ The `index.js.map` source map is equivalent to the base 64 decoded version of th
 `➜  babel-learning git:(main) cat src/babel-tutorial/lib/index.js.map | jq .`
 ```json
 {
-  "version": 3, # # Declares which version of the source map spec is being used,
-  "file": "index.js",
-  "names": [
+  "version": 3, # Declares which version of the source map spec is being used,
+  "file": "index.js", # input source file that was used to generate the output.
+  "names": [   # A list of identifiers used in the source code which were changed in or removed from the output.
     "Celebrate",
     "hi",
     "v",
@@ -80,12 +80,17 @@ The `index.js.map` source map is equivalent to the base 64 decoded version of th
     "document",
     "getElementById"
   ],
-  "sources": [
+  "sources": [  A list of input source files that were used to generate the output
     "../src/index.js"
   ],
+  # This optional field can include the original source content for each file in
+  # the "sources" property. This option should only be omitted if the tool using
+  # the source map can retrieve the sources via url or from the filesystem.
   "sourcesContent": [
     "function Celebrate({  hi }) {\n  let v = hi;\n  console.log(v);\n  return <p>{v} 🎉🎉🎉</p>\n}\n\nReactDOM.render(\n  <Celebrate hi=\"Hello Babel!\" />,\n  document.getElementById('root'),\n)\n"
   ],
+  # These comma and semi-colon separated values are base64-encoded VLQ
+  # values that point from every position in the output back to positions in the input sources.
   "mappings": "AAAA,SAASA,SAASA,CAAC;EAAGC;AAAG,CAAC,EAAE;EAC1B,IAAIC,CAAC,GAAGD,EAAE;EACVE,OAAO,CAACC,GAAG,CAACF,CAAC,CAAC;EACd,oBAAOG,KAAA,CAAAC,aAAA,YAAIJ,CAAC,EAAC,uCAAU,CAAC;AAC1B;AAEAK,QAAQ,CAACC,MAAM,eACbH,KAAA,CAAAC,aAAA,CAACN,SAAS;EAACC,EAAE,EAAC;AAAc,CAAE,CAAC,EAC/BQ,QAAQ,CAACC,cAAc,CAAC,MAAM,CAChC,CAAC",
   "ignoreList": []
 }
