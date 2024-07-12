@@ -65,7 +65,7 @@ The `index.js.map` source map is equivalent to the base 64 decoded version of th
 `➜  babel-learning git:(main) cat src/babel-tutorial/lib/index.js.map | jq .`
 ```js
 {
-  "version": 3, // Declares which version of the source map spec is being used,
+  "version": 3,       // Declares which version of the source map spec is being used,
   "file": "index.js", // input source file that was used to generate the output.
   "names": [   // A list of identifiers used in the source code which were changed in or removed from the output.
     "Celebrate",
@@ -80,7 +80,7 @@ The `index.js.map` source map is equivalent to the base 64 decoded version of th
     "document",
     "getElementById"
   ],
-  "sources": [  A list of input source files that were used to generate the output
+  "sources": [  // A list of input source files that were used to generate the output
     "../src/index.js"
   ],
   // This optional field can include the original source content for each file in
