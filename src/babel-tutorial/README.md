@@ -103,3 +103,8 @@ Visit the served page with Google Chrome.
 You can easily see the available source maps by clicking on the "`Sources`" tab in the Chrome dev tools and set breakpoints. 
 
 ![/images/source-map-debugging.png](/images/source-map-debugging.png)
+
+
+## References
+
+* npm package [magic-string](https://www.npmjs.com/package/magic-string)
