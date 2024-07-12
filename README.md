@@ -119,6 +119,11 @@ var f = function f(x) {
 f("Hello, Babel!");
 ```
 
+
+### Babel, the Web and Source Maps
+
+See section [/src/babel-tutorial/README.md](/src/babel-tutorial/README.md).
+
 ## Babylon
 
 Babylon was the parser that Babel used to parse JavaScript code.
