@@ -1,7 +1,8 @@
 # Babel Tutorial
 
-This tutorial shows how to use Babel to transpile JavaScript code in the context 
-of a simple web application.
+This tutorial shows how to use Babel to transpile JSX code for a simple web application 
+using only Babel and how to debug the resulting app using the generated source maps and 
+Google Chrome.
 
 * [Introduction](https://inspirnathan.com/posts/12-babel-tutorial-part-1)
 * [React and JSX](https://inspirnathan.com/posts/13-babel-tutorial-part-2)
@@ -14,17 +15,6 @@ of a simple web application.
 * [Npm Tips And Tricks](https://inspirnathan.com/posts/18-npm-tips-and-tricks)
 -->
 
-
-## Compiling JavaScript with Babel
-
-```sh
-➜  babel-tutorial git:(main) ✗ npm run  build
-
-> babel-tutorial@1.0.0 build
-> babel src --out-dir lib
-
-Successfully compiled 1 file with Babel (216ms).
-```
 
 ## Compiling with source maps
 
