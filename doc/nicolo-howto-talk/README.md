@@ -696,6 +696,7 @@ src/nicolo-howto-talk
 └── redefine-undefined.cjs
 ```
 
+Here is the test file [__test__/test.js](/src/nicolo-howto-talk/__test__/test.js):
 
 `➜  nicolo-howto-talk git:(44m.50s) ✗ cat __test__/test.js`
 ```js
@@ -709,7 +710,15 @@ pluginTester({
 });
 ```
 
-The first time it runs, it creates the output files. Then, in the following runs, it compares the output with the expected output.
+There are many options we can pass to `pluginTester`. 
+An interesting option to pass to `pluginTester`is `babel`:  This is used to provide your own implementation of babel. This is particularly useful if you want to use a different version of babel. 
+[Another is `babelOptions`](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#babeloptions). This is used to configure babel.
+
+
+The general behavior is this:
+
+- The first time it runs, it creates the output files. 
+- Then, in the following runs, it compares the output with the expected output.
 
 ```
 ➜  nicolo-howto-talk git:(44m.50s) ✗ npx jest              
@@ -725,7 +734,8 @@ Time:        1.288 s
 Ran all test suites.
 ```
 
-##### fixtures
+
+### fixtures
 
 The option [fixtures](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#fixtures) must be a path to a directory with a structure similar to the following:
 
@@ -750,11 +760,6 @@ fixtures
 ```
 
 And it would run four tests, one for each directory in fixtures containing a file starting with "`code`" or "`exec`".
-
-An interesting option to pass to `pluginTester`is `babel`:  This is used to provide your own implementation of babel. 
-This is particularly useful if you want to use a different version of babel.
-
-[Another is `babelOptions`](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#babeloptions). This is used to configure babel. If provided,
 
 ##### `code.js`
 
