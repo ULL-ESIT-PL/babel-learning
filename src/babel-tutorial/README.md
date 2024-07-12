@@ -96,7 +96,7 @@ The `index.js.map` source map is equivalent to the base 64 decoded version of th
 }
 ```
 
-See the [Source Map Revision 3 Proposal](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit) for more information.  A (https://en.wikipedia.org/wiki/Variable-length_quantity) is a universal code that uses an arbitrary number of binary octets to represent an arbitrarily large integer.
+See the [Source Map Revision 3 Proposal](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit) for more information. A [A variable-length quantity](https://en.wikipedia.org/wiki/Variable-length_quantity) (VLQ) is a universal code that uses an arbitrary number of binary octets (eight-bit bytes) to represent an arbitrarily large integer.
 
 Visit the served page with Google Chrome. 
 
