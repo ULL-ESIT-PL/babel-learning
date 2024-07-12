@@ -1,0 +1,19 @@
+{
+  "name": "babel-tutorial",
+  "version": "1.0.0",
+  "description": "* [Introduction](https://inspirnathan.com/posts/12-babel-tutorial-part-1) * [React and JSX](https://inspirnathan.com/posts/13-babel-tutorial-part-2) * [Source Maps](https://inspirnathan.com/posts/14-babel-tutorial-part-3) * [Transpiling Code for Older Browsers](https://inspirnathan.com/posts/17-babel-tutorial-part-4)",
+  "main": "index.js",
+  "scripts": {
+     "start": "serve",
+     "build": "babel src --out-dir lib"
+  },
+  "keywords": [],
+  "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
+    "serve": "^14.2.3"
+  }
+}
