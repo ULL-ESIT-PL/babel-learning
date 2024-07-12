@@ -698,7 +698,7 @@ src/nicolo-howto-talk
 └── redefine-undefined.cjs
 ```
 
-Here is the test file [__test__/test.js](/src/nicolo-howto-talk/__test__/test.js):
+And here are the contents of the test file [__test__/test.js](/src/nicolo-howto-talk/__test__/test.js):
 
 `➜  nicolo-howto-talk git:(44m.50s) ✗ cat __test__/test.js`
 ```js
@@ -760,6 +760,9 @@ fixtures
     └── x-fourth-test  # test title will be: "4. nested > x fourth test"
         └── exec.js    # required (alternative to code/output structure)
 ```
+
+ If `fixtures` is not an absolute path, it will be `path.join`'d with the
+directory name of [filepath](https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#filepath), which is an option that defaults to the absolute path of the file that invoked the `pluginTester` function.
 
 And it would run four tests, one for each directory in fixtures containing a file starting with "`code`" or "`exec`".
 
