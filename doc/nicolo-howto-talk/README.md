@@ -799,8 +799,7 @@ Note that this file cannot appear in the same directory as [`exec.js`][58].
 ##### `exec.js`
 
 This file's contents will be used as the input into babel at transform time just
-like the [`code.js`][59] file. Use this to make advanced assertions on the output. For example, see
-the tests in the plugin [babel-plugin-proposal-throw-expressions][62] 
+like the [`code.js`][59] file. Use this to make advanced assertions on the output. 
 
 Note that this file cannot appear in the same directory as [`code.js`][59] or
 [`output.js`][56]. If more than one `exec.*` file exists in a directory, the
