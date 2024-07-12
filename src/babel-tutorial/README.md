@@ -62,8 +62,8 @@ ReactDOM.render( /*#__PURE__*/React.createElement(Celebrate, null), document.get
 
 The `index.js.map` source map is equivalent to the base 64 decoded version of the data URL:
 
+`➜  babel-learning git:(main) cat src/babel-tutorial/lib/index.js.map | jq .`
 ```json
-➜  babel-learning git:(main) cat src/babel-tutorial/lib/index.js.map | jq .
 {
   "version": 3,
   "file": "index.js",
