@@ -41,3 +41,4 @@
   * [The plugin babel-plugin-transform-optional-chaining](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-optional-chaining) at GitHub Babel repo and [the way it is used](https://babeljs.io/docs/babel-plugin-transform-optional-chaining)
   * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
   * [babel-plugin-tester](https://www.npmjs.com/package/babel-plugin-tester)
+* [Babel Tutorial Part 3 - Source Maps](https://inspirnathan.com/posts/14-babel-tutorial-part-3) 2020
