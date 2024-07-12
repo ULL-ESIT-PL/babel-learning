@@ -62,6 +62,8 @@ ReactDOM.render( /*#__PURE__*/React.createElement(Celebrate, null), document.get
 
 The `index.js.map` source map is equivalent to the base 64 decoded version of the data URL.
 
-Visit the served page with Google Chrome. You can easily see the available source maps by clicking on the "`Sources`" tab in the Chrome dev tools and set breakpoints. 
+Visit the served page with Google Chrome. 
+
+You can easily see the available source maps by clicking on the "`Sources`" tab in the Chrome dev tools and set breakpoints. 
 
 ![/images/source-map-debugging.png](/images/source-map-debugging.png)
