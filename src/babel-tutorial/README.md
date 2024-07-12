@@ -1,4 +1,4 @@
-# Babel Tutorial
+# Reading "Babel Tutorial" by Nathan Vaughn 2020
 
 This tutorial shows how to use Babel to transpile JSX code for a simple web application 
 using only Babel and how to debug the resulting app using the generated source maps and 
