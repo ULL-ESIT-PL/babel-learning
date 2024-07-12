@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
      "start": "serve",
-     "build": "babel src --out-dir lib"
+     "build": "babel src --out-dir lib",
+     "build:external": "babel src -d lib --source-maps",
+     "save": "git add . && git commit -m 'save babel tutorial' && git push"
   },
   "keywords": [],
   "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
