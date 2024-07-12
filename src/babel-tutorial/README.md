@@ -60,7 +60,36 @@ ReactDOM.render( /*#__PURE__*/React.createElement(Celebrate, null), document.get
 //# sourceMappingURL=index.js.map
 ```
 
-The `index.js.map` source map is equivalent to the base 64 decoded version of the data URL.
+The `index.js.map` source map is equivalent to the base 64 decoded version of the data URL:
+
+```json
+➜  babel-learning git:(main) cat src/babel-tutorial/lib/index.js.map | jq .
+{
+  "version": 3,
+  "file": "index.js",
+  "names": [
+    "Celebrate",
+    "hi",
+    "v",
+    "console",
+    "log",
+    "React",
+    "createElement",
+    "ReactDOM",
+    "render",
+    "document",
+    "getElementById"
+  ],
+  "sources": [
+    "../src/index.js"
+  ],
+  "sourcesContent": [
+    "function Celebrate({  hi }) {\n  let v = hi;\n  console.log(v);\n  return <p>{v} 🎉🎉🎉</p>\n}\n\nReactDOM.render(\n  <Celebrate hi=\"Hello Babel!\" />,\n  document.getElementById('root'),\n)\n"
+  ],
+  "mappings": "AAAA,SAASA,SAASA,CAAC;EAAGC;AAAG,CAAC,EAAE;EAC1B,IAAIC,CAAC,GAAGD,EAAE;EACVE,OAAO,CAACC,GAAG,CAACF,CAAC,CAAC;EACd,oBAAOG,KAAA,CAAAC,aAAA,YAAIJ,CAAC,EAAC,uCAAU,CAAC;AAC1B;AAEAK,QAAQ,CAACC,MAAM,eACbH,KAAA,CAAAC,aAAA,CAACN,SAAS;EAACC,EAAE,EAAC;AAAc,CAAE,CAAC,EAC/BQ,QAAQ,CAACC,cAAc,CAAC,MAAM,CAChC,CAAC",
+  "ignoreList": []
+}
+```
 
 Visit the served page with Google Chrome. 
 
