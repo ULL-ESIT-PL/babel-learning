@@ -667,7 +667,9 @@ At minute [44.50](https://youtu.be/UeVq_U5obnE?t=2693) Nicolo introduces the sub
 ```
 
 <!-- section [Testing Babel Plugins](/doc/babel-plugin-tester.md)--> 
-See the docs at GitHub: [babel-plugin-tester](https://github.com/babel-utils/babel-plugin-tester).
+For more information about the package, see the docs at GitHub: [babel-plugin-tester](https://github.com/babel-utils/babel-plugin-tester).
+
+Here is the structure of the folder `src/nicolo-howto-talk` in this repository:
 
 ```
 ➜  babel-learning git:(main) tree src/nicolo-howto-talk 
