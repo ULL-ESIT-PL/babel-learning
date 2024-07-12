@@ -1,8 +1,10 @@
-function Celebrate() {
-  return <p>It's working! 🎉🎉🎉</p>
+function Celebrate({  hi }) {
+  let v = hi;
+  console.log(v);
+  return <p>{v} 🎉🎉🎉</p>
 }
 
 ReactDOM.render(
-  <Celebrate />,
+  <Celebrate hi="Hello Babel!" />,
   document.getElementById('root'),
 )

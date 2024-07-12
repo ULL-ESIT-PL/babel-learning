@@ -4,7 +4,7 @@
   "description": "* [Introduction](https://inspirnathan.com/posts/12-babel-tutorial-part-1) * [React and JSX](https://inspirnathan.com/posts/13-babel-tutorial-part-2) * [Source Maps](https://inspirnathan.com/posts/14-babel-tutorial-part-3) * [Transpiling Code for Older Browsers](https://inspirnathan.com/posts/17-babel-tutorial-part-4)",
   "main": "index.js",
   "scripts": {
-     "start": "serve",
+     "start": "serve -p 3001",
      "build": "babel src --out-dir lib",
      "build:external": "babel src -d lib --source-maps",
      "save": "git add . && git commit -m 'save babel tutorial' && git push"

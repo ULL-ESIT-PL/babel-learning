@@ -18,6 +18,17 @@ Google Chrome.
 
 ## Compiling with source maps
 
+Run the HTTP server:
+
+```sh
+➜  babel-tutorial git:(44m.50s) ✗ npm start
+
+> babel-tutorial@1.0.0 start
+> serve
+``` 
+
+The option `-s, --source-maps [true|false|inline|both]` generates source maps for the compiled code.
+
 ```sh
 ➜  babel-tutorial git:(main) ✗ npm run build:external
 
@@ -51,6 +62,6 @@ ReactDOM.render( /*#__PURE__*/React.createElement(Celebrate, null), document.get
 
 The `index.js.map` source map is equivalent to the base 64 decoded version of the data URL.
 
-If we use Google Chrome, you can easily see the available source maps by clicking on the "`Sources`" tab in the Chrome dev tools and set breakpoints. 
+Visit the served page with Google Chrome. You can easily see the available source maps by clicking on the "`Sources`" tab in the Chrome dev tools and set breakpoints. 
 
-
+![/images/source-map-debugging.png](/images/source-map-debugging.png)
