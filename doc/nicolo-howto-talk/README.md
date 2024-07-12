@@ -845,6 +845,20 @@ Unlike with babel-plugin-tester's options, you can safely mix plugin-specific
 properties (like `pluginOptions`) with preset-specific properties (like
 [`presetOptions`][24]) in your options files.
 
+## Interview
+
+At minute [51:57](https://youtu.be/UeVq_U5obnE?t=3113) Nicolo answers the question 
+
+> ... missed one part which was writing feature parser, 
+> so support the optional chaining, how complex is that?
+
+At minute [56:05](https://youtu.be/UeVq_U5obnE?t=3367) Nicolo answers the question
+
+> ... One of the complex things when you are writing any real complex transformation plugin 
+> is you do not pollute the scope, and that you are not messing with the scope, 
+> like any potential conflicts. Are there any additional tooling
+> except the ones you used for life coding? like generating unique identifiers, creating 
+> predefined `undefined` and so on, or is this enough?
 
 ## References
 
