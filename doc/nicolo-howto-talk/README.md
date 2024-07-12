@@ -799,69 +799,8 @@ Note that this file cannot appear in the same directory as [`exec.js`][58].
 ##### `exec.js`
 
 This file's contents will be used as the input into babel at transform time just
-like the [`code.js`][59] file, except the output will be _evaluated_ in the
-[same _CJS_ context][61] as the test runner itself, meaning it supports features
-like a/sync IIFEs, debugging breakpoints (!), and has access to mocked modules,
-`expect`, `require`, `__dirname` and `__filename` (derived from this file's
-path), and other globals/features provided by your test framework. However, the
-context does not support _`import`, top-level await, or any other ESM syntax_.
-Hence, while any file extension can be used (e.g. `.ts`, `.vue`, `.jsx`), this
-file will always be evaluated as CJS.
-
-The test will always pass unless an exception is thrown (e.g. when an `expect()`
-fails).
-
-Use this to make advanced assertions on the output. For example, to test that
-[babel-plugin-proposal-throw-expressions][62] actually throws, your `exec.js`
-file might contain:
-
-```javascript
-expect(() => throw new Error('throw expression')).toThrow('throw expression');
-```
-
-> Keep in mind that, despite sharing a global context, execution will occur in a
-> [separate realm][63], which means native/intrinsic types will be different.
-> This can lead to unexpectedly failing tests. For example:
->
-> ```javascript
-> expect(require(`${__dirname}/imported-file.json`)).toStrictEqual({
->   data: 'imported'
-> });
-> ```
->
-> This may fail in some test frameworks with the message "serializes to the same
-> string". This is because the former object's `Object` prototype comes from a
-> different realm than the second object's `Object` prototype, meaning the two
-> objects are not technically _strictly_ equal. However, something like the
-> following, which creates two objects in the same realm, will pass:
->
-> ```javascript
-> expect(
->   Object.fromEntries(
->     Object.entries(require(`${__dirname}/imported-file.json`))
->   )
-> ).toStrictEqual({ data: 'imported' });
-> ```
->
-> Or:
->
-> ```javascript
-> expect(JSON.stringify(require(`${__dirname}/imported-file.json`))).toBe(
->   JSON.stringify({ data: 'imported' })
-> );
-> ```
->
-> Or even:
->
-> ```javascript
-> expect(require(`${__dirname}/imported-file.json`)).toEqual({
->   data: 'imported'
-> });
-> ```
-
-After being transformed by babel but before being evaluated, the babel output
-will have whitespace trimmed, line endings [converted][57], and then get
-[formatted by prettier][39].
+like the [`code.js`][59] file. Use this to make advanced assertions on the output. For example, see
+the tests in the plugin [babel-plugin-proposal-throw-expressions][62] 
 
 Note that this file cannot appear in the same directory as [`code.js`][59] or
 [`output.js`][56]. If more than one `exec.*` file exists in a directory, the
@@ -1017,7 +956,7 @@ properties (like `pluginOptions`) with preset-specific properties (like
 [55]: https://github.com/nodejs/node/issues/35889
 [56]: #outputjs
 [57]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#endofline
-[58]: #execjs
+[58]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#execjs
 [59]: #codejs
 [60]: https://github.com/babel-utils/babel-plugin-tester/blob/master/README.md#throws
 [61]: https://nodejs.org/api/vm.html#vmruninthiscontextcode-options
