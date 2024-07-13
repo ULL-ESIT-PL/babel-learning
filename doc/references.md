@@ -42,3 +42,4 @@
   * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
   * [babel-plugin-tester](https://www.npmjs.com/package/babel-plugin-tester)
 * [Babel Tutorial Part 3 - Source Maps](https://inspirnathan.com/posts/14-babel-tutorial-part-3) 2020
+* [Babel: Beyond the Basics](https://youtu.be/F1BIeVe99EQ?si=uSLeAOfp7bxooBil). Sebastian McKenzie, Creator of Babel. 2015. Youtube. [Slides](https://speakerdeck.com/sebmck/babel-beyond-the-basics-melbjs-march-2015?slide=25)

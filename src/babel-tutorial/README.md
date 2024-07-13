@@ -107,4 +107,5 @@ You can easily see the available source maps by clicking on the "`Sources`" tab 
 
 ## References
 
+* [What are source maps?](https://youtu.be/FIYkjjFYvoI?si=dOWvuRjHUEZNE9e2). Youtube by  #DevToolsTips. 2023.
 * npm package [magic-string](https://www.npmjs.com/package/magic-string)
