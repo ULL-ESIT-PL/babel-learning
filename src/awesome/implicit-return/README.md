@@ -9,15 +9,20 @@ The plugin https://github.com/miraks/babel-plugin-implicit-return transforms las
 function Pi() {
   3.14;
 }
+console.log(Pi());
 ```
 
 Is transformed to:
 
 ```js
-➜  implicit-return git:(main) ✗ npx babel input.js --plugins implicit-return         
+➜  implicit-return git:(main) ✗ npx babel input.js --plugins implicit-return -o salida.js
+➜  implicit-return git:(main) ✗ cat salida.js 
 function Pi() {
   return 3.14;
 }
+console.log(Pi());
+➜  implicit-return git:(main) ✗ node salida.js                                           
+3.14
 ```
 
 ```js
