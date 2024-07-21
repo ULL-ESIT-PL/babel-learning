@@ -1,3 +1,5 @@
+See https://github.com/hustcc/babel-plugin-version
+
 ## Installing
 
 ```
