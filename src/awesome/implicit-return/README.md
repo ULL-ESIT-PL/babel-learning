@@ -1,4 +1,4 @@
-See https://github.com/miraks/babel-plugin-implicit-return
+The plugin https://github.com/miraks/babel-plugin-implicit-return transforms last statement in a function block to a return statement.
 
 ## Execution
 
