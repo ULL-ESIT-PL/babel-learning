@@ -25,7 +25,7 @@
 * [A boilerplate monorepo for people writing babel plugins in normal plugin form as well as babel-plugin-macros form](https://github.com/swyxio/babel-plugin-macro-boilerplate) by Shawn "swyx" Wang
 * [JavaScript engines - how do they even?](https://youtu.be/p-iiEDtpy6I?si=TfGRu4ceTsb3ECHB) by Franziska Hinkelmann from the V8 Team. Youtubes. JSConf EU 2017
 * [Parsing JavaScript - better lazy than eager?](https://youtu.be/Fg7niTmNNLg?si=KQt2HhxbacmlW0kq) by Marja Hölttä from the V8 Team. JSConf EU 2017
-* [Parsing Javascript - Programming Languages](https://youtu.be/sWA_53OX4L0?si=UeygRvs9S9K0ysxb) Udacity course. 2012. 
+* [Parsing Javascript - Programming Languages](https://youtu.be/sWA_53OX4L0?si=UeygRvs9S9K0ysxb) a non maintained Udacity course. 2012. 
   [The Youtube list of videos for this course](https://www.youtube.com/playlist?list=PLAwxTw4SYaPlI9QCVVfXxwJYqJWyts10f)
 * [Babel videos](https://babeljs.io/videos)
 * [Babel repo: issues with label *help wanted*](https://github.com/babel/babel/labels/help%20wanted)
