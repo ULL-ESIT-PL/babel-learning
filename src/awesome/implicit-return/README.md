@@ -9,12 +9,29 @@ function Pi() {
 }
 ```
 
+Is transformed to:
+
 ```js
 ➜  implicit-return git:(main) ✗ npx babel input.js --plugins implicit-return         
 function Pi() {
   return 3.14;
 }
 ```
+
+```js
+➜  implicit-return git:(main) cat input2.js 
+function abs(n) {
+  if (n > 0) {
+    1;
+  } else if (n < 0) {
+    -1;
+  } else {
+    0;
+  }
+}
+```
+
+Transformed to:
 
 ```js
 ➜  implicit-return git:(main) ✗ npx babel input2.js --plugins implicit-return
