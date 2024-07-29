@@ -44,3 +44,4 @@
   * [babel-plugin-tester](https://www.npmjs.com/package/babel-plugin-tester)
 * [Babel Tutorial Part 3 - Source Maps](https://inspirnathan.com/posts/14-babel-tutorial-part-3) 2020
 * [Babel: Beyond the Basics](https://youtu.be/F1BIeVe99EQ?si=uSLeAOfp7bxooBil). Sebastian McKenzie, Creator of Babel. 2015. Youtube. [Slides](https://speakerdeck.com/sebmck/babel-beyond-the-basics-melbjs-march-2015?slide=25)
+* Google slides of the presentation at [ÚLTIMOS AVANCES EN INFORMÁTICA 2004 XXVIII ed.](https://docs.google.com/presentation/d/1yZMB5V0iBzSnOxFP4fQTJ53gMmqW6ODHozANAXni3CE/edit?usp=sharing) "Function Expressions on the Left Side of Assignments"  
