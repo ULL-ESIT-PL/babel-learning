@@ -1,4 +1,4 @@
-# YATBABEL: Yet Another Babel Tutorial
+# YATBABEL: Yet Another Tutorial on Babel
 
 ## Introduction
 
