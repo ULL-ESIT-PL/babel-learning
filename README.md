@@ -209,7 +209,7 @@ See section [References](doc/references.md).
 
 Make a fork of this repo, make your changes and make a pull request.
 
-- If you find a type, an error, make an [issue](https://github.com/ULL-ESIT-PL/babel-learning/issues) or let us know in the [Discussions](/discussions) section.
+- If you find a type, an error, make an [issue](https://github.com/ULL-ESIT-PL/babel-learning/issues) or let us know in the [Discussions](https://github.com/ULL-ESIT-PL/babel-learning/discussions).
 - If you find an interesting reference, tutorial, etc. please let us know either by 
 modifying the [doc/references.md](doc/references.md) file followed by the pull request or 
 just make an issue.
