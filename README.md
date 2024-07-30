@@ -204,3 +204,12 @@ See section [Exercises](doc/exercises/README.md).
 ## References
 
 See section [References](doc/references.md).
+
+## Contributing
+
+Make a fork of this repo, make your changes and make a pull request.
+
+- If you find a type, an error, make an [issue](https://github.com/ULL-ESIT-PL/babel-learning/issues) or let us know in the [Discussions](/discussions) section.
+- If you find an interesting reference, tutorial, etc. please let us know either by 
+modifying the [doc/references.md](doc/references.md) file followed by the pull request or 
+just make an issue.
