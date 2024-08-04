@@ -51,7 +51,7 @@ module.exports = (babel) => {
 }
 ```
 
-The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js#L9-L11) module. When the identifier used in the `CallExpression` is `match`, the plugin transforms the AST using the `transformMatch` function:
+The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js#L9-L11) module. When the identifier used in the `CallExpression` is `match`, the plugin transforms the AST using the [transformMatch](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/transform/match.js) function:
 
 
 ```js
@@ -73,6 +73,55 @@ module.exports = (babel, path, state) => {
   }
 }
 ```
+The `transformMatch` function builds the replacement AST node using this Babel template
+
+```js 
+(v=> {
+    const UID = EXP
+    BLOCKS
+    throw new Error("No matching pattern");
+  })()
+```
+that can be seen in the shape of the generated code [fib-easy.mjs](fib-easy.mjs):
+
+```js
+const fib = n => (v => {
+  const _uid = n;
+  if (_uid === 1) {                    // BLOCKS
+    return 1;
+  }
+  if (_uid === 2) {
+    return 1;
+  }
+  return fib(_uid - 1) + fib(_uid - 2); // END BLOCKS
+  throw new Error("No matching pattern");
+})();
+```
+this is the actual code of the `transformMatch` function:
+```js
+module.exports = function transformMatch (babel, referencePath) {
+  const $root = referencePath.parentPath.parentPath
+  const $$uid = $root.scope.generateUidIdentifier('uid')
+  const $matching = getMatching($root)
+  const $$matching = $matching.node
+  const $patterns = getPatterns($root)
+  const $$blocks = transformPatterns(babel, $patterns, $$uid).filter(item => item)
+
+  const $$IIFE = babel.template(`
+    (v=> {
+      const UID = EXP
+      BLOCKS
+      throw new Error("No matching pattern");
+    })()
+    `)({
+    UID: $$uid,
+    EXP: $$matching,
+    BLOCKS: $$blocks
+  })
+  $root.replaceWith($$IIFE)
+}
+```
+
 
 - The ASTs for the following parameters 
    - `(v = 1) => 1` and 
