@@ -22,7 +22,7 @@ To use this Babel plugin, you need to install it and configure Babel to use the 
 With this setup, you can use pattern matching in your JavaScript code, as demonstrated in the example.
 
 
-## Execution. Simple example
+## How it works
 
 Consider the example [fib-easy.js](fib-easy.js):
 
