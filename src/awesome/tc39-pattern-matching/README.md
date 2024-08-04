@@ -51,7 +51,7 @@ module.exports = (babel) => {
 }
 ```
 
-The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js) module. When the identifier used in the `CallExpression` is `match`, the plugin transforms the AST using the `transformMatch` function:
+The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js#L9-L11) module. When the identifier used in the `CallExpression` is `match`, the plugin transforms the AST using the `transformMatch` function:
 
 
 ```js
