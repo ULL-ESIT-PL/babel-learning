@@ -66,7 +66,7 @@ module.exports = (babel) => {
 }
 ```
 
-The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js#L9-L11) module. When the identifier used in the `CallExpression` is `match`, the plugin transforms the AST using the [transformMatch](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/transform/match.js) function:
+The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js#L9-L11) module. When the identifier used in the `callee` of the `CallExpression` node is `match`, the plugin transforms the AST using the [transformMatch](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/transform/match.js) function:
 
 
 ```js
@@ -97,7 +97,7 @@ The `transformMatch` function builds the replacement AST node using this Babel t
     throw new Error("No matching pattern");
   })()
 ```
-that can be seen in the shape of the generated code [fib-easy.mjs](fib-easy.mjs):
+that template can be clearly seen in the shape of the generated code [fib-easy.mjs](fib-easy.mjs):
 
 ```js
 const fib = n => (v => {
@@ -112,6 +112,7 @@ const fib = n => (v => {
   throw new Error("No matching pattern");
 })();
 ```
+
 this is the actual code of the `transformMatch` function:
 ```js
 module.exports = function transformMatch (babel, referencePath) {
@@ -208,8 +209,6 @@ That when executed gives:
 ```
 
 
-
-##############
 
 
 
