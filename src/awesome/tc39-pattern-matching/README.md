@@ -24,7 +24,8 @@ With this setup, you can use pattern matching in your JavaScript code, as demons
 
 ## Execution. Simple example
 
-Consider the example:
+Consider the example [fib-easy.js](fib-easy.js):
+
 
 `➜  tc39-pattern-matching git:(main) ✗ cat fib-easy.js`
 ```js 
