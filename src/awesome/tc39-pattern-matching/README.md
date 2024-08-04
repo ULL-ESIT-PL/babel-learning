@@ -2,11 +2,25 @@
 
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
-## Installing
+## Installation and Setup
 
-```
-✗ npm install --save-dev babel-plugin-proposal-pattern-matching
-```
+To use this Babel plugin, you need to install it and configure Babel to use the plugin:
+
+1. **Install the Plugin**:
+   ```sh
+   npm install babel-plugin-proposal-pattern-matching
+   ```
+
+2. **Configure Babel**:
+   Add the plugin to your Babel configuration (`.babelrc` or `babel.config.js`):
+   ```json
+   {
+     "plugins": ["babel-plugin-proposal-pattern-matching"]
+   }
+   ```
+
+With this setup, you can use pattern matching in your JavaScript code, as demonstrated in the example.
+
 
 ## Execution. Simple example
 
@@ -199,21 +213,3 @@ That when executed gives:
 
 
 
-### Installation and Setup:
-
-To use this Babel plugin, you need to install it and configure Babel to use the plugin:
-
-1. **Install the Plugin**:
-   ```sh
-   npm install babel-plugin-proposal-pattern-matching
-   ```
-
-2. **Configure Babel**:
-   Add the plugin to your Babel configuration (`.babelrc` or `babel.config.js`):
-   ```json
-   {
-     "plugins": ["babel-plugin-proposal-pattern-matching"]
-   }
-   ```
-
-With this setup, you can use pattern matching in your JavaScript code, as demonstrated in the example.
