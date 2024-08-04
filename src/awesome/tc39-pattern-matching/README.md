@@ -26,6 +26,61 @@ Consider the example:
      9  // -> 55
 ```
 
+This defines the Fibonacci function `fib` using an arrow function and pattern matching. 
+
+The plugin visits the `CallExpression` nodes to `match(n)(f1, f2, ..., fn)` 
+to create the translated function replacing the AST
+for a function that uses a sequence of `if` statements to match the patterns based on `n`. See 
+the entry point of the plugin at https://github.com/iptop/babel-plugin-proposal-pattern-matching/blob/main/src/index.js:
+
+```js
+module.exports = (babel) => {
+  return {
+    visitor: {
+      ImportDeclaration (path, state) {
+        resolveImportDeclaration(babel, path, state)
+      },
+      CallExpression (path, state) {
+        resolveCallExpression(babel, path, state)
+      }
+    }
+  }
+}
+```
+
+The manipulation of the AST is done in the [src/visitor/call-expression.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/visitor/call-expression.js) module. When the identifier used in the `CallExpression` is `match`, the plugin transforms the AST using the `transformMatch` function:
+
+
+```js
+const transformMatch = require('../transform/match')
+const transformFnMatch = require('../transform/fnmatch')
+module.exports = (babel, path, state) => {
+  const $callee = path.get('callee')
+  const $$callee = $callee.node
+  if ($$callee.type == 'Identifier') {
+    /* Extract AST tokens from NodePath */
+    const astTag = $callee.getData('pattern-matching')
+    if (astTag == 'match') {
+      transformMatch(babel, $callee)
+    }
+
+    if (astTag == 'fnmatch') {
+      transformFnMatch(babel, $callee)
+    }
+  }
+}
+```
+
+- The ASTs for the following parameters 
+   - `(v = 1) => 1` and 
+   - `(v = 2) => 1` 
+are used as patterns that match specific cases:
+
+- If `n` is `1`, the default value of the first parameter is used as pattern to match and the code for the body of such function is executed.
+- If `n` is `2`, the second pattern matches and the second function is called returning `1`.
+- The last line `_ => fib(_ - 1) + fib(_ - 2)` is a fallback pattern that matches any other value. 
+  It recursively calculates the Fibonacci number by summing the results of `fib(_ - 1)` and `fib(_ - 2)`.
+
 Is transformed to:
 
 ```
@@ -48,6 +103,9 @@ Is transformed to:
     13  console.log(fib(10));
     14  // -> 55
 ```
+
+Notice that `v`  is not used in the transformed code. The `_uid` variable is used to store the value of `n` and the patterns are matched against it.
+
 That when executed gives:
 
 ```
@@ -55,3 +113,28 @@ That when executed gives:
 55
 ```
 
+
+
+##############
+
+
+
+
+### Installation and Setup:
+
+To use this Babel plugin, you need to install it and configure Babel to use the plugin:
+
+1. **Install the Plugin**:
+   ```sh
+   npm install babel-plugin-proposal-pattern-matching
+   ```
+
+2. **Configure Babel**:
+   Add the plugin to your Babel configuration (`.babelrc` or `babel.config.js`):
+   ```json
+   {
+     "plugins": ["babel-plugin-proposal-pattern-matching"]
+   }
+   ```
+
+With this setup, you can use pattern matching in your JavaScript code, as demonstrated in the example.
