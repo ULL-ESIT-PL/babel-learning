@@ -86,7 +86,7 @@ that can be seen in the shape of the generated code [fib-easy.mjs](fib-easy.mjs)
 
 ```js
 const fib = n => (v => {
-  const _uid = n;
+  const _uid = n;                      // const UID = EXP
   if (_uid === 1) {                    // BLOCKS
     return 1;
   }
@@ -121,19 +121,46 @@ module.exports = function transformMatch (babel, referencePath) {
   $root.replaceWith($$IIFE)
 }
 ```
+So what remains to understand is how the [transformPatterns](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/transform/match.js#L71-L86) function works. 
 
+Four cases are considered:  assign patterns, identifier patterns, array patterns and object patterns:
 
-- The ASTs for the following parameters 
-   - `(v = 1) => 1` and 
-   - `(v = 2) => 1` 
-are used as patterns that match specific cases:
+```js
+function transformPatterns (babel, $patterns, $$uid) {
+  return $patterns.map($pattern => {
+    const $param = $pattern.get('params.0')
+    const $$param = $param.node
+    switch ($$param.type) {
+      case 'AssignmentPattern':
+        return createIFBlock(babel, $pattern, $param, $$uid)
+      case 'Identifier':
+        return createReturnBlock(babel, $pattern, $param, $$uid)
+      case 'ArrayPattern':
+        return createDeconstruction(babel, $pattern, $param, $$uid, 'ArrayPattern')
+      case 'ObjectPattern':
+        return createDeconstruction(babel, $pattern, $param, $$uid, 'ObjectPattern')
+    }
+  })
+}
+```
+Our example uses the `Identifier` case. The `createReturnBlock` function is used to build the AST node for the pattern matching:
 
-- If `n` is `1`, the default value of the first parameter is used as pattern to match and the code for the body of such function is executed.
-- If `n` is `2`, the second pattern matches and the second function is called returning `1`.
-- The last line `_ => fib(_ - 1) + fib(_ - 2)` is a fallback pattern that matches any other value. 
-  It recursively calculates the Fibonacci number by summing the results of `fib(_ - 1)` and `fib(_ - 2)`.
+```js
+function createReturnBlock (babel, $pattern, $param, $$uid) {
+  const paramName = $param.get('name').node
+  const $body = $pattern.get('body')
+  const $$body = $body.node
+  $body.scope.rename(paramName, $$uid.name)
+  const $$block = babel.template(`
+    return RET
+    `)({
+    RET: resolveBody(babel, $$body)
+  })
+  return $$block
+}
+```
 
-Is transformed to:
+This way the initial code is transformed to:
 
 ```
 ➜  tc39-pattern-matching git:(main) ✗ npx babel fib-easy.js -o fib-easy.mjs
