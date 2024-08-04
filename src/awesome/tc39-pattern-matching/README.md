@@ -29,8 +29,9 @@ Consider the example:
 This defines the Fibonacci function `fib` using an arrow function and pattern matching. 
 
 The plugin visits the `CallExpression` nodes corresponding to calls `match(n)(f1, f2, ..., fn)` 
-to create the translated function replacing the AST
-for a function that uses a sequence of `if` statements to match the patterns based on `n`. 
+to create the translated function replacing the AST node 
+by a function that uses a sequence of `if` statements to match the patterns that will be built 
+based on the actual value of `n`. 
 
 See 
 the entry point of the plugin at https://github.com/iptop/babel-plugin-proposal-pattern-matching/blob/main/src/index.js:
