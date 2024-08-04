@@ -1,12 +1,14 @@
 # Proposal Pattern Matching
 
-The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation.
+The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching.
+
+## Installing
 
 ```
 ✗ npm install --save-dev babel-plugin-proposal-pattern-matching
 ```
 
-## Execution
+## Execution. Simple example
 
 Consider the example:
 
@@ -53,30 +55,3 @@ That when executed gives:
 55
 ```
 
-```js
-➜  implicit-return git:(main) cat input2.js 
-function abs(n) {
-  if (n > 0) {
-    1;
-  } else if (n < 0) {
-    -1;
-  } else {
-    0;
-  }
-}
-```
-
-Transformed to:
-
-```js
-➜  implicit-return git:(main) ✗ npx babel input2.js --plugins implicit-return
-function abs(n) {
-  if (n > 0) {
-    return 1;
-  } else if (n < 0) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
-```
