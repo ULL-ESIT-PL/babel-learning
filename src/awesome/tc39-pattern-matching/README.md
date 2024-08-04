@@ -48,8 +48,8 @@ replacing the AST node
 by a function that uses a sequence of `if` statements to match the patterns that will be built 
 based on the actual value of `n`. 
 
-See 
-the entry point of the plugin at https://github.com/iptop/babel-plugin-proposal-pattern-matching/blob/main/src/index.js:
+See the entry point of the plugin at
+[src/index.js](https://github.com/ULL-ESIT-PL/babel-plugin-proposal-pattern-matching/blob/main/src/index.js#L9-L11):
 
 ```js
 module.exports = (babel) => {
