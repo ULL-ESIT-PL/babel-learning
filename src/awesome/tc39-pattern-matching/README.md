@@ -54,11 +54,11 @@ The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provi
 The expression *Zero Grammar* used here means that the plugin does not introduce new syntax to the JavaScript language. The `match` keyword is substituted by a function call to a function with name `match`. Also, the `when <pattern>: <value-expression>;` disappears and is replaced by function parameters of `match`:
 
 ```js 
-const fib = n=>match(n)(
-        (v=1)=>1,            // when {n: 1}: 1
-        (v=2)=>1,            // when {n: 2}: 1
-        _=>fib(_-1)+fib(_-2) // default: fib(n-1)+fib(n-2)
-)
+const fib = n=>match(n)(     // match(n) {
+        (v=1)=>1,            //   when == 1: 1:
+        (v=2)=>1,            //   when == 2: 1;
+        _=>fib(_-1)+fib(_-2) //   default: fib(n-1)+fib(n-2);
+)                            // }
 
 console.log(fib(10))
 ```
