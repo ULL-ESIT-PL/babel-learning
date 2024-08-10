@@ -1,6 +1,6 @@
 ## The TC39 Proposal Pattern Matching. Stage 1
 
-This TC39 [proposal](https://github.com/tc39/proposal-pattern-matching) is currently (2024) at stage 1.
+The TC39 [proposal *Pattern Matching*](https://github.com/tc39/proposal-pattern-matching) is currently (2024) at stage 1.
 It introduces three new concepts to Javascript:
 
 1. the "matcher pattern",
