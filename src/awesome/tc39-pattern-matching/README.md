@@ -1,4 +1,4 @@
-# TC39 Proposal Pattern Matching. Stage 1
+## The TC39 Proposal Pattern Matching. Stage 1
 
 This TC39 [proposal](https://github.com/tc39/proposal-pattern-matching) introduces three new concepts to Javascript:
 
@@ -59,6 +59,8 @@ if( json is {user: [String and let name, Number and let age]} ) {
   print(`User ${name} is ${age} years old.`);
 }
 ```
+
+## The Babel Plugin for the TC39 Pattern Matching Proposal
 
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a zero grammar modification, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
