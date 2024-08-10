@@ -31,6 +31,24 @@ match(val) {
 }
 ```
 
+Here is another example of the DSL. Notice how 
+a `let`, `const`, or `var` keyword followed by a valid variable name
+(identical to binding statements anywhere else) is valid in a pattern.
+Binding patterns always match,
+and additionally introduce a binding,
+binding the subject to the given name
+with the given binding semantics.
+
+```js
+match (res) {
+  when { status: 200 or 201, let pages, let data } and if (pages > 1):
+    handlePagedData(pages, data);
+  when { status: 200 or 201, let pages, let data } and if (pages === 1):
+    handleSinglePage(data);
+  default: handleError(res);
+}
+```
+
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
 ## Installation and Setup of babel-plugin-proposal-pattern-matching
