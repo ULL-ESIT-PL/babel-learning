@@ -1,6 +1,6 @@
 # TC39 Proposal Pattern Matching. Stage 1
 
-This proposal introduces three new concepts to Javascript:
+This [proposal](https://github.com/tc39/proposal-pattern-matching) introduces three new concepts to Javascript:
 
 * the "matcher pattern",
     a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns)
