@@ -49,7 +49,7 @@ match (res) {
 }
 ```
 
-The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
+The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a zero grammar modification, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
 ## Installation and Setup of babel-plugin-proposal-pattern-matching
 
