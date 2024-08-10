@@ -1,6 +1,7 @@
 ## The TC39 Proposal Pattern Matching. Stage 1
 
-This TC39 [proposal](https://github.com/tc39/proposal-pattern-matching) introduces three new concepts to Javascript:
+This TC39 [proposal](https://github.com/tc39/proposal-pattern-matching) is currently (2024) at stage 1.
+It introduces three new concepts to Javascript:
 
 1. the "matcher pattern",
     a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns)  which allows recursively testing the structure and contents of a value in multiple ways at once, and extracting some of that structure into local bindings at the same time
@@ -62,8 +63,11 @@ if( json is {user: [String and let name, Number and let age]} ) {
 
 ## The Babel Plugin for the TC39 Pattern Matching Proposal
 
-The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a zero grammar modification, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
-
+The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching implements 
+1. A zero JS grammar modification, 
+2. High performance 
+3. It can be the base for the implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. 
+  
 The expression *Zero Grammar* used here means that the plugin does not introduce new syntax to the JavaScript language. The `match` keyword is substituted by a function call to a function with name `match`. Also, the `when <pattern>: <value-expression>;` disappears and is replaced by function parameters of `match`:
 
 ```js 
