@@ -51,6 +51,9 @@ match (res) {
 
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a zero grammar modification, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
+Zero grammar means that the plugin does not introduce new syntax to the JavaScript language. Instead the 
+`match` keyword is used as a function call. The `when <pattern>: <value-expression>;` disapears and is replaced by function parameters of `match`.
+
 ## Installation and Setup of babel-plugin-proposal-pattern-matching
 
 To use this Babel plugin, you need to install it and configure Babel to use the plugin:
