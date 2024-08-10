@@ -3,7 +3,7 @@
 This proposal introduces three new concepts to Javascript:
 
 * the "matcher pattern",
-    a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns).
+    a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns)
     which allows recursively testing the structure and contents of a value
     in multiple ways at once,
     and extracting some of that structure into local bindings at the same time
