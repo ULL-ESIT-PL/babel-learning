@@ -18,7 +18,7 @@ This proposal introduces three new concepts to Javascript:
 
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
-## Installation and Setup
+## Installation and Setup of babel-plugin-proposal-pattern-matching
 
 To use this Babel plugin, you need to install it and configure Babel to use the plugin:
 
