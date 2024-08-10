@@ -3,7 +3,7 @@
 This proposal introduces three new concepts to Javascript:
 
 * the "matcher pattern",
-    a new DSL closely related to destructuring patterns,
+    a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns).
     which allows recursively testing the structure and contents of a value
     in multiple ways at once,
     and extracting some of that structure into local bindings at the same time
@@ -58,6 +58,18 @@ Consider the example [fib-easy.js](fib-easy.js):
 ```
 
 This defines the Fibonacci function `fib` using an arrow function and pattern matching. 
+
+Matcher patterns are a new DSL, closely inspired by destructuring patterns,
+for recursively testing the structure and contents of a value
+while simultaneously extracting some parts of that value
+as local bindings for use by other code.
+
+Matcher patterns can be divided into three general varieties:
+
+* Value patterns, which test that the subject matches some criteria, like "is the string `"foo"`" or "matches the variable `bar`".
+* Structure patterns, which test the subject matches some structural criteria like "has the property `foo`" or "is at least length 3", and also let you recursively apply additional matchers to parts of that structure.
+* Combinator patterns, which let you match several patterns in parallel on the same subject, with simple boolean `and`/`or` logic.
+
 
 The plugin visits the `CallExpression` nodes corresponding to calls `match(n)(f1, f2, ..., fn)` 
 replacing the AST node 
