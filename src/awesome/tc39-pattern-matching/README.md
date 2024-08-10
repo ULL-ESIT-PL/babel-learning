@@ -66,7 +66,7 @@ if( json is {user: [String and let name, Number and let age]} ) {
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching implements 
 1. A zero JS grammar modification of the proposal, 
 2. It offers a good performance 
-3. Once the Babel parser is extended, it is the base for the full implementation of https://github.com/tc39/proposal-pattern-matching. 
+3. Once the Babel parser will be extended, it provides the support for a straightforward implementation of https://github.com/tc39/proposal-pattern-matching. 
   
 The expression *Zero Grammar* used here means that the plugin does not introduce new syntax to the JavaScript language. The `match` keyword is substituted by a function call to a function with name `match`. Also, the `when <pattern>: <value-expression>;` disappears and is replaced by function parameters of `match`:
 
