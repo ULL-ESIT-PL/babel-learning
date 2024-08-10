@@ -11,4 +11,5 @@ There is a folder for each plugin with the name of the plugin.
   * [babel-plugin-transform-remove-debugger index.js](https://github.com/babel/minify/blob/a24dd066f16db5a7d5ab13c2af65e767347ef550/packages/babel-plugin-transform-remove-debugger/src/index.js)
 * [version](version/README.md)
 * [implicit-return](implicit-return/README.md)
+* [TC39 Pattern Matching](tc39-pattern-matching/README.md)
 
