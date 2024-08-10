@@ -1,5 +1,19 @@
 # TC39 Proposal Pattern Matching. Stage 1
 
+This proposal introduces three new concepts to Javascript:
+
+* the "matcher pattern",
+    a new DSL closely related to destructuring patterns,
+    which allows recursively testing the structure and contents of a value
+    in multiple ways at once,
+    and extracting some of that structure into local bindings at the same time
+* the `match(){}` expression,
+    a general replacement for the `switch` statement
+    that uses matcher patterns
+    to resolve to one of several values,
+* the `is` boolean operator,
+    which allows for one-off testing of a value against a matcher pattern,
+    potentially also introducing bindings from that test into the local environment.
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
 ## Installation and Setup
