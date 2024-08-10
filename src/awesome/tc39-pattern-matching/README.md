@@ -49,6 +49,17 @@ match (res) {
 }
 ```
 
+Below is another example usen `is` and checking the type of the values in the array:
+
+```js 
+var json = {
+  'user': ['Lily', 13]
+};
+if( json is {user: [String and let name, Number and let age]} ) {
+  print(`User ${name} is ${age} years old.`);
+}
+```
+
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a zero grammar modification, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
 The expression *Zero Grammar* used here means that the plugin does not introduce new syntax to the JavaScript language. The `match` keyword is substituted by a function call to a function with name `match`. Also, the `when <pattern>: <value-expression>;` disappears and is replaced by function parameters of `match`:
