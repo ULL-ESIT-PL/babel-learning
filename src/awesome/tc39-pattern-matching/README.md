@@ -14,6 +14,8 @@ This proposal introduces three new concepts to Javascript:
 * the `is` boolean operator,
     which allows for one-off testing of a value against a matcher pattern,
     potentially also introducing bindings from that test into the local environment.
+
+
 The plugin https://github.com/iptop/babel-plugin-proposal-pattern-matching provides a minimal grammar, high performance JavaScript pattern matching implementation of the TC39 pattern matching proposal described at repo https://github.com/tc39/proposal-pattern-matching. This proposal is currently (2024) at stage 1.
 
 ## Installation and Setup
