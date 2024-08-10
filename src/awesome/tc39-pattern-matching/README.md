@@ -1,6 +1,6 @@
 # TC39 Proposal Pattern Matching. Stage 1
 
-This [proposal](https://github.com/tc39/proposal-pattern-matching) introduces three new concepts to Javascript:
+This TC39 [proposal](https://github.com/tc39/proposal-pattern-matching) introduces three new concepts to Javascript:
 
 1. the "matcher pattern",
     a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns)  which allows recursively testing the structure and contents of a value in multiple ways at once, and extracting some of that structure into local bindings at the same time
@@ -62,6 +62,9 @@ const fib = n=>match(n)(     // match(n) {
 
 console.log(fib(10))
 ```
+
+This strongly simplifies the implementation of the plugin avoiding to modify the
+lexer and parser of the Babel compiler. An analysis and transformation of the AST is enough to implement the plugin.
 
 ## Installation and Setup of babel-plugin-proposal-pattern-matching
 
