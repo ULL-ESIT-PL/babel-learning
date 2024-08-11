@@ -7,8 +7,8 @@ This proposal was approved for Stage 1 in the May 2018 TC39 meeting, and
 
 ## Slide 8: Priority: exhaustiveness and ordering
 
-* Fall-through and "no match" should be opt-in, not opt-out
-* Execution order should never be surprising
+> * Fall-through and "no match" should be opt-in, not opt-out
+> * Execution order should never be surprising
 
 In the context of programming language design, particularly with respect to the "ECMAScript Pattern Matching" proposal, the terms "opt-in," "opt-out," and "fall-through" have specific meanings:
 
