@@ -20,7 +20,8 @@ the closed issues. For instance closed issues containing the words [dot after](h
 > If you were using C sharp you could just write question square brackets and
 > people were were kind of like is there no better way do we need that dot? 
 
-Why not to use `a?[2]` instead of the verbose `a?.[2]` finally chosen?
+He is referring to the question *Why not to use `a?[2]` instead of the verbose `a?.[2]`* 
+that was the finally chosen syntax?
 
 > The reason that we need that is to  distinguish it from a ternary, where we might have the ternary question mark followed by the square brackets of an array and that to to determine definitively that we we have an optional bracket access and not  a ternary would require unbounded
 > lookahead 
