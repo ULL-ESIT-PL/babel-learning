@@ -90,8 +90,6 @@ In the context of the JavaScript `switch` statement, some common "footguns" incl
      ```
      If `animal` is not `"cat"` or `"dog"`, nothing will happen, which might not be the intended behavior.
 
-### **Summary:**
-In summary, **footguns** associated with the JavaScript `switch` statement mainly include the **fall-through behavior**, **unexpected type coercion**, and **non-exhaustive case handling**. These issues can lead to bugs and make `switch` statements difficult to use safely. The ECMAScript Pattern Matching proposal aims to be "better than `switch`" by eliminating these potential pitfalls and introducing new capabilities, such as more expressive and safer pattern matching.
 
 ## Slide 7: Priority: expression semantics
 
