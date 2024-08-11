@@ -12,7 +12,7 @@ and we  archived in 2022. It is worth to see
 the closed issues. For instance closed issues containing the words [dot after](https://github.com/tc39/proposal-optional-chaining/issues?q=is%3Aissue+is%3Aclosed++dot+after) 
 
 
-> 6:41 a long time um we had some real uh heated discussions on on GitHub about both
+> (6:41) a long time um we had some real uh heated discussions on on GitHub about both
 > syntax and semantics um as you're probably aware
 > um when we do an optional bracket access we have to write question dot square brackets
 > um there's still that dot in there if you were using C sharp you could just write question square brackets and
