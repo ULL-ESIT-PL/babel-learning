@@ -13,14 +13,25 @@ the closed issues. For instance closed issues containing the words [dot after](h
 
 
 > (6:41) a long time um we had some real uh heated discussions on on GitHub about both
-> syntax and semantics um as you're probably aware
-> um when we do an optional bracket access we have to write question dot square brackets
-> um there's still that dot in there if you were using C sharp you could just write question square brackets and
-> people were were kind of like is there no better way do we need that dot and and the reason that we need that is to
-> distinguish it from a ternary uh where we might have the ternary question mark followed by the square brackets of an
-> array and that to to determine definitively that we we have an optional
-> bracket access and not um a ternary would require unbounded
-> lookahead that's not necessarily a problem for an ahead of time parser but
-> it is a problem for JavaScript and so this this syntactic solution was kind of
+> syntax and semantics um as you're probably aware.
+> When we do an optional bracket access we have to write **question dot** square brackets.
+> There's still that dot in there. 
+
+> If you were using C sharp you could just write question square brackets and
+> people were were kind of like is there no better way do we need that dot? 
+
+Why not to use `a?[2]` instead of the verbose `a?.[2]` finally chosen?
+
+> The reason that we need that is to  distinguish it from a ternary, where we might have the ternary question mark followed by the square brackets of an array and that to to determine definitively that we we have an optional bracket access and not  a ternary would require unbounded
+> lookahead 
+
+He is referring to the ambiguity of the following expression:
+
+```js 
+a ? [2] : [3]
+```
+ 
+> ... that's not necessarily a problem for an ahead of time parser but
+> it is a problem for JavaScript (parser) and so this this syntactic solution was kind of
 > the least bad thing that we could do but as you can see from
 > the 282 comments here it was a bit heated um also uh semantics wise in a language
