@@ -10,7 +10,6 @@ This proposal was approved for Stage 1 in the May 2018 TC39 meeting, and
 > * Reduce reasons to reach for switch
 > * Preserve the good parts of switch
 
-In the context of the ECMAScript Pattern Matching proposal, the phrases you're asking about refer to the goals and considerations behind the design of the feature. Let's break down each part:
 
 ### **Subsumption:**
 - **Subsumption** in this context means that the new pattern matching feature should encompass or replace the functionality provided by the existing `switch` statement in JavaScript. The idea is that pattern matching should be able to do everything `switch` can do, and more, in a more expressive and safer way. In other words, pattern matching should make `switch` statements obsolete or less necessary, because it can "subsume" the role of `switch`.
