@@ -10,6 +10,32 @@ This proposal was approved for Stage 1 in the May 2018 TC39 meeting, and
 > * Reduce reasons to reach for switch
 > * Preserve the good parts of switch
 
+In the context of the ECMAScript Pattern Matching proposal, the phrases you're asking about refer to the goals and considerations behind the design of the feature. Let's break down each part:
+
+### **Subsumption:**
+- **Subsumption** in this context means that the new pattern matching feature should encompass or replace the functionality provided by the existing `switch` statement in JavaScript. The idea is that pattern matching should be able to do everything `switch` can do, and more, in a more expressive and safer way. In other words, pattern matching should make `switch` statements obsolete or less necessary, because it can "subsume" the role of `switch`.
+
+### **Easily Googleable:**
+- The phrase **"easily googleable"** refers to the ability of developers to search for and find information about the feature online using search engines like Google. The goal is to design the syntax and terminology of pattern matching in a way that is distinctive and clear, so that developers can easily look it up and find relevant resources. If a feature has zero syntactic overlap with existing features, it reduces confusion and makes it easier to search for.
+
+### **Zero Syntactic Overlap:**
+- **Zero syntactic overlap** means that the new pattern matching syntax should be distinct from the syntax of existing language constructs, like `switch`. This ensures that there is no ambiguity or confusion when developers write code, and it also helps in making the feature "easily googleable."
+
+### **Reduce Reasons to Reach for `switch`:**
+- This phrase means that the introduction of pattern matching should minimize the need for developers to use `switch` statements. Pattern matching should provide a more powerful, expressive, and safer alternative, so that developers naturally prefer it over `switch`.
+
+### **Preserve the Good Parts of `switch`:**
+- Finally, while the proposal aims to make pattern matching a superior alternative, it also acknowledges that `switch` has some useful features that should be retained. The goal is to incorporate the best aspects of `switch` into the new pattern matching feature, ensuring that developers don’t lose any functionality they rely on.
+
+### Summary:
+- **Subsumption**: Pattern matching should replace `switch` by offering all its functionality and more.
+- **Easily Googleable**: The feature's syntax and terminology should be unique enough to be easy to search for online.
+- **Zero Syntactic Overlap**: The new syntax should not conflict with existing language constructs, making it clear and distinct.
+- **Reduce Reasons to Reach for `switch`**: Pattern matching should be so useful that developers rarely need `switch`.
+- **Preserve the Good Parts of `switch`**: Retain useful features of `switch` in the new pattern matching syntax.
+
+This approach reflects a careful balance between introducing new, more powerful features and ensuring they are intuitive, accessible, and non-disruptive to existing code.
+
 ## Slide 6: Priority: be better than switch
 
 > * No more footguns
