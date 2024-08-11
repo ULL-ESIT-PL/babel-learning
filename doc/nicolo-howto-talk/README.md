@@ -875,8 +875,8 @@ identifiers with a unique prefix, and avoiding such prefix when introducing new 
 * [Nicolo slides](/pdfs/holyjs-2019-Nicolo_Ribaudo_babelhow-to.pdf)
 * [The plugin babel-plugin-transform-optional-chaining](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-optional-chaining) at GitHub Babel repo and [the way it is used](https://babeljs.io/docs/babel-plugin-transform-optional-chaining)
 * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
-
-
+* [Optional Chaining: From Specification to Implementation](https://youtu.be/bFlzeI8VGnU?si=YffCfFfPwo5uSDoC)
+by Ross Kirsling (TC39 member) in [JS Japan Conference](https://www.youtube.com/@jsconfjp). December 2022
 [@babel/helper-plugin-test-runner]:
   https://github.com/babel/babel/tree/master/packages/babel-helper-plugin-test-runner
 [all-contributors]: https://github.com/all-contributors/all-contributors
