@@ -4,6 +4,23 @@ This proposal was approved for Stage 1 in the May 2018 TC39 meeting, and
 - slides for that presentation are available [here](https://docs.google.com/presentation/d/1WPyAO4pHRsfwGoiIZupz_-tzAdv8mirw-aZfbxbAVcQ).
 - Its current form was presented to TC39 in the April 2021 meeting ([slides](https://hackmd.io/@mpcsh/HkZ712ig_#/)).
 
+## Slide 5: Priority: subsumption of switch
+
+> * Easily googleable; zero syntactic overlap
+> * Reduce reasons to reach for switch
+> * Preserve the good parts of switch
+
+## Slide 6: Priority: be better than switch
+
+> * No more footguns
+> * New capabilities
+
+## Slide 7: Priority: expression semantics
+
+> * Pattern matching construct should be usable as an expression
+>    * `return match { ... }`
+>    * `let foo = match { ... }`
+>    * etc
 
 ## Slide 8: Priority: exhaustiveness and ordering
 
