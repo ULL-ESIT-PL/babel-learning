@@ -40,6 +40,59 @@ This approach reflects a careful balance between introducing new, more powerful 
 > * No more footguns
 > * New capabilities
 
+### **Footguns in the Context of JavaScript's `switch` Statement:**
+
+**Footgun** is a programming term used to describe features or behaviors in a language that can easily lead to errors, bugs, or unexpected behavior if used incorrectly. The term suggests that the feature is so error-prone that it is like "shooting yourself in the foot."
+
+In the context of the JavaScript `switch` statement, some common "footguns" include:
+
+1. **Fall-Through Behavior:**
+   - **Fall-through** is when execution continues from one `case` to the next, even if a match has been found, unless a `break` statement is used. This can lead to subtle bugs if the developer forgets to include `break` after each `case`.
+   - Example:
+     ```js
+     switch (value) {
+       case 1:
+         console.log("Case 1");
+       case 2:
+         console.log("Case 2"); // This will execute even if value is 1
+     }
+     ```
+     If the developer intended only "Case 1" to be logged when `value` is 1, this fall-through behavior can lead to unexpected results.
+
+2. **Type Coercion:**
+   - In `switch` statements, JavaScript performs strict comparison (`===`) for matching cases, but sometimes developers expect loose comparison (`==`). This can lead to bugs when values are implicitly coerced to different types.
+   - Example:
+     ```js
+     switch ("2") {
+       case 2:
+         console.log("Number 2");
+         break;
+       case "2":
+         console.log("String 2");
+         break;
+     }
+     ```
+     Here, `"2"` will not match `2` because `switch` uses strict equality, which can be confusing for some developers.
+
+3. **Non-Exhaustive Cases:**
+   - Unlike pattern matching, where you can enforce handling all possible cases (often required in languages with exhaustive pattern matching), `switch` in JavaScript does not require handling all possible cases. This can lead to missing cases and bugs.
+   - Example:
+     ```js
+     switch (animal) {
+       case "cat":
+         console.log("Meow");
+         break;
+       case "dog":
+         console.log("Woof");
+         break;
+       // Missing cases for other animals
+     }
+     ```
+     If `animal` is not `"cat"` or `"dog"`, nothing will happen, which might not be the intended behavior.
+
+### **Summary:**
+In summary, **footguns** associated with the JavaScript `switch` statement mainly include the **fall-through behavior**, **unexpected type coercion**, and **non-exhaustive case handling**. These issues can lead to bugs and make `switch` statements difficult to use safely. The ECMAScript Pattern Matching proposal aims to be "better than `switch`" by eliminating these potential pitfalls and introducing new capabilities, such as more expressive and safer pattern matching.
+
 ## Slide 7: Priority: expression semantics
 
 > * Pattern matching construct should be usable as an expression
