@@ -877,7 +877,8 @@ identifiers with a unique prefix, and avoiding such prefix when introducing new 
 * Web site of the HolyJS 2019 conference: https://holyjs.ru/en/archive/2019%20Moscow/
 * [Optional Chaining: From Specification to Implementation](https://youtu.be/bFlzeI8VGnU?si=YffCfFfPwo5uSDoC)
 by Ross Kirsling (TC39 member) in [JS Japan Conference](https://www.youtube.com/@jsconfjp). December 2022
-
+* [TC39 Agendas](https://github.com/tc39/agendas): A repo with a folder per year and markdows 01.md ... for each meeting. 
+  * See for instance the meeting https://github.com/tc39/agendas/blob/main/2017/01.md and see the slides by Gabriel Isenberg (Champion at the time) for the *Null Propagation Operator* at [Google Slides](https://docs.google.com/presentation/d/11O_wIBBbZgE1bMVRJI8kGnmC6dWCBOwutbN9SWOK0fU/view#slide=id.p)
 
 [@babel/helper-plugin-test-runner]:
   https://github.com/babel/babel/tree/master/packages/babel-helper-plugin-test-runner
