@@ -9,4 +9,4 @@ See the meeting https://github.com/tc39/agendas/blob/main/2017/01.md and see the
 
 The repository for the Optional Chaining Proposal is at https://github.com/tc39/proposal-optional-chaining
 and we  archived in 2022. It is worth to see 
-the closed issues. For instance closed issues with subject containing [dot after](https://github.com/tc39/proposal-optional-chaining/issues?q=is%3Aissue+is%3Aclosed++dot+after) 
+the closed issues. For instance closed issues containing the words [dot after](https://github.com/tc39/proposal-optional-chaining/issues?q=is%3Aissue+is%3Aclosed++dot+after) 
