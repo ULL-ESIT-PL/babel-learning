@@ -4,6 +4,16 @@ This proposal was approved for Stage 1 in the May 2018 TC39 meeting, and
 - slides for that presentation are available [here](https://docs.google.com/presentation/d/1WPyAO4pHRsfwGoiIZupz_-tzAdv8mirw-aZfbxbAVcQ).
 - Its current form was presented to TC39 in the April 2021 meeting ([slides](https://hackmd.io/@mpcsh/HkZ712ig_#/)).
 
+## Slide 1: Champions:
+
+> [Mark Cohen](https://github.com/mpcsh), 
+> [Tab Atkins-Bittner](https://github.com/tabatkins), 
+> [Jordan Harband](https://github.com/ljharb), 
+> [Yulia Startsev](https://github.com/codehag), 
+> Daniel Rosenwasser, 
+> [Jack Works](https://github.com/Jack-Works), 
+> Ross Kirsling
+
 ## Slide 5: Priority: subsumption of switch
 
 > * Easily googleable; zero syntactic overlap
