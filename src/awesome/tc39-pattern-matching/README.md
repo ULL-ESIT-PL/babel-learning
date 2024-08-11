@@ -1,6 +1,9 @@
 ## The TC39 Proposal Pattern Matching. Stage 1
 
-The TC39 [proposal *Pattern Matching*](https://github.com/tc39/proposal-pattern-matching) is currently (2024) at stage 1.
+The TC39 [proposal *Pattern Matching*](https://github.com/tc39/proposal-pattern-matching) was approved for Stage 1 in the May 2018 TC39 meeting, and slides for that presentation are available [here](https://docs.google.com/presentation/d/1WPyAO4pHRsfwGoiIZupz_-tzAdv8mirw-aZfbxbAVcQ). Its current form was presented to TC39 in the April 2021 meeting ([slides](https://hackmd.io/@mpcsh/HkZ712ig_#/)). Comments on the slides are available [here](slides.md)
+
+
+
 It introduces three new concepts to Javascript:
 
 1. the "matcher pattern",
@@ -60,6 +63,7 @@ if( json is {user: [String and let name, Number and let age]} ) {
   print(`User ${name} is ${age} years old.`);
 }
 ```
+
 
 ## The Babel Plugin for the TC39 Pattern Matching Proposal
 
