@@ -65,9 +65,11 @@ See https://github.com/tc39/proposal-optional-chaining/issues/69
 
 
 
-## /packages/babel-parser/src/index.js 
+## Lexical Analysis 
 
-### `readToken_question` in the class `Tokenizer`
+### /packages/babel-parser/src/index.js 
+
+#### `readToken_question` in the class `Tokenizer`
 
 ```js
   readToken_question(): void {
@@ -96,7 +98,7 @@ See https://github.com/tc39/proposal-optional-chaining/issues/69
   }
 ```
 
-### `updateContext` in the class `Tokenizer`
+#### `updateContext` in the class `Tokenizer`
 
 ```js 
   updateContext(prevType: TokenType): void {
@@ -113,9 +115,13 @@ See https://github.com/tc39/proposal-optional-chaining/issues/69
   }
 ```
 
-## /packages/babel-parser/src/tokenizer/context.js
+### /packages/babel-parser/src/tokenizer/context.js
+
+#### `updateContext` 
 
 ```js
+import { types as tt } from "./types";
+...
 tt._function.updateContext = tt._class.updateContext = function (prevType) {
   if (prevType === tt.dot || prevType === tt.questionDot) {
     // when function/class follows dot/questionDot, it is part of
@@ -140,4 +146,25 @@ tt._function.updateContext = tt._class.updateContext = function (prevType) {
 
   this.state.exprAllowed = false;
 };
+```
+
+### src/tokenizer/types.js
+
+```js
+export const types: { [name: string]: TokenType } = {
+  num: new TokenType("num", { startsExpr }),
+  bigint: new TokenType("bigint", { startsExpr }),
+  regexp: new TokenType("regexp", { startsExpr }),
+  string: new TokenType("string", { startsExpr }),
+  name: new TokenType("name", { startsExpr }),
+  eof: new TokenType("eof"),
+
+  // Punctuation token types.
+  bracketL: new TokenType("[", { beforeExpr, startsExpr }),
+  ...
+  dot: new TokenType("."),
+  question: new TokenType("?", { beforeExpr }),
+  questionDot: new TokenType("?."),
+  ...
+}
 ```
