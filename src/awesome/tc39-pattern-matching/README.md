@@ -5,7 +5,12 @@ The TC39 [proposal *Pattern Matching*](https://github.com/tc39/proposal-pattern-
 It introduces three new concepts to Javascript:
 
 1. the "matcher pattern",
-    a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns)  which allows recursively testing the structure and contents of a value in multiple ways at once, and extracting some of that structure into local bindings at the same time
+    a new DSL closely based in part on the existing [Destructuring Binding Patterns](https://tc39.github.io/ecma262/#sec-destructuring-binding-patterns)  which allows recursively testing the structure and contents of a value in multiple ways at once, and extracting some of that structure into local bindings at the same time.
+
+    Matcher patterns can be divided into three general varieties:
+      * Value patterns, which test that the subject matches some criteria, like "is the string `"foo"`" or "matches the variable `bar`".
+      * Structure patterns, which test the subject matches some structural criteria like "has the property `foo`" or "is at least length 3", and also let you recursively apply additional matchers to parts of that structure.
+      * Combinator patterns, which let you match several patterns in parallel on the same subject, with simple boolean `and`/`or` logic.
 2. the `match(){}` expression,
     a general replacement for the `switch` statement
     that uses matcher patterns
