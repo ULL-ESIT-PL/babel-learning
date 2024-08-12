@@ -65,22 +65,79 @@ See https://github.com/tc39/proposal-optional-chaining/issues/69
 
 
 
-## /packages/babel-parser/lib/index.js 
+## /packages/babel-parser/src/index.js 
+
+### `readToken_question` in the class `Tokenizer`
+
+```js
+  readToken_question(): void {
+    // '?'
+    const next = this.input.charCodeAt(this.state.pos + 1);
+    const next2 = this.input.charCodeAt(this.state.pos + 2);
+    if (next === charCodes.questionMark && !this.state.inType) {
+      if (next2 === charCodes.equalsTo) {
+        // '??='
+        this.finishOp(tt.assign, 3);
+      } else {
+        // '??'
+        this.finishOp(tt.nullishCoalescing, 2);
+      }
+    } else if (
+      next === charCodes.dot &&
+      !(next2 >= charCodes.digit0 && next2 <= charCodes.digit9)
+    ) {
+      // '.' not followed by a number
+      this.state.pos += 2;
+      this.finishToken(tt.questionDot);
+    } else {
+      ++this.state.pos;
+      this.finishToken(tt.question);
+    }
+  }
+```
+
+### `updateContext` in the class `Tokenizer`
 
 ```js 
-const types = {
-  num: new TokenType("num", {
-    startsExpr
-  }),
-  ...
-  dot: new TokenType("."),
-  question: new TokenType("?", {
-    beforeExpr
-  }),
-  questionDot: new TokenType("?."),
-  arrow: new TokenType("=>", {
-    beforeExpr
-  }),
-  ...
+  updateContext(prevType: TokenType): void {
+    const type = this.state.type;
+    let update;
+
+    if (type.keyword && (prevType === tt.dot || prevType === tt.questionDot)) {
+      this.state.exprAllowed = false;
+    } else if ((update = type.updateContext)) {
+      update.call(this, prevType);
+    } else {
+      this.state.exprAllowed = type.beforeExpr;
+    }
+  }
+```
+
+## /packages/babel-parser/src/tokenizer/context.js
+
+```js
+tt._function.updateContext = tt._class.updateContext = function (prevType) {
+  if (prevType === tt.dot || prevType === tt.questionDot) {
+    // when function/class follows dot/questionDot, it is part of
+    // (optional)MemberExpression, then we don't need to push new token context
+  } else if (
+    prevType.beforeExpr &&
+    prevType !== tt.semi &&
+    prevType !== tt._else &&
+    !(
+      prevType === tt._return &&
+      lineBreak.test(this.input.slice(this.state.lastTokEnd, this.state.start))
+    ) &&
+    !(
+      (prevType === tt.colon || prevType === tt.braceL) &&
+      this.curContext() === types.b_stat
+    )
+  ) {
+    this.state.context.push(types.functionExpression);
+  } else {
+    this.state.context.push(types.functionStatement);
+  }
+
+  this.state.exprAllowed = false;
 };
 ```
