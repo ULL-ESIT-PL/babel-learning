@@ -62,3 +62,25 @@ See https://github.com/tc39/proposal-optional-chaining/issues/69
 
 > These conversations were very draining and and the fact of the matter is that sometimes you have a situation where nobody wants to have a particular conversation it's about an edge case it's about just a difficult topic that you wish you could ignore. 
 > But these topics we have to face them and we have to come to a consensus because we have to have a complete feature that has considered all of those edge cases so that we can deliver it to the world so that we can say this deserves to be part of JavaScript.
+
+
+
+## /packages/babel-parser/lib/index.js 
+
+```js 
+const types = {
+  num: new TokenType("num", {
+    startsExpr
+  }),
+  ...
+  dot: new TokenType("."),
+  question: new TokenType("?", {
+    beforeExpr
+  }),
+  questionDot: new TokenType("?."),
+  arrow: new TokenType("=>", {
+    beforeExpr
+  }),
+  ...
+};
+```
