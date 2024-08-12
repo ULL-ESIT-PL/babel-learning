@@ -43,3 +43,22 @@ a ? [2] : [3]
 > it is a problem for JavaScript (parser) and so this this syntactic solution was kind of
 > the least bad thing that we could do but as you can see from
 > the 282 comments here it was a bit heated um also uh semantics wise in a language
+
+## Issue 34: Syntax: Use `?&` 
+
+See [issue 34](https://github.com/tc39/proposal-optional-chaining/issues/34) Syntax: Use `?&` (or anything else that correct the inconsistency between `a?.b` and `a?.[b]`)
+
+> (7:50) The 282 comments here it was a bit heated. 
+
+## Issue 69: `(null)?.b` should evaluate to `null`, not `undefined` 
+
+See https://github.com/tc39/proposal-optional-chaining/issues/69
+
+> Also semantics wise in a language which only has `null` which doesn't have `undefined` there's a different way of considering this operation which is that you're propagating `null` through the chain but that's not really how we want to consider this.
+> What we want to consider is you're trying to reach the end of the chain, you're trying to determine the value of the last property in the chain and 
+> if you can't reach that point then you get `undefined` back you early out with the value `undefined`. 
+> The only way that you should get `null` is if you actually reach the end of the chain and you find a concrete `null` value. 
+> But people had different conceptions of the feature originally and this was also kind of a heated topic to resolve and and these were some painful discussions. 
+
+> These conversations were very draining and and the fact of the matter is that sometimes you have a situation where nobody wants to have a particular conversation it's about an edge case it's about just a difficult topic that you wish you could ignore. 
+> But these topics we have to face them and we have to come to a consensus because we have to have a complete feature that has considered all of those edge cases so that we can deliver it to the world so that we can say this deserves to be part of JavaScript.
