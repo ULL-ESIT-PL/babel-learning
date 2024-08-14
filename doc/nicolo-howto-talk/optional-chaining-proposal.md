@@ -150,6 +150,16 @@ tt._function.updateContext = tt._class.updateContext = function (prevType) {
 
 ### src/tokenizer/types.js
 
+The assignment of fine-grained, information-carrying type objects
+allows the tokenizer to store the information it has about a
+token in a way that is very cheap for the parser to look up.
+
+
+The `startsExpr` property is used to determine whether an expression
+may be the “argument” subexpression of a `yield` expression or
+`yield` statement. It is set on all token types that may be at the
+start of a subexpression.
+
 ```js
 export const types: { [name: string]: TokenType } = {
   num: new TokenType("num", { startsExpr }),
@@ -166,5 +176,76 @@ export const types: { [name: string]: TokenType } = {
   question: new TokenType("?", { beforeExpr }),
   questionDot: new TokenType("?."),
   ...
+  exponent: new TokenType("**", {
+    beforeExpr,
+    binop: 11,
+    rightAssociative: true,
+  }),
+  ... // more token types
 }
 ```
+
+The `beforeExpr` property is used to disambiguate between regular
+expressions and divisions. It is set on all token types as `"["` and `"?"` that can
+be followed by an expression like `[ 2/3 ...` and `[ / ...`. 
+A slash `/` after them would be a regular expression).
+
+At some point in the declaration of `types` arrive a section with
+the **keywords**. All token type keywords start with an underscore, to make them
+easy to recognize.
+
+```js
+ _break: createKeyword("break"),
+ _case: createKeyword("case", { beforeExpr }),
+ ...
+```
+
+Here is the keywords section of the `types` object:
+
+```js
+export const types: { [name: string]: TokenType } = {
+  ...
+  // Keywords
+  // Don't forget to update packages/babel-helper-validator-identifier/src/keyword.js
+  // when new keywords are added
+  _break: createKeyword("break"),
+  _case: createKeyword("case", { beforeExpr }),
+  _catch: createKeyword("catch"),
+  _continue: createKeyword("continue"),
+  _debugger: createKeyword("debugger"),
+  _default: createKeyword("default", { beforeExpr }),
+  _do: createKeyword("do", { isLoop, beforeExpr }),
+  _else: createKeyword("else", { beforeExpr }),
+  _finally: createKeyword("finally"),
+  _for: createKeyword("for", { isLoop }),
+  _function: createKeyword("function", { startsExpr }),
+  _if: createKeyword("if"),
+  _return: createKeyword("return", { beforeExpr }),
+  _switch: createKeyword("switch"),
+  _throw: createKeyword("throw", { beforeExpr, prefix, startsExpr }),
+  _try: createKeyword("try"),
+  _var: createKeyword("var"),
+  _const: createKeyword("const"),
+  _while: createKeyword("while", { isLoop }),
+  _with: createKeyword("with"),
+  _new: createKeyword("new", { beforeExpr, startsExpr }),
+  _this: createKeyword("this", { startsExpr }),
+  _super: createKeyword("super", { startsExpr }),
+  _class: createKeyword("class", { startsExpr }),
+  _extends: createKeyword("extends", { beforeExpr }),
+  _export: createKeyword("export"),
+  _import: createKeyword("import", { startsExpr }),
+  _null: createKeyword("null", { startsExpr }),
+  _true: createKeyword("true", { startsExpr }),
+  _false: createKeyword("false", { startsExpr }),
+  _in: createKeyword("in", { beforeExpr, binop: 7 }),
+  _instanceof: createKeyword("instanceof", { beforeExpr, binop: 7 }),
+  _typeof: createKeyword("typeof", { beforeExpr, prefix, startsExpr }),
+  _void: createKeyword("void", { beforeExpr, prefix, startsExpr }),
+  _delete: createKeyword("delete", { beforeExpr, prefix, startsExpr }),
+}
+```
+
+`isLoop` marks a keyword as starting a loop, which is important
+to know when parsing a label, in order to allow or disallow
+continue jumps to that label.
