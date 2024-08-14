@@ -154,6 +154,49 @@ The assignment of fine-grained, information-carrying type objects
 allows the tokenizer to store the information it has about a
 token in a way that is very cheap for the parser to look up.
 
+The paragraph you mentioned from the Babel tokenizer relates to an ambiguity in the JavaScript grammar regarding the interpretation of the `yield` keyword in various contexts. Specifically, this ambiguity arises when the `yield` keyword is used in contexts where it could be interpreted either as a standalone `yield` expression or as part of a larger expression.
+
+### **Ambiguity in `yield` Expressions**
+
+In JavaScript, the `yield` keyword is used within generator functions to pause execution and return a value. However, depending on what follows `yield`, the parser must determine whether `yield` is:
+1. A complete expression by itself, or
+2. The start of a more complex expression (e.g., `yield a + b`).
+
+### **Examples of Ambiguity**
+Consider the following examples:
+
+1. **Simple `yield`:**
+   ```javascript
+   yield;
+   ```
+   Here, `yield` is a standalone expression, and the execution pauses, returning `undefined`.
+
+2. **`yield` as part of a larger expression:**
+   ```javascript
+   yield a + b;
+   ```
+   In this case, `yield` returns the result of the expression `a + b`.
+
+3. **Potential ambiguity:**
+   ```javascript
+   function* generator() {
+       const result = yield 1 + 2;
+   }
+   ```
+   The expression after `yield` could be interpreted as either:
+   - `(yield 1) + 2`: yielding the value `1`, and then adding `2` to whatever value is subsequently passed into the generator.
+   - `yield (1 + 2)`: yielding the result of the addition `3`.
+
+### **Role of `startsExpr` Property**
+The `startsExpr` property in Babel’s tokenizer helps resolve this ambiguity by indicating whether a given token can initiate a subexpression. This is crucial when the parser encounters a `yield` keyword followed by another token, and it needs to decide whether to treat `yield` as part of a larger expression or as a standalone keyword.
+
+- **When `startsExpr` is `true`:** It signals that the following token may begin an expression. The parser can then determine whether the `yield` should be combined with the following tokens or treated separately.
+  
+- **When `startsExpr` is `false`:** It suggests that the next token cannot start an expression, potentially clarifying that `yield` is being used in isolation.
+
+### **Summary**
+The ambiguity in JavaScript's grammar when dealing with `yield` expressions stems from the flexible nature of the `yield` keyword in different contexts. The `startsExpr` property in Babel's tokenizer is a mechanism to help resolve these ambiguities by indicating when a token is expected to start a new expression, thereby guiding the parser in making the correct interpretation of `yield`.
+
 
 The `startsExpr` property is used to determine whether an expression
 may be the “argument” subexpression of a `yield` expression or
@@ -246,6 +289,7 @@ export const types: { [name: string]: TokenType } = {
 }
 ```
 
-`isLoop` marks a keyword as starting a loop, which is important
-to know when parsing a label, in order to allow or disallow
+`isLoop` marks a keyword as starting a loop like in `_for: createKeyword("for", { isLoop })`, 
+which is important
+to know when parsing a **label**, in order to allow or disallow
 continue jumps to that label.
