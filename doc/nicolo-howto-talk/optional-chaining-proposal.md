@@ -158,37 +158,6 @@ The assignment of fine-grained, information-carrying type objects
 allows the tokenizer to store the information it has about a
 token in a way that is very cheap for the parser to look up.
 
-There is an ambiguity in the JavaScript grammar regarding the interpretation of the `yield` keyword in various contexts. Specifically, this ambiguity arises when the `yield` keyword is used in contexts where it could be interpreted either as a standalone `yield` expression or as part of a larger expression.
-
-In JavaScript, the `yield` keyword is used within generator functions to pause execution and return a value. However, depending on what follows `yield`, the parser must determine whether `yield` is:
-
-1. A complete expression by itself, or
-2. The start of a more complex expression (e.g., `yield a + b`).
-
-Consider the following example:
-
-   ```javascript
-   function* generator() {
-       const result = yield 1 + 2;
-   }
-   ```
-
-The expression after `yield` could be interpreted as either:
-
-- `(yield 1) + 2`: yielding the value `1`, and then adding `2` to whatever value is subsequently passed into the generator.
-- `yield (1 + 2)`: yielding the result of the addition `3`.
-
-The `startsExpr` property in Babel’s tokenizer helps resolve this ambiguity by indicating whether a given token can initiate a **subexpression**. This is crucial when the parser encounters a `yield` keyword followed by another token, and it needs to decide whether to treat `yield` as part of a larger expression or as a standalone keyword.
-
-- **When `startsExpr` is `true`:** It signals that the following token may begin an expression. The parser can then determine whether the `yield` should be combined with the following tokens or treated separately.
-  
-- **When `startsExpr` is `false`:** It suggests that the next token cannot start an expression, potentially clarifying that `yield` is being used in isolation.
-
-
-The `startsExpr` property is used to determine whether an expression
-may be the “argument” subexpression of a `yield` expression or
-`yield` statement. It is set on all token types that may be at the
-start of a subexpression.
 
 ```js
 export const types: { [name: string]: TokenType } = {
@@ -215,86 +184,7 @@ export const types: { [name: string]: TokenType } = {
 }
 ```
 
-There is another ambiguity in JavaScript’s grammar concerning the interpretation of a `/` character. 
 
-For example, **there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading [RegularExpressionLiteral](https://tc39.es/ecma262/#prod-RegularExpressionLiteral) are permitted**. 
-
-This is not affected by semicolon insertion 
-(see [12.5](https://tc39.es/ecma262/#prod-RegularExpressionLiteral)); 
-in examples such as lines 4 and 5 in the following code:
-
-```js{4,5}
-let {a, b, hi, g, c, d} = require('./hidden-amb')
-a = b
-/hi/g.exec(c).map(d)
-console.log(a);
-```   
-
-where the first non-whitespace, non-comment code point after a 
-[LineTerminator](https://tc39.es/ecma262/#prod-LineTerminator) is the 
-`/` (*U+002F unicode name SOLIDUS*) and **the syntactic context allows division or division-assignment**, no semicolon is inserted at the `LineTerminator`!. 
-
-That is, the above example is interpreted in the same way as:
-
-```js
-a = b / hi / g.exec(c).map(d);
-```
-
-When we run the code above, we get:
-
-```
-➜  prefix-lang git:(master) ✗ node examples/lexical-ambiguity.js
-1
-```
-
-The contents of file `examples/hidden-amb.js` explain why the output is `1`: 
-
-```js
-let tutu = { map(_) { return 2}}
-let a = 5, b = 8, hi = 4, c = "hello", d =
-    g = { exec(_) { return tutu; }}
-module.exports = {a, b, hi, c, d, g}
-```
-
-See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crguezl/js-lexical-ambiguity/blob/master/lexical-ambiguity.js)
-
-The ambiguity arises because the `/` character in JavaScript can either represent:
-
-1. The start of a **regular expression literal**, like `/abc/`.
-2. The **division operator**, as in `a / b`.
-
-In JavaScript, whether the `/` should be interpreted as the beginning of a regular expression or as a division operator **depends on the context in which it appears**. The `beforeExpr` property is used by the tokenizer to help disambiguate these two possibilities.
-
-In this example
-
-```javascript
-let regex = /abc/;
-```
-
-The `/` starts a regular expression.
-
-- **Example of Division:**
-  ```javascript
-  let result = a / b;
-  ```
-  In this case, the `/` is used as a division operator.
-
-The `beforeExpr` property is set on tokens that appear in contexts where an expression is expected to follow. If the tokenizer knows that it is in a context where an expression is expected (indicated by `beforeExpr` being `true`), then it will treat the `/` as the start of a regular expression.
-
-Conversely, if the context suggests that an expression is not expected (`beforeExpr` is `false`), the tokenizer will interpret the `/` as a division operator instead.
-
-Consider the following code:
-```javascript
-let a = b / c;
-let regex = /abc/;
-```
-- In the first line, `b / c` is a division operation because `beforeExpr` is `false` after `b`.
-- In the second line, `/abc/` is a regular expression because `beforeExpr` is `true` at the start of the line, indicating that an expression (here, a regular expression) can start.
-
-The `beforeExpr` property is used to disambiguate between regular
-expressions and divisions. It is set on all token types as `"["` and `"?"` that can
-be followed by an expression like `[ 2/3 ...` and `[ / ...`. 
-A slash `/` after them would be a regular expression).
 
 At some point in the declaration of `types` arrive a section with
 the **keywords**. All token type keywords start with an underscore, to make them

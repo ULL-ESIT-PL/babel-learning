@@ -71,7 +71,7 @@ Let us review our notes about this file:
 
 > Here you see a list of tokens, so let's add our new token definition in as well[^brackets]:
 >
-> ```js
+> ```js 
 > export const types: { [name: string]: TokenType } = {
 >   num: new TokenType("num", { startsExpr }),
 >   bigint: new TokenType("bigint", { startsExpr }),
@@ -83,11 +83,93 @@ Let us review our notes about this file:
 >   at: new TokenType("@"),
 >   atat: new TokenType('@@'),
 >   hash: new TokenType("#", { startsExpr }),
+>   // Punctuation token types.
+>   bracketL: new TokenType("[", { beforeExpr, startsExpr }),
+>    ...
+>   dot: new TokenType("."),
+>   question: new TokenType("?", { beforeExpr }),
+>   questionDot: new TokenType("?."),
 >   ...
+>   exponent: new TokenType("**", {
+>     beforeExpr,
+>     binop: 11,
+>     rightAssociative: true,
+>   }),
+>  ... // more token types
 > };
 > ```
 
+In ECMAScript, there are several situations where **the identification of lexical input elements is sensitive to the syntactic grammar context** that is consuming the input elements. 
+
+This requires *multiple goal symbols* for the lexical grammar. The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect **automatic semicolon insertion**. 
+
+The assignment of fine-grained, information-carrying type objects
+allows the tokenizer to store the information it has about a
+token in a way that is very cheap for the parser to look up.
+
+At some point inside the declaration of `types` arrive a zone with
+the **keywords**. All token type keywords start with an underscore, to make them
+easy to recognize.
+
+```js
+ _break: createKeyword("break"),
+ _case: createKeyword("case", { beforeExpr }),
+ ...
+```
+
+Here is the keywords section of the `types` object:
+
+```js
+export const types: { [name: string]: TokenType } = {
+  ...
+  // Keywords
+  // Don't forget to update packages/babel-helper-validator-identifier/src/keyword.js
+  // when new keywords are added
+  _break: createKeyword("break"),
+  _case: createKeyword("case", { beforeExpr }),
+  _catch: createKeyword("catch"),
+  _continue: createKeyword("continue"),
+  _debugger: createKeyword("debugger"),
+  _default: createKeyword("default", { beforeExpr }),
+  _do: createKeyword("do", { isLoop, beforeExpr }),
+  _else: createKeyword("else", { beforeExpr }),
+  _finally: createKeyword("finally"),
+  _for: createKeyword("for", { isLoop }),
+  _function: createKeyword("function", { startsExpr }),
+  _if: createKeyword("if"),
+  _return: createKeyword("return", { beforeExpr }),
+  _switch: createKeyword("switch"),
+  _throw: createKeyword("throw", { beforeExpr, prefix, startsExpr }),
+  _try: createKeyword("try"),
+  _var: createKeyword("var"),
+  _const: createKeyword("const"),
+  _while: createKeyword("while", { isLoop }),
+  _with: createKeyword("with"),
+  _new: createKeyword("new", { beforeExpr, startsExpr }),
+  _this: createKeyword("this", { startsExpr }),
+  _super: createKeyword("super", { startsExpr }),
+  _class: createKeyword("class", { startsExpr }),
+  _extends: createKeyword("extends", { beforeExpr }),
+  _export: createKeyword("export"),
+  _import: createKeyword("import", { startsExpr }),
+  _null: createKeyword("null", { startsExpr }),
+  _true: createKeyword("true", { startsExpr }),
+  _false: createKeyword("false", { startsExpr }),
+  _in: createKeyword("in", { beforeExpr, binop: 7 }),
+  _instanceof: createKeyword("instanceof", { beforeExpr, binop: 7 }),
+  _typeof: createKeyword("typeof", { beforeExpr, prefix, startsExpr }),
+  _void: createKeyword("void", { beforeExpr, prefix, startsExpr }),
+  _delete: createKeyword("delete", { beforeExpr, prefix, startsExpr }),
+}
+```
+
+
+- [yield and `startExpr`](yield-and-startexpr.md)
+- [The slash and the beforeExpr property](slash-beforeexpr.md)
+- [Labels and the `isLoop` property](labels-and-isloop.md)
+
 [^brackets]: The curly braces `{}` in the TypeScript declaration export `const types: { [name: string]: TokenType }` are used to define an object type. Within these braces, `[name: string]: TokenType` specifies a **signing index**. This means that the types object **can have any number of properties** whose keys are `string` and whose values ​​are of type `TokenType`. In other words, it is an object that can have multiple properties with dynamic names of type `string`, and each of these properties must be of type `TokenType`.
+
 
 ### Keywords and Binary Operations
 
