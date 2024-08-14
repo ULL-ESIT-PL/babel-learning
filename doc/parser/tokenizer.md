@@ -163,6 +163,7 @@ export const types: { [name: string]: TokenType } = {
 }
 ```
 
+### The properties startExpr, beforeExpr, and isLoop
 
 - [yield and `startExpr`](yield-and-startexpr.md)
 - [The slash and the beforeExpr property](slash-beforeexpr.md)
