@@ -6,6 +6,8 @@ This proposal was approved for Stage 1 in the May 2018 TC39 meeting, and
 
 ## Slide 1: Champions:
 
+Here are the links to the champions of the ECMAScript Pattern Matching proposal:
+
 > - [Mark Cohen](https://github.com/mpcsh), 
 > - [Tab Atkins-Bittner](https://github.com/tabatkins), 
 > - [Jordan Harband](https://github.com/ljharb), 
