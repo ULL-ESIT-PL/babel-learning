@@ -47,8 +47,7 @@ Here are the links to the champions of the ECMAScript Pattern Matching proposal:
 ### **Footguns in the Context of JavaScript's `switch` Statement:**
 
 **Footgun** is a programming term used to describe features or behaviors in a language that can easily lead to errors, bugs, or unexpected behavior if used incorrectly. The term suggests that the feature is so error-prone that it is like "shooting yourself in the foot."
-
-In the context of the JavaScript `switch` statement, some common "footguns" include:
+Some common "footguns" of the `switch` statement include:
 
 1. **Fall-Through Behavior:**
    - **Fall-through** is when execution continues from one `case` to the next, even if a match has been found, unless a `break` statement is used. This can lead to subtle bugs if the developer forgets to include `break` after each `case`.
