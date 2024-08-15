@@ -36,16 +36,8 @@ Here are the links to the champions of the ECMAScript Pattern Matching proposal:
 - This phrase means that the introduction of pattern matching should minimize the need for developers to use `switch` statements. Pattern matching should provide a more powerful, expressive, and safer alternative, so that developers naturally prefer it over `switch`.
 
 ### **Preserve the Good Parts of `switch`:**
-- Finally, while the proposal aims to make pattern matching a superior alternative, it also acknowledges that `switch` has some useful features that should be retained. The goal is to incorporate the best aspects of `switch` into the new pattern matching feature, ensuring that developers don’t lose any functionality they rely on.
+- Finally, while the proposal aims to make pattern matching a superior alternative, it also acknowledges that `switch` has some useful features that should be retained. The goal is to incorporate the best aspects of `switch` into the new pattern matching feature, ensuring that developers don’t lose any functionality they rely on. A good part of the switch is that it allows for an efficient translation to a jump table, which is a performance optimization that may be is not reachable when using pattern matching.
 
-### Summary:
-- **Subsumption**: Pattern matching should replace `switch` by offering all its functionality and more.
-- **Easily Googleable**: The feature's syntax and terminology should be unique enough to be easy to search for online.
-- **Zero Syntactic Overlap**: The new syntax should not conflict with existing language constructs, making it clear and distinct.
-- **Reduce Reasons to Reach for `switch`**: Pattern matching should be so useful that developers rarely need `switch`.
-- **Preserve the Good Parts of `switch`**: Retain useful features of `switch` in the new pattern matching syntax.
-
-This approach reflects a careful balance between introducing new, more powerful features and ensuring they are intuitive, accessible, and non-disruptive to existing code.
 
 ## Slide 6: Priority: be better than switch
 
