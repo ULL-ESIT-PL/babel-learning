@@ -13,6 +13,54 @@ src/tokenizer
 
 ## context.js
 
+The source text of an ECMAScript is first converted into a sequence of input elements, which are 
+* tokens, 
+* line terminators, 
+* comments, or 
+* white space. 
+
+The source text is scanned from left to right, repeatedly taking the longest possible sequence of code points as the next input element.
+
+In ECMAScript, there are several situations where **the identification of lexical input elements is sensitive to the syntactic grammar context** that is consuming the input elements. 
+
+This requires *multiple goal symbols* for the lexical grammar. The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect **automatic semicolon insertion**. 
+
+For example, **there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading [RegularExpressionLiteral](https://tc39.es/ecma262/#prod-RegularExpressionLiteral) are permitted**. 
+
+This is not affected by semicolon insertion (see [12.5](https://tc39.es/ecma262/#prod-RegularExpressionLiteral)); in examples such as lines 4 and 5 in the following code:
+
+```js{4,5}
+let {a, b, hi, g, c, d} = require('./hidden-amb')
+a = b
+/hi/g.exec(c).map(d)
+console.log(a);
+```   
+
+where the first non-whitespace, non-comment code point after a [LineTerminator](https://tc39.es/ecma262/#prod-LineTerminator) is the `/` (*U+002F unicode name SOLIDUS*) and **the syntactic context allows division or division-assignment**, no semicolon is inserted at the `LineTerminator`!. 
+
+That is, the above example is interpreted in the same way as:
+
+```js
+a = b / hi / g.exec(c).map(d);
+```
+
+When we run the code above, we get:
+
+```
+➜  prefix-lang git:(master) ✗ node examples/lexical-ambiguity.js
+1
+```
+The contents of file `examples/hidden-amb.js` explain why the output is `1`: 
+
+```js
+let tutu = { map(_) { return 2}}
+let a = 5, b = 8, hi = 4, c = "hello", d =
+    g = { exec(_) { return tutu; }}
+module.exports = {a, b, hi, c, d, g}
+```
+
+See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crguezl/js-lexical-ambiguity/blob/master/lexical-ambiguity.js)
+
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to deal with the ambiguity in js produced by regexps and division. 
 In the comments at the beginning the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
 
@@ -32,9 +80,9 @@ export class TokContext {
     override?: ?Function, // Takes a Tokenizer as a this-parameter, and returns void.
   ) {
     this.token = token;
-    this.isExpr = !!isExpr;
+    this.isExpr = !!isExpr; // convert to boolean
     this.preserveSpace = !!preserveSpace;
-    this.override = override;
+    this.override = override; 
   }
 
   token: string;
@@ -46,10 +94,10 @@ export class TokContext {
 export const types: {
   [key: string]: TokContext,
 } = {
-  braceStatement: new TokContext("{", false),
-  braceExpression: new TokContext("{", true),
-  templateQuasi: new TokContext("${", false),
-  parenStatement: new TokContext("(", false),
+  braceStatement: new TokContext("{", false), // The `{` token starts a code block
+  braceExpression: new TokContext("{", true), // The `{` token starts an object literal
+  templateQuasi: new TokContext("${", false), // The `${` token starts a template string expression
+  parenStatement: new TokContext("(", false), 
   parenExpression: new TokContext("(", true),
   template: new TokContext("`", true, true, p => p.readTmplToken()),
   functionExpression: new TokContext("function", true),
