@@ -64,6 +64,10 @@ See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crgue
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
 provide context to deal with ambiguities like the mentioned conflict between regexps and divisions. 
 
+- [yield and `startExpr`](yield-and-startexpr.md)
+- [The slash and the beforeExpr property](slash-beforeexpr.md)
+- [Labels and the `isLoop` property](labels-isloop.md)
+
 In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
 
 ```js
