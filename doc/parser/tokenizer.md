@@ -20,6 +20,42 @@ In the comments at the beginning the authors mention to read https://github.com/
 // The algorithm used to determine whether a regexp can appear at a
 // given point in the program is loosely based on sweet.js' approach.
 // See https://github.com/mozilla/sweet.js/wiki/design
+
+import { types as tt } from "./types";
+import { lineBreak } from "../util/whitespace";
+
+export class TokContext {
+  constructor(
+    token: string,
+    isExpr?: boolean,
+    preserveSpace?: boolean,
+    override?: ?Function, // Takes a Tokenizer as a this-parameter, and returns void.
+  ) {
+    this.token = token;
+    this.isExpr = !!isExpr;
+    this.preserveSpace = !!preserveSpace;
+    this.override = override;
+  }
+
+  token: string;
+  isExpr: boolean;
+  preserveSpace: boolean;
+  override: ?Function;
+}
+
+export const types: {
+  [key: string]: TokContext,
+} = {
+  braceStatement: new TokContext("{", false),
+  braceExpression: new TokContext("{", true),
+  templateQuasi: new TokContext("${", false),
+  parenStatement: new TokContext("(", false),
+  parenExpression: new TokContext("(", true),
+  template: new TokContext("`", true, true, p => p.readTmplToken()),
+  functionExpression: new TokContext("function", true),
+  functionStatement: new TokContext("function", false),
+};
+
 ```
 
 [sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
@@ -62,7 +98,7 @@ export default class State {
   potentialArrowAt: number = -1;
 
   ...
-  
+
   // Tokens length in token store
   tokensLength: number = 0;
 
