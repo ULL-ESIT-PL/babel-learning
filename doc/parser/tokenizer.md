@@ -103,7 +103,12 @@ export const types: {
   functionExpression: new TokContext("function", true),
   functionStatement: new TokContext("function", false),
 };
+```
 
+Each token type (`tt.parenR`, `tt.name`, etc.) has an associated `updateContext` method that updates the parser’s state `this.state` 
+based on the context in which the token appears:
+
+```js
 tt.parenR.updateContext = tt.braceR.updateContext = function () {
   if (this.state.context.length === 1) { // If the length is one, it means that the parser is at the outermost level of a nested structure
     this.state.exprAllowed = true;       //  An expression is allowed at the current parsing position.
@@ -131,7 +136,15 @@ tt.dollarBraceL.updateContext = function () {
 };
 
 tt.parenL.updateContext = function (prevType) {
-  ...
+  const statementParens =
+    prevType === tt._if ||
+    prevType === tt._for ||
+    prevType === tt._with ||
+    prevType === tt._while;
+  this.state.context.push(
+    statementParens ? types.parenStatement : types.parenExpression,
+  );
+  this.state.exprAllowed = true;
 };
 
 tt.incDec.updateContext = function () {
