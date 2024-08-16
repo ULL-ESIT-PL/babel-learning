@@ -105,8 +105,8 @@ export const types: {
 };
 
 tt.parenR.updateContext = tt.braceR.updateContext = function () {
-  if (this.state.context.length === 1) {
-    this.state.exprAllowed = true;
+  if (this.state.context.length === 1) { // If the length is one, it means that the parser is at the outermost level of a nested structure
+    this.state.exprAllowed = true;       //  An expression is allowed at the current parsing position.
     return;
   }
 
