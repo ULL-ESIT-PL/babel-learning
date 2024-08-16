@@ -13,7 +13,18 @@ src/tokenizer
 
 ## context.js
 
-The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to deal with the ambiguity in js produced by regexps and division. See https://github.com/sweet-js/sweet-core/wiki/design. See my PL notes at section [Lexical Ambiguity Example](https://ull-pl.vercel.app/topics/syntax-analysis/teoria#lexical-ambiguity-example)
+The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to deal with the ambiguity in js produced by regexps and division. 
+In the comments at the beginning the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
+
+```js
+// The algorithm used to determine whether a regexp can appear at a
+// given point in the program is loosely based on sweet.js' approach.
+// See https://github.com/mozilla/sweet.js/wiki/design
+```
+
+[sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
+
+See also my PL notes at section [Lexical Ambiguity Example](https://ull-pl.vercel.app/topics/syntax-analysis/teoria#lexical-ambiguity-example)
 
 ... Although ECMAScript started as a language with a simple design, over the years that design has become more and more complex.
 
