@@ -63,6 +63,7 @@ See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crgue
 
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
 provide context to deal with ambiguities like the mentioned conflict between regexps and divisions. 
+
 In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
 
 ```js
@@ -107,7 +108,8 @@ export const types: {
 ```
 
 Each token type (`tt.parenR`, `tt.name`, etc.) has an associated `updateContext` method that updates the parser’s state `this.state` 
-based on the context in which the token appears:
+based on the context in which the token appears. For instance, when encountering a `{` token, the parser needs to decide whether it starts a block (e.g., in a function body) or an object literal. The `updateContext` method for `{` uses the previous token to make this decision and pushes the appropriate context onto the stack.
+
 
 ```js
 tt.parenR.updateContext = tt.braceR.updateContext = function () {
