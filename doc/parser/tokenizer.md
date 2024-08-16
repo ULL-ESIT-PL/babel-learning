@@ -25,44 +25,16 @@ In ECMAScript, there are several situations where **the identification of lexica
 
 This requires *multiple goal symbols* for the lexical grammar. The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect **automatic semicolon insertion**. 
 
-For example, **there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading [RegularExpressionLiteral](https://tc39.es/ecma262/#prod-RegularExpressionLiteral) are permitted**. 
+We will see later that in the 
+`types.js` file where tokens are defined, there are properties like `beforeExpr`, `startsExpr` and `isLoop` that are used to provide context:
 
-This is not affected by semicolon insertion (see [12.10.1 Rules of Automatic Semicolon Insertion](https://tc39.es/ecma262/#sec-rules-of-automatic-semicolon-insertion)) in examples such as lines 4 and 5 in the following code:
-
-```js{4,5}
-let {a, b, hi, g, c, d} = require('./hidden-amb')
-a = b
-/hi/g.exec(c).map(d)
-console.log(a);
-```   
-
-where the first non-whitespace, non-comment code point after a [LineTerminator](https://tc39.es/ecma262/#prod-LineTerminator) is the `/` (*U+002F unicode name SOLIDUS*) and **the syntactic context allows division or division-assignment**, no semicolon is inserted at the `LineTerminator`!. 
-
-That is, the above example is interpreted in the same way as:
-
-```js
-a = b / hi / g.exec(c).map(d);
-```
-
-When we run the code above, we get:
-
-```
-➜  prefix-lang git:(master) ✗ node examples/lexical-ambiguity.js
-1
-```
-The contents of file `examples/hidden-amb.js` explain why the output is `1`: 
-
-```js
-let tutu = { map(_) { return 2}}
-let a = 5, b = 8, hi = 4, c = "hello", d =
-    g = { exec(_) { return tutu; }}
-module.exports = {a, b, hi, c, d, g}
-```
-
-See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crguezl/js-lexical-ambiguity/blob/master/lexical-ambiguity.js)
+- [yield and `startExpr`](yield-and-startexpr.md)
+- [The slash and the beforeExpr property](slash-beforeexpr.md)
+- [Labels and the `isLoop` property](labels-isloop.md)
+ 
 
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
-provide context to deal with ambiguities like the mentioned conflict between regexps and divisions. 
+provide context to deal with ambiguities like the mentioned conflict between regexps and divisions.
 
 In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
 
