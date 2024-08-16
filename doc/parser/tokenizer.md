@@ -61,8 +61,9 @@ module.exports = {a, b, hi, c, d, g}
 
 See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crguezl/js-lexical-ambiguity/blob/master/lexical-ambiguity.js)
 
-The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to deal with the ambiguity in js produced by regexps and division. 
-In the comments at the beginning the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
+The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
+provide context to deal with ambiguities like the mentioned conflict between regexps and divisions. 
+In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
 
 ```js
 // The algorithm used to determine whether a regexp can appear at a
