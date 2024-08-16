@@ -34,7 +34,7 @@ We will see later that in the
  
 
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
-provide context to deal with ambiguities like the mentioned conflict between regexps and divisions.
+provide context to deal with these conflicts.
 
 In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
 
