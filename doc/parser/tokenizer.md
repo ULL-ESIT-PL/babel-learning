@@ -62,7 +62,8 @@ module.exports = {a, b, hi, c, d, g}
 See the code in the repo [crguezl/js-lexical-ambiguity](https://github.com/crguezl/js-lexical-ambiguity/blob/master/lexical-ambiguity.js)
 
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
-provide context to deal with ambiguities like the mentioned conflict between regexps and divisions. 
+provide context to deal with ambiguities like the mentioned conflict between regexps and divisions. We will see later that in the 
+`types.js` file where tokens are defined, there are properties like `beforeExpr`, `startsExpr` and `isLoop` that are used to provide context:
 
 - [yield and `startExpr`](yield-and-startexpr.md)
 - [The slash and the beforeExpr property](slash-beforeexpr.md)
