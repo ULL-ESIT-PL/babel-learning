@@ -141,6 +141,7 @@ tt.dollarBraceL.updateContext = function () {
   ...
 };
 
+// It pushes either parenStatement or parenExpression onto the context stack depending on the preceding token (prevType)
 tt.parenL.updateContext = function (prevType) {
   const statementParens =
     prevType === tt._if ||
