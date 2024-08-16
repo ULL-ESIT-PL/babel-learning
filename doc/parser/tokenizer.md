@@ -352,7 +352,7 @@ export const types: { [name: string]: TokenType } = {
 
 - [yield and `startExpr`](yield-and-startexpr.md)
 - [The slash and the beforeExpr property](slash-beforeexpr.md)
-- [Labels and the `isLoop` property](labels-and-isloop.md)
+- [Labels and the `isLoop` property](labels-isloop.md)
 
 [^brackets]: The curly braces `{}` in the TypeScript declaration export `const types: { [name: string]: TokenType }` are used to define an object type. Within these braces, `[name: string]: TokenType` specifies a **signing index**. This means that the types object **can have any number of properties** whose keys are `string` and whose values ​​are of type `TokenType`. In other words, it is an object that can have multiple properties with dynamic names of type `string`, and each of these properties must be of type `TokenType`.
 
