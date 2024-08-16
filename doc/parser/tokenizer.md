@@ -27,7 +27,7 @@ This requires *multiple goal symbols* for the lexical grammar. The use of multip
 
 For example, **there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading [RegularExpressionLiteral](https://tc39.es/ecma262/#prod-RegularExpressionLiteral) are permitted**. 
 
-This is not affected by semicolon insertion (see [12.10.1 Rules of Automatic Semicolon Insertion](https://tc39.es/ecma262/#sec-rules-of-automatic-semicolon-insertion); in examples such as lines 4 and 5 in the following code:
+This is not affected by semicolon insertion (see [12.10.1 Rules of Automatic Semicolon Insertion](https://tc39.es/ecma262/#sec-rules-of-automatic-semicolon-insertion)) in examples such as lines 4 and 5 in the following code:
 
 ```js{4,5}
 let {a, b, hi, g, c, d} = require('./hidden-amb')
