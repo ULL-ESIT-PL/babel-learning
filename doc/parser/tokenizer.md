@@ -33,6 +33,13 @@ See also my PL notes at section [Lexical Ambiguity Example](https://ull-pl.verce
 The file [state.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/state.js) contains a `State` class, which has the current parsing position — the number of characters we are into the code — and an array of tokens and a lot of other things too.
 
 ```js 
+
+import type { Options } from "../options";
+import * as N from "../types";
+import { Position } from "../util/location";
+
+import { types as ct, type TokContext } from "./context";
+import { types as tt, type TokenType } from "./types";
 export default class State {
   strict: boolean;
   curLine: number;
@@ -41,7 +48,21 @@ export default class State {
   // corresponding to those offsets
   startLoc: Position;
   endLoc: Position;
+  init(options: Options): void {
+    this.strict =
+      options.strictMode === false ? false : options.sourceType === "module";
+
+    this.curLine = options.startLine;
+    this.startLoc = this.endLoc = this.curPosition();
+  }
+
+  errors: SyntaxError[] = [];
+
+  // Used to signify the start of a potential arrow function
+  potentialArrowAt: number = -1;
+
   ...
+  
   // Tokens length in token store
   tokensLength: number = 0;
 
