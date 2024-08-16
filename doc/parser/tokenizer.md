@@ -131,7 +131,10 @@ tt.name.updateContext = function (prevType) {
 };
 
 tt.braceL.updateContext = function (prevType) {
-  ...
+  this.state.context.push(
+    this.braceIsBlock(prevType) ? types.braceStatement : types.braceExpression,
+  );
+  this.state.exprAllowed = true;
 };
 
 tt.dollarBraceL.updateContext = function () {
