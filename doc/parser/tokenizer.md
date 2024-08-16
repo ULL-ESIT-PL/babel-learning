@@ -30,7 +30,7 @@ See also my PL notes at section [Lexical Ambiguity Example](https://ull-pl.verce
 
 ## state.js
 
-I believe that `state.js` contains a `State` class, which has the current parsing position — the number of characters we are into the code — and an array of tokens and a lot of other things too.
+The file [state.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/state.js) contains a `State` class, which has the current parsing position — the number of characters we are into the code — and an array of tokens and a lot of other things too.
 
 ```js 
 export default class State {
