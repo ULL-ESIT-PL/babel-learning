@@ -56,6 +56,51 @@ export const types: {
   functionStatement: new TokContext("function", false),
 };
 
+tt.parenR.updateContext = tt.braceR.updateContext = function () {
+  if (this.state.context.length === 1) {
+    this.state.exprAllowed = true;
+    return;
+  }
+
+  let out = this.state.context.pop();
+  if (out === types.braceStatement && this.curContext().token === "function") {
+    out = this.state.context.pop();
+  }
+
+  this.state.exprAllowed = !out.isExpr;
+};
+
+tt.name.updateContext = function (prevType) {
+ ...
+};
+
+tt.braceL.updateContext = function (prevType) {
+  ...
+};
+
+tt.dollarBraceL.updateContext = function () {
+  ...
+};
+
+tt.parenL.updateContext = function (prevType) {
+  ...
+};
+
+tt.incDec.updateContext = function () {
+  // tokExprAllowed stays unchanged
+};
+
+tt._function.updateContext = tt._class.updateContext = function (prevType) {
+  ...
+};
+
+tt.backQuote.updateContext = function () {
+  ...
+};
+
+tt.star.updateContext = function () {
+  this.state.exprAllowed = false;
+};
 ```
 
 [sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
