@@ -13,7 +13,7 @@ src/tokenizer
 
 ## context.js
 
-The `context.js` is code to deal with the ambiguity in js produced by regexps and division. See https://github.com/sweet-js/sweet-core/wiki/design. See my PL notes at section [Lexical Ambiguity Example](https://ull-pl.vercel.app/topics/syntax-analysis/teoria#lexical-ambiguity-example)
+The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to deal with the ambiguity in js produced by regexps and division. See https://github.com/sweet-js/sweet-core/wiki/design. See my PL notes at section [Lexical Ambiguity Example](https://ull-pl.vercel.app/topics/syntax-analysis/teoria#lexical-ambiguity-example)
 
 ... Although ECMAScript started as a language with a simple design, over the years that design has become more and more complex.
 
