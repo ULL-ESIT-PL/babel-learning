@@ -143,50 +143,11 @@ tt.star.updateContext = function () {
 };
 ```
 
-These classes `TokContext` and `types` are used in the `index.js` file to provide context to the tokenizer.
+These classes `TokContext` and `types` are used in several places:
 
-`File src/tokenizer/index.js`
-```js
-...
-import { TokContext, types as tc } from "../../tokenizer/context";
-...
-// Be aware that this file is always executed and not only when the plugin is enabled.
-// Therefore this contexts and tokens do always exist.
-tc.j_oTag = new TokContext("<tag", false);
-tc.j_cTag = new TokContext("</tag", false);
-tc.j_expr = new TokContext("<tag>...</tag>", true, true);
-tt.jsxName = new TokenType("jsxName");
-tt.jsxText = new TokenType("jsxText", { beforeExpr: true });
-tt.jsxTagStart = new TokenType("jsxTagStart", { startsExpr: true });
-tt.jsxTagEnd = new TokenType("jsxTagEnd");
+- The [src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js) file to provide context to the tokenizer. See [/doc/parser/context/index-context.md](/doc/parser/context/index-context.md)
+- The [src/plugins/jsx/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugins/jsx/index.js) file to provide context to the tokenizer of the parser extension for JSX. See [/doc/parser/context/plugin-jsx-context.md](/doc/parser/context/plugin-jsx-context.md). Notice that the babel parser has a plugin folder with several plugins: `jsx`, `flow`, `typescript`, `estree`, ... 
 
-tt.jsxTagStart.updateContext = function () {
-  this.state.context.push(tc.j_expr); // treat as beginning of JSX expression
-  this.state.context.push(tc.j_oTag); // start opening tag context
-  this.state.exprAllowed = false;
-};
-...
-updateContext(prevType: TokenType): void {
-      if (this.match(tt.braceL)) {
-        const curContext = this.curContext();
-        if (curContext === tc.j_oTag) {
-          this.state.context.push(tc.braceExpression);
-        } else if (curContext === tc.j_expr) {
-          this.state.context.push(tc.templateQuasi);
-        } else {
-          super.updateContext(prevType);
-        }
-        this.state.exprAllowed = true;
-      } else if (this.match(tt.slash) && prevType === tt.jsxTagStart) {
-        this.state.context.length -= 2; // do not consider JSX expr -> JSX open tag -> ... anymore
-        this.state.context.push(tc.j_cTag); // reconsider as closing tag context
-        this.state.exprAllowed = false;
-      } else {
-        return super.updateContext(prevType);
-      }
-    }
-  };
-```
 
 [^1]: [sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
 
