@@ -131,7 +131,7 @@ properties.
       return;
     }
 
-    const override = curContext?.override;
+    const override = curContext?.override; // Override the next token type
     if (override) {
       override(this);
     } else {
@@ -1507,6 +1507,8 @@ words when necessary.
 
 ### braceIsBlock
 
+The  method braceIsBlock  determines whether a brace `{` should be interpreted as the start of a block statement or not, based on the previous token type and the current parsing context.
+
 ```js
   braceIsBlock(prevType: TokenType): boolean {
     const parent = this.curContext();
@@ -1533,12 +1535,12 @@ words when necessary.
     }
 
     if (
-      prevType === tt._else ||
-      prevType === tt.semi ||
-      prevType === tt.eof ||
-      prevType === tt.parenR ||
-      prevType === tt.arrow
-    ) {
+      prevType === tt._else ||  // If the previous token is one of else, 
+      prevType === tt.semi ||   // semicolon (;), 
+      prevType === tt.eof ||    // end of file,
+      prevType === tt.parenR || // right parenthesis ),
+      prevType === tt.arrow     // arrow (=>), 
+    ) {                         // the brace is a block.
       return true;
     }
 
@@ -1546,7 +1548,7 @@ words when necessary.
       return parent === ct.braceStatement;
     }
 
-    if (
+    if ( // If the previous token is a var declaration or a name, is not the start of a block
       prevType === tt._var ||
       prevType === tt._const ||
       prevType === tt.name
@@ -1558,7 +1560,7 @@ words when necessary.
       // `class C<T> { ... }`
       return true;
     }
-
+    // The brace is a block if expressions are not allowed in the current state.
     return !this.state.exprAllowed;
   }
 ```
