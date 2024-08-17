@@ -11,7 +11,11 @@ import ParserErrors, { Errors } from "../parser/error";
 import State from "./state";
 
 ...
+```
 
+Here we define the `Token` class which is used to create a token object from the current state.
+
+```js
 export class Token {
   constructor(state: State) {
     this.type = state.type;
