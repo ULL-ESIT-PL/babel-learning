@@ -143,6 +143,30 @@ tt.star.updateContext = function () {
 };
 ```
 
+These classes `TokContext` and `types` are used in the `index.js` file to provide context to the tokenizer.
+
+`src/tokenizer/index.js`
+```js
+...
+import { TokContext, types as tc } from "../../tokenizer/context";
+...
+// Be aware that this file is always executed and not only when the plugin is enabled.
+// Therefore this contexts and tokens do always exist.
+tc.j_oTag = new TokContext("<tag", false);
+tc.j_cTag = new TokContext("</tag", false);
+tc.j_expr = new TokContext("<tag>...</tag>", true, true);
+tt.jsxName = new TokenType("jsxName");
+tt.jsxText = new TokenType("jsxText", { beforeExpr: true });
+tt.jsxTagStart = new TokenType("jsxTagStart", { startsExpr: true });
+tt.jsxTagEnd = new TokenType("jsxTagEnd");
+
+tt.jsxTagStart.updateContext = function () {
+  this.state.context.push(tc.j_expr); // treat as beginning of JSX expression
+  this.state.context.push(tc.j_oTag); // start opening tag context
+  this.state.exprAllowed = false;
+};
+```
+
 [sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
 
 See also my PL notes at section [Lexical Ambiguity Example](https://ull-pl.vercel.app/topics/syntax-analysis/teoria#lexical-ambiguity-example)
