@@ -1464,10 +1464,14 @@ as a micro-optimization.
   isIterator(word: string): boolean {
     return word === "@@iterator" || word === "@@asyncIterator";
   }
+```
 
-  // Read an identifier or keyword token. Will check for reserved
-  // words when necessary.
+### readWord
 
+Read an identifier or keyword token. Will check for reserved
+words when necessary.
+
+```js
   readWord(): void {
     const word = this.readWord1();
     const type = keywordTypes.get(word) || tt.name;
@@ -1482,14 +1486,22 @@ as a micro-optimization.
 
     this.finishToken(type, word);
   }
+```
 
+### checkKeywordEscapes
+
+```js
   checkKeywordEscapes(): void {
     const kw = this.state.type.keyword;
     if (kw && this.state.containsEsc) {
       this.raise(this.state.start, Errors.InvalidEscapedReservedWord, kw);
     }
   }
+```
 
+### braceIsBlock
+
+```js
   braceIsBlock(prevType: TokenType): boolean {
     const parent = this.curContext();
     if (parent === ct.functionExpression || parent === ct.functionStatement) {
