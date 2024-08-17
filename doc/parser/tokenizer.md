@@ -36,7 +36,7 @@ We will see later that in the
 The [context.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/context.js) is code to 
 provide context to deal with these conflicts.
 
-In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design. 
+In the comments at the beginning of the file the authors mention to read https://github.com/sweet-js/sweet-core/wiki/design[^sweet]. 
 
 ```js
 // The algorithm used to determine whether a regexp can appear at a
@@ -167,7 +167,7 @@ tt.jsxTagStart.updateContext = function () {
 };
 ```
 
-[sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
+[^sweet]: [sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
 
 See also my PL notes at section [Lexical Ambiguity Example](https://ull-pl.vercel.app/topics/syntax-analysis/teoria#lexical-ambiguity-example)
 
