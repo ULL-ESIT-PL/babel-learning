@@ -1494,7 +1494,9 @@ words when necessary.
   }
 ```
 
-### checkKeywordEscapes
+## checkKeywordEscapes
+
+The `checkKeywordEscapes` method checks if the current token is a keyword and if it contains an escape sequence. If so, it raises an error indicating that an invalid escaped reserved word was found. 
 
 ```js
   checkKeywordEscapes(): void {
@@ -1505,7 +1507,7 @@ words when necessary.
   }
 ```
 
-### braceIsBlock
+## braceIsBlock
 
 The  method braceIsBlock  determines whether a brace `{` should be interpreted as the start of a block statement or not, based on the previous token type and the current parsing context.
 
