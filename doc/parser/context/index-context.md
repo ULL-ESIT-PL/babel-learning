@@ -127,7 +127,10 @@ Inside the `Tokenizer` class, we define the `curContext` method which returns th
       this.getTokenFromCode(this.input.codePointAt(this.state.pos));
     }
   }
+```
+Follow a set of methods dealing with comments and spaces
 
+```js
   pushComment(
     block: boolean,
     text: string,
