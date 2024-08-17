@@ -703,6 +703,8 @@ export default class Tokenizer extends ParserErrors {
 }
 ```
 
-## See also /doc/parser/context/index-context.md
+## See also 
+
+### /doc/parser/context/index-context.md
 
 See also the explanation of the file `src/tokenizer/index.js` at  [/doc/parser/context/index-context.md](/doc/parser/context/index-context.md)
