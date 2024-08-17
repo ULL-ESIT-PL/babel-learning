@@ -31,9 +31,10 @@ export class Token {
   end: number;
   loc: SourceLocation;
 }
+```
 
-// ## Tokenizer
-
+The `Tokenizer` class extends `ParserErrors` and is used to tokenize the input code.
+```js
 export default class Tokenizer extends ParserErrors {
   isLookahead: boolean;
 
