@@ -26,7 +26,7 @@ In ECMAScript, there are several situations where **the identification of lexica
 This requires *multiple goal symbols* for the lexical grammar. The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect **automatic semicolon insertion**. 
 
 We will see later that in the 
-`types.js` file where tokens are defined, there are properties like `beforeExpr`, `startsExpr` and `isLoop` that are used to provide context:
+`types.js` file where tokens are defined, that Babel.js tokens have properties like `beforeExpr`, `startsExpr` and `isLoop` that are used to provide context:
 
 - [yield and `startExpr`](yield-and-startexpr.md)
 - [The slash and the beforeExpr property](slash-beforeexpr.md)
