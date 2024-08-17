@@ -1033,7 +1033,11 @@ characters (and thus the closing quote).
 
     return total;
   }
+```
 
+### readRadixNumber
+
+```js
   readRadixNumber(radix: number): void {
     const start = this.state.pos;
     let isBigInt = false;
@@ -1066,9 +1070,13 @@ characters (and thus the closing quote).
 
     this.finishToken(tt.num, val);
   }
+```
 
-  // Read an integer, octal integer, or floating-point number.
+### readNumber
 
+Read an integer, octal integer, or floating-point number.
+
+```js
   readNumber(startsWithDot: boolean): void {
     const start = this.state.pos;
     let isFloat = false;
@@ -1151,9 +1159,13 @@ characters (and thus the closing quote).
     const val = octal ? parseInt(str, 8) : parseFloat(str);
     this.finishToken(tt.num, val);
   }
+```
 
-  // Read a string value, interpreting backslash-escapes.
+###  readCodePoint
 
+Read a string value, interpreting backslash-escapes.
+
+```js
   readCodePoint(throwOnInvalid: boolean): number | null {
     const ch = this.input.charCodeAt(this.state.pos);
     let code;
@@ -1178,7 +1190,11 @@ characters (and thus the closing quote).
     }
     return code;
   }
+  ```
 
+### readString
+
+```js
   readString(quote: number): void {
     let out = "",
       chunkStart = ++this.state.pos;
@@ -1209,9 +1225,13 @@ characters (and thus the closing quote).
     out += this.input.slice(chunkStart, this.state.pos++);
     this.finishToken(tt.string, out);
   }
+```
 
-  // Reads template string tokens.
+### readTmplToken
 
+Reads template string tokens.
+
+```js
   readTmplToken(): void {
     let out = "",
       chunkStart = this.state.pos,
@@ -1275,9 +1295,13 @@ characters (and thus the closing quote).
       }
     }
   }
+```
 
-  // Used to read escaped characters
+### readEscapedChar
 
+Used to read escaped characters
+
+```js
   readEscapedChar(inTemplate: boolean): string | null {
     const throwOnInvalid = !inTemplate;
     const ch = this.input.charCodeAt(++this.state.pos);
@@ -1362,9 +1386,13 @@ characters (and thus the closing quote).
         return String.fromCharCode(ch);
     }
   }
+```
 
-  // Used to read character escape sequences ('\x', '\u').
+### readHexChar
 
+Used to read character escape sequences ('\x', '\u').
+
+```js
   readHexChar(
     len: number,
     forceLen: boolean,
@@ -1381,13 +1409,16 @@ characters (and thus the closing quote).
     }
     return n;
   }
+```
 
-  // Read an identifier, and return it as a string. Sets `this.state.containsEsc`
-  // to whether the word contained a '\u' escape.
-  //
-  // Incrementally adds only escaped chars, adding other chunks as-is
-  // as a micro-optimization.
+### readWord1
 
+Read an identifier, and return it as a string. Sets `this.state.containsEsc`
+to whether the word contained a '\u' escape.
+Incrementally adds only escaped chars, adding other chunks as-is
+as a micro-optimization.
+
+```js
   readWord1(): string {
     let word = "";
     this.state.containsEsc = false;
