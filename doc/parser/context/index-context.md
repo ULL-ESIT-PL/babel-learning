@@ -280,10 +280,10 @@ than characters, and because operator parsing has been inlined
 into it. All in the name of speed.
 
 ```js
-  // number sign is "#"
-  readToken_numberSign(): void {
-    if (this.state.pos === 0 && this.readToken_interpreter()) {
-      return;
+    // number sign is "#"
+    readToken_numberSign(): void {
+      if (this.state.pos === 0 && this.readToken_interpreter()) {
+        return;
     }
 
     const nextPos = this.state.pos + 1;
