@@ -1460,7 +1460,13 @@ as a micro-optimization.
     }
     return word + this.input.slice(chunkStart, this.state.pos);
   }
+```
 
+###  isIterator
+
+Check if a word is an iterator.
+
+```js
   isIterator(word: string): boolean {
     return word === "@@iterator" || word === "@@asyncIterator";
   }
