@@ -96,9 +96,11 @@ export default class Tokenizer extends ParserErrors {
   nextTokenStart(): number {
     return this.nextTokenStartSince(this.state.pos);
   }
+```
+Inside the `Tokenizer` class, we define the `curContext` method which returns the current context of the parser.
 
-  
 
+```js
   curContext(): TokContext {
     return this.state.context[this.state.context.length - 1];
   }
