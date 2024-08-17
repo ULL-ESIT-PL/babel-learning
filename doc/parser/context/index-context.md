@@ -303,31 +303,31 @@ into it. All in the name of speed.
     readToken_numberSign(): void {
       if (this.state.pos === 0 && this.readToken_interpreter()) {
         return;
-    }
-
-    const nextPos = this.state.pos + 1;
-    const next = this.input.charCodeAt(nextPos);
-    if (next >= charCodes.digit0 && next <= charCodes.digit9) {
-      throw this.raise(this.state.pos, Errors.UnexpectedDigitAfterHash);
-    }
-
-    if (
-      next === charCodes.leftCurlyBrace ||
-      (next === charCodes.leftSquareBracket && this.hasPlugin("recordAndTuple"))
-    ) {
-      // When we see `#{`, it is likely to be a hash record.
-      // However we don't yell at `#[` since users may intend to use "computed private fields",
-      // which is not allowed in the spec. Throwing expecting recordAndTuple is
-      // misleading
-      this.expectPlugin("recordAndTuple");
-      if (this.getPluginOption("recordAndTuple", "syntaxType") !== "hash") {
-        throw this.raise(
-          this.state.pos,
-          next === charCodes.leftCurlyBrace
-            ? Errors.RecordExpressionHashIncorrectStartSyntaxType
-            : Errors.TupleExpressionHashIncorrectStartSyntaxType,
-        );
       }
+
+      const nextPos = this.state.pos + 1;
+      const next = this.input.charCodeAt(nextPos);
+      if (next >= charCodes.digit0 && next <= charCodes.digit9) {
+        throw this.raise(this.state.pos, Errors.UnexpectedDigitAfterHash);
+      }
+
+      if (
+        next === charCodes.leftCurlyBrace ||
+        (next === charCodes.leftSquareBracket && this.hasPlugin("recordAndTuple"))
+      ) {
+        // When we see `#{`, it is likely to be a hash record.
+        // However we don't yell at `#[` since users may intend to use "computed private fields",
+        // which is not allowed in the spec. Throwing expecting recordAndTuple is
+        // misleading
+        this.expectPlugin("recordAndTuple");
+        if (this.getPluginOption("recordAndTuple", "syntaxType") !== "hash") {
+          throw this.raise(
+            this.state.pos,
+            next === charCodes.leftCurlyBrace
+              ? Errors.RecordExpressionHashIncorrectStartSyntaxType
+              : Errors.TupleExpressionHashIncorrectStartSyntaxType,
+          );
+        }
 
       if (next === charCodes.leftCurlyBrace) {
         // #{
