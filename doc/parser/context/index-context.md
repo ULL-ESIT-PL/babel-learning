@@ -1,5 +1,7 @@
 # src/tokenizer/index.js
 
+`TokContext` and `types` are imported from `./context` and used to define the token contexts and tokens.
+
 ```js
 ...
 import { types as tt, keywords as keywordTypes, type TokenType } from "./types";
