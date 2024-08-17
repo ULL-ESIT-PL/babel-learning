@@ -145,7 +145,7 @@ tt.star.updateContext = function () {
 
 These classes `TokContext` and `types` are used in the `index.js` file to provide context to the tokenizer.
 
-`src/tokenizer/index.js`
+`File src/tokenizer/index.js`
 ```js
 ...
 import { TokContext, types as tc } from "../../tokenizer/context";
