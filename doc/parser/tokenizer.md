@@ -165,6 +165,27 @@ tt.jsxTagStart.updateContext = function () {
   this.state.context.push(tc.j_oTag); // start opening tag context
   this.state.exprAllowed = false;
 };
+...
+updateContext(prevType: TokenType): void {
+      if (this.match(tt.braceL)) {
+        const curContext = this.curContext();
+        if (curContext === tc.j_oTag) {
+          this.state.context.push(tc.braceExpression);
+        } else if (curContext === tc.j_expr) {
+          this.state.context.push(tc.templateQuasi);
+        } else {
+          super.updateContext(prevType);
+        }
+        this.state.exprAllowed = true;
+      } else if (this.match(tt.slash) && prevType === tt.jsxTagStart) {
+        this.state.context.length -= 2; // do not consider JSX expr -> JSX open tag -> ... anymore
+        this.state.context.push(tc.j_cTag); // reconsider as closing tag context
+        this.state.exprAllowed = false;
+      } else {
+        return super.updateContext(prevType);
+      }
+    }
+  };
 ```
 
 [^1]: [sweet.js](https://www.sweetjs.org/) is a macro system for JavaScript based on Babel. It is a compiler that takes a macro definition file and a source file and produces a JavaScript file. See our repo https://github.com/ULL-ESIT-PL/learning-macros-sweetjs for more information.
