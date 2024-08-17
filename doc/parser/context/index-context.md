@@ -258,12 +258,10 @@ Follow a set of methods dealing with comments and spaces
       }
     }
   }
+```
+The `finishToken` method is called at the end of every token. It sets `end`, `val`, and maintains `context` and `exprAllowed`, and skips the space after the token, so that the next one's `start` will point at the right position.
 
-  // Called at the end of every token. Sets `end`, `val`, and
-  // maintains `context` and `exprAllowed`, and skips the space after
-  // the token, so that the next one's `start` will point at the
-  // right position.
-
+```js
   finishToken(type: TokenType, val: any): void {
     this.state.end = this.state.pos;
     this.state.endLoc = this.state.curPosition();
@@ -273,16 +271,15 @@ Follow a set of methods dealing with comments and spaces
 
     if (!this.isLookahead) this.updateContext(prevType);
   }
+```
 
-  // ### Token reading
+Follow the `readToken_*` family of methods.
+These are the functions that are called to fetch the next token. They 
+are somewhat obscure, because they works in character codes rather
+than characters, and because operator parsing has been inlined
+into it. All in the name of speed.
 
-  // This is the function that is called to fetch the next token. It
-  // is somewhat obscure, because it works in character codes rather
-  // than characters, and because operator parsing has been inlined
-  // into it.
-  //
-  // All in the name of speed.
-
+```js
   // number sign is "#"
   readToken_numberSign(): void {
     if (this.state.pos === 0 && this.readToken_interpreter()) {
