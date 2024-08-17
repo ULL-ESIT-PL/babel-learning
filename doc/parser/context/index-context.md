@@ -13,6 +13,8 @@ import State from "./state";
 ...
 ```
 
+## The `Token` class
+
 Here we define the `Token` class which is used to create a token object from the current state.
 
 ```js
@@ -32,6 +34,8 @@ export class Token {
   loc: SourceLocation;
 }
 ```
+
+## The `Tokenizer` class
 
 The `Tokenizer` class extends `ParserErrors` and is used to tokenize the input code.
 ```js
@@ -97,6 +101,9 @@ export default class Tokenizer extends ParserErrors {
     return this.nextTokenStartSince(this.state.pos);
   }
 ```
+
+## The curContext` method Inside the `Tokenizer` class
+
 Inside the `Tokenizer` class, we define the `curContext` method which returns the current context of the parser.
 
 
@@ -104,10 +111,14 @@ Inside the `Tokenizer` class, we define the `curContext` method which returns th
   curContext(): TokContext {
     return this.state.context[this.state.context.length - 1];
   }
+```
 
-  // Read a single token, updating the parser object's token-related
-  // properties.
+## The `nextToken` method
 
+The `nextToken` method  reads a single token, updating the parser object's token-related
+properties.
+
+```js
   nextToken(): void {
     const curContext = this.curContext();
     if (!curContext?.preserveSpace) this.skipSpace();
@@ -128,6 +139,9 @@ Inside the `Tokenizer` class, we define the `curContext` method which returns th
     }
   }
 ```
+
+## Methods Dealing with Comments and Spaces
+
 Follow a set of methods dealing with comments and spaces
 
 ```js
@@ -259,6 +273,9 @@ Follow a set of methods dealing with comments and spaces
     }
   }
 ```
+
+## The `finishToken` method
+
 The `finishToken` method is called at the end of every token. It sets `end`, `val`, and maintains `context` and `exprAllowed`, and skips the space after the token, so that the next one's `start` will point at the right position.
 
 ```js
@@ -272,6 +289,8 @@ The `finishToken` method is called at the end of every token. It sets `end`, `va
     if (!this.isLookahead) this.updateContext(prevType);
   }
 ```
+
+## The `readToken_*` family of methods
 
 Follow the `readToken_*` family of methods.
 These are the functions that are called to fetch the next token. They 
@@ -1435,7 +1454,13 @@ into it. All in the name of speed.
 
     return !this.state.exprAllowed;
   }
+```
 
+## updateContext
+
+The `updateContext` method is used to update the context of the parser based on the current token type and the previous token type. The context is used to determine whether a token is allowed in a given context. For example, a `+` token is allowed in an expression context, but not in a statement context.
+
+```ts
   updateContext(prevType: TokenType): void {
     const type = this.state.type;
     let update;
