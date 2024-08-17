@@ -298,6 +298,8 @@ are somewhat obscure, because they works in character codes rather
 than characters, and because operator parsing has been inlined
 into it. All in the name of speed.
 
+### readToken_numberSign
+
 ```js
     // number sign is "#"
     readToken_numberSign(): void {
@@ -341,7 +343,11 @@ into it. All in the name of speed.
       this.finishOp(tt.hash, 1);
     }
   }
+```
 
+### readToken_dot
+
+```js
   readToken_dot(): void {
     const next = this.input.charCodeAt(this.state.pos + 1);
     if (next >= charCodes.digit0 && next <= charCodes.digit9) {
@@ -360,7 +366,11 @@ into it. All in the name of speed.
       this.finishToken(tt.dot);
     }
   }
+```
 
+### readToken_slash
+
+```js
   readToken_slash(): void {
     // '/'
     if (this.state.exprAllowed && !this.state.inType) {
@@ -376,7 +386,11 @@ into it. All in the name of speed.
       this.finishOp(tt.slash, 1);
     }
   }
+```
 
+### readToken_interpreter
+
+```js
   readToken_interpreter(): boolean {
     if (this.state.pos !== 0 || this.length < 2) return false;
 
@@ -396,7 +410,11 @@ into it. All in the name of speed.
 
     return true;
   }
+```
 
+### readToken_mult_modulo
+
+```js
   readToken_mult_modulo(code: number): void {
     // '%*'
     let type = code === charCodes.asterisk ? tt.star : tt.modulo;
@@ -418,7 +436,11 @@ into it. All in the name of speed.
 
     this.finishOp(type, width);
   }
+```
 
+### readToken_pipe_amp
+
+```js
   readToken_pipe_amp(code: number): void {
     // '||' '&&' '||=' '&&='
     const next = this.input.charCodeAt(this.state.pos + 1);
@@ -484,7 +506,11 @@ into it. All in the name of speed.
       1,
     );
   }
+```
 
+### readToken_caret
+
+```js
   readToken_caret(): void {
     // '^'
     const next = this.input.charCodeAt(this.state.pos + 1);
@@ -494,7 +520,11 @@ into it. All in the name of speed.
       this.finishOp(tt.bitwiseXOR, 1);
     }
   }
+```
 
+### readToken_plus_min
+
+```js
   readToken_plus_min(code: number): void {
     // '+-'
     const next = this.input.charCodeAt(this.state.pos + 1);
@@ -525,7 +555,11 @@ into it. All in the name of speed.
       this.finishOp(tt.plusMin, 1);
     }
   }
+```
 
+### readToken_lt_gt
+
+```js
   readToken_lt_gt(code: number): void {
     // '<>'
     const next = this.input.charCodeAt(this.state.pos + 1);
@@ -566,7 +600,11 @@ into it. All in the name of speed.
 
     this.finishOp(tt.relational, size);
   }
+```
 
+### readToken_eq_excl
+
+```js
   readToken_eq_excl(code: number): void {
     // '=!'
     const next = this.input.charCodeAt(this.state.pos + 1);
@@ -587,7 +625,11 @@ into it. All in the name of speed.
     }
     this.finishOp(code === charCodes.equalsTo ? tt.eq : tt.bang, 1);
   }
+```
 
+### readToken_question
+
+```js
   readToken_question(): void {
     // '?'
     const next = this.input.charCodeAt(this.state.pos + 1);
@@ -612,7 +654,11 @@ into it. All in the name of speed.
       this.finishToken(tt.question);
     }
   }
+```
 
+### getTokenFromCode
+
+```js
   getTokenFromCode(code: number): void {
     switch (code) {
       // The interpretation of a dot depends on whether it is followed
@@ -815,13 +861,21 @@ into it. All in the name of speed.
       String.fromCodePoint(code),
     );
   }
+```
 
+### finishOp
+
+```js
   finishOp(type: TokenType, size: number): void {
     const str = this.input.slice(this.state.pos, this.state.pos + size);
     this.state.pos += size;
     this.finishToken(type, str);
   }
+```
 
+###  readRegexp
+
+```js
   readRegexp(): void {
     const start = this.state.pos;
     let escaped, inClass;
@@ -878,16 +932,20 @@ into it. All in the name of speed.
       flags: mods,
     });
   }
+```
 
-  // Read an integer in the given radix. Return null if zero digits
-  // were read, the integer value otherwise. When `len` is given, this
-  // will return `null` unless the integer has exactly `len` digits.
-  // When `forceLen` is `true`, it means that we already know that in case
-  // of a malformed number we have to skip `len` characters anyway, instead
-  // of bailing out early. For example, in "\u{123Z}" we want to read up to }
-  // anyway, while in "\u00Z" we will stop at Z instead of consuming four
-  // characters (and thus the closing quote).
+### readInt
 
+Read an integer in the given radix. Return null if zero digits
+were read, the integer value otherwise. When `len` is given, this
+will return `null` unless the integer has exactly `len` digits.
+When `forceLen` is `true`, it means that we already know that in case
+of a malformed number we have to skip `len` characters anyway, instead
+of bailing out early. For example, in "\u{123Z}" we want to read up to }
+anyway, while in "\u00Z" we will stop at Z instead of consuming four
+characters (and thus the closing quote).
+
+```js
   readInt(
     radix: number,
     len?: number,
