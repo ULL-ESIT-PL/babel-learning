@@ -45,10 +45,15 @@ Debugger listening on ws://127.0.0.1:9229/0ae03cdd-538d-4f67-b3e9-b2f88b0b3c0f
 For help, see: https://nodejs.org/en/docs/inspector
 ```
 
-If the port `9229` is already in use, you can use another `port` using the syntax:
+If the port `9229` is already in use, you can use another one using the syntax:
+`node --inspect-brk[=[host:]port] `:
+
+```sh
+➜  babel-parser git:(learning) ✗ node --inspect-brk=127.0.0.1:3030  bin/babel-parser.js examples/simple.js
+Debugger listening on ws://127.0.0.1:3030/f9e064fa-83e8-4ad0-aa14-4bb20aa6e883
+For help, see: https://nodejs.org/en/docs/inspector
 ```
-node --inspect-brk[=[host:]port] bin/babel-parser.js examples/simple.js
-```
+
 or kill the process using it.
 For instance, on a Mac, you can use the `lsof -i tcp:<port>` command to find the process using the port and then kill it:
 
