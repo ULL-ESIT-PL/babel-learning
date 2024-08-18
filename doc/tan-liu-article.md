@@ -569,6 +569,10 @@ The folder we are going to work on is `packages/babel-parser/`:
 
 ... and `typescript`.
 
+### Debugging the parser
+
+See section [/doc/parser/debugging.md](/doc/parser/debugging.md) to see how  to use Chrome to debug the parser.
+
 ### A test for the goal 
 
 > Let's do a Test-driven development (TDD). 
