@@ -54,7 +54,7 @@ SyntaxError: Unexpected token (1:9)
 Node.js v21.2.0
 ```
 
-We can also running with the `--inspect-brk` flag to debug the parser:
+We can also run with the `--inspect-brk` flag to debug the parser:
 
 ```sh
 ➜  babel-parser git:(master) ✗ node --inspect-brk test/curry-function.cjs

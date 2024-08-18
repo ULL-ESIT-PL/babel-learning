@@ -1,6 +1,6 @@
 # Early return pattern in JavaScript
 
-> The Early Return pattern is a coding technique where a function or method is stopped as soon as a specific condition is met and evaluates to true. Instead of proceeding with the rest of the function's logic, the method immediately returns a value or performs an action based on the condition's outcome.
+> The Early Return pattern **is a coding technique** where a function or method is stopped as soon as a specific condition is met and evaluates to `true`. Instead of proceeding with the rest of the function's logic, the method immediately returns a value or performs an action based on the condition's outcome.
 
 **This pattern avoids unnecessary nesting of code** and helps streamline the flow of execution, leading to more readable and concise code.
 
