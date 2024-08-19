@@ -7,7 +7,7 @@ Change to the folder containing the Babel parser:
 /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser
 ```
 
-In the branch `learning` we have a `simple.js` file with the following content:
+In the branch `learning` we have a [src/packages/babel-parser/examples](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning/packages/babel-parser/examples) folder with several simple examples:
 
 `➜  babel-parser git:(learning) ✗ cat examples/simple.js`
 ```js 
