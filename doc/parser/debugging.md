@@ -45,6 +45,8 @@ Debugger listening on ws://127.0.0.1:9229/0ae03cdd-538d-4f67-b3e9-b2f88b0b3c0f
 For help, see: https://nodejs.org/en/docs/inspector
 ```
 
+### Specifying the Port
+
 If the port `9229` is already in use, you can use another one using the syntax:
 `node --inspect-brk[=[host:]port] `:
 
@@ -62,7 +64,9 @@ Click on the `Add connection` link and add the URL
 
 ![/images/chrome-debugger-adding-a-connection.png](/images/chrome-debugger-adding-a-connection.png)
 
-alternatively, kill the process using it.
+### Killing the Process
+
+Alternatively, if the port `9229` is already in use, you can kill the process using it.
 For instance, on a Mac, you can use the `lsof -i tcp:<port>` command to find the process using the port and then kill it:
 
 ```sh
