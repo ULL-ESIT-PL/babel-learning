@@ -54,7 +54,15 @@ Debugger listening on ws://127.0.0.1:3030/f9e064fa-83e8-4ad0-aa14-4bb20aa6e883
 For help, see: https://nodejs.org/en/docs/inspector
 ```
 
-or kill the process using it.
+Then go to `chrome://inspect` and click on the `open dedicated tools` link
+
+![/images/chrome-debugger-adding-a-connection.png](/images/chrome-debugger-adding-a-connection.png)
+
+Click on the `Add connection` link and add the URL 
+
+![/images/chrome-debugger-adding-a-connection.png](/images/chrome-debugger-adding-a-connection.png)
+
+alternatively, kill the process using it.
 For instance, on a Mac, you can use the `lsof -i tcp:<port>` command to find the process using the port and then kill it:
 
 ```sh
