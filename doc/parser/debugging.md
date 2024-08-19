@@ -118,11 +118,10 @@ While Babel itself does not directly provide its supported grammars in Backus-Na
 1. **ECMAScript Specification**: The official ECMAScript specification defines the JavaScript grammar in a formal language similar to BNF, called the Extended Backus-Naur Form (EBNF).
    - [ECMAScript Specification](https://tc39.es/ecma262/)
 
-2. **TypeScript Grammar**: TypeScript's grammar is based on JavaScript's grammar with additional rules for types. The TypeScript compiler's source code is the best resource for understanding its grammar.
-   - [TypeScript Specification](https://github.com/microsoft/TypeScript)
+2. **TypeScript Grammar**: TypeScript's grammar is based on JavaScript's grammar with additional rules for types. Here is a pdf with a TypeScript Language Specification:
+   - [TypeScript Specification](https://javascript.xgqfrms.xyz/pdfs/TypeScript%20Language%20Specification.pdf)
 
-3. **JSX Grammar**: The JSX syntax is less formally defined in BNF or EBNF but can be understood through the React documentation and the Babel JSX plugin source code.
-   - [JSX in Depth](https://reactjs.org/docs/jsx-in-depth.html)
+3. **JSX Grammar**: The JSX syntax is less formally defined in BNF or EBNF but can be understood through this [JSX spec here.](https://facebook.github.io/jsx/)
 
 4. **Flow Grammar**: Flow's grammar extends JavaScript with type annotations. The formal grammar for Flow can be derived from the Flow documentation and its implementation.
    - [Flow Documentation](https://flow.org/en/docs/)
@@ -132,6 +131,7 @@ If you need the grammar in a formal notation like BNF or EBNF, you might need to
 
 In summary, Babel supports several JavaScript-related grammars, including ECMAScript, TypeScript, JSX, and Flow. While Babel itself does not provide these grammars in BNF, they can be found or derived from the specifications and documentation of these languages.
 
+### Other resources
 
 - https://tc39.es/ecma262/
 - gist: https://gist.github.com/rbuckton/0d8c1f1c607f52f5ae37
