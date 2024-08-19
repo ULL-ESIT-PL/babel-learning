@@ -56,7 +56,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 
 Then go to `chrome://inspect` and click on the `open dedicated tools` link
 
-![/images/chrome-debugger-adding-a-connection.png](/images/chrome-debugger-adding-a-connection.png)
+![/images/chrome-debugger-open-dedicated-tools-for-node.png(/images/chrome-debugger-open-dedicated-tools-for-node.png)
 
 Click on the `Add connection` link and add the URL 
 
