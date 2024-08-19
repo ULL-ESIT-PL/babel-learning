@@ -78,15 +78,38 @@ Open the Chrome browser and go to the URL `chrome://inspect`. Click on the `insp
 
 ### Grammars Supported by Babel
 
-1. **ECMAScript (JavaScript) Grammar**: This is the primary grammar supported by Babel. It includes all standard JavaScript syntax as defined by the ECMAScript specification.
+The folder `src/plugins` in the Babel repository contains the plugins that implement the grammars supported by Babel. 
 
-2. **TypeScript Grammar**: Babel also supports parsing TypeScript, a superset of JavaScript that adds static typing. Babel can strip TypeScript type annotations but does not perform type-checking.
+```
+➜  babel-parser git:(learning) ✗ tree  src/plugins
+src/plugins
+├── estree.js
+├── flow.js
+├── jsx
+│   ├── index.js
+│   └── xhtml.js
+├── placeholders.js
+├── typescript
+│   ├── index.js
+│   └── scope.js
+└── v8intrinsic.js
+```
+
+The following are some of the grammars supported by Babel:
+
+1. **ECMAScript (JavaScript) Grammar**: This is the primary grammar supported by Babel. It includes all standard JavaScript syntax as defined by the ECMAScript specification. File `src/plugins
+
+2. **TypeScript Grammar**: Babel also supports parsing TypeScript, a superset of JavaScript that adds static typing. Babel can strip TypeScript type annotations but does not perform type-checking. Folder `src/plugins/typescript` contains the TypeScript "parser plugin".
 
 3. **JSX Grammar**: JSX is a syntax extension used in React for writing HTML-like code within JavaScript. Babel can parse and transform JSX syntax.
+Folder `src/plugins/jsx` contains the JSX "parser plugin".
 
-4. **Flow Grammar**: Flow is a static type checker for JavaScript. Babel can parse Flow type annotations, although, like TypeScript, it does not perform type-checking.
+4. **Flow Grammar**: Flow is a static type checker for JavaScript. Babel can parse Flow type annotations, although, like TypeScript, it does not perform type-checking.  File `src/plugins/flow.js` contains the Flow "parser plugin".
 
 5. **Proposals and Experimental Syntax**: Babel supports various ECMAScript proposals and experimental syntax, often before they become part of the official ECMAScript standard. These are implemented as plugins in Babel.
+For instance The Facebook Hermes JS engine provides a babel parser plugin
+[babel-plugin-syntax-hermes-parser](https://github.com/facebook/hermes/blob/main/tools/hermes-parser/js/babel-plugin-syntax-hermes-parser/README.md).
+ This plugin switches Babel to use `hermes-parser` instead of the `@babel/parser`. Since Hermes parser uses C++ compiled to WASM it is significantly faster and provides full syntax support for Flow.
 
 ### Finding Grammars in Backus-Naur Form (BNF) or Similar
 
