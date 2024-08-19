@@ -73,3 +73,42 @@ node    15101 casianorodriguezleon   18u  IPv4 0x3859a6a2d44b1ac6      0t0  TCP 
 ```
 
 Open the Chrome browser and go to the URL `chrome://inspect`. Click on the `inspect` link to open the Chrome DevTools. The debugger will stop at the `debugger` statement in the `next` function.
+
+## ES6 grammars
+
+### Grammars Supported by Babel
+
+1. **ECMAScript (JavaScript) Grammar**: This is the primary grammar supported by Babel. It includes all standard JavaScript syntax as defined by the ECMAScript specification.
+
+2. **TypeScript Grammar**: Babel also supports parsing TypeScript, a superset of JavaScript that adds static typing. Babel can strip TypeScript type annotations but does not perform type-checking.
+
+3. **JSX Grammar**: JSX is a syntax extension used in React for writing HTML-like code within JavaScript. Babel can parse and transform JSX syntax.
+
+4. **Flow Grammar**: Flow is a static type checker for JavaScript. Babel can parse Flow type annotations, although, like TypeScript, it does not perform type-checking.
+
+5. **Proposals and Experimental Syntax**: Babel supports various ECMAScript proposals and experimental syntax, often before they become part of the official ECMAScript standard. These are implemented as plugins in Babel.
+
+### Finding Grammars in Backus-Naur Form (BNF) or Similar
+
+While Babel itself does not directly provide its supported grammars in Backus-Naur Form (BNF), you can refer to several resources to find such formal grammars:
+
+1. **ECMAScript Specification**: The official ECMAScript specification defines the JavaScript grammar in a formal language similar to BNF, called the Extended Backus-Naur Form (EBNF).
+   - [ECMAScript Specification](https://tc39.es/ecma262/)
+
+2. **TypeScript Grammar**: TypeScript's grammar is based on JavaScript's grammar with additional rules for types. The TypeScript compiler's source code is the best resource for understanding its grammar.
+   - [TypeScript Specification](https://github.com/microsoft/TypeScript)
+
+3. **JSX Grammar**: The JSX syntax is less formally defined in BNF or EBNF but can be understood through the React documentation and the Babel JSX plugin source code.
+   - [JSX in Depth](https://reactjs.org/docs/jsx-in-depth.html)
+
+4. **Flow Grammar**: Flow's grammar extends JavaScript with type annotations. The formal grammar for Flow can be derived from the Flow documentation and its implementation.
+   - [Flow Documentation](https://flow.org/en/docs/)
+
+### Extracting Formal Grammars
+If you need the grammar in a formal notation like BNF or EBNF, you might need to manually extract it from the above resources or use tools that can generate grammars from parsers, such as ANTLR, for the TypeScript or ECMAScript grammars.
+
+In summary, Babel supports several JavaScript-related grammars, including ECMAScript, TypeScript, JSX, and Flow. While Babel itself does not provide these grammars in BNF, they can be found or derived from the specifications and documentation of these languages.
+
+
+- https://tc39.es/ecma262/
+- gist: https://gist.github.com/rbuckton/0d8c1f1c607f52f5ae37
