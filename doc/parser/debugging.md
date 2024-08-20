@@ -158,6 +158,35 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
 12. parseBlockOrModuleBlockBody
 13. parseBlockBody
 14. parseTopLevel
+    
+    The `parseTopLevel` function is the entry point for parsing the top-level of a file. It initializes the `program` node
+    with the `sourceType` and `interpreter` properties, and then calls `parseBlockBody` to parse the body of the program.
+    
+    ```js
+    class StatementParser extends ExpressionParser {
+      parseTopLevel(file, program) {
+        program.sourceType = this.options.sourceType;
+        program.interpreter = this.parseInterpreterDirective();
+        this.parseBlockBody(program, true, true, types.eof);
+
+        if (this.inModule && !this.options.allowUndeclaredExports && this.scope.undefinedExports.size > 0) {
+          for (let _i = 0, _Array$from = Array.from(this.scope.undefinedExports); _i < _Array$from.length; _i++) {
+            const [name] = _Array$from[_i];
+            const pos = this.scope.undefinedExports.get(name);
+            this.raise(pos, ErrorMessages.ModuleExportUndefined, name);
+          }
+        }
+
+        file.program = this.finishNode(program, "Program");
+        file.comments = this.state.comments;
+        if (this.options.tokens) file.tokens = this.tokens;
+        return this.finishNode(file, "File");
+      }
+      ...
+    }
+    ```
+
+    After parsing the program, the function checks for any `undefinedExports` in the module scope and raises an error if any are found. It then finishes the `program` and `file` nodes and returns the `file` node.
 15. parse
     
     Once what kind of source and what kind of parser to use is determined, the appropriate `parse` function is called. 
