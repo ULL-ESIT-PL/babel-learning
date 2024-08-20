@@ -139,3 +139,81 @@ In summary, Babel supports several JavaScript-related grammars, including ECMASc
 
 - https://tc39.es/ecma262/
 - gist: https://gist.github.com/rbuckton/0d8c1f1c607f52f5ae37
+
+## Call Stack
+
+1. next 
+2. parseLiteral
+3. parseExprAtom
+4. parseExprSubscripts
+5. parseMaybeUnary
+6. parseExprOps
+7. parseMaybeConditional
+8. parseMaybeAssign
+9. parseExpression
+10. parseStatementContent
+11. parseStatement
+12. parseBlockOrModuleBlockBody
+13. parseBlockBody
+14. parseTopLevel
+15. parse
+    ```js
+    parse() {
+      let paramFlags = PARAM;
+
+      if (this.hasPlugin("topLevelAwait") && this.inModule) {
+        paramFlags |= PARAM_AWAIT;
+      }
+
+      this.scope.enter(SCOPE_PROGRAM);
+      this.prodParam.enter(paramFlags);
+      const file = this.startNode();
+      const program = this.startNode();
+      this.nextToken();
+      file.errors = null;
+      this.parseTopLevel(file, program);
+      file.errors = this.state.errors;
+      return file;
+    }
+    ```
+16. parse 
+    From line `getParser(options, input).parse();`) at function:
+    ```js
+    function parse(input, options) {
+      var _options;
+
+      if (((_options = options) == null ? void 0 : _options.sourceType) === "unambiguous") {
+        options = Object.assign({}, options);
+
+        try {
+          options.sourceType = "module";
+          const parser = getParser(options, input);
+          const ast = parser.parse();
+
+          if (parser.sawUnambiguousESM) {
+            return ast;
+          }
+
+          if (parser.ambiguousScriptDifferentAst) {
+            try {
+              options.sourceType = "script";
+              return getParser(options, input).parse();
+            } catch (_unused) {}
+          } else {
+            ast.program.sourceType = "script";
+          }
+
+          return ast;
+        } catch (moduleError) {
+          try {
+            options.sourceType = "script";
+            return getParser(options, input).parse();
+          } catch (_unused2) {}
+
+          throw moduleError;
+        }
+      } else {
+        return getParser(options, input).parse();
+      }
+    }
+    ```
