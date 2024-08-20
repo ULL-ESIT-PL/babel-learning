@@ -159,6 +159,11 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
 13. parseBlockBody
 14. parseTopLevel
 15. parse
+    
+    Once what kind of source and what kind of parser to use is determined, the appropriate `parse` function is called. 
+    A check for the presence of a  `topLevelAwait` is done here to decide whether we are running in async mode or not. 
+    After initialization of the scope and creation of the upper AST nodes, we get the initial token and the `parseTopLevel` function is then called with the `file` and `program` nodes. The parsing starts!
+    
     ```js
     parse() {
       let paramFlags = PARAM;
