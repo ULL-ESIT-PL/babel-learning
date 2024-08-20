@@ -158,7 +158,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
 12. parseBlockOrModuleBlockBody
 13. parseBlockBody
 
-    The parseBlockBody method takes several parameters: `node` which will store the AST for the block statement, `allowDirectives` (a boolean), `topLevel` (indicating whether the block is at the top level of the program), 
+    The `parseBlockBody` method takes several parameters: `node` which will store the AST for the block statement, `allowDirectives` (a boolean), `topLevel` (indicating whether the block is at the top level of the program), 
     `end` (the token type that signifies the end of the block), and an optional `afterBlockParse` callback. The `body` array will hold the ASTs for the statements within the block, while the `directives` array will hold any directive prologues (like `"use strict"`). The method  calls `this.parseBlockOrModuleBlockBody`, which is responsible for the actual parsing of the block's contents.
     
     ```js
