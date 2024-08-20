@@ -158,6 +158,10 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
 12. parseBlockOrModuleBlockBody
 
     The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
+
+    If you put an octal literal in a JS code block that runs on `strict`, the result may be `SyntaxError`: 
+    [Octal literals are not allowed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_octal_literal) in `strict` mode, since they can lead to unintended actions and confusion, numbers such as `0123` should never be strictly used in JavaScript.
+
     The function begins by initializing an array `octalPositions` to track positions of octal literals and saving the current strict mode state in `oldStrict`. It also initializes two boolean flags: `hasStrictModeDirective` to track if a `"use strict"` directive is encountered, and `parsedNonDirective` to track if any non-directive statements have been parsed.
 
     The function then enters a loop that continues until the `end` token is matched. Within the loop, it first checks if there are any octal literals before a "use strict" directive and stores their positions. It then parses a statement 
