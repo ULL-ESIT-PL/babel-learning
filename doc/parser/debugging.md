@@ -156,6 +156,55 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
 10. parseStatementContent
 11. parseStatement
 12. parseBlockOrModuleBlockBody
+
+    ```js 
+    parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
+      const octalPositions = [];
+      const oldStrict = this.state.strict;
+      let hasStrictModeDirective = false;
+      let parsedNonDirective = false;
+
+      while (!this.match(end)) {
+        if (!parsedNonDirective && this.state.octalPositions.length) {
+          octalPositions.push(...this.state.octalPositions);
+        }
+
+        const stmt = this.parseStatement(null, topLevel);
+
+        if (directives && !parsedNonDirective && this.isValidDirective(stmt)) {
+          const directive = this.stmtToDirective(stmt);
+          directives.push(directive);
+
+          if (!hasStrictModeDirective && directive.value.value === "use strict") {
+            hasStrictModeDirective = true;
+            this.setStrict(true);
+          }
+
+          continue;
+        }
+
+        parsedNonDirective = true;
+        body.push(stmt);
+      }
+
+      if (this.state.strict && octalPositions.length) {
+        for (let _i3 = 0; _i3 < octalPositions.length; _i3++) {
+          const pos = octalPositions[_i3];
+          this.raise(pos, ErrorMessages.StrictOctalLiteral);
+        }
+      }
+
+      if (afterBlockParse) {
+        afterBlockParse.call(this, hasStrictModeDirective);
+      }
+
+      if (!oldStrict) {
+        this.setStrict(false);
+      }
+
+      this.next();
+    }
+    ```
 13. parseBlockBody
 
     The `parseBlockBody` method takes several parameters: `node` which will store the AST for the block statement, `allowDirectives` (a boolean), `topLevel` (indicating whether the block is at the top level of the program), 
