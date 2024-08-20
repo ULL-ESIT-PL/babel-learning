@@ -157,6 +157,15 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
 11. parseStatement
 12. parseBlockOrModuleBlockBody
 
+    The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
+    The function begins by initializing an array `octalPositions` to track positions of octal literals and saving the current strict mode state in `oldStrict`. It also initializes two boolean flags: `hasStrictModeDirective` to track if a `"use strict"` directive is encountered, and `parsedNonDirective` to track if any non-directive statements have been parsed.
+
+    The function then enters a loop that continues until the `end` token is matched. Within the loop, it first checks if there are any octal literals before a "use strict" directive and stores their positions. It then parses a statement using `parseStatement`. If the statement is a valid directive and directives are allowed, it converts the statement to a directive using `stmtToDirective` and adds it to the `directives` array. If the directive is "use strict", it sets the strict mode to true.
+
+    If the statement is not a directive, it sets `parsedNonDirective` to true and adds the statement to the body array. After the loop, if strict mode is enabled and there are octal literals, it raises an error for each octal literal found before the "use strict" directive.
+
+    Finally, if an `afterBlockParse` callback is provided, it is called with the hasStrictModeDirective flag. The function then restores the strict mode to its original state if it was not previously enabled and advances to the next token.
+
     ```js 
     parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
       const octalPositions = [];
