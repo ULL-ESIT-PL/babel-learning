@@ -179,7 +179,9 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
     }
     ```
 16. parse 
-    From line `getParser(options, input).parse();`) at function:
+    
+    See line `getParser(options, input).parse();`) at function `parse`. Babel.js supports two source types: `script` and `module`. The `sourceType` option can be set to `script` or `module`. If the `sourceType` is `unambiguous`, Babel will try to parse the input as a module. If it fails, it will try to parse it as a script.
+
     ```js
     function parse(input, options) {
       var _options;
@@ -209,13 +211,13 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
         } catch (moduleError) {
           try {
             options.sourceType = "script";
-            return getParser(options, input).parse(); // <= Here
+            return getParser(options, input).parse(); 
           } catch (_unused2) {}
 
           throw moduleError;
         }
       } else {
-        return getParser(options, input).parse();
+        return getParser(options, input).parse(); // <= Here
       }
     }
     ```
