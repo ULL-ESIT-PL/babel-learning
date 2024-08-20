@@ -171,7 +171,7 @@ In summary, Babel supports several JavaScript-related grammars, including ECMASc
       const program = this.startNode();
       this.nextToken();
       file.errors = null;
-      this.parseTopLevel(file, program);
+      this.parseTopLevel(file, program); // <= Here
       file.errors = this.state.errors;
       return file;
     }
@@ -207,7 +207,7 @@ In summary, Babel supports several JavaScript-related grammars, including ECMASc
         } catch (moduleError) {
           try {
             options.sourceType = "script";
-            return getParser(options, input).parse();
+            return getParser(options, input).parse(); // <= Here
           } catch (_unused2) {}
 
           throw moduleError;
