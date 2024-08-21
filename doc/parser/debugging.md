@@ -515,3 +515,5 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 ### this.state
 
 ![/images/debugging/state.png](/images/debugging/state.png)
+
+Notice how `type`  contains the `TokenType` of the current token.
