@@ -195,7 +195,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
         this.state.potentialArrowAt = this.state.start;
       }
 
-      let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos);
+      let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos); // <= Here
 
       if (afterLeftParse) {
         left = afterLeftParse.call(this, left, startPos, startLoc);
