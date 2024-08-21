@@ -162,7 +162,81 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 6. parseExprOps
 7. parseMaybeConditional
 8. parseMaybeAssign
-9. parseExpression
+
+    ```js 
+    parseMaybeAssign(noIn, refExpressionErrors, afterLeftParse, refNeedsArrowPos) {
+      const startPos = this.state.start;
+      const startLoc = this.state.startLoc;
+
+      if (this.isContextual("yield")) {
+        if (this.prodParam.hasYield) {
+          let left = this.parseYield(noIn);
+
+          if (afterLeftParse) {
+            left = afterLeftParse.call(this, left, startPos, startLoc);
+          }
+
+          return left;
+        } else {
+          this.state.exprAllowed = false;
+        }
+      }
+
+      let ownExpressionErrors;
+
+      if (refExpressionErrors) {
+        ownExpressionErrors = false;
+      } else {
+        refExpressionErrors = new ExpressionErrors();
+        ownExpressionErrors = true;
+      }
+
+      if (this.match(types.parenL) || this.match(types.name)) {
+        this.state.potentialArrowAt = this.state.start;
+      }
+
+      let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos);
+
+      if (afterLeftParse) {
+        left = afterLeftParse.call(this, left, startPos, startLoc);
+      }
+
+      if (this.state.type.isAssign) {
+        const node = this.startNodeAt(startPos, startLoc);
+        const operator = this.state.value;
+        node.operator = operator;
+
+        if (operator === "??=") {
+          this.expectPlugin("logicalAssignment");
+        }
+
+        if (operator === "||=" || operator === "&&=") {
+          this.expectPlugin("logicalAssignment");
+        }
+
+        if (this.match(types.eq)) {
+          node.left = this.toAssignable(left);
+          refExpressionErrors.doubleProto = -1;
+        } else {
+          node.left = left;
+        }
+
+        if (refExpressionErrors.shorthandAssign >= node.left.start) {
+          refExpressionErrors.shorthandAssign = -1;
+        }
+
+        this.checkLVal(left, undefined, undefined, "assignment expression");
+        this.next();
+        node.right = this.parseMaybeAssign(noIn);
+        return this.finishNode(node, "AssignmentExpression");
+      } else if (ownExpressionErrors) {
+        this.checkExpressionErrors(refExpressionErrors, true);
+      }
+
+      return left;
+    }
+    ```
+9.  parseExpression
 
     ```js 
     parseExpression(noIn, refExpressionErrors) {
