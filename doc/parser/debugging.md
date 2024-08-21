@@ -155,6 +155,16 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 9. parseExpression
 10. parseStatementContent
 11. parseStatement
+
+    ```js
+    parseStatement(context, topLevel) {
+      if (this.match(types.at)) {
+        this.parseDecorators(true);
+      }
+
+      return this.parseStatementContent(context, topLevel);
+    }
+    ```
 12. parseBlockOrModuleBlockBody
 
     The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
@@ -198,10 +208,10 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
           octalPositions.push(...this.state.octalPositions);
         }
 
-        const stmt = this.parseStatement(null, topLevel);
+        const stmt = this.parseStatement(null, topLevel); // <= Here
 
         if (directives && !parsedNonDirective && this.isValidDirective(stmt)) {
-          const directive = this.stmtToDirective(stmt);
+          const directive = this.stmtToDirective(stmt); // It is a directive
           directives.push(directive);
 
           if (!hasStrictModeDirective && directive.value.value === "use strict") {
