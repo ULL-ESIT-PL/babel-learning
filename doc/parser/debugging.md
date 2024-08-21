@@ -163,6 +163,29 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 7. parseMaybeConditional
 8. parseMaybeAssign
 9. parseExpression
+
+    ```js 
+    parseExpression(noIn, refExpressionErrors) {
+      const startPos = this.state.start;
+      const startLoc = this.state.startLoc;
+      const expr = this.parseMaybeAssign(noIn, refExpressionErrors); // <= Here
+
+      if (this.match(types.comma)) {
+        const node = this.startNodeAt(startPos, startLoc);
+        node.expressions = [expr];
+
+        while (this.eat(types.comma)) {
+          node.expressions.push(this.parseMaybeAssign(noIn, refExpressionErrors));
+        }
+
+        this.toReferencedList(node.expressions);
+        return this.finishNode(node, "SequenceExpression");
+      }
+
+      return expr;
+    }
+    ```
+
 10. parseStatementContent
 
     ```js 
