@@ -165,7 +165,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
         this.parseDecorators(true);
       }
 
-      return this.parseStatementContent(context, topLevel);
+      return this.parseStatementContent(context, topLevel); // <= Here
     }
     ```
 12. parseBlockOrModuleBlockBody
