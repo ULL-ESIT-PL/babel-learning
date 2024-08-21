@@ -167,7 +167,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 
     ```js 
       parseStatementContent(context, topLevel) {
-        let starttype = this.state.type;
+        let starttype = this.state.type; // The type of the current token
         const node = this.startNode();
         let kind;
 
@@ -176,7 +176,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
           kind = "let";
         }
 
-        switch (starttype) {
+        switch (starttype) { // None of the cases match
           case types._break:
           case types._continue:
             return this.parseBreakContinueStatement(node, starttype.keyword);
