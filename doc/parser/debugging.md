@@ -142,7 +142,7 @@ In summary, Babel supports several JavaScript-related grammars, including ECMASc
 
 ## Call Stack
 
-When you run the parser, you can see the call stack in the Chrome DevTools:
+When you run the parser, you can see the call stack in the Chrome DevTools when it stops on the `next` breakpoint:
 
 1. next 
 2. parseLiteral
@@ -163,31 +163,28 @@ When you run the parser, you can see the call stack in the Chrome DevTools:
     An octal literal in JavaScript is a way to represent an integer in base-8 (octal) numeral system. It uses digits from 0 to 7. In JavaScript, octal literals are denoted differently depending on whether they are in ES5 or ES6+. Before ECMAScript 2015 (ES6) we have **Legacy Octal Literals**: These begin with a leading zero (`0`). For example, `075` is interpreted as the octal number 75, which is 61 in decimal. However, using this form in strict mode will throw a syntax error because it is not allowed. From ECMAScript 2015 (ES6) onwards we have **ES6 Octal Literals**: These start with `0o` or `0O` (zero followed by a lowercase or uppercase letter "o"). For instance, `0o75` is interpreted as the octal number 75, which is 61 in decimal.
 
     ```js
-    var n = 075; // This would equal 61 in decimal
+    var n = 075; // Before ECMAScript 2015 this would equal 61 in decimal
     ```
-    In strict mode:
+    but in strict mode:
     ```js
     "use strict";
     var n = 075; // SyntaxError: Octal literals are not allowed in strict mode.
     ```
-    **Modern Octal (ES6 and later)**:
+    Instead we have to use Modern Octal:
     ```js
     var n = 0o75; // This equals 61 in decimal
     ```
 
-    If you put an octal literal in a JS code block that runs on `strict`, the result has to be a `SyntaxError`: 
-    [Octal literals are not allowed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_octal_literal) in `strict` mode.
-
     The function begins by initializing an array `octalPositions` to track positions of octal literals and saving the current strict mode state in `oldStrict`. It also initializes two boolean flags: `hasStrictModeDirective` to track if a `"use strict"` directive is encountered, and `parsedNonDirective` to track if any non-directive statements have been parsed.
 
-    The function then enters a loop that continues until the `end` token is matched. Within the loop, it first checks if there are any octal literals before a "use strict" directive and stores their positions. It then parses a statement 
-    with `parseStatement` and if it is  a true statement the corresponding AST it is pushed in the  `body`. 
+    The function then enters a loop that continues until the `end` token is matched. Within the loop, it first checks if there are any octal literals before a `"use strict"` directive and stores their positions. It then parses a statement 
+    with `parseStatement` and if it is a "true statement" the corresponding AST it is pushed in the `body`. 
     
     If the statement is a valid directive and directives are allowed, it converts the statement to a directive using `stmtToDirective` and adds it to the `directives` array. If the directive is "use strict", it sets the strict mode to true.
 
     After the loop, if `strict` mode is enabled and there are octal literals, it raises an error for each octal literal found before the `"use strict"` directive.
 
-    Finally, if an `afterBlockParse` callback is provided, it is called with the hasStrictModeDirective flag. The function then restores the `strict` mode to its original state if it was not previously enabled and advances to the `next` token.
+    Finally, if an `afterBlockParse` callback is provided, it is called with the `hasStrictModeDirective` flag. The function then restores the `strict` mode to its original state if it was not previously enabled and advances to the `next` token.
 
     ```js 
     parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
