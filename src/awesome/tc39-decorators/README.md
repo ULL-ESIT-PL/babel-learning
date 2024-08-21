@@ -1,4 +1,5 @@
-## Simple Example 
+
+## Introduction 
 
 Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. Decorators allow you to add additional functionality to a method, class, or property without modifying the original code directly. They are essentially functions that are called with a target (such as a class or a method) and can modify or enhance the behavior of that target.
 
@@ -56,7 +57,8 @@ Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provi
 - **Memoization**: Cache the result of expensive function calls.
 - **Validation**: Ensure that method parameters or properties meet certain criteria.
 
-## Example:
+
+## Simple Example:
 
 See [hello-decorators.js](hello-decorators.js)
 
