@@ -9,10 +9,236 @@ Change to the folder containing the Babel parser:
 
 In the branch `learning` we have a [src/packages/babel-parser/examples](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/learning/packages/babel-parser/examples) folder with several simple examples:
 
-`➜  babel-parser git:(learning) ✗ cat examples/simple.js`
+`➜  babel-parser git:(learning) ✗ cat examples/simple2.js`
 ```js 
-42
+
+42+3
 ```
+
+Simple execution. The script outputs the AST:
+
+`➜  babel-parser git:(learning) ✗ bin/babel-parser.js examples/simple2.js`
+```json
+{
+  "type": "File",
+  "start": 0,
+  "end": 4,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 4
+    }
+  },
+  "errors": [],
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 4,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    "sourceType": "script",
+    "interpreter": null,
+    "body": [
+      {
+        "type": "ExpressionStatement",
+        "start": 0,
+        "end": 4,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 4
+          }
+        },
+        "expression": {
+          "type": "BinaryExpression",
+          "start": 0,
+          "end": 4,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 4
+            }
+          },
+          "left": {
+            "type": "NumericLiteral",
+            "start": 0,
+            "end": 2,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 2
+              }
+            },
+            "extra": {
+              "rawValue": 42,
+              "raw": "42"
+            },
+            "value": 42
+          },
+          "operator": "+",
+          "right": {
+            "type": "NumericLiteral",
+            "start": 3,
+            "end": 4,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 3
+              },
+              "end": {
+                "line": 1,
+                "column": 4
+              }
+            },
+            "extra": {
+              "rawValue": 3,
+              "raw": "3"
+            },
+            "value": 3
+          }
+        }
+      }
+    ],
+    "directives": []
+  },
+  "comments": [],
+  "tokens": [
+    {
+      "type": {
+        "label": "num",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": 42,
+      "start": 0,
+      "end": 2,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "+/-",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": true,
+        "postfix": false,
+        "binop": 9,
+        "updateContext": null
+      },
+      "value": "+",
+      "start": 2,
+      "end": 3,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 2
+        },
+        "end": {
+          "line": 1,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "num",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": 3,
+      "start": 3,
+      "end": 4,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 3
+        },
+        "end": {
+          "line": 1,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 4,
+      "end": 4,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 4
+        },
+        "end": {
+          "line": 1,
+          "column": 4
+        }
+      }
+    }
+  ]
+}
+```
+
+### Setting a Breakpoint
 
 Write the `debugger` statement in whatever function in the `lib/index.js` file 
 you want to debug (You can use the `src/*.js` files but then remember to rebuild). For instance, in the `next` function:
@@ -40,7 +266,7 @@ you want to debug (You can use the `src/*.js` files but then remember to rebuild
 We can now run the small parser script at `bin/babel-parser.js` with the following command:
 
 ```sh
-➜  babel-parser git:(learning) ✗ node --inspect-brk bin/babel-parser.js examples/simple.js
+➜  babel-parser git:(learning) ✗ node --inspect-brk bin/babel-parser.js examples/simple2.js
 Debugger listening on ws://127.0.0.1:9229/0ae03cdd-538d-4f67-b3e9-b2f88b0b3c0f
 For help, see: https://nodejs.org/en/docs/inspector
 ```
@@ -51,7 +277,7 @@ If the port `9229` is already in use, you can use another one using the syntax:
 `node --inspect-brk[=[host:]port] `:
 
 ```sh
-➜  babel-parser git:(learning) ✗ node --inspect-brk=127.0.0.1:3030  bin/babel-parser.js examples/simple.js
+➜  babel-parser git:(learning) ✗ node --inspect-brk=127.0.0.1:3030  bin/babel-parser.js examples/simple2.js
 Debugger listening on ws://127.0.0.1:3030/f9e064fa-83e8-4ad0-aa14-4bb20aa6e883
 For help, see: https://nodejs.org/en/docs/inspector
 ```
