@@ -156,6 +156,9 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 10. parseStatementContent
 11. parseStatement
 
+    Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
+    [/src/awesome/tc39-decorators](/src/awesome/tc39-decorators/)
+    
     ```js
     parseStatement(context, topLevel) {
       if (this.match(types.at)) {
