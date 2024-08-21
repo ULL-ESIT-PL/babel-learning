@@ -292,7 +292,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
         }
 
         const maybeName = this.state.value;
-        const expr = this.parseExpression();
+        const expr = this.parseExpression(); // <= Here
 
         if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) {
           return this.parseLabeledStatement(node, maybeName, expr, context);
