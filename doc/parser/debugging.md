@@ -500,4 +500,4 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 
 ### this.parser 
 
-![/images/debugging/parser.png/images/debugging/parser.png)
+![/images/debugging/parser.png](/images/debugging/parser.png)
