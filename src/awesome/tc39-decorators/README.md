@@ -1,7 +1,7 @@
 
 ## Introduction 
 
-Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. Decorators allow you to add additional functionality to a method, class, or property without modifying the original code directly. They are essentially functions that are called with a target (such as a class or a method) and can modify or enhance the behavior of that target.
+[Decorators](https://github.com/tc39/proposal-decorators) in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. Decorators allow you to add additional functionality to a method, class, or property without modifying the original code directly. They are essentially functions that are called with a target (such as a class or a method) and can modify or enhance the behavior of that target.
 
 ### Basic Concepts:
 1. **Class Decorators**: These are applied to a class as a whole. They can be used to modify or enhance the class definition.
@@ -48,7 +48,7 @@ Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provi
 - **Usage**: The decorator function can return a new function, modify the target's behavior, or even replace the target with a new definition.
 
 ### Status:
-- **Stage 3**: The decorators proposal is currently in Stage 3 of the TC39 process, meaning it is well-defined but still not part of the official ECMAScript standard. It's supported by some tools like Babel, which allows developers to use decorators in their code today.
+- **Stage 3**: The decorators proposal is currently in Stage 3 of the TC39 process, meaning it is well-defined but still not part of the official ECMAScript standard. [It's supported by Babel](https://github.com/babel/proposals?tab=readme-ov-file#class-and-property-decorators).
 
 ### Use Cases:
 
