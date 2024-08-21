@@ -154,6 +154,143 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 8. parseMaybeAssign
 9. parseExpression
 10. parseStatementContent
+
+    ```js 
+      parseStatementContent(context, topLevel) {
+        let starttype = this.state.type;
+        const node = this.startNode();
+        let kind;
+
+        if (this.isLet(context)) {
+          starttype = types._var;
+          kind = "let";
+        }
+
+        switch (starttype) {
+          case types._break:
+          case types._continue:
+            return this.parseBreakContinueStatement(node, starttype.keyword);
+
+          case types._debugger:
+            return this.parseDebuggerStatement(node);
+
+          case types._do:
+            return this.parseDoStatement(node);
+
+          case types._for:
+            return this.parseForStatement(node);
+
+          case types._function:
+            if (this.lookaheadCharCode() === 46) break;
+
+            if (context) {
+              if (this.state.strict) {
+                this.raise(this.state.start, ErrorMessages.StrictFunction);
+              } else if (context !== "if" && context !== "label") {
+                this.raise(this.state.start, ErrorMessages.SloppyFunction);
+              }
+            }
+
+            return this.parseFunctionStatement(node, false, !context);
+
+          case types._class:
+            if (context) this.unexpected();
+            return this.parseClass(node, true);
+
+          case types._if:
+            return this.parseIfStatement(node);
+
+          case types._return:
+            return this.parseReturnStatement(node);
+
+          case types._switch:
+            return this.parseSwitchStatement(node);
+
+          case types._throw:
+            return this.parseThrowStatement(node);
+
+          case types._try:
+            return this.parseTryStatement(node);
+
+          case types._const:
+          case types._var:
+            kind = kind || this.state.value;
+
+            if (context && kind !== "var") {
+              this.raise(this.state.start, ErrorMessages.UnexpectedLexicalDeclaration);
+            }
+
+            return this.parseVarStatement(node, kind);
+
+          case types._while:
+            return this.parseWhileStatement(node);
+
+          case types._with:
+            return this.parseWithStatement(node);
+
+          case types.braceL:
+            return this.parseBlock();
+
+          case types.semi:
+            return this.parseEmptyStatement(node);
+
+          case types._export:
+          case types._import:
+            {
+              const nextTokenCharCode = this.lookaheadCharCode();
+
+              if (nextTokenCharCode === 40 || nextTokenCharCode === 46) {
+                break;
+              }
+
+              if (!this.options.allowImportExportEverywhere && !topLevel) {
+                this.raise(this.state.start, ErrorMessages.UnexpectedImportExport);
+              }
+
+              this.next();
+              let result;
+
+              if (starttype === types._import) {
+                result = this.parseImport(node);
+
+                if (result.type === "ImportDeclaration" && (!result.importKind || result.importKind === "value")) {
+                  this.sawUnambiguousESM = true;
+                }
+              } else {
+                result = this.parseExport(node);
+
+                if (result.type === "ExportNamedDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportAllDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportDefaultDeclaration") {
+                  this.sawUnambiguousESM = true;
+                }
+              }
+
+              this.assertModuleNodeAllowed(node);
+              return result;
+            }
+
+          default:
+            {
+              if (this.isAsyncFunction()) {
+                if (context) {
+                  this.raise(this.state.start, ErrorMessages.AsyncFunctionInSingleStatementContext);
+                }
+
+                this.next();
+                return this.parseFunctionStatement(node, true, !context);
+              }
+            }
+        }
+
+        const maybeName = this.state.value;
+        const expr = this.parseExpression();
+
+        if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) {
+          return this.parseLabeledStatement(node, maybeName, expr, context);
+        } else {
+          return this.parseExpressionStatement(node, expr);
+        }
+      }
+    ```
 11. parseStatement
 
     Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
