@@ -824,194 +824,194 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
     ```
 ### 12. parseBlockOrModuleBlockBody
 
-    The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
+The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
 
 
-    An octal literal in JavaScript is a way to represent an integer in base-8 (octal) numeral system. It uses digits from 0 to 7. In JavaScript, octal literals are denoted differently depending on whether they are in ES5 or ES6+. Before ECMAScript 2015 (ES6) we have **Legacy Octal Literals**: These begin with a leading zero (`0`). For example, `075` is interpreted as the octal number 75, which is 61 in decimal. However, using this form in strict mode will throw a syntax error because it is not allowed. From ECMAScript 2015 (ES6) onwards we have **ES6 Octal Literals**: These start with `0o` or `0O` (zero followed by a lowercase or uppercase letter "o"). For instance, `0o75` is interpreted as the octal number 75, which is 61 in decimal.
+An octal literal in JavaScript is a way to represent an integer in base-8 (octal) numeral system. It uses digits from 0 to 7. In JavaScript, octal literals are denoted differently depending on whether they are in ES5 or ES6+. Before ECMAScript 2015 (ES6) we have **Legacy Octal Literals**: These begin with a leading zero (`0`). For example, `075` is interpreted as the octal number 75, which is 61 in decimal. However, using this form in strict mode will throw a syntax error because it is not allowed. From ECMAScript 2015 (ES6) onwards we have **ES6 Octal Literals**: These start with `0o` or `0O` (zero followed by a lowercase or uppercase letter "o"). For instance, `0o75` is interpreted as the octal number 75, which is 61 in decimal.
 
-    ```js
-    var n = 075; // Before ECMAScript 2015 this would equal 61 in decimal
-    ```
-    but in strict mode:
-    ```js
-    "use strict";
-    var n = 075; // SyntaxError: Octal literals are not allowed in strict mode.
-    ```
-    Instead we have to use Modern Octal:
-    ```js
-    var n = 0o75; // This equals 61 in decimal
-    ```
+```js
+var n = 075; // Before ECMAScript 2015 this would equal 61 in decimal
+```
+but in strict mode:
+```js
+"use strict";
+var n = 075; // SyntaxError: Octal literals are not allowed in strict mode.
+```
+Instead we have to use Modern Octal:
+```js
+var n = 0o75; // This equals 61 in decimal
+```
 
-    The function begins by initializing an array `octalPositions` to track positions of octal literals and saving the current strict mode state in `oldStrict`. It also initializes two boolean flags: `hasStrictModeDirective` to track if a `"use strict"` directive is encountered, and `parsedNonDirective` to track if any non-directive statements have been parsed.
+The function begins by initializing an array `octalPositions` to track positions of octal literals and saving the current strict mode state in `oldStrict`. It also initializes two boolean flags: `hasStrictModeDirective` to track if a `"use strict"` directive is encountered, and `parsedNonDirective` to track if any non-directive statements have been parsed.
 
-    The function then enters a loop that continues until the `end` token is matched. Within the loop, it first checks if there are any octal literals before a `"use strict"` directive and stores their positions. It then parses a statement 
-    with `parseStatement` and if it is a "true statement" the corresponding AST it is pushed in the `body`. 
-    
-    If the statement is a valid directive and directives are allowed, it converts the statement to a directive using `stmtToDirective` and adds it to the `directives` array. If the directive is "use strict", it sets the strict mode to true.
+The function then enters a loop that continues until the `end` token is matched. Within the loop, it first checks if there are any octal literals before a `"use strict"` directive and stores their positions. It then parses a statement 
+with `parseStatement` and if it is a "true statement" the corresponding AST it is pushed in the `body`. 
 
-    After the loop, if `strict` mode is enabled and there are octal literals, it raises an error for each octal literal found before the `"use strict"` directive.
+If the statement is a valid directive and directives are allowed, it converts the statement to a directive using `stmtToDirective` and adds it to the `directives` array. If the directive is "use strict", it sets the strict mode to true.
 
-    Finally, if an `afterBlockParse` callback is provided, it is called with the `hasStrictModeDirective` flag. The function then restores the `strict` mode to its original state if it was not previously enabled and advances to the `next` token.
+After the loop, if `strict` mode is enabled and there are octal literals, it raises an error for each octal literal found before the `"use strict"` directive.
 
-    ```js 
-    parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
-      const octalPositions = [];
-      const oldStrict = this.state.strict;
-      let hasStrictModeDirective = false;
-      let parsedNonDirective = false;
+Finally, if an `afterBlockParse` callback is provided, it is called with the `hasStrictModeDirective` flag. The function then restores the `strict` mode to its original state if it was not previously enabled and advances to the `next` token.
 
-      while (!this.match(end)) {
-        if (!parsedNonDirective && this.state.octalPositions.length) {
-          octalPositions.push(...this.state.octalPositions);
-        }
+```js 
+parseBlockOrModuleBlockBody(body, directives, topLevel, end, afterBlockParse) {
+  const octalPositions = [];
+  const oldStrict = this.state.strict;
+  let hasStrictModeDirective = false;
+  let parsedNonDirective = false;
 
-        const stmt = this.parseStatement(null, topLevel); // <= Here
-
-        if (directives && !parsedNonDirective && this.isValidDirective(stmt)) {
-          const directive = this.stmtToDirective(stmt); // It is a directive
-          directives.push(directive);
-
-          if (!hasStrictModeDirective && directive.value.value === "use strict") {
-            hasStrictModeDirective = true;
-            this.setStrict(true);
-          }
-
-          continue;
-        }
-
-        parsedNonDirective = true;
-        body.push(stmt);
-      }
-
-      if (this.state.strict && octalPositions.length) {
-        for (let _i3 = 0; _i3 < octalPositions.length; _i3++) {
-          const pos = octalPositions[_i3];
-          this.raise(pos, ErrorMessages.StrictOctalLiteral);
-        }
-      }
-
-      if (afterBlockParse) {
-        afterBlockParse.call(this, hasStrictModeDirective);
-      }
-
-      if (!oldStrict) {
-        this.setStrict(false);
-      }
-
-      this.next();
+  while (!this.match(end)) {
+    if (!parsedNonDirective && this.state.octalPositions.length) {
+      octalPositions.push(...this.state.octalPositions);
     }
-    ```
+
+    const stmt = this.parseStatement(null, topLevel); // <= Here
+
+    if (directives && !parsedNonDirective && this.isValidDirective(stmt)) {
+      const directive = this.stmtToDirective(stmt); // It is a directive
+      directives.push(directive);
+
+      if (!hasStrictModeDirective && directive.value.value === "use strict") {
+        hasStrictModeDirective = true;
+        this.setStrict(true);
+      }
+
+      continue;
+    }
+
+    parsedNonDirective = true;
+    body.push(stmt);
+  }
+
+  if (this.state.strict && octalPositions.length) {
+    for (let _i3 = 0; _i3 < octalPositions.length; _i3++) {
+      const pos = octalPositions[_i3];
+      this.raise(pos, ErrorMessages.StrictOctalLiteral);
+    }
+  }
+
+  if (afterBlockParse) {
+    afterBlockParse.call(this, hasStrictModeDirective);
+  }
+
+  if (!oldStrict) {
+    this.setStrict(false);
+  }
+
+  this.next();
+}
+```
 ### 13. parseBlockBody
 
-    The `parseBlockBody` method takes several parameters: `node` which will store the AST for the block statement, `allowDirectives` (a boolean), `topLevel` (indicating whether the block is at the top level of the program), 
-    `end` (the token type that signifies the end of the block), and an optional `afterBlockParse` callback. The `body` array will hold the ASTs for the statements within the block, while the `directives` array will hold any directive prologues (like `"use strict"`). The method  calls `this.parseBlockOrModuleBlockBody`, which is responsible for the actual parsing of the block's contents.
-    
-    ```js
-    parseBlockBody(node, allowDirectives, topLevel, end, afterBlockParse) {
-      const body = node.body = [];
-      const directives = node.directives = [];
-      this.parseBlockOrModuleBlockBody(body, allowDirectives ? directives : undefined, topLevel, end, afterBlockParse);
-    }
-    ```
+The `parseBlockBody` method takes several parameters: `node` which will store the AST for the block statement, `allowDirectives` (a boolean), `topLevel` (indicating whether the block is at the top level of the program), 
+`end` (the token type that signifies the end of the block), and an optional `afterBlockParse` callback. The `body` array will hold the ASTs for the statements within the block, while the `directives` array will hold any directive prologues (like `"use strict"`). The method  calls `this.parseBlockOrModuleBlockBody`, which is responsible for the actual parsing of the block's contents.
+
+```js
+parseBlockBody(node, allowDirectives, topLevel, end, afterBlockParse) {
+  const body = node.body = [];
+  const directives = node.directives = [];
+  this.parseBlockOrModuleBlockBody(body, allowDirectives ? directives : undefined, topLevel, end, afterBlockParse);
+}
+```
 ### 14. parseTopLevel
-    
-    The `parseTopLevel` function is the entry point for parsing the top-level of a file. It initializes the `program` node
-    with the `sourceType` and `interpreter` properties, and then calls `parseBlockBody` to parse the body of the program.
-    
-    ```js
-    class StatementParser extends ExpressionParser {
-      parseTopLevel(file, program) {
-        program.sourceType = this.options.sourceType;
-        program.interpreter = this.parseInterpreterDirective();
-        this.parseBlockBody(program, true, true, types.eof);
 
-        if (this.inModule && !this.options.allowUndeclaredExports && this.scope.undefinedExports.size > 0) {
-          for (let _i = 0, _Array$from = Array.from(this.scope.undefinedExports); _i < _Array$from.length; _i++) {
-            const [name] = _Array$from[_i];
-            const pos = this.scope.undefinedExports.get(name);
-            this.raise(pos, ErrorMessages.ModuleExportUndefined, name);
-          }
-        }
+The `parseTopLevel` function is the entry point for parsing the top-level of a file. It initializes the `program` node
+with the `sourceType` and `interpreter` properties, and then calls `parseBlockBody` to parse the body of the program.
 
-        file.program = this.finishNode(program, "Program");
-        file.comments = this.state.comments;
-        if (this.options.tokens) file.tokens = this.tokens;
-        return this.finishNode(file, "File");
+```js
+class StatementParser extends ExpressionParser {
+  parseTopLevel(file, program) {
+    program.sourceType = this.options.sourceType;
+    program.interpreter = this.parseInterpreterDirective();
+    this.parseBlockBody(program, true, true, types.eof);
+
+    if (this.inModule && !this.options.allowUndeclaredExports && this.scope.undefinedExports.size > 0) {
+      for (let _i = 0, _Array$from = Array.from(this.scope.undefinedExports); _i < _Array$from.length; _i++) {
+        const [name] = _Array$from[_i];
+        const pos = this.scope.undefinedExports.get(name);
+        this.raise(pos, ErrorMessages.ModuleExportUndefined, name);
       }
-      ...
     }
-    ```
 
-    After parsing the program, the function checks for any `undefinedExports` in the module scope and raises an error if any are found. It then finishes the `program` and `file` nodes and returns the `file` node.
+    file.program = this.finishNode(program, "Program");
+    file.comments = this.state.comments;
+    if (this.options.tokens) file.tokens = this.tokens;
+    return this.finishNode(file, "File");
+  }
+  ...
+}
+```
+
+After parsing the program, the function checks for any `undefinedExports` in the module scope and raises an error if any are found. It then finishes the `program` and `file` nodes and returns the `file` node.
 ### 15. parse
     
-    Once what kind of source and what kind of parser to use is determined, the appropriate `parse` function is called. 
-    A check for the presence of a  `topLevelAwait` is done here to decide whether we are running in async mode or not. 
-    After initialization of the scope and creation of the upper AST nodes, we get the initial token and the `parseTopLevel` function is then called with the `file` and `program` nodes. The function returns the root node of the AST: `file`.
-    The parsing starts!
+Once what kind of source and what kind of parser to use is determined, the appropriate `parse` function is called. 
+A check for the presence of a  `topLevelAwait` is done here to decide whether we are running in async mode or not. 
+After initialization of the scope and creation of the upper AST nodes, we get the initial token and the `parseTopLevel` function is then called with the `file` and `program` nodes. The function returns the root node of the AST: `file`.
+The parsing starts!
 
-    ```js
-    parse() {
-      let paramFlags = PARAM;
+```js
+parse() {
+  let paramFlags = PARAM;
 
-      if (this.hasPlugin("topLevelAwait") && this.inModule) {
-        paramFlags |= PARAM_AWAIT;
-      }
+  if (this.hasPlugin("topLevelAwait") && this.inModule) {
+    paramFlags |= PARAM_AWAIT;
+  }
 
-      this.scope.enter(SCOPE_PROGRAM);
-      this.prodParam.enter(paramFlags);
-      const file = this.startNode();
-      const program = this.startNode();
-      this.nextToken();
-      file.errors = null;
-      this.parseTopLevel(file, program); // <= Here
-      file.errors = this.state.errors;
-      return file;
-    }
-    ```
+  this.scope.enter(SCOPE_PROGRAM);
+  this.prodParam.enter(paramFlags);
+  const file = this.startNode();
+  const program = this.startNode();
+  this.nextToken();
+  file.errors = null;
+  this.parseTopLevel(file, program); // <= Here
+  file.errors = this.state.errors;
+  return file;
+}
+```
 ### 16. parse 
     
-    See line `getParser(options, input).parse();` below at function `parse`. Babel.js supports two source types: `script` and `module`. The `sourceType` option can be set to `script` or `module`. If the `sourceType` is `unambiguous`, Babel will try to parse the input as a module. If it fails, it will try to parse it as a script.
+See line `getParser(options, input).parse();` below at function `parse`. Babel.js supports two source types: `script` and `module`. The `sourceType` option can be set to `script` or `module`. If the `sourceType` is `unambiguous`, Babel will try to parse the input as a module. If it fails, it will try to parse it as a script.
 
-    ```js
-    function parse(input, options) {
-      var _options;
+```js
+function parse(input, options) {
+  var _options;
 
-      if (((_options = options) == null ? void 0 : _options.sourceType) === "unambiguous") {
-        options = Object.assign({}, options);
+  if (((_options = options) == null ? void 0 : _options.sourceType) === "unambiguous") {
+    options = Object.assign({}, options);
 
-        try {
-          options.sourceType = "module";
-          const parser = getParser(options, input);
-          const ast = parser.parse();
+    try {
+      options.sourceType = "module";
+      const parser = getParser(options, input);
+      const ast = parser.parse();
 
-          if (parser.sawUnambiguousESM) {
-            return ast;
-          }
-
-          if (parser.ambiguousScriptDifferentAst) {
-            try {
-              options.sourceType = "script";
-              return getParser(options, input).parse();
-            } catch (_unused) {}
-          } else {
-            ast.program.sourceType = "script";
-          }
-
-          return ast;
-        } catch (moduleError) {
-          try {
-            options.sourceType = "script";
-            return getParser(options, input).parse(); 
-          } catch (_unused2) {}
-
-          throw moduleError;
-        }
-      } else {
-        return getParser(options, input).parse(); // <= Here
+      if (parser.sawUnambiguousESM) {
+        return ast;
       }
+
+      if (parser.ambiguousScriptDifferentAst) {
+        try {
+          options.sourceType = "script";
+          return getParser(options, input).parse();
+        } catch (_unused) {}
+      } else {
+        ast.program.sourceType = "script";
+      }
+
+      return ast;
+    } catch (moduleError) {
+      try {
+        options.sourceType = "script";
+        return getParser(options, input).parse(); 
+      } catch (_unused2) {}
+
+      throw moduleError;
     }
-    ```
+  } else {
+    return getParser(options, input).parse(); // <= Here
+  }
+}
+```
 
 ## Variables
 
