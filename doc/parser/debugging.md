@@ -154,8 +154,8 @@ In summary, Babel supports several JavaScript-related grammars, including ECMASc
 
 When you run the parser, you can see the call stack in the Chrome DevTools when it stops on the `next` breakpoint. Read the call stack from bottom to top. 
 
-1. next 
-2. parseLiteral
+### 1. next 
+### 2. parseLiteral
 
    ```js 
     parseLiteral(value, type, startPos, startLoc) {  // 42, type="NumericLiteral", startPos=0, startLoc=Position{line: 1, column: 0}
@@ -169,7 +169,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
         return this.finishNode(node, type);
       }
    ```
-3. parseExprAtom
+### 3. parseExprAtom
 
    ```js
     parseExprAtom(refExpressionErrors) { // ExpressionErrors { doubleProto: -1, shorthandAssign: -1 }
@@ -425,7 +425,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       }
     }
    ```
-4. parseExprSubscripts
+### 4. parseExprSubscripts
 
    ```js 
     parseExprSubscripts(refExpressionErrors) {
@@ -441,7 +441,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       return this.parseSubscripts(expr, startPos, startLoc);
     }  
    ```
-5. parseMaybeUnary
+### 5. parseMaybeUnary
 
    ```js
     parseMaybeUnary(refExpressionErrors) {
@@ -494,7 +494,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       return expr;
     }  
    ```
-6. parseExprOps
+### 6. parseExprOps
 
    ```js
     parseExprOps(noIn, refExpressionErrors) {
@@ -514,7 +514,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       return this.parseExprOp(expr, startPos, startLoc, -1, noIn);
     }
    ```
-7. parseMaybeConditional
+### 7. parseMaybeConditional
 
    ```js 
     parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos) {
@@ -531,7 +531,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       return this.parseConditional(expr, noIn, startPos, startLoc, refNeedsArrowPos);
     }
    ```
-8. parseMaybeAssign
+### 8. parseMaybeAssign
 
     ```js 
     class CommentsParser extends BaseParser {
@@ -634,7 +634,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       ...
     }
     ```
-9.  parseExpression
+### 9.  parseExpression
 
     ```js 
     parseExpression(noIn, refExpressionErrors) { // noIn and refExpressionErrors are undefined
@@ -658,7 +658,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
     }
     ```
 
-10. parseStatementContent
+### 10. parseStatementContent
 
     ```js 
       parseStatementContent(context, topLevel) { // Was called with null, topLevel
@@ -808,7 +808,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       }
       ```
   
-11. parseStatement
+### 11. parseStatement
 
     Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
     [/src/awesome/tc39-decorators](/src/awesome/tc39-decorators/)
@@ -822,7 +822,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       return this.parseStatementContent(context, topLevel); // <= Here
     }
     ```
-12. parseBlockOrModuleBlockBody
+### 12. parseBlockOrModuleBlockBody
 
     The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
 
@@ -901,7 +901,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       this.next();
     }
     ```
-13. parseBlockBody
+### 13. parseBlockBody
 
     The `parseBlockBody` method takes several parameters: `node` which will store the AST for the block statement, `allowDirectives` (a boolean), `topLevel` (indicating whether the block is at the top level of the program), 
     `end` (the token type that signifies the end of the block), and an optional `afterBlockParse` callback. The `body` array will hold the ASTs for the statements within the block, while the `directives` array will hold any directive prologues (like `"use strict"`). The method  calls `this.parseBlockOrModuleBlockBody`, which is responsible for the actual parsing of the block's contents.
@@ -913,7 +913,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       this.parseBlockOrModuleBlockBody(body, allowDirectives ? directives : undefined, topLevel, end, afterBlockParse);
     }
     ```
-14. parseTopLevel
+### 14. parseTopLevel
     
     The `parseTopLevel` function is the entry point for parsing the top-level of a file. It initializes the `program` node
     with the `sourceType` and `interpreter` properties, and then calls `parseBlockBody` to parse the body of the program.
@@ -943,7 +943,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
     ```
 
     After parsing the program, the function checks for any `undefinedExports` in the module scope and raises an error if any are found. It then finishes the `program` and `file` nodes and returns the `file` node.
-15. parse
+### 15. parse
     
     Once what kind of source and what kind of parser to use is determined, the appropriate `parse` function is called. 
     A check for the presence of a  `topLevelAwait` is done here to decide whether we are running in async mode or not. 
@@ -969,7 +969,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       return file;
     }
     ```
-16. parse 
+### 16. parse 
     
     See line `getParser(options, input).parse();` below at function `parse`. Babel.js supports two source types: `script` and `module`. The `sourceType` option can be set to `script` or `module`. If the `sourceType` is `unambiguous`, Babel will try to parse the input as a module. If it fails, it will try to parse it as a script.
 
