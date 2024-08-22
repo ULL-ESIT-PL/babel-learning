@@ -399,9 +399,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       }
     ```
 
-    In JavaScript, strict mode (`"use strict";`) imposes certain restrictions to prevent common coding mistakes and to make the code more predictable. One such restriction involves function declarations.
-
-    - In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
+    In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
 
       ```javascript
       "use strict";
