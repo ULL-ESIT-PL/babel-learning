@@ -159,6 +159,58 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 3. parseExprAtom
 4. parseExprSubscripts
 5. parseMaybeUnary
+
+   ```js
+    parseMaybeUnary(refExpressionErrors) {
+      if (this.isContextual("await") && this.isAwaitAllowed()) {
+        return this.parseAwait();
+      } else if (this.state.type.prefix) {
+        const node = this.startNode();
+        const update = this.match(types.incDec);
+        node.operator = this.state.value;
+        node.prefix = true;
+
+        if (node.operator === "throw") {
+          this.expectPlugin("throwExpressions");
+        }
+
+        this.next();
+        node.argument = this.parseMaybeUnary();
+        this.checkExpressionErrors(refExpressionErrors, true);
+
+        if (update) {
+          this.checkLVal(node.argument, undefined, undefined, "prefix operation");
+        } else if (this.state.strict && node.operator === "delete") {
+          const arg = node.argument;
+
+          if (arg.type === "Identifier") {
+            this.raise(node.start, ErrorMessages.StrictDelete);
+          } else if ((arg.type === "MemberExpression" || arg.type === "OptionalMemberExpression") && arg.property.type === "PrivateName") {
+            this.raise(node.start, ErrorMessages.DeletePrivateField);
+          }
+        }
+
+        return this.finishNode(node, update ? "UpdateExpression" : "UnaryExpression");
+      }
+
+      const startPos = this.state.start;
+      const startLoc = this.state.startLoc;
+      let expr = this.parseExprSubscripts(refExpressionErrors);
+      if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
+
+      while (this.state.type.postfix && !this.canInsertSemicolon()) {
+        const node = this.startNodeAt(startPos, startLoc);
+        node.operator = this.state.value;
+        node.prefix = false;
+        node.argument = expr;
+        this.checkLVal(expr, undefined, undefined, "postfix operation");
+        this.next();
+        expr = this.finishNode(node, "UpdateExpression");
+      }
+
+      return expr;
+    }  
+   ```
 6. parseExprOps
 
    ```js
