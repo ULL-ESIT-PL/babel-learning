@@ -158,6 +158,21 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 2. parseLiteral
 3. parseExprAtom
 4. parseExprSubscripts
+
+   ```js 
+    parseExprSubscripts(refExpressionErrors) {
+      const startPos = this.state.start;
+      const startLoc = this.state.startLoc;
+      const potentialArrowAt = this.state.potentialArrowAt;
+      const expr = this.parseExprAtom(refExpressionErrors); // <= Here
+
+      if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
+        return expr;
+      }
+
+      return this.parseSubscripts(expr, startPos, startLoc);
+    }  
+   ```
 5. parseMaybeUnary
 
    ```js
