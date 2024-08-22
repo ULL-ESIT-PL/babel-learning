@@ -403,18 +403,18 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 
     - In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
 
-     ```javascript
-     "use strict";
-     if (true) {
-         function sayHello() {
-             console.log("Hello");
-         }
-     }
-     ```
+      ```javascript
+      "use strict";
+      if (true) {
+          function sayHello() {
+              console.log("Hello");
+          }
+      }
+      ```
 
-     In strict mode, this will throw a `SyntaxError`. Function declarations should not be used within blocks like `if`, `for`, etc. Instead, you can use function expressions or declare functions at the top level.
+      In strict mode, this will throw a `SyntaxError`. Function declarations should not be used within blocks like `if`, `for`, etc. Instead, you can use function expressions or declare functions at the top level.
 
-     - **Correct Approach**:
+      Correct Approach:
        ```javascript
        "use strict";
        let sayHello;
@@ -424,9 +424,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
            };
        }
        ```
-
- 
- 
+  
 ### Summary
 
 In strict mode, function declarations are not allowed:
