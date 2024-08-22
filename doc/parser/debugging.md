@@ -660,168 +660,168 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 
 ### 10. parseStatementContent
 
-    ```js 
-      parseStatementContent(context, topLevel) { // Was called with null, topLevel
-        let starttype = this.state.type; // The type of the current token
-        const node = this.startNode();   // A new AST node is initialized 
-        let kind;                        // To track the type of variable declaration 
+```js 
+  parseStatementContent(context, topLevel) { // Was called with null, topLevel
+    let starttype = this.state.type; // The type of the current token
+    const node = this.startNode();   // A new AST node is initialized 
+    let kind;                        // To track the type of variable declaration 
 
-        if (this.isLet(context)) {
-          starttype = types._var;
-          kind = "let";
-        }
+    if (this.isLet(context)) {
+      starttype = types._var;
+      kind = "let";
+    }
 
-        switch (starttype) { // Delegates to different parsing functions based on the type of statement. match
-          case types._break: // None of the cases match
-          case types._continue:
-            return this.parseBreakContinueStatement(node, starttype.keyword);
+    switch (starttype) { // Delegates to different parsing functions based on the type of statement. match
+      case types._break: // None of the cases match
+      case types._continue:
+        return this.parseBreakContinueStatement(node, starttype.keyword);
 
-          case types._debugger:
-            return this.parseDebuggerStatement(node);
+      case types._debugger:
+        return this.parseDebuggerStatement(node);
 
-          case types._do:
-            return this.parseDoStatement(node);
+      case types._do:
+        return this.parseDoStatement(node);
 
-          case types._for:
-            return this.parseForStatement(node);
+      case types._for:
+        return this.parseForStatement(node);
 
-          case types._function:
-            if (this.lookaheadCharCode() === 46) break; // If the next token is a `.` symbol
-                                                        // Like `obj.function.name`
-            if (context) {
-              if (this.state.strict) {
-                this.raise(this.state.start, ErrorMessages.StrictFunction);
-              } else if (context !== "if" && context !== "label") {
-                this.raise(this.state.start, ErrorMessages.SloppyFunction);
-              }
-            }
-
-            return this.parseFunctionStatement(node, false, !context);
-
-          case types._class:
-            if (context) this.unexpected();
-            return this.parseClass(node, true);
-
-          case types._if:
-            return this.parseIfStatement(node);
-
-          case types._return:
-            return this.parseReturnStatement(node);
-
-          case types._switch:
-            return this.parseSwitchStatement(node);
-
-          case types._throw:
-            return this.parseThrowStatement(node);
-
-          case types._try:
-            return this.parseTryStatement(node);
-
-          case types._const:
-          case types._var:
-            kind = kind || this.state.value;
-
-            if (context && kind !== "var") {
-              this.raise(this.state.start, ErrorMessages.UnexpectedLexicalDeclaration);
-            }
-
-            return this.parseVarStatement(node, kind);
-
-          case types._while:
-            return this.parseWhileStatement(node);
-
-          case types._with:
-            return this.parseWithStatement(node);
-
-          case types.braceL:
-            return this.parseBlock();
-
-          case types.semi:
-            return this.parseEmptyStatement(node);
-
-          case types._export:
-          case types._import:
-            {
-              const nextTokenCharCode = this.lookaheadCharCode();
-
-              if (nextTokenCharCode === 40 || nextTokenCharCode === 46) { // If the next token is a `(` or `.` symbol
-                break;
-              }
-
-              if (!this.options.allowImportExportEverywhere && !topLevel) {
-                this.raise(this.state.start, ErrorMessages.UnexpectedImportExport);
-              }
-
-              this.next();
-              let result;
-
-              if (starttype === types._import) {
-                result = this.parseImport(node);
-
-                if (result.type === "ImportDeclaration" && (!result.importKind || result.importKind === "value")) {
-                  this.sawUnambiguousESM = true;
-                }
-              } else {
-                result = this.parseExport(node);
-
-                if (result.type === "ExportNamedDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportAllDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportDefaultDeclaration") {
-                  this.sawUnambiguousESM = true;
-                }
-              }
-
-              this.assertModuleNodeAllowed(node);
-              return result;
-            }
-
-          default:
-            {
-              if (this.isAsyncFunction()) {
-                if (context) {
-                  this.raise(this.state.start, ErrorMessages.AsyncFunctionInSingleStatementContext);
-                }
-
-                this.next();
-                return this.parseFunctionStatement(node, true, !context);
-              }
-            }
-        }
-
-        const maybeName = this.state.value;  // 42 since the input was `42+3`
-        const expr = this.parseExpression(); // <= Here
-
-        if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) { // label: statement
-          return this.parseLabeledStatement(node, maybeName, expr, context);
-        } else {
-          return this.parseExpressionStatement(node, expr);
-        }
-      }
-    ```
-
-    In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
-
-      ```javascript
-      "use strict";
-      if (true) {
-          function sayHello() {
-              console.log("Hello");
+      case types._function:
+        if (this.lookaheadCharCode() === 46) break; // If the next token is a `.` symbol
+                                                    // Like `obj.function.name`
+        if (context) {
+          if (this.state.strict) {
+            this.raise(this.state.start, ErrorMessages.StrictFunction);
+          } else if (context !== "if" && context !== "label") {
+            this.raise(this.state.start, ErrorMessages.SloppyFunction);
           }
+        }
+
+        return this.parseFunctionStatement(node, false, !context);
+
+      case types._class:
+        if (context) this.unexpected();
+        return this.parseClass(node, true);
+
+      case types._if:
+        return this.parseIfStatement(node);
+
+      case types._return:
+        return this.parseReturnStatement(node);
+
+      case types._switch:
+        return this.parseSwitchStatement(node);
+
+      case types._throw:
+        return this.parseThrowStatement(node);
+
+      case types._try:
+        return this.parseTryStatement(node);
+
+      case types._const:
+      case types._var:
+        kind = kind || this.state.value;
+
+        if (context && kind !== "var") {
+          this.raise(this.state.start, ErrorMessages.UnexpectedLexicalDeclaration);
+        }
+
+        return this.parseVarStatement(node, kind);
+
+      case types._while:
+        return this.parseWhileStatement(node);
+
+      case types._with:
+        return this.parseWithStatement(node);
+
+      case types.braceL:
+        return this.parseBlock();
+
+      case types.semi:
+        return this.parseEmptyStatement(node);
+
+      case types._export:
+      case types._import:
+        {
+          const nextTokenCharCode = this.lookaheadCharCode();
+
+          if (nextTokenCharCode === 40 || nextTokenCharCode === 46) { // If the next token is a `(` or `.` symbol
+            break;
+          }
+
+          if (!this.options.allowImportExportEverywhere && !topLevel) {
+            this.raise(this.state.start, ErrorMessages.UnexpectedImportExport);
+          }
+
+          this.next();
+          let result;
+
+          if (starttype === types._import) {
+            result = this.parseImport(node);
+
+            if (result.type === "ImportDeclaration" && (!result.importKind || result.importKind === "value")) {
+              this.sawUnambiguousESM = true;
+            }
+          } else {
+            result = this.parseExport(node);
+
+            if (result.type === "ExportNamedDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportAllDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportDefaultDeclaration") {
+              this.sawUnambiguousESM = true;
+            }
+          }
+
+          this.assertModuleNodeAllowed(node);
+          return result;
+        }
+
+      default:
+        {
+          if (this.isAsyncFunction()) {
+            if (context) {
+              this.raise(this.state.start, ErrorMessages.AsyncFunctionInSingleStatementContext);
+            }
+
+            this.next();
+            return this.parseFunctionStatement(node, true, !context);
+          }
+        }
+    }
+
+    const maybeName = this.state.value;  // 42 since the input was `42+3`
+    const expr = this.parseExpression(); // <= Here
+
+    if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) { // label: statement
+      return this.parseLabeledStatement(node, maybeName, expr, context);
+    } else {
+      return this.parseExpressionStatement(node, expr);
+    }
+  }
+```
+
+In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
+
+  ```javascript
+  "use strict";
+  if (true) {
+      function sayHello() {
+          console.log("Hello");
       }
-      ```
+  }
+  ```
   
 ### 11. parseStatement
 
-    Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
-    [/src/awesome/tc39-decorators](/src/awesome/tc39-decorators/)
+Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
+[/src/awesome/tc39-decorators](/src/awesome/tc39-decorators/)
 
-    ```js
-    parseStatement(context, topLevel) {  // Was called with null, topLevel
-      if (this.match(types.at)) { // if the current token is an `@` symbol: decorators
-        this.parseDecorators(true);
-      }
+```js
+parseStatement(context, topLevel) {  // Was called with null, topLevel
+  if (this.match(types.at)) { // if the current token is an `@` symbol: decorators
+    this.parseDecorators(true);
+  }
 
-      return this.parseStatementContent(context, topLevel); // <= Here
-    }
-    ```
+  return this.parseStatementContent(context, topLevel); // <= Here
+}
+```
 ### 12. parseBlockOrModuleBlockBody
 
 The `parseBlockOrModuleBlockBody` function is responsible for parsing the body of a block or module block in a JavaScript program. 
