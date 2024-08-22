@@ -267,7 +267,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
           }
 
         case types.num:
-          return this.parseLiteral(this.state.value, "NumericLiteral");
+          return this.parseLiteral(this.state.value, "NumericLiteral"); // <= Here
 
         case types.bigint:
           return this.parseLiteral(this.state.value, "BigIntLiteral");
