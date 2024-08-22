@@ -156,6 +156,19 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 
 1. next 
 2. parseLiteral
+
+   ```js 
+    parseLiteral(value, type, startPos, startLoc) {  // 42, type="NumericLiteral", startPos=0, startLoc=Position{line: 1, column: 0}
+        startPos = startPos || this.state.start;
+        startLoc = startLoc || this.state.startLoc;
+        const node = this.startNodeAt(startPos, startLoc);
+        this.addExtra(node, "rawValue", value);
+        this.addExtra(node, "raw", this.input.slice(startPos, this.state.end));
+        node.value = value;
+        this.next(); // <= Here
+        return this.finishNode(node, type);
+      }
+   ```
 3. parseExprAtom
 
    ```js
