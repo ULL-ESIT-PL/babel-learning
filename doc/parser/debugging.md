@@ -195,7 +195,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 
       const startPos = this.state.start;
       const startLoc = this.state.startLoc;
-      let expr = this.parseExprSubscripts(refExpressionErrors);
+      let expr = this.parseExprSubscripts(refExpressionErrors); // <= Here
       if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
 
       while (this.state.type.postfix && !this.canInsertSemicolon()) {
