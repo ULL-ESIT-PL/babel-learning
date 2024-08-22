@@ -172,7 +172,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 3. parseExprAtom
 
    ```js
-    parseExprAtom(refExpressionErrors) {
+    parseExprAtom(refExpressionErrors) { // ExpressionErrors { doubleProto: -1, shorthandAssign: -1 }
       if (this.state.type === types.slash) this.readRegexp();
       const canBeArrow = this.state.potentialArrowAt === this.state.start;
       let node;
@@ -808,14 +808,6 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       }
       ```
   
-### Summary
-
-In strict mode, function declarations are not allowed:
-
-- Inside blocks (non-top-level scopes, like `if`, `for`, etc.)
-- Inside `eval()` expressions
-
-To adhere to strict mode's rules, you should use function expressions or ensure that function declarations are made at the top level of your code.
 11. parseStatement
 
     Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
