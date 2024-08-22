@@ -533,93 +533,91 @@ parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos) {
 ```
 ### 8. parseMaybeAssign
 
-    ```js 
-    class CommentsParser extends BaseParser {
+  ```js 
+  class CommentsParser extends BaseParser {
+    ...
+    class ParserError extends CommentsParser {
       ...
-      class ParserError extends CommentsParser {
+      class Tokenizer extends ParserError {
         ...
-        class Tokenizer extends ParserError {
+        class UtilParser extends Tokenizer {
           ...
-          class UtilParser extends Tokenizer {
+          class NodeUtils extends UtilParser {
             ...
-            class NodeUtils extends UtilParser {
+            class LValParser extends NodeUtils {
               ...
-              class LValParser extends NodeUtils {
+              class ExpressionParser extends LValParser {
                 ...
-                class ExpressionParser extends LValParser {
-                  ...
-                  parseMaybeAssign(noIn, refExpressionErrors, afterLeftParse, refNeedsArrowPos) { // undefined all
-                    const startPos = this.state.start;
-                    const startLoc = this.state.startLoc;
+                parseMaybeAssign(noIn, refExpressionErrors, afterLeftParse, refNeedsArrowPos) { // undefined all
+                  const startPos = this.state.start;
+                  const startLoc = this.state.startLoc;
 
-                    if (this.isContextual("yield")) {
-                      if (this.prodParam.hasYield) {
-                        let left = this.parseYield(noIn);
+                  if (this.isContextual("yield")) {
+                    if (this.prodParam.hasYield) {
+                      let left = this.parseYield(noIn);
 
-                        if (afterLeftParse) {
-                          left = afterLeftParse.call(this, left, startPos, startLoc);
-                        }
-
-                        return left;
-                      } else {
-                        this.state.exprAllowed = false;
+                      if (afterLeftParse) {
+                        left = afterLeftParse.call(this, left, startPos, startLoc);
                       }
-                    }
 
-                    let ownExpressionErrors;
-
-                    if (refExpressionErrors) {
-                      ownExpressionErrors = false;
+                      return left;
                     } else {
-                      refExpressionErrors = new ExpressionErrors();
-                      ownExpressionErrors = true;
+                      this.state.exprAllowed = false;
                     }
-
-                    if (this.match(types.parenL) || this.match(types.name)) {
-                      this.state.potentialArrowAt = this.state.start;
-                    }
-
-                    let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos); // <= Here
-
-                    if (afterLeftParse) {
-                      left = afterLeftParse.call(this, left, startPos, startLoc);
-                    }
-
-                    if (this.state.type.isAssign) { // Not the case
-                      const node = this.startNodeAt(startPos, startLoc);
-                      const operator = this.state.value;
-                      node.operator = operator;
-
-                      if (operator === "??=") {
-                        this.expectPlugin("logicalAssignment");
-                      }
-
-                      if (operator === "||=" || operator === "&&=") {
-                        this.expectPlugin("logicalAssignment");
-                      }
-
-                      if (this.match(types.eq)) {
-                        node.left = this.toAssignable(left);
-                        refExpressionErrors.doubleProto = -1;
-                      } else {
-                        node.left = left;
-                      }
-
-                      if (refExpressionErrors.shorthandAssign >= node.left.start) {
-                        refExpressionErrors.shorthandAssign = -1;
-                      }
-
-                      this.checkLVal(left, undefined, undefined, "assignment expression");
-                      this.next();
-                      node.right = this.parseMaybeAssign(noIn);
-                      return this.finishNode(node, "AssignmentExpression");
-                    } else if (ownExpressionErrors) {
-                      this.checkExpressionErrors(refExpressionErrors, true);
-                    }
-
-                    return left;
                   }
-                  ...
+
+                  let ownExpressionErrors;
+
+                  if (refExpressionErrors) {
+                    ownExpressionErrors = false;
+                  } else {
+                    refExpressionErrors = new ExpressionErrors();
+                    ownExpressionErrors = true;
+                  }
+
+                  if (this.match(types.parenL) || this.match(types.name)) {
+                    this.state.potentialArrowAt = this.state.start;
+                  }
+
+                  let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos); // <= Here
+
+                  if (afterLeftParse) {
+                    left = afterLeftParse.call(this, left, startPos, startLoc);
+                  }
+
+                  if (this.state.type.isAssign) { // Not the case
+                    const node = this.startNodeAt(startPos, startLoc);
+                    const operator = this.state.value;
+                    node.operator = operator;
+
+                    if (operator === "??=") {
+                      this.expectPlugin("logicalAssignment");
+                    }
+
+                    if (operator === "||=" || operator === "&&=") {
+                      this.expectPlugin("logicalAssignment");
+                    }
+
+                    if (this.match(types.eq)) {
+                      node.left = this.toAssignable(left);
+                      refExpressionErrors.doubleProto = -1;
+                    } else {
+                      node.left = left;
+                    }
+
+                    if (refExpressionErrors.shorthandAssign >= node.left.start) {
+                      refExpressionErrors.shorthandAssign = -1;
+                    }
+
+                    this.checkLVal(left, undefined, undefined, "assignment expression");
+                    this.next();
+                    node.right = this.parseMaybeAssign(noIn);
+                    return this.finishNode(node, "AssignmentExpression");
+                  } else if (ownExpressionErrors) {
+                    this.checkExpressionErrors(refExpressionErrors, true);
+                  }
+
+                  return left;
                 }
                 ...
               }
@@ -633,180 +631,182 @@ parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos) {
       }
       ...
     }
-    ```
+    ...
+  }
+  ```
 ### 9.  parseExpression
 
-    ```js 
-    parseExpression(noIn, refExpressionErrors) { // noIn and refExpressionErrors are undefined
-      const startPos = this.state.start;
-      const startLoc = this.state.startLoc;
-      const expr = this.parseMaybeAssign(noIn, refExpressionErrors); // <= Here
+  ```js 
+  parseExpression(noIn, refExpressionErrors) { // noIn and refExpressionErrors are undefined
+    const startPos = this.state.start;
+    const startLoc = this.state.startLoc;
+    const expr = this.parseMaybeAssign(noIn, refExpressionErrors); // <= Here
 
-      if (this.match(types.comma)) { // 42+3, 4+5, 9
-        const node = this.startNodeAt(startPos, startLoc);
-        node.expressions = [expr];
+    if (this.match(types.comma)) { // 42+3, 4+5, 9
+      const node = this.startNodeAt(startPos, startLoc);
+      node.expressions = [expr];
 
-        while (this.eat(types.comma)) {
-          node.expressions.push(this.parseMaybeAssign(noIn, refExpressionErrors));
-        }
-
-        this.toReferencedList(node.expressions);
-        return this.finishNode(node, "SequenceExpression"); // Build a SequenceExpression node
+      while (this.eat(types.comma)) {
+        node.expressions.push(this.parseMaybeAssign(noIn, refExpressionErrors));
       }
 
-      return expr;
+      this.toReferencedList(node.expressions);
+      return this.finishNode(node, "SequenceExpression"); // Build a SequenceExpression node
     }
-    ```
+
+    return expr;
+  }
+  ```
 
 ### 10. parseStatementContent
 
 ```js 
-  parseStatementContent(context, topLevel) { // Was called with null, topLevel
-    let starttype = this.state.type; // The type of the current token
-    const node = this.startNode();   // A new AST node is initialized 
-    let kind;                        // To track the type of variable declaration 
+parseStatementContent(context, topLevel) { // Was called with null, topLevel
+  let starttype = this.state.type; // The type of the current token
+  const node = this.startNode();   // A new AST node is initialized 
+  let kind;                        // To track the type of variable declaration 
 
-    if (this.isLet(context)) {
-      starttype = types._var;
-      kind = "let";
-    }
+  if (this.isLet(context)) {
+    starttype = types._var;
+    kind = "let";
+  }
 
-    switch (starttype) { // Delegates to different parsing functions based on the type of statement. match
-      case types._break: // None of the cases match
-      case types._continue:
-        return this.parseBreakContinueStatement(node, starttype.keyword);
+  switch (starttype) { // Delegates to different parsing functions based on the type of statement. match
+    case types._break: // None of the cases match
+    case types._continue:
+      return this.parseBreakContinueStatement(node, starttype.keyword);
 
-      case types._debugger:
-        return this.parseDebuggerStatement(node);
+    case types._debugger:
+      return this.parseDebuggerStatement(node);
 
-      case types._do:
-        return this.parseDoStatement(node);
+    case types._do:
+      return this.parseDoStatement(node);
 
-      case types._for:
-        return this.parseForStatement(node);
+    case types._for:
+      return this.parseForStatement(node);
 
-      case types._function:
-        if (this.lookaheadCharCode() === 46) break; // If the next token is a `.` symbol
-                                                    // Like `obj.function.name`
-        if (context) {
-          if (this.state.strict) {
-            this.raise(this.state.start, ErrorMessages.StrictFunction);
-          } else if (context !== "if" && context !== "label") {
-            this.raise(this.state.start, ErrorMessages.SloppyFunction);
+    case types._function:
+      if (this.lookaheadCharCode() === 46) break; // If the next token is a `.` symbol
+                                                  // Like `obj.function.name`
+      if (context) {
+        if (this.state.strict) {
+          this.raise(this.state.start, ErrorMessages.StrictFunction);
+        } else if (context !== "if" && context !== "label") {
+          this.raise(this.state.start, ErrorMessages.SloppyFunction);
+        }
+      }
+
+      return this.parseFunctionStatement(node, false, !context);
+
+    case types._class:
+      if (context) this.unexpected();
+      return this.parseClass(node, true);
+
+    case types._if:
+      return this.parseIfStatement(node);
+
+    case types._return:
+      return this.parseReturnStatement(node);
+
+    case types._switch:
+      return this.parseSwitchStatement(node);
+
+    case types._throw:
+      return this.parseThrowStatement(node);
+
+    case types._try:
+      return this.parseTryStatement(node);
+
+    case types._const:
+    case types._var:
+      kind = kind || this.state.value;
+
+      if (context && kind !== "var") {
+        this.raise(this.state.start, ErrorMessages.UnexpectedLexicalDeclaration);
+      }
+
+      return this.parseVarStatement(node, kind);
+
+    case types._while:
+      return this.parseWhileStatement(node);
+
+    case types._with:
+      return this.parseWithStatement(node);
+
+    case types.braceL:
+      return this.parseBlock();
+
+    case types.semi:
+      return this.parseEmptyStatement(node);
+
+    case types._export:
+    case types._import:
+      {
+        const nextTokenCharCode = this.lookaheadCharCode();
+
+        if (nextTokenCharCode === 40 || nextTokenCharCode === 46) { // If the next token is a `(` or `.` symbol
+          break;
+        }
+
+        if (!this.options.allowImportExportEverywhere && !topLevel) {
+          this.raise(this.state.start, ErrorMessages.UnexpectedImportExport);
+        }
+
+        this.next();
+        let result;
+
+        if (starttype === types._import) {
+          result = this.parseImport(node);
+
+          if (result.type === "ImportDeclaration" && (!result.importKind || result.importKind === "value")) {
+            this.sawUnambiguousESM = true;
+          }
+        } else {
+          result = this.parseExport(node);
+
+          if (result.type === "ExportNamedDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportAllDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportDefaultDeclaration") {
+            this.sawUnambiguousESM = true;
           }
         }
 
-        return this.parseFunctionStatement(node, false, !context);
+        this.assertModuleNodeAllowed(node);
+        return result;
+      }
 
-      case types._class:
-        if (context) this.unexpected();
-        return this.parseClass(node, true);
-
-      case types._if:
-        return this.parseIfStatement(node);
-
-      case types._return:
-        return this.parseReturnStatement(node);
-
-      case types._switch:
-        return this.parseSwitchStatement(node);
-
-      case types._throw:
-        return this.parseThrowStatement(node);
-
-      case types._try:
-        return this.parseTryStatement(node);
-
-      case types._const:
-      case types._var:
-        kind = kind || this.state.value;
-
-        if (context && kind !== "var") {
-          this.raise(this.state.start, ErrorMessages.UnexpectedLexicalDeclaration);
-        }
-
-        return this.parseVarStatement(node, kind);
-
-      case types._while:
-        return this.parseWhileStatement(node);
-
-      case types._with:
-        return this.parseWithStatement(node);
-
-      case types.braceL:
-        return this.parseBlock();
-
-      case types.semi:
-        return this.parseEmptyStatement(node);
-
-      case types._export:
-      case types._import:
-        {
-          const nextTokenCharCode = this.lookaheadCharCode();
-
-          if (nextTokenCharCode === 40 || nextTokenCharCode === 46) { // If the next token is a `(` or `.` symbol
-            break;
-          }
-
-          if (!this.options.allowImportExportEverywhere && !topLevel) {
-            this.raise(this.state.start, ErrorMessages.UnexpectedImportExport);
+    default:
+      {
+        if (this.isAsyncFunction()) {
+          if (context) {
+            this.raise(this.state.start, ErrorMessages.AsyncFunctionInSingleStatementContext);
           }
 
           this.next();
-          let result;
-
-          if (starttype === types._import) {
-            result = this.parseImport(node);
-
-            if (result.type === "ImportDeclaration" && (!result.importKind || result.importKind === "value")) {
-              this.sawUnambiguousESM = true;
-            }
-          } else {
-            result = this.parseExport(node);
-
-            if (result.type === "ExportNamedDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportAllDeclaration" && (!result.exportKind || result.exportKind === "value") || result.type === "ExportDefaultDeclaration") {
-              this.sawUnambiguousESM = true;
-            }
-          }
-
-          this.assertModuleNodeAllowed(node);
-          return result;
+          return this.parseFunctionStatement(node, true, !context);
         }
-
-      default:
-        {
-          if (this.isAsyncFunction()) {
-            if (context) {
-              this.raise(this.state.start, ErrorMessages.AsyncFunctionInSingleStatementContext);
-            }
-
-            this.next();
-            return this.parseFunctionStatement(node, true, !context);
-          }
-        }
-    }
-
-    const maybeName = this.state.value;  // 42 since the input was `42+3`
-    const expr = this.parseExpression(); // <= Here
-
-    if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) { // label: statement
-      return this.parseLabeledStatement(node, maybeName, expr, context);
-    } else {
-      return this.parseExpressionStatement(node, expr);
-    }
+      }
   }
+
+  const maybeName = this.state.value;  // 42 since the input was `42+3`
+  const expr = this.parseExpression(); // <= Here
+
+  if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) { // label: statement
+    return this.parseLabeledStatement(node, maybeName, expr, context);
+  } else {
+    return this.parseExpressionStatement(node, expr);
+  }
+}
 ```
 
 In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
 
-  ```javascript
-  "use strict";
-  if (true) {
-      function sayHello() {
-          console.log("Hello");
-      }
-  }
-  ```
+```javascript
+"use strict";
+if (true) {
+    function sayHello() {
+        console.log("Hello");
+    }
+}
+```
   
 ### 11. parseStatement
 
