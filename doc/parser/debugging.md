@@ -409,18 +409,6 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
           }
       }
       ```
-
-      In strict mode, this will throw a `SyntaxError`. Function declarations should not be used within blocks like `if`, `for`, etc. Instead, you can use function expressions or declare functions at the top level. Correct Approach:
-      
-       ```javascript
-       "use strict";
-       let sayHello;
-       if (true) {
-           sayHello = function() {
-               console.log("Hello");
-           };
-       }
-       ```
   
 ### Summary
 
