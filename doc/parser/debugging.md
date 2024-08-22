@@ -171,366 +171,366 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
    ```
 ### 3. parseExprAtom
 
-   ```js
-    parseExprAtom(refExpressionErrors) { // ExpressionErrors { doubleProto: -1, shorthandAssign: -1 }
-      if (this.state.type === types.slash) this.readRegexp();
-      const canBeArrow = this.state.potentialArrowAt === this.state.start;
-      let node;
+```js
+parseExprAtom(refExpressionErrors) { // ExpressionErrors { doubleProto: -1, shorthandAssign: -1 }
+  if (this.state.type === types.slash) this.readRegexp();
+  const canBeArrow = this.state.potentialArrowAt === this.state.start;
+  let node;
 
-      switch (this.state.type) {
-        case types._super:
-          node = this.startNode();
-          this.next();
+  switch (this.state.type) {
+    case types._super:
+      node = this.startNode();
+      this.next();
 
-          if (this.match(types.parenL) && !this.scope.allowDirectSuper && !this.options.allowSuperOutsideMethod) {
-            this.raise(node.start, ErrorMessages.SuperNotAllowed);
-          } else if (!this.scope.allowSuper && !this.options.allowSuperOutsideMethod) {
-            this.raise(node.start, ErrorMessages.UnexpectedSuper);
-          }
-
-          if (!this.match(types.parenL) && !this.match(types.bracketL) && !this.match(types.dot)) {
-            this.raise(node.start, ErrorMessages.UnsupportedSuper);
-          }
-
-          return this.finishNode(node, "Super");
-
-        case types._import:
-          node = this.startNode();
-          this.next();
-
-          if (this.match(types.dot)) {
-            return this.parseImportMetaProperty(node);
-          }
-
-          if (!this.match(types.parenL)) {
-            this.raise(this.state.lastTokStart, ErrorMessages.UnsupportedImport);
-          }
-
-          return this.finishNode(node, "Import");
-
-        case types._this:
-          node = this.startNode();
-          this.next();
-          return this.finishNode(node, "ThisExpression");
-
-        case types.name:
-          {
-            node = this.startNode();
-            const containsEsc = this.state.containsEsc;
-            const id = this.parseIdentifier();
-
-            if (!containsEsc && id.name === "async" && this.match(types._function) && !this.canInsertSemicolon()) {
-              const last = this.state.context.length - 1;
-
-              if (this.state.context[last] !== types$1.functionStatement) {
-                throw new Error("Internal error");
-              }
-
-              this.state.context[last] = types$1.functionExpression;
-              this.next();
-              return this.parseFunction(node, undefined, true);
-            } else if (canBeArrow && !containsEsc && id.name === "async" && this.match(types.name) && !this.canInsertSemicolon()) {
-              const oldMaybeInArrowParameters = this.state.maybeInArrowParameters;
-              const oldMaybeInAsyncArrowHead = this.state.maybeInAsyncArrowHead;
-              const oldYieldPos = this.state.yieldPos;
-              const oldAwaitPos = this.state.awaitPos;
-              this.state.maybeInArrowParameters = true;
-              this.state.maybeInAsyncArrowHead = true;
-              this.state.yieldPos = -1;
-              this.state.awaitPos = -1;
-              const params = [this.parseIdentifier()];
-              this.expect(types.arrow);
-              this.checkYieldAwaitInDefaultParams();
-              this.state.maybeInArrowParameters = oldMaybeInArrowParameters;
-              this.state.maybeInAsyncArrowHead = oldMaybeInAsyncArrowHead;
-              this.state.yieldPos = oldYieldPos;
-              this.state.awaitPos = oldAwaitPos;
-              this.parseArrowExpression(node, params, true);
-              return node;
-            }
-
-            if (canBeArrow && this.match(types.arrow) && !this.canInsertSemicolon()) {
-              this.next();
-              this.parseArrowExpression(node, [id], false);
-              return node;
-            }
-
-            return id;
-          }
-
-        case types._do:
-          {
-            this.expectPlugin("doExpressions");
-            const node = this.startNode();
-            this.next();
-            const oldLabels = this.state.labels;
-            this.state.labels = [];
-            node.body = this.parseBlock();
-            this.state.labels = oldLabels;
-            return this.finishNode(node, "DoExpression");
-          }
-
-        case types.regexp:
-          {
-            const value = this.state.value;
-            node = this.parseLiteral(value.value, "RegExpLiteral");
-            node.pattern = value.pattern;
-            node.flags = value.flags;
-            return node;
-          }
-
-        case types.num:
-          return this.parseLiteral(this.state.value, "NumericLiteral"); // <= Here
-
-        case types.bigint:
-          return this.parseLiteral(this.state.value, "BigIntLiteral");
-
-        case types.string:
-          return this.parseLiteral(this.state.value, "StringLiteral");
-
-        case types._null:
-          node = this.startNode();
-          this.next();
-          return this.finishNode(node, "NullLiteral");
-
-        case types._true:
-        case types._false:
-          return this.parseBooleanLiteral();
-
-        case types.parenL:
-          return this.parseParenAndDistinguishExpression(canBeArrow);
-
-        case types.bracketBarL:
-        case types.bracketHashL:
-          {
-            this.expectPlugin("recordAndTuple");
-            const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
-            const close = this.state.type === types.bracketBarL ? types.bracketBarR : types.bracketR;
-            this.state.inFSharpPipelineDirectBody = false;
-            node = this.startNode();
-            this.next();
-            node.elements = this.parseExprList(close, true, refExpressionErrors, node);
-            this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
-            return this.finishNode(node, "TupleExpression");
-          }
-
-        case types.bracketL:
-          {
-            const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
-            this.state.inFSharpPipelineDirectBody = false;
-            node = this.startNode();
-            this.next();
-            node.elements = this.parseExprList(types.bracketR, true, refExpressionErrors, node);
-
-            if (!this.state.maybeInArrowParameters) {
-              this.toReferencedList(node.elements);
-            }
-
-            this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
-            return this.finishNode(node, "ArrayExpression");
-          }
-
-        case types.braceBarL:
-        case types.braceHashL:
-          {
-            this.expectPlugin("recordAndTuple");
-            const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
-            const close = this.state.type === types.braceBarL ? types.braceBarR : types.braceR;
-            this.state.inFSharpPipelineDirectBody = false;
-            const ret = this.parseObj(close, false, true, refExpressionErrors);
-            this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
-            return ret;
-          }
-
-        case types.braceL:
-          {
-            const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
-            this.state.inFSharpPipelineDirectBody = false;
-            const ret = this.parseObj(types.braceR, false, false, refExpressionErrors);
-            this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
-            return ret;
-          }
-
-        case types._function:
-          return this.parseFunctionExpression();
-
-        case types.at:
-          this.parseDecorators();
-
-        case types._class:
-          node = this.startNode();
-          this.takeDecorators(node);
-          return this.parseClass(node, false);
-
-        case types._new:
-          return this.parseNew();
-
-        case types.backQuote:
-          return this.parseTemplate(false);
-
-        case types.doubleColon:
-          {
-            node = this.startNode();
-            this.next();
-            node.object = null;
-            const callee = node.callee = this.parseNoCallExpr();
-
-            if (callee.type === "MemberExpression") {
-              return this.finishNode(node, "BindExpression");
-            } else {
-              throw this.raise(callee.start, ErrorMessages.UnsupportedBind);
-            }
-          }
-
-        case types.hash:
-          {
-            if (this.state.inPipeline) {
-              node = this.startNode();
-
-              if (this.getPluginOption("pipelineOperator", "proposal") !== "smart") {
-                this.raise(node.start, ErrorMessages.PrimaryTopicRequiresSmartPipeline);
-              }
-
-              this.next();
-
-              if (!this.primaryTopicReferenceIsAllowedInCurrentTopicContext()) {
-                this.raise(node.start, ErrorMessages.PrimaryTopicNotAllowed);
-              }
-
-              this.registerTopicReference();
-              return this.finishNode(node, "PipelinePrimaryTopicReference");
-            }
-
-            const nextCh = this.input.codePointAt(this.state.end);
-
-            if (isIdentifierStart(nextCh) || nextCh === 92) {
-              const start = this.state.start;
-              node = this.parseMaybePrivateName(true);
-
-              if (this.match(types._in)) {
-                this.expectPlugin("privateIn");
-                this.classScope.usePrivateName(node.id.name, node.start);
-              } else if (this.hasPlugin("privateIn")) {
-                this.raise(this.state.start, ErrorMessages.PrivateInExpectedIn, node.id.name);
-              } else {
-                throw this.unexpected(start);
-              }
-
-              return node;
-            }
-          }
-
-        default:
-          throw this.unexpected();
+      if (this.match(types.parenL) && !this.scope.allowDirectSuper && !this.options.allowSuperOutsideMethod) {
+        this.raise(node.start, ErrorMessages.SuperNotAllowed);
+      } else if (!this.scope.allowSuper && !this.options.allowSuperOutsideMethod) {
+        this.raise(node.start, ErrorMessages.UnexpectedSuper);
       }
-    }
-   ```
+
+      if (!this.match(types.parenL) && !this.match(types.bracketL) && !this.match(types.dot)) {
+        this.raise(node.start, ErrorMessages.UnsupportedSuper);
+      }
+
+      return this.finishNode(node, "Super");
+
+    case types._import:
+      node = this.startNode();
+      this.next();
+
+      if (this.match(types.dot)) {
+        return this.parseImportMetaProperty(node);
+      }
+
+      if (!this.match(types.parenL)) {
+        this.raise(this.state.lastTokStart, ErrorMessages.UnsupportedImport);
+      }
+
+      return this.finishNode(node, "Import");
+
+    case types._this:
+      node = this.startNode();
+      this.next();
+      return this.finishNode(node, "ThisExpression");
+
+    case types.name:
+      {
+        node = this.startNode();
+        const containsEsc = this.state.containsEsc;
+        const id = this.parseIdentifier();
+
+        if (!containsEsc && id.name === "async" && this.match(types._function) && !this.canInsertSemicolon()) {
+          const last = this.state.context.length - 1;
+
+          if (this.state.context[last] !== types$1.functionStatement) {
+            throw new Error("Internal error");
+          }
+
+          this.state.context[last] = types$1.functionExpression;
+          this.next();
+          return this.parseFunction(node, undefined, true);
+        } else if (canBeArrow && !containsEsc && id.name === "async" && this.match(types.name) && !this.canInsertSemicolon()) {
+          const oldMaybeInArrowParameters = this.state.maybeInArrowParameters;
+          const oldMaybeInAsyncArrowHead = this.state.maybeInAsyncArrowHead;
+          const oldYieldPos = this.state.yieldPos;
+          const oldAwaitPos = this.state.awaitPos;
+          this.state.maybeInArrowParameters = true;
+          this.state.maybeInAsyncArrowHead = true;
+          this.state.yieldPos = -1;
+          this.state.awaitPos = -1;
+          const params = [this.parseIdentifier()];
+          this.expect(types.arrow);
+          this.checkYieldAwaitInDefaultParams();
+          this.state.maybeInArrowParameters = oldMaybeInArrowParameters;
+          this.state.maybeInAsyncArrowHead = oldMaybeInAsyncArrowHead;
+          this.state.yieldPos = oldYieldPos;
+          this.state.awaitPos = oldAwaitPos;
+          this.parseArrowExpression(node, params, true);
+          return node;
+        }
+
+        if (canBeArrow && this.match(types.arrow) && !this.canInsertSemicolon()) {
+          this.next();
+          this.parseArrowExpression(node, [id], false);
+          return node;
+        }
+
+        return id;
+      }
+
+    case types._do:
+      {
+        this.expectPlugin("doExpressions");
+        const node = this.startNode();
+        this.next();
+        const oldLabels = this.state.labels;
+        this.state.labels = [];
+        node.body = this.parseBlock();
+        this.state.labels = oldLabels;
+        return this.finishNode(node, "DoExpression");
+      }
+
+    case types.regexp:
+      {
+        const value = this.state.value;
+        node = this.parseLiteral(value.value, "RegExpLiteral");
+        node.pattern = value.pattern;
+        node.flags = value.flags;
+        return node;
+      }
+
+    case types.num:
+      return this.parseLiteral(this.state.value, "NumericLiteral"); // <= Here
+
+    case types.bigint:
+      return this.parseLiteral(this.state.value, "BigIntLiteral");
+
+    case types.string:
+      return this.parseLiteral(this.state.value, "StringLiteral");
+
+    case types._null:
+      node = this.startNode();
+      this.next();
+      return this.finishNode(node, "NullLiteral");
+
+    case types._true:
+    case types._false:
+      return this.parseBooleanLiteral();
+
+    case types.parenL:
+      return this.parseParenAndDistinguishExpression(canBeArrow);
+
+    case types.bracketBarL:
+    case types.bracketHashL:
+      {
+        this.expectPlugin("recordAndTuple");
+        const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
+        const close = this.state.type === types.bracketBarL ? types.bracketBarR : types.bracketR;
+        this.state.inFSharpPipelineDirectBody = false;
+        node = this.startNode();
+        this.next();
+        node.elements = this.parseExprList(close, true, refExpressionErrors, node);
+        this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
+        return this.finishNode(node, "TupleExpression");
+      }
+
+    case types.bracketL:
+      {
+        const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
+        this.state.inFSharpPipelineDirectBody = false;
+        node = this.startNode();
+        this.next();
+        node.elements = this.parseExprList(types.bracketR, true, refExpressionErrors, node);
+
+        if (!this.state.maybeInArrowParameters) {
+          this.toReferencedList(node.elements);
+        }
+
+        this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
+        return this.finishNode(node, "ArrayExpression");
+      }
+
+    case types.braceBarL:
+    case types.braceHashL:
+      {
+        this.expectPlugin("recordAndTuple");
+        const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
+        const close = this.state.type === types.braceBarL ? types.braceBarR : types.braceR;
+        this.state.inFSharpPipelineDirectBody = false;
+        const ret = this.parseObj(close, false, true, refExpressionErrors);
+        this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
+        return ret;
+      }
+
+    case types.braceL:
+      {
+        const oldInFSharpPipelineDirectBody = this.state.inFSharpPipelineDirectBody;
+        this.state.inFSharpPipelineDirectBody = false;
+        const ret = this.parseObj(types.braceR, false, false, refExpressionErrors);
+        this.state.inFSharpPipelineDirectBody = oldInFSharpPipelineDirectBody;
+        return ret;
+      }
+
+    case types._function:
+      return this.parseFunctionExpression();
+
+    case types.at:
+      this.parseDecorators();
+
+    case types._class:
+      node = this.startNode();
+      this.takeDecorators(node);
+      return this.parseClass(node, false);
+
+    case types._new:
+      return this.parseNew();
+
+    case types.backQuote:
+      return this.parseTemplate(false);
+
+    case types.doubleColon:
+      {
+        node = this.startNode();
+        this.next();
+        node.object = null;
+        const callee = node.callee = this.parseNoCallExpr();
+
+        if (callee.type === "MemberExpression") {
+          return this.finishNode(node, "BindExpression");
+        } else {
+          throw this.raise(callee.start, ErrorMessages.UnsupportedBind);
+        }
+      }
+
+    case types.hash:
+      {
+        if (this.state.inPipeline) {
+          node = this.startNode();
+
+          if (this.getPluginOption("pipelineOperator", "proposal") !== "smart") {
+            this.raise(node.start, ErrorMessages.PrimaryTopicRequiresSmartPipeline);
+          }
+
+          this.next();
+
+          if (!this.primaryTopicReferenceIsAllowedInCurrentTopicContext()) {
+            this.raise(node.start, ErrorMessages.PrimaryTopicNotAllowed);
+          }
+
+          this.registerTopicReference();
+          return this.finishNode(node, "PipelinePrimaryTopicReference");
+        }
+
+        const nextCh = this.input.codePointAt(this.state.end);
+
+        if (isIdentifierStart(nextCh) || nextCh === 92) {
+          const start = this.state.start;
+          node = this.parseMaybePrivateName(true);
+
+          if (this.match(types._in)) {
+            this.expectPlugin("privateIn");
+            this.classScope.usePrivateName(node.id.name, node.start);
+          } else if (this.hasPlugin("privateIn")) {
+            this.raise(this.state.start, ErrorMessages.PrivateInExpectedIn, node.id.name);
+          } else {
+            throw this.unexpected(start);
+          }
+
+          return node;
+        }
+      }
+
+    default:
+      throw this.unexpected();
+  }
+}
+```
 ### 4. parseExprSubscripts
 
-   ```js 
-    parseExprSubscripts(refExpressionErrors) {
-      const startPos = this.state.start;
-      const startLoc = this.state.startLoc;
-      const potentialArrowAt = this.state.potentialArrowAt;
-      const expr = this.parseExprAtom(refExpressionErrors); // <= Here
+```js 
+parseExprSubscripts(refExpressionErrors) {
+  const startPos = this.state.start;
+  const startLoc = this.state.startLoc;
+  const potentialArrowAt = this.state.potentialArrowAt;
+  const expr = this.parseExprAtom(refExpressionErrors); // <= Here
 
-      if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
-        return expr;
-      }
+  if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
+    return expr;
+  }
 
-      return this.parseSubscripts(expr, startPos, startLoc);
-    }  
-   ```
+  return this.parseSubscripts(expr, startPos, startLoc);
+}  
+```
 ### 5. parseMaybeUnary
 
-   ```js
-    parseMaybeUnary(refExpressionErrors) {
-      if (this.isContextual("await") && this.isAwaitAllowed()) {
-        return this.parseAwait();
-      } else if (this.state.type.prefix) {
-        const node = this.startNode();
-        const update = this.match(types.incDec);
-        node.operator = this.state.value;
-        node.prefix = true;
+```js
+parseMaybeUnary(refExpressionErrors) {
+  if (this.isContextual("await") && this.isAwaitAllowed()) {
+    return this.parseAwait();
+  } else if (this.state.type.prefix) {
+    const node = this.startNode();
+    const update = this.match(types.incDec);
+    node.operator = this.state.value;
+    node.prefix = true;
 
-        if (node.operator === "throw") {
-          this.expectPlugin("throwExpressions");
-        }
+    if (node.operator === "throw") {
+      this.expectPlugin("throwExpressions");
+    }
 
-        this.next();
-        node.argument = this.parseMaybeUnary();
-        this.checkExpressionErrors(refExpressionErrors, true);
+    this.next();
+    node.argument = this.parseMaybeUnary();
+    this.checkExpressionErrors(refExpressionErrors, true);
 
-        if (update) {
-          this.checkLVal(node.argument, undefined, undefined, "prefix operation");
-        } else if (this.state.strict && node.operator === "delete") {
-          const arg = node.argument;
+    if (update) {
+      this.checkLVal(node.argument, undefined, undefined, "prefix operation");
+    } else if (this.state.strict && node.operator === "delete") {
+      const arg = node.argument;
 
-          if (arg.type === "Identifier") {
-            this.raise(node.start, ErrorMessages.StrictDelete);
-          } else if ((arg.type === "MemberExpression" || arg.type === "OptionalMemberExpression") && arg.property.type === "PrivateName") {
-            this.raise(node.start, ErrorMessages.DeletePrivateField);
-          }
-        }
-
-        return this.finishNode(node, update ? "UpdateExpression" : "UnaryExpression");
+      if (arg.type === "Identifier") {
+        this.raise(node.start, ErrorMessages.StrictDelete);
+      } else if ((arg.type === "MemberExpression" || arg.type === "OptionalMemberExpression") && arg.property.type === "PrivateName") {
+        this.raise(node.start, ErrorMessages.DeletePrivateField);
       }
+    }
 
-      const startPos = this.state.start;
-      const startLoc = this.state.startLoc;
-      let expr = this.parseExprSubscripts(refExpressionErrors); // <= Here
-      if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
+    return this.finishNode(node, update ? "UpdateExpression" : "UnaryExpression");
+  }
 
-      while (this.state.type.postfix && !this.canInsertSemicolon()) {
-        const node = this.startNodeAt(startPos, startLoc);
-        node.operator = this.state.value;
-        node.prefix = false;
-        node.argument = expr;
-        this.checkLVal(expr, undefined, undefined, "postfix operation");
-        this.next();
-        expr = this.finishNode(node, "UpdateExpression");
-      }
+  const startPos = this.state.start;
+  const startLoc = this.state.startLoc;
+  let expr = this.parseExprSubscripts(refExpressionErrors); // <= Here
+  if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
 
-      return expr;
-    }  
-   ```
+  while (this.state.type.postfix && !this.canInsertSemicolon()) {
+    const node = this.startNodeAt(startPos, startLoc);
+    node.operator = this.state.value;
+    node.prefix = false;
+    node.argument = expr;
+    this.checkLVal(expr, undefined, undefined, "postfix operation");
+    this.next();
+    expr = this.finishNode(node, "UpdateExpression");
+  }
+
+  return expr;
+}  
+```
 ### 6. parseExprOps
 
-   ```js
-    parseExprOps(noIn, refExpressionErrors) {
-      const startPos = this.state.start;
-      const startLoc = this.state.startLoc;
-      const potentialArrowAt = this.state.potentialArrowAt;
-      const expr = this.parseMaybeUnary(refExpressionErrors); // <= Here
+```js
+parseExprOps(noIn, refExpressionErrors) {
+  const startPos = this.state.start;
+  const startLoc = this.state.startLoc;
+  const potentialArrowAt = this.state.potentialArrowAt;
+  const expr = this.parseMaybeUnary(refExpressionErrors); // <= Here
 
-      if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
-        return expr;
-      }
+  if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
+    return expr;
+  }
 
-      if (this.checkExpressionErrors(refExpressionErrors, false)) {
-        return expr;
-      }
+  if (this.checkExpressionErrors(refExpressionErrors, false)) {
+    return expr;
+  }
 
-      return this.parseExprOp(expr, startPos, startLoc, -1, noIn);
-    }
-   ```
+  return this.parseExprOp(expr, startPos, startLoc, -1, noIn);
+}
+```
 ### 7. parseMaybeConditional
 
-   ```js 
-    parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos) {
-      const startPos = this.state.start;
-      const startLoc = this.state.startLoc;
-      const potentialArrowAt = this.state.potentialArrowAt;
-      const expr = this.parseExprOps(noIn, refExpressionErrors); // <= Here
+```js 
+parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos) {
+  const startPos = this.state.start;
+  const startLoc = this.state.startLoc;
+  const potentialArrowAt = this.state.potentialArrowAt;
+  const expr = this.parseExprOps(noIn, refExpressionErrors); // <= Here
 
-      if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
-        return expr;
-      }
+  if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
+    return expr;
+  }
 
-      if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
-      return this.parseConditional(expr, noIn, startPos, startLoc, refNeedsArrowPos);
-    }
-   ```
+  if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
+  return this.parseConditional(expr, noIn, startPos, startLoc, refNeedsArrowPos);
+}
+```
 ### 8. parseMaybeAssign
 
     ```js 
