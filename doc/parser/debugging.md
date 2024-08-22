@@ -160,7 +160,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 next() {
   debugger;
 
-  if (!this.isLookahead) {
+  if (!this.isLookahead) { // false
     this.checkKeywordEscapes();
 
     if (this.options.tokens) {
@@ -168,10 +168,10 @@ next() {
     }
   }
 
-  this.state.lastTokEnd = this.state.end;
-  this.state.lastTokStart = this.state.start;
-  this.state.lastTokEndLoc = this.state.endLoc;
-  this.state.lastTokStartLoc = this.state.startLoc;
+  this.state.lastTokEnd = this.state.end;           // 2
+  this.state.lastTokStart = this.state.start;       // 0
+  this.state.lastTokEndLoc = this.state.endLoc;     // Position{line: 1, column: 2}
+  this.state.lastTokStartLoc = this.state.startLoc; // Position{line: 1, column: 0}
   this.nextToken();
 }
 ``` 
@@ -293,7 +293,7 @@ parseExprAtom(refExpressionErrors) { // ExpressionErrors { doubleProto: -1, shor
 
     case types.regexp:
       {
-        const value = this.state.value;
+        const value = this.state.value; // The actual value of the token
         node = this.parseLiteral(value.value, "RegExpLiteral");
         node.pattern = value.pattern;
         node.flags = value.flags;
@@ -301,7 +301,7 @@ parseExprAtom(refExpressionErrors) { // ExpressionErrors { doubleProto: -1, shor
       }
 
     case types.num:
-      return this.parseLiteral(this.state.value, "NumericLiteral"); // <= Here
+      return this.parseLiteral(this.state.value, "NumericLiteral"); // <= Here: 42, "NumericLiteral"
 
     case types.bigint:
       return this.parseLiteral(this.state.value, "BigIntLiteral");
@@ -471,7 +471,7 @@ parseMaybeUnary(refExpressionErrors) {
   } else if (this.state.type.prefix) {
     const node = this.startNode();
     const update = this.match(types.incDec);
-    node.operator = this.state.value;
+    node.operator = this.state.value; 
     node.prefix = true;
 
     if (node.operator === "throw") {
@@ -942,7 +942,7 @@ with the `sourceType` and `interpreter` properties, and then calls `parseBlockBo
 ```js
 class StatementParser extends ExpressionParser {
   parseTopLevel(file, program) {
-    program.sourceType = this.options.sourceType;
+    program.sourceType = this.options.sourceType; // script
     program.interpreter = this.parseInterpreterDirective();
     this.parseBlockBody(program, true, true, types.eof);
 
@@ -964,6 +964,7 @@ class StatementParser extends ExpressionParser {
 ```
 
 After parsing the program, the function checks for any `undefinedExports` in the module scope and raises an error if any are found. It then finishes the `program` and `file` nodes and returns the `file` node.
+
 ### 15. parse
     
 Once what kind of source and what kind of parser to use is determined, the appropriate `parse` function is called. 
@@ -983,8 +984,8 @@ parse() {
   this.prodParam.enter(paramFlags);
   const file = this.startNode();
   const program = this.startNode();
-  this.nextToken();
-  file.errors = null;
+  this.nextToken();   // Notice that here we get the first token 42
+  file.errors = null; // The current token is at this.state.type which is a TokenType with label 'num' and value 42
   this.parseTopLevel(file, program); // <= Here
   file.errors = this.state.errors;
   return file;
