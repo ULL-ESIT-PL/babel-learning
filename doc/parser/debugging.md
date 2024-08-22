@@ -166,7 +166,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
       const startPos = this.state.start;
       const startLoc = this.state.startLoc;
       const potentialArrowAt = this.state.potentialArrowAt;
-      const expr = this.parseMaybeUnary(refExpressionErrors);
+      const expr = this.parseMaybeUnary(refExpressionErrors); // <= Here
 
       if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
         return expr;
