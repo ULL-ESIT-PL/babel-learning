@@ -346,7 +346,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
             {
               const nextTokenCharCode = this.lookaheadCharCode();
 
-              if (nextTokenCharCode === 40 || nextTokenCharCode === 46) {
+              if (nextTokenCharCode === 40 || nextTokenCharCode === 46) { // If the next token is a `(` or `.` symbol
                 break;
               }
 
