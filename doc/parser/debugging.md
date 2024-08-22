@@ -164,84 +164,88 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 8. parseMaybeAssign
 
     ```js 
-    class UtilParser extends Tokenizer {
+    class Tokenizer extends ParserError {
       ...
-      class NodeUtils extends UtilParser {
+      class UtilParser extends Tokenizer {
         ...
-        class LValParser extends NodeUtils {
+        class NodeUtils extends UtilParser {
           ...
-          class ExpressionParser extends LValParser {
+          class LValParser extends NodeUtils {
             ...
-            parseMaybeAssign(noIn, refExpressionErrors, afterLeftParse, refNeedsArrowPos) { // undefined all
-              const startPos = this.state.start;
-              const startLoc = this.state.startLoc;
+            class ExpressionParser extends LValParser {
+              ...
+              parseMaybeAssign(noIn, refExpressionErrors, afterLeftParse, refNeedsArrowPos) { // undefined all
+                const startPos = this.state.start;
+                const startLoc = this.state.startLoc;
 
-              if (this.isContextual("yield")) {
-                if (this.prodParam.hasYield) {
-                  let left = this.parseYield(noIn);
+                if (this.isContextual("yield")) {
+                  if (this.prodParam.hasYield) {
+                    let left = this.parseYield(noIn);
 
-                  if (afterLeftParse) {
-                    left = afterLeftParse.call(this, left, startPos, startLoc);
+                    if (afterLeftParse) {
+                      left = afterLeftParse.call(this, left, startPos, startLoc);
+                    }
+
+                    return left;
+                  } else {
+                    this.state.exprAllowed = false;
+                  }
+                }
+
+                let ownExpressionErrors;
+
+                if (refExpressionErrors) {
+                  ownExpressionErrors = false;
+                } else {
+                  refExpressionErrors = new ExpressionErrors();
+                  ownExpressionErrors = true;
+                }
+
+                if (this.match(types.parenL) || this.match(types.name)) {
+                  this.state.potentialArrowAt = this.state.start;
+                }
+
+                let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos); // <= Here
+
+                if (afterLeftParse) {
+                  left = afterLeftParse.call(this, left, startPos, startLoc);
+                }
+
+                if (this.state.type.isAssign) { // Not the case
+                  const node = this.startNodeAt(startPos, startLoc);
+                  const operator = this.state.value;
+                  node.operator = operator;
+
+                  if (operator === "??=") {
+                    this.expectPlugin("logicalAssignment");
                   }
 
-                  return left;
-                } else {
-                  this.state.exprAllowed = false;
-                }
-              }
+                  if (operator === "||=" || operator === "&&=") {
+                    this.expectPlugin("logicalAssignment");
+                  }
 
-              let ownExpressionErrors;
+                  if (this.match(types.eq)) {
+                    node.left = this.toAssignable(left);
+                    refExpressionErrors.doubleProto = -1;
+                  } else {
+                    node.left = left;
+                  }
 
-              if (refExpressionErrors) {
-                ownExpressionErrors = false;
-              } else {
-                refExpressionErrors = new ExpressionErrors();
-                ownExpressionErrors = true;
-              }
+                  if (refExpressionErrors.shorthandAssign >= node.left.start) {
+                    refExpressionErrors.shorthandAssign = -1;
+                  }
 
-              if (this.match(types.parenL) || this.match(types.name)) {
-                this.state.potentialArrowAt = this.state.start;
-              }
-
-              let left = this.parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos); // <= Here
-
-              if (afterLeftParse) {
-                left = afterLeftParse.call(this, left, startPos, startLoc);
-              }
-
-              if (this.state.type.isAssign) { // Not the case
-                const node = this.startNodeAt(startPos, startLoc);
-                const operator = this.state.value;
-                node.operator = operator;
-
-                if (operator === "??=") {
-                  this.expectPlugin("logicalAssignment");
+                  this.checkLVal(left, undefined, undefined, "assignment expression");
+                  this.next();
+                  node.right = this.parseMaybeAssign(noIn);
+                  return this.finishNode(node, "AssignmentExpression");
+                } else if (ownExpressionErrors) {
+                  this.checkExpressionErrors(refExpressionErrors, true);
                 }
 
-                if (operator === "||=" || operator === "&&=") {
-                  this.expectPlugin("logicalAssignment");
-                }
-
-                if (this.match(types.eq)) {
-                  node.left = this.toAssignable(left);
-                  refExpressionErrors.doubleProto = -1;
-                } else {
-                  node.left = left;
-                }
-
-                if (refExpressionErrors.shorthandAssign >= node.left.start) {
-                  refExpressionErrors.shorthandAssign = -1;
-                }
-
-                this.checkLVal(left, undefined, undefined, "assignment expression");
-                this.next();
-                node.right = this.parseMaybeAssign(noIn);
-                return this.finishNode(node, "AssignmentExpression");
-              } else if (ownExpressionErrors) {
-                this.checkExpressionErrors(refExpressionErrors, true);
+                return left;
               }
-
-              return left;
+              ...
             }
             ...
           }
