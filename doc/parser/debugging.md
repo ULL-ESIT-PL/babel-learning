@@ -388,7 +388,7 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
             }
         }
 
-        const maybeName = this.state.value;  // 42
+        const maybeName = this.state.value;  // 42 since the input was `42+3`
         const expr = this.parseExpression(); // <= Here
 
         if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) { // label: statement
