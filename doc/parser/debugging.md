@@ -160,7 +160,42 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
 4. parseExprSubscripts
 5. parseMaybeUnary
 6. parseExprOps
+
+   ```js
+    parseExprOps(noIn, refExpressionErrors) {
+      const startPos = this.state.start;
+      const startLoc = this.state.startLoc;
+      const potentialArrowAt = this.state.potentialArrowAt;
+      const expr = this.parseMaybeUnary(refExpressionErrors);
+
+      if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
+        return expr;
+      }
+
+      if (this.checkExpressionErrors(refExpressionErrors, false)) {
+        return expr;
+      }
+
+      return this.parseExprOp(expr, startPos, startLoc, -1, noIn);
+    }
+   ```
 7. parseMaybeConditional
+
+   ```js 
+    parseMaybeConditional(noIn, refExpressionErrors, refNeedsArrowPos) {
+      const startPos = this.state.start;
+      const startLoc = this.state.startLoc;
+      const potentialArrowAt = this.state.potentialArrowAt;
+      const expr = this.parseExprOps(noIn, refExpressionErrors); // <= Here
+
+      if (expr.type === "ArrowFunctionExpression" && expr.start === potentialArrowAt) {
+        return expr;
+      }
+
+      if (this.checkExpressionErrors(refExpressionErrors, false)) return expr;
+      return this.parseConditional(expr, noIn, startPos, startLoc, refNeedsArrowPos);
+    }
+   ```
 8. parseMaybeAssign
 
     ```js 
