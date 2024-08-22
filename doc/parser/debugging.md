@@ -155,6 +155,27 @@ In summary, Babel supports several JavaScript-related grammars, including ECMASc
 When you run the parser, you can see the call stack in the Chrome DevTools when it stops on the `next` breakpoint. Read the call stack from bottom to top. 
 
 ### 1. next 
+
+```js
+next() {
+  debugger;
+
+  if (!this.isLookahead) {
+    this.checkKeywordEscapes();
+
+    if (this.options.tokens) {
+      this.pushToken(new Token(this.state));
+    }
+  }
+
+  this.state.lastTokEnd = this.state.end;
+  this.state.lastTokStart = this.state.start;
+  this.state.lastTokEndLoc = this.state.endLoc;
+  this.state.lastTokStartLoc = this.state.startLoc;
+  this.nextToken();
+}
+``` 
+
 ### 2. parseLiteral
 
    ```js 
