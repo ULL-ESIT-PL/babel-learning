@@ -265,16 +265,16 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
     ```js 
       parseStatementContent(context, topLevel) {
         let starttype = this.state.type; // The type of the current token
-        const node = this.startNode();
-        let kind;
+        const node = this.startNode();   // A new AST node is initialized 
+        let kind;                        // To track the type of variable declaration 
 
         if (this.isLet(context)) {
           starttype = types._var;
           kind = "let";
         }
 
-        switch (starttype) { // None of the cases match
-          case types._break:
+        switch (starttype) { // Delegates to different parsing functions based on the type of statement. match
+          case types._break: // None of the cases match
           case types._continue:
             return this.parseBreakContinueStatement(node, starttype.keyword);
 
@@ -288,8 +288,8 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
             return this.parseForStatement(node);
 
           case types._function:
-            if (this.lookaheadCharCode() === 46) break;
-
+            if (this.lookaheadCharCode() === 46) break; // If the next token is a `.` symbol
+                                                        // Like `obj.function.name`
             if (context) {
               if (this.state.strict) {
                 this.raise(this.state.start, ErrorMessages.StrictFunction);
@@ -391,20 +391,57 @@ When you run the parser, you can see the call stack in the Chrome DevTools when 
         const maybeName = this.state.value;  // 42
         const expr = this.parseExpression(); // <= Here
 
-        if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) {
+        if (starttype === types.name && expr.type === "Identifier" && this.eat(types.colon)) { // label: statement
           return this.parseLabeledStatement(node, maybeName, expr, context);
         } else {
           return this.parseExpressionStatement(node, expr);
         }
       }
     ```
+
+    In JavaScript, strict mode (`"use strict";`) imposes certain restrictions to prevent common coding mistakes and to make the code more predictable. One such restriction involves function declarations.
+
+    - In strict mode, function declarations are not allowed inside blocks (e.g., inside an `if` statement, `for` loop, or any block `{}`). In non-strict mode, this would be allowed, but it leads to potentially confusing behavior due to different scoping rules.
+
+     ```javascript
+     "use strict";
+     if (true) {
+         function sayHello() {
+             console.log("Hello");
+         }
+     }
+     ```
+
+     In strict mode, this will throw a `SyntaxError`. Function declarations should not be used within blocks like `if`, `for`, etc. Instead, you can use function expressions or declare functions at the top level.
+
+     - **Correct Approach**:
+       ```javascript
+       "use strict";
+       let sayHello;
+       if (true) {
+           sayHello = function() {
+               console.log("Hello");
+           };
+       }
+       ```
+
+ 
+ 
+### Summary
+
+In strict mode, function declarations are not allowed:
+
+- Inside blocks (non-top-level scopes, like `if`, `for`, etc.)
+- Inside `eval()` expressions
+
+To adhere to strict mode's rules, you should use function expressions or ensure that function declarations are made at the top level of your code.
 11. parseStatement
 
     Decorators in JavaScript are a proposal (still in Stage 3 as of 2024) that provides a syntax for wrapping or modifying classes, methods, and properties. See the example at 
     [/src/awesome/tc39-decorators](/src/awesome/tc39-decorators/)
 
     ```js
-    parseStatement(context, topLevel) {
+    parseStatement(context, topLevel) {  // Was called with null, topLevel
       if (this.match(types.at)) { // if the current token is an `@` symbol
         this.parseDecorators(true);
       }
