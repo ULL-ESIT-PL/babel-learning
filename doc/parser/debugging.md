@@ -1053,4 +1053,260 @@ Notice how `type`  contains the `TokenType` of the current token.
   [index.js](/doc/parser/tokenizer.md#indexjs), [state.js](/doc/parser/tokenizer.md#statejs), [types.js](/doc/parser/tokenizer.md#typesjs)
 * [context/index-context.md](/doc/parser/context/index-context.md) is a description of
   the file [src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js)
+
+  *   [
+      
+      src/tokenizer/index.js
+      
+      
+      
+      ](#srctokenizerindexjs)
+  *   [
+      
+      The Token class
+      
+      
+      
+      ](#the-token-class)
+  *   [
+      
+      The Tokenizer class
+      
+      
+      
+      ](#the-tokenizer-class)
+  *   [
+      
+      The curContextmethod Inside theTokenizer\` class
+      
+      
+      
+      ](#the-curcontextmethod-inside-thetokenizer-class)
+  *   [
+      
+      The nextToken method
+      
+      
+      
+      ](#the-nexttoken-method)
+  *   [
+      
+      Methods Dealing with Comments and Spaces
+      
+      
+      
+      ](#methods-dealing-with-comments-and-spaces)
+  *   [
+      
+      The finishToken method
+      
+      
+      
+      ](#the-finishtoken-method)
+  *   [
+      
+      The readToken\_\* family of methods
+      
+      
+      
+      ](#the-readtoken_-family-of-methods)
+  *   [
+      
+      readToken\_numberSign
+      
+      
+      
+      ](#readtoken_numbersign)
+  *   [
+      
+      readToken\_dot
+      
+      
+      
+      ](#readtoken_dot)
+  *   [
+      
+      readToken\_slash
+      
+      
+      
+      ](#readtoken_slash)
+  *   [
+      
+      readToken\_interpreter
+      
+      
+      
+      ](#readtoken_interpreter)
+  *   [
+      
+      readToken\_mult\_modulo
+      
+      
+      
+      ](#readtoken_mult_modulo)
+  *   [
+      
+      readToken\_pipe\_amp
+      
+      
+      
+      ](#readtoken_pipe_amp)
+  *   [
+      
+      readToken\_caret
+      
+      
+      
+      ](#readtoken_caret)
+  *   [
+      
+      readToken\_plus\_min
+      
+      
+      
+      ](#readtoken_plus_min)
+  *   [
+      
+      readToken\_lt\_gt
+      
+      
+      
+      ](#readtoken_lt_gt)
+  *   [
+      
+      readToken\_eq\_excl
+      
+      
+      
+      ](#readtoken_eq_excl)
+  *   [
+      
+      readToken\_question
+      
+      
+      
+      ](#readtoken_question)
+  *   [
+      
+      getTokenFromCode
+      
+      
+      
+      ](#gettokenfromcode)
+  *   [
+      
+      finishOp
+      
+      
+      
+      ](#finishop)
+  *   [
+      
+      readRegexp
+      
+      
+      
+      ](#readregexp)
+  *   [
+      
+      readInt
+      
+      
+      
+      ](#readint)
+  *   [
+      
+      readRadixNumber
+      
+      
+      
+      ](#readradixnumber)
+  *   [
+      
+      readNumber
+      
+      
+      
+      ](#readnumber)
+  *   [
+      
+      readCodePoint
+      
+      
+      
+      ](#readcodepoint)
+  *   [
+      
+      readString
+      
+      
+      
+      ](#readstring)
+  *   [
+      
+      readTmplToken
+      
+      
+      
+      ](#readtmpltoken)
+  *   [
+      
+      readEscapedChar
+      
+      
+      
+      ](#readescapedchar)
+  *   [
+      
+      readHexChar
+      
+      
+      
+      ](#readhexchar)
+  *   [
+      
+      readWord1
+      
+      
+      
+      ](#readword1)
+  *   [
+      
+      isIterator
+      
+      
+      
+      ](#isiterator)
+  *   [
+      
+      readWord
+      
+      
+      
+      ](#readword)
+  *   [
+      
+      checkKeywordEscapes
+      
+      
+      
+      ](#checkkeywordescapes)
+  *   [
+      
+      braceIsBlock
+      
+      
+      
+      ](#braceisblock)
+  *   [
+      
+      updateContext
+      
+      
+      
+      ](#updatecontext)
+
+
+
 * [context/plugin-jsx-context.md](/doc/parser/context/plugin-jsx-context.md)
