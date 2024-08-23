@@ -1054,8 +1054,8 @@ Notice how `type`  contains the `TokenType` of the current token.
 * [context/index-context.md](/doc/parser/context/index-context.md) is a description of
   the file [src/tokenizer/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/tokenizer/index.js)
 
-  *   [src/tokenizer/index.js](/doc/parser/context/index-context.md/doc/parser/context/index-context.md#srctokenizerindexjs)
-  *   [The Token class](/doc/parser/context/index-context.md/doc/parser/context/index-context.md#the-token-class)
+  *   [src/tokenizer/index.js](/doc/parser/context/index-context.md#srctokenizerindexjs)
+  *   [The Token class](/doc/parser/context/index-context.md#the-token-class)
   *   [The Tokenizer class](/doc/parser/context/index-context.md#the-tokenizer-class)
   *   [The curContextmethod Inside theTokenizer\` class](/doc/parser/context/index-context.md#the-curcontextmethod-inside-thetokenizer-class)
   *   [The nextToken method](/doc/parser/context/index-context.md#the-nexttoken-method)
