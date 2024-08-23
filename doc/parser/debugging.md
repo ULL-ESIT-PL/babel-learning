@@ -141,11 +141,6 @@ While Babel does not provide grammars in Backus-Naur Form (BNF), you can refer t
    - [Flow Documentation](https://flow.org/en/docs/)
    - See example in [/src/awesome/flow](/src/awesome/flow/)
 
-### Extracting Formal Grammars
-If you need the grammar in a formal notation like BNF or EBNF, you might need to manually extract it from the above resources or use tools that can generate grammars from parsers, such as ANTLR, for the TypeScript or ECMAScript grammars.
-
-In summary, Babel supports several JavaScript-related grammars, including ECMAScript, TypeScript, JSX, and Flow. While Babel itself does not provide these grammars in BNF, they can be found or derived from the specifications and documentation of these languages.
-
 ### Other resources
 
 - https://tc39.es/ecma262/
