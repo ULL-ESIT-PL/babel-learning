@@ -1047,7 +1047,7 @@ function parse(input, options) {
 
 Notice how `type`  contains the `TokenType` of the current token.
 
-## Related 
+## Related Reading
 
 * [tokenizer.md](/doc/parser/tokenizer.md)
 * [context/index-context.md](/doc/parser/context/index-context.md)
