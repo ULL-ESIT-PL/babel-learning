@@ -119,6 +119,7 @@ The following are some of the grammars related with Babel:
 Folder `src/plugins/jsx` contains the JSX "parser plugin".
 
 4. **Flow Grammar**: Flow is a static type checker for JavaScript. Babel can parse Flow type annotations, although, like TypeScript, it does not perform type-checking.  File `src/plugins/flow.js` contains the Flow "parser plugin".
+   - See example in [/src/awesome/flow](/src/awesome/flow/)
 
 5. **Proposals and Experimental Syntax**: Babel supports various ECMAScript proposals and experimental syntax, often before they become part of the official ECMAScript standard. These are implemented as plugins in Babel.
 For instance The Facebook Hermes JS engine provides a babel parser plugin
@@ -139,7 +140,6 @@ While Babel does not provide grammars in Backus-Naur Form (BNF), you can refer t
 
 4. **Flow Grammar**: Flow's grammar extends JavaScript with type annotations. The formal grammar for Flow can be derived from the Flow documentation and its implementation.
    - [Flow Documentation](https://flow.org/en/docs/)
-   - See example in [/src/awesome/flow](/src/awesome/flow/)
 
 ### Other resources
 
