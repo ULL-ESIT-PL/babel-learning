@@ -1,0 +1,7 @@
+{
+  "presets": ["@babel/preset-flow"],
+  "plugins": [
+    "babel-plugin-syntax-hermes-parser",      
+    ["@babel/plugin-transform-flow-strip-types", { "allowDeclareFields": true }]
+  ]
+}
