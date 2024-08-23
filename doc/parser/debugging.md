@@ -1049,6 +1049,7 @@ Notice how `type`  contains the `TokenType` of the current token.
 
 ## Related Reading
 
-* [tokenizer.md](/doc/parser/tokenizer.md)
+* [tokenizer.md](/doc/parser/tokenizer.md) is a description of the files in the `tokenizer` directory: [context.js](/doc/parser/tokenizer.md#contextjs), 
+  [index.js](/doc/parser/tokenizer.md#indexjs), [state.js](/doc/parser/tokenizer.md#statejs), [types.js](/doc/parser/tokenizer.md#typesjs)
 * [context/index-context.md](/doc/parser/context/index-context.md)
 * [context/plugin-jsx-context.md](/doc/parser/context/plugin-jsx-context.md)
