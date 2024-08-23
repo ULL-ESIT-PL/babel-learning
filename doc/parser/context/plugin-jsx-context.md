@@ -1,6 +1,7 @@
 # Plugin jsx: Usage of token contexts
 
-`File src/plugins/jsx/index.js`
+File [src/plugins/jsx/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/packages/babel-parser/src/plugins/jsx/index.js) defines the plugin `jsx`. This plugin is enabled by default. It is used to parse JSX syntax. The plugin uses token contexts to define the different contexts in which tokens can appear. The plugin defines the following token contexts:
+
 ```js
 ...
 import { TokContext, types as tc } from "../../tokenizer/context";

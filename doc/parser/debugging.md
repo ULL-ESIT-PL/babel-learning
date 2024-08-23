@@ -1090,7 +1090,4 @@ Notice how `type`  contains the `TokenType` of the current token.
   *   [checkKeywordEscapes](/doc/parser/context/index-context.md#checkkeywordescapes)
   *   [braceIsBlock](/doc/parser/context/index-context.md#braceisblock)
   *   [updateContext](/doc/parser/context/index-context.md#updatecontext)
-
-
-
 * [context/plugin-jsx-context.md](/doc/parser/context/plugin-jsx-context.md)
