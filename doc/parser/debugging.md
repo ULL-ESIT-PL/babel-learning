@@ -92,7 +92,7 @@ Open the Chrome browser and go to the URL `chrome://inspect`. Click on the `insp
 
 ### Grammars Supported by Babel
 
-The folder `src/plugins` in the Babel repository contains the plugins that implement the grammars supported by Babel. 
+The folder `src/plugins` in the Babel repository contains the plugins that implement  extensions/variants supported by Babel. 
 
 ```
 ➜  babel-parser git:(learning) ✗ tree  src/plugins
@@ -109,9 +109,9 @@ src/plugins
 └── v8intrinsic.js
 ```
 
-The following are some of the grammars supported by Babel:
+The following are some of the grammars related with Babel:
 
-1. **ECMAScript (JavaScript) Grammar**: This is the primary grammar supported by Babel. It includes all standard JavaScript syntax as defined by the ECMAScript specification. File `src/plugins
+1. **ECMAScript (JavaScript) Grammar**: This is the primary grammar supported by Babel. It includes all standard JavaScript syntax as defined by the ECMAScript specification. 
 
 2. **TypeScript Grammar**: Babel also supports parsing TypeScript, a superset of JavaScript that adds static typing. Babel can strip TypeScript type annotations but does not perform type-checking. Folder `src/plugins/typescript` contains the TypeScript "parser plugin".
 
@@ -127,7 +127,7 @@ For instance The Facebook Hermes JS engine provides a babel parser plugin
 
 ### Finding Grammars in Backus-Naur Form (BNF) or Similar
 
-While Babel itself does not directly provide its supported grammars in Backus-Naur Form (BNF), you can refer to several resources to find such formal grammars:
+While Babel does not provide grammars in Backus-Naur Form (BNF), you can refer to several resources to find formal grammars:
 
 1. **ECMAScript Specification**: The official ECMAScript specification defines the JavaScript grammar in a formal language similar to BNF, called the Extended Backus-Naur Form (EBNF).
    - [ECMAScript Specification](https://tc39.es/ecma262/)
