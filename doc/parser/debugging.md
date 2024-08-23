@@ -139,6 +139,7 @@ While Babel does not provide grammars in Backus-Naur Form (BNF), you can refer t
 
 4. **Flow Grammar**: Flow's grammar extends JavaScript with type annotations. The formal grammar for Flow can be derived from the Flow documentation and its implementation.
    - [Flow Documentation](https://flow.org/en/docs/)
+   - See example in [/src/awesome/flow](/src/awesome/flow/)
 
 ### Extracting Formal Grammars
 If you need the grammar in a formal notation like BNF or EBNF, you might need to manually extract it from the above resources or use tools that can generate grammars from parsers, such as ANTLR, for the TypeScript or ECMAScript grammars.
