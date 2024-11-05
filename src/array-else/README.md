@@ -22,7 +22,7 @@ When compiled with [Adrian's parser](https://github.com/ULL-ESIT-PL/babel-tanhau
 ]
 ```
 
-## The `else` clause
+## Links to Adrian's compiler for the `else` clause on Arrays and Objects
 
 ```
 martes,  5 de noviembre de 2024, 12:56:07 WEST
