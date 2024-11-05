@@ -8,7 +8,7 @@ console.log(a[2]);  // 3
 console.log(a[5]);  // 25 (porque 5 * 5 = 25)
 ```
 
-When compiled with Adrian's parser we get an AST like:
+When compiled with [Adrian's parser](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/src/parser/expression.js) we get an AST like:
 
 ```
 ➜  babel-learning git:(main) ✗ npx adrianparser src/array-else/array-else.js 2> /dev/null | jq '[.program.body[0].declarations[0].init.elements[] | .type ]' 
