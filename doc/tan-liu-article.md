@@ -222,6 +222,22 @@ Most of them passed but there were some errors. For instance:
 
 I will try to find out what is the reason later.
 
+## package.json scripts alternatives to make
+
+There are several scripts in the `package.json`  that are alias of `make` commands:
+
+`➜  babel-tanhauhau git:(adrian-casiano) ✗ jq '.scripts' package.json`
+```json
+{
+  "bootstrap": "make bootstrap",
+  "codesandbox": "make bootstrap-only; make build-no-bundle",
+  "build": "make build",
+  "fix": "make fix",
+  "lint": "make lint",
+  "test": "make test"
+}
+```
+
 ## VSCode Configuration
 
 See section [doc/vscode-flow-config.md](/doc/vscode-flow-config.md) on how to configure VSCode to work with Babel files in Flow.
@@ -231,7 +247,6 @@ See also section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config
 ## git configuration: Husky and git Hooks
 
 See section [/doc/git-hooks-configuration.md](/doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
-
 
 ## Symbolic link and way to work
 
