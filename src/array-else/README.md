@@ -21,3 +21,16 @@ When compiled with [Adrian's parser](https://github.com/ULL-ESIT-PL/babel-tanhau
   "ElseExpression"
 ]
 ```
+
+## The `else` clause
+
+```
+martes,  5 de noviembre de 2024, 12:56:07 WEST
+➜  packages git:(adrian) ✗ git lg | head -n 1
+38c427bb8 - (HEAD -> adrian, origin/Adrian-tfg) Añadida la configuracion (hace 6 días Adrián Mora)
+```
+
+- [packages/babel-parser/babel.config.json](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/babel.config.json)
+- [packages/babel-parser/defaultvector.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/defaultvector.js)
+- [packages/babel-parser/pruebas.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/pruebas.js)
+- [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/src/parser/expression.js#L2079-L2091)
