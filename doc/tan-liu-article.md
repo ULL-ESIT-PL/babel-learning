@@ -268,6 +268,22 @@ symbolic link `mybabel` to your version of `babel.js` script in the `node_module
 7.10.1 (@babel/core 7.10.2)
 ```
 
+We can do the same with the parser so that we can use it from the `babel-learning` folder by just running 
+`npx myparser`:
+
+```sh
+➜  babel-learning git:(main) ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/bin/babel-parser.js node_modules/.bin/myparser  
+```
+
+Now we can use the parser from the `babel-learning` folder:
+
+```sh
+➜  babel-learning git:(main) npx myparser src/tan-liu-article/example.js 
+➜  babel-learning git:(main) ✗ npx myparser src/tan-liu-article/example.js > ast.json
+➜  babel-learning git:(main) ✗ jq '.program.body[0].curry' ast.json
+true
+```
+
 ## Alternative: Symbolic link from your workspace to the cloned babel repo
 
 I created a symbolic link to the `babel-tanhauhau` folder containing the cloned babel inside the `learning` folder
