@@ -36,7 +36,6 @@ martes,  5 de noviembre de 2024, 12:56:07 WEST
 - [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/src/parser/expression.js#L2079-L2091)
 
 
-Goals:
+### Goals
 
-- Move defaultvector to babel-plugin-helper-defaultvector as extenernal plugin?
-- 
+- [Move defaultvector to babel-plugin-helper-defaultvector as extenernal plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/13)?
