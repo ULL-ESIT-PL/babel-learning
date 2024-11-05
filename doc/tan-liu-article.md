@@ -376,7 +376,7 @@ I advise you to do the same while you are learning.
 
 > [!IMPORTANT]
 > The  `make bootstrap` and `make build` are unbearable slow!
-> You have to issue a `make build` them every time you change to a branch with a new version 
+> Remember: You have to issue a `make build` them every time you change to a branch with a new version 
 > of your parser. 
  
 One way to overcome this is to use `git worktree add` to have a working space for each branch.  A git repository can support multiple working trees, allowing you to check out more than one branch at a time. With `git worktree add` a new working tree is associated with the repository. This new working tree is called a "*linked working tree*" as opposed to the "*main working tree*" prepared by "`git init`" or "`git clone`". A repository has one *main working tree* and zero or more *linked working trees*. When you are done with a linked working tree, remove it with `git worktree remove`.
