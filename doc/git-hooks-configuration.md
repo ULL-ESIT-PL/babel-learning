@@ -40,7 +40,7 @@ git ...
 unset HUSKY # Re-enables hooks
 ```
 
-In the [package.json](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/package.json#L88-L92) at the root of the project, you will find the husky configuration. We can disable husky by removing it or changing the corresponding lines:
+A worse solution: in the [package.json](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/package.json#L88-L92) at the root of the project, you will find the husky configuration. We can disable husky by removing it or changing the corresponding lines:
 
 ```diff
 diff --git a/package.json b/package.json
