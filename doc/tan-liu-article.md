@@ -132,7 +132,7 @@ then I proceed to make the bootstrap:
 ➜  babel-tanhauhau git:(master) make bootstrap
 ```
 the first time I was using node v21.2.0 and nvm 0.35.3.
-There were errors with node-gyp. 
+There were errors with [node-gyp](https://github.com/nodejs/node-gyp). 
 I found that node-gyp is a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js. 
 It contains a vendored copy of the `gyp-next` project that was previously used by the 
 Chromium team and extended to support the development of Node.js native addons. Native modules refers to the modules that are written outside of JavaScript, modules that are written in C++ (C++ addons) for example and embedded into JavaScript using things like N-API (Node-API).
@@ -189,7 +189,8 @@ It took a while to build the project, but there were no errors:
 [12:33:49] Finished 'build-babel-standalone' after 29 s
 ```
 
-I have later tried with version 22.2.0 and also with problems. So be aware of the version of node you are using.
+> [!IMPORTANT]  
+> I have later tried with version 22.2.0 and also with problems. So be aware of the version of node you are using.
 
 
 ### make build
@@ -223,7 +224,9 @@ I will try to find out what is the reason later.
 
 ## VSCode Configuration
 
-See section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) on how to configure VSCode to work with Babel files in TypeScript.
+See section [doc/vscode-flow-config.md](/doc/vscode-flow-config.md) on how to configure VSCode to work with Babel files in Flow.
+
+See also section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config.md) on how to configure VSCode to work with TypeScript files.
 
 ## git configuration: Husky and git Hooks
 
