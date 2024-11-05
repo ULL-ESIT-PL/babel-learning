@@ -21,6 +21,7 @@ The goal of pre-commit hooks is to improve the quality of commits.
 
 ## git --no-verify
 
+> [!IMPORTANT]
 > To skip commit hooks during a commit, you can use the `--no-verify` option (a.k.a. `-n`) 
 with `git commit`. This option bypasses both the pre-commit and commit-msg hooks:
 >
