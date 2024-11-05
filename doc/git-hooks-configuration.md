@@ -31,7 +31,16 @@ with `git commit`. This option bypasses both the pre-commit and commit-msg hooks
 
 ## Alternative: Disabling Husky and git Hooks 
 
-In the [package.json](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/package.json#L88-L92) at the root of the project, you will find the husky configuration. We can disable husky by removing it or changing the lines:
+`--no-verify` only works for certain hooks: See issue [#344](https://github.com/typicode/husky/pull/344#issuecomment-419885003). See tutorial [Skipping Git Hooks](https://typicode.github.io/husky/how-to.html#skipping-git-hooks).
+
+```sh
+export HUSKY=0 # Disables all Git hooks
+git ...
+git ...
+unset HUSKY # Re-enables hooks
+```
+
+In the [package.json](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/master/package.json#L88-L92) at the root of the project, you will find the husky configuration. We can disable husky by removing it or changing the corresponding lines:
 
 ```diff
 diff --git a/package.json b/package.json
