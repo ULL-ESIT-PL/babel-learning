@@ -252,7 +252,7 @@ See section [/doc/git-hooks-configuration.md](/doc/git-hooks-configuration.md) o
 export HUSKY=0 # Disables all Git hooks
 ```
 
-## Create a Symbolic link to your Version of Babel 
+## Create a Symbolic link to your Version of Babel: npx mybabel 
 
 We can take advantage of `npx` to have at hand the executables of our babel version by creating a
 symbolic link `mybabel` to your version of `babel.js` script in the `node_modules/.bin` folder.
@@ -267,6 +267,8 @@ symbolic link `mybabel` to your version of `babel.js` script in the `node_module
 ➜  babel-learning git:(main) ✗ npx mybabel --version          
 7.10.1 (@babel/core 7.10.2)
 ```
+
+### npx myparser
 
 We can do the same with the parser so that we can use it from the `babel-learning` folder by just running 
 `npx myparser`:
