@@ -246,9 +246,29 @@ See also section [doc/vscode-typescript-config.md](/doc/vscode-typescript-config
 
 ## git configuration: Husky and git Hooks
 
-See section [/doc/git-hooks-configuration.md](/doc/git-hooks-configuration.md) on how to survive with pre-commit hooks
+See section [/doc/git-hooks-configuration.md](/doc/git-hooks-configuration.md) on how to survive with pre-commit hooks. 
 
-## Symbolic link and way to work
+```sh
+export HUSKY=0 # Disables all Git hooks
+```
+
+## Symbolic links to your version of babel 
+
+We can take advantage of `npx` to have at hand the executables of our babel version by creating a
+symbolic link `mybabel` to your version of `babel.js` script in the `node_modules/.bin` folder.
+
+```sh
+➜  babel-learning git:(main) pwd -P
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning
+➜  babel-learning git:(main) ✗ cd node_modules/.bin 
+➜  .bin git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-cli/bin/babel.js mybabel
+➜  babel-learning git:(main) ✗ cd ../..
+➜  babel-learning git:(main) ✗ chmod a+x node_modules/.bin/mybabel 
+➜  babel-learning git:(main) ✗ npx mybabel --version          
+7.10.1 (@babel/core 7.10.2)
+```
+
+## Alternative: Symbolic link from your workspace to the cloned babel repo
 
 I created a symbolic link to the `babel-tanhauhau` folder containing the cloned babel inside the `learning` folder
 containing this tutorial:
@@ -333,18 +353,6 @@ Notice the `curry: true` attribute in the AST marking the function  as one to be
 
 I advise you to do the same while you are learning.
 
-## Symbolic links to the executables
-
-We can take advantage of `npx` to have at hand the executables of our babel version:
-
-```sh
-➜  babel-learning git:(main) ✗ cd node_modules/.bin 
-➜  .bin git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-cli/bin/babel.js mybabel
-➜  babel-learning git:(main) ✗ cd ../..
-➜  babel-learning git:(main) ✗ chmod a+x node_modules/.bin/mybabel 
-➜  babel-learning git:(main) ✗ npx mybabel --version          
-7.10.1 (@babel/core 7.10.2)
-```
 
 ## git worktree: Having working spaces for each branch
 
