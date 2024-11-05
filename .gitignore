@@ -2,5 +2,7 @@ lib
 node_modules
 babel-tanhauhau
 babel-tanhauhau-feat-curry-function
+babel-tanhauhau-adrian
+babel-tanhauhau-pablo
 salida.cjs
 src/tan-liu-article/myParser.js

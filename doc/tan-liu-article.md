@@ -268,6 +268,10 @@ symbolic link `mybabel` to your version of `babel.js` script in the `node_module
 7.10.1 (@babel/core 7.10.2)
 ```
 
+```sh 
+➜  babel-learning git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-parser/bin/babel-parser.js node_modules/.bin/adrianparser
+``` 
+
 ### npx myparser
 
 We can do the same with the parser so that we can use it from the `babel-learning` folder by just running 
@@ -385,7 +389,21 @@ One way to overcome this is to use `git worktree add` to have a working space fo
 ➜  babel-tanhauhau git:(learning) ✗ git worktree add ../babel-tanhauhau-feat-curry-function feat/curry-function
 HEAD está ahora en b793efad1 function hoisting
 ```
-Now we have a new working tree in the `babel-tanhauhau-feat-curry-function` folder. We can switch to it and set the Babel project there:
+
+If you have several branches holding different versions of the compiler, you can create a working tree for each branch:
+
+```sh
+➜  babel-tanhauhau git:(learning) ✗ git worktree add ../babel-tanhauhau-adrian adrian
+➜  babel-tanhauhau git:(learning) ✗ git worktree add ../babel-tanhauhau-pablo pablo 
+➜  babel-tanhauhau git:(learning) ✗ ls -l ../ | grep babel-tanhauhau
+drwxr-xr-x  42 casianorodriguezleon  staff  1344  5 nov 11:24 babel-tanhauhau
+drwxr-xr-x@ 39 casianorodriguezleon  staff  1248  5 nov 11:43 babel-tanhauhau-adrian
+drwxr-xr-x  37 casianorodriguezleon  staff  1184 12 jun 13:52 babel-tanhauhau-feat-curry-function
+drwxr-xr-x@ 39 casianorodriguezleon  staff  1248  5 nov 11:43 babel-tanhauhau-pablo
+```
+
+Now we have among others, a new working tree in the `babel-tanhauhau-feat-curry-function` folder. 
+We can switch to it and set the Babel project there:
 
 ```
 ➜  babel-tanhauhau git:(learning) ✗ cd ../babel-tanhauhau-feat-curry-function
