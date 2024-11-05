@@ -1,3 +1,5 @@
+## Extending Arrays and Objects with an `else` clause
+
 Given the following code:
 
 `➜  babel-learning git:(main) ✗ cat src/array-else/array-else.js`
