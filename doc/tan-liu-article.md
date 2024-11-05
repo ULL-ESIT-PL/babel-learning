@@ -252,7 +252,7 @@ See section [/doc/git-hooks-configuration.md](/doc/git-hooks-configuration.md) o
 export HUSKY=0 # Disables all Git hooks
 ```
 
-## Symbolic links to your version of babel 
+## Create a Symbolic link to your Version of Babel 
 
 We can take advantage of `npx` to have at hand the executables of our babel version by creating a
 symbolic link `mybabel` to your version of `babel.js` script in the `node_modules/.bin` folder.
