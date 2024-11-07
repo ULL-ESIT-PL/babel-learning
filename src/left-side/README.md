@@ -8,6 +8,14 @@ You can find Pablo's current (2024-11-07) implementation of function expressions
 
 Here I am using the `pabloparser` and `pablobabel` links to compile the code:
 
+```bash 
+➜  left-side git:(main) ls -l ../../node_modules/.bin/pablo*
+lrwxr-xr-x@ 1 casianorodriguezleon  staff  128  7 nov 13:21 ../../node_modules/.bin/pablobabel -> /Users/casianorodriguezleon/campus-virtual/2324/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-cli/bin/babel.js
+lrwxr-xr-x@ 1 casianorodriguezleon  staff  138  7 nov 13:20 ../../node_modules/.bin/pabloparser -> /Users/casianorodriguezleon/campus-virtual/2324/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-parser/bin/babel-parser.js
+➜  left-side git:(main) 
+```
+
+Let us consider the following code:
 
 `➜  left-side git:(main) ✗ cat left-side-original.mjs`
 ```js
