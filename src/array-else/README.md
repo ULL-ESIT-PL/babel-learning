@@ -25,10 +25,9 @@ When compiled with [Adrian's parser](https://github.com/ULL-ESIT-PL/babel-tanhau
 To use Adrian's babel transpiler we write a `babel.config.json` linking to the support plugin (currently 2024-11-07 in the wrong place)
 
 `➜  array-else git:(main) ✗ cat babel.config.json`
-
 ```json
 {
-  "plugins": [ // 2024/11/07
+  "plugins": [ 
     "../../babel-tanhauhau-adrian/packages/babel-parser/defaultvector.cjs"
   ]
 }
