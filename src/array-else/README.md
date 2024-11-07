@@ -86,4 +86,4 @@ martes,  5 de noviembre de 2024, 12:56:07 WEST
 
 ### Goals
 
-- [Move defaultvector to babel-plugin-helper-defaultvector as extenernal plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/13)?
+- [Move defaultvector to babel-plugin-helper-defaultvector as external plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/13)?
