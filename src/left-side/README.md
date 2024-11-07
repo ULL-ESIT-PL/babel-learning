@@ -19,11 +19,15 @@ Let us consider the following code:
 
 `➜  left-side git:(main) ✗ cat left-side-original.mjs`
 ```js
+➜  left-side git:(main) ✗ cat left-side-original.mjs 
 //foo.assign(10, 9) Alternative, defining assignable functions.
 function @@ foo(bar) {
   return bar * 2;
 }
 foo(10) = 5;
+
+console.log(foo(4));   // 8
+console.log(foo(10));  // 5
 ```
   
 When compiled with [Pablo's parser]() we get an AST like:
@@ -132,5 +136,27 @@ and:
   }
 }
 ```
+Using the configuration file:
 
+`➜  left-side git:(main) ✗ cat babel.config.json` 
+```json 
+{
+  "plugins": [
+    "../../babel-tanhauhau-pablo/packages/babel-parser/babel-left-side-plugin.cjs"
+  ]
+}
+```
 
+We can use now Pablo's version of babel transpiler for the input:
+
+`➜  left-side git:(main) ✗ npx pablobabel left-side-original.mjs`
+```js
+//foo.assign(10, 9) Alternative, defining assignable functions.
+const foo = functionObject(function (bar) {
+  return bar * 2;
+});
+assign(foo, 10, 5);
+console.log(foo(4)); // 8
+
+console.log(foo(10)); // 5
+```

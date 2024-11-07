@@ -1,0 +1,5 @@
+{
+  "plugins": [
+    "../../babel-tanhauhau-pablo/packages/babel-parser/babel-left-side-plugin.cjs"
+  ]
+}
