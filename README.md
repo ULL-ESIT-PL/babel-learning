@@ -204,7 +204,18 @@ defining the default behavior when the property does not exists in the array. [S
 
 ## Pablo's Final Degree Project
 
-[Pablo](https://github.com/PSantanaGlez13) is working in his Final Degree Project on extending JS with *Assignable functions* whose behavior can be changed via assignments. [See /src/left-side/README.md](/src/left-side/README.md) for an example. 
+[Pablo](https://github.com/PSantanaGlez13) is working in his Final Degree Project on extending JS with *Assignable functions* whose behavior can be changed via assignments:
+
+`➜  left-side git:(main) ✗ cat left-side-original.mjs`
+```js
+//foo.assign(10, 9) Alternative, defining assignable functions.
+function @@ foo(bar) {
+  return bar * 2;
+}
+foo(10) = 5;
+```
+
+See [/src/left-side/README.md](/src/left-side/README.md) for an example. 
 
 ## Exercises
 
