@@ -4,7 +4,7 @@ You can find Adrian's current (2024-11-07) implementation of the `else` clause
 for Arrays and Objects in the [Adrian-tfg branch](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/Adrian-tfg/packages/babel-parser) of the `ULL-ESIT-PL/babel-tanhauhau` repo. 
 
 > [!IMPORTANT]
-> Warning: this is work in progress. These comments can be outdated.
+> **Warning: This is work in progress. These comments can be outdated.**
 
 Here I am using the `adrianparser` and `adrianbabel` links to compile the code:
 
