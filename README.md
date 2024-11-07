@@ -197,6 +197,11 @@ See
 
 See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
 
+## Adrian`s Final Degree Project
+
+Adrian is working in his Final Degree Project on extending JS arrays and objects with a `else` clause 
+defining the default behavior when the property does not exists in the array. [See /src/array-else/README.md](/src/array-else/README.md)
+
 ## Exercises
 
 See section [Exercises](doc/exercises/README.md).
