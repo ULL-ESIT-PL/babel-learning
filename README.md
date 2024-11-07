@@ -209,7 +209,7 @@ console.log(a[2]);  // 3
 console.log(a[5]);  // 25 (porque 5 * 5 = 25)
 ```
 
-See [/src/array-else/README.md](/src/array-else/README.md) for an example of how to use Adrian's transpiler. 
+See [/src/array-else/README.md](/src/array-else/README.md) to know more about Adrian's transpiler. 
 
 ## Pablo's Final Degree Project
 
@@ -223,7 +223,7 @@ function @@ foo(bar) {
 foo(10) = 5;
 ```
 
-See [/src/left-side/README.md](/src/left-side/README.md) for an example of how to use Pablo's transpiler. 
+See [/src/left-side/README.md](/src/left-side/README.md) to know more about Pablo's transpiler. 
 
 ## Exercises
 
