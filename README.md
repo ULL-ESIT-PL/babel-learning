@@ -208,7 +208,6 @@ defining the default behavior when the property does not exists in the array. [S
 
 `➜  left-side git:(main) ✗ cat left-side-original.mjs`
 ```js
-//foo.assign(10, 9) Alternative, defining assignable functions.
 function @@ foo(bar) {
   return bar * 2;
 }
