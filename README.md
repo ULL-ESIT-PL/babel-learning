@@ -197,10 +197,14 @@ See
 
 See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/tan-liu-article.md)
 
-## Adrian`s Final Degree Project
+## Adrian's Final Degree Project
 
 [Adrian](https://github.com/AdrianMoraRodriguez) is working in his Final Degree Project on extending JS arrays and objects with a `else` clause 
 defining the default behavior when the property does not exists in the array. [See /src/array-else/README.md](/src/array-else/README.md) for an example. 
+
+## Pablo's Final Degree Project
+
+[Pablo](https://github.com/PSantanaGlez13) is working in his Final Degree Project on extending JS with *Assignable functions* whose behavior can be changed via assignments. [See /src/left-side/README.md](/src/left-side/README.md) for an example. 
 
 ## Exercises
 
