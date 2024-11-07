@@ -199,7 +199,7 @@ See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/t
 
 ## Adrian`s Final Degree Project
 
-Adrian is working in his Final Degree Project on extending JS arrays and objects with a `else` clause 
+[Adrian](https://github.com/AdrianMoraRodriguez) is working in his Final Degree Project on extending JS arrays and objects with a `else` clause 
 defining the default behavior when the property does not exists in the array. [See /src/array-else/README.md](/src/array-else/README.md)
 
 ## Exercises
