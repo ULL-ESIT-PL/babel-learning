@@ -33,9 +33,9 @@ When compiled with [Pablo's parser]() we get an AST like:
 true
 ```
 and:
-    
+
+`➜  left-side git:(main) ✗ npx pabloparser left-side-original.mjs | jq '.program.body[1]'`    
 ```json 
-➜  left-side git:(main) ✗ npx pabloparser left-side-original.mjs | jq '.program.body[1] | del(.loc)'
 {
   "type": "ExpressionStatement",
   "start": 107,
