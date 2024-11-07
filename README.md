@@ -200,7 +200,16 @@ See [Commented Reading of "Creating custom JavaScript syntax with Babel"](/doc/t
 ## Adrian's Final Degree Project
 
 [Adrian](https://github.com/AdrianMoraRodriguez) is working in his Final Degree Project on extending JS arrays and objects with a `else` clause 
-defining the default behavior when the property does not exists in the array. [See /src/array-else/README.md](/src/array-else/README.md) for an example. 
+defining the default behavior when the property does not exists in the array. 
+
+```javascript
+let a = [1, 2, 3, else x => x * x];
+
+console.log(a[2]);  // 3
+console.log(a[5]);  // 25 (porque 5 * 5 = 25)
+```
+
+See [/src/array-else/README.md](/src/array-else/README.md) for an example. 
 
 ## Pablo's Final Degree Project
 
