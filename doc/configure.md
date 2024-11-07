@@ -97,6 +97,7 @@ See https://babeljs.io/docs/options#code-generator-options and https://babeljs.i
 Monorepo-structured repositories usually contain many packages.
 With [monorepo setups](https://babeljs.io/docs/config-files#monorepos), the core thing to understand is that Babel treats your working directory as its logical "root", which causes problems if you want to run Babel tools within a specific sub-package without having Babel apply to the repo as a whole.
 
+[Taming the Hydra: Managing Monorepos with Lerna](https://youtu.be/479T5xEBfew?si=H2hyeDimeCVnBxcj)
 
 ## JS Config Files
 
