@@ -159,9 +159,6 @@ we can now run it using the node interpreter:
 
 Notice that the user has to be aware that the word `currying` is a word reserved for the plugin.
 
-They  aren't willing to change the  API to support plugins
-because it's not clear how to make that API effective, and it would limit 
-their ability to refactor and optimize the codebase.
 
 ## Running with the installed compiler using `parserOverride`
 
@@ -236,5 +233,11 @@ When the resulted code is executed, the output is the same as before:
 ➜  tan-liu-article git:(main) ✗ npx babel --config-file ./myParser.babel.config.js example.js | node
 6
 ```
+
+**Will the Babel parser support a plugin system?**
+
+T[hey  aren't willing to change the  API to support "parser plugins"](https://babeljs.io/docs/babel-parser#faq)
+because it's not clear how to make that API effective, and it would limit 
+their ability to refactor and optimize the codebase.
 
 ## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-first-approach)
