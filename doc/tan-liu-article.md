@@ -1762,7 +1762,7 @@ export default function ourBabelPlugin() {
 >
 > If you have read my [step-by-step guide on babel transformation](https://lihautan.com/step-by-step-guide-for-writing-a-babel-transformation), writing this transformation should be manageable:
 
-> `packages/babel-plugin-transform-curry-function/src/index.cjs`
+> [packages/babel-plugin-transform-curry-function/src/index.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/learning/packages/babel-plugin-transform-curry-function/src/index.js)
 > ```js
 > export default function ourBabelPlugin() {
 >   return {
