@@ -170,7 +170,7 @@ The answer says [they  aren't willing to change the  API to support "parser plug
 because it's not clear how to make that API effective, and it would limit 
 their ability to refactor and optimize the codebase.
 
-The current recommendation for those that want to create their own custom syntax is for users to fork the parser.
+> The current recommendation for those that want to create their own custom syntax is for users to fork the parser.
 
 You can modify the parser used by your intalled Babel by your own custom parser.
 For that we can add a plugin to our configuration [options](https://babeljs.io/docs/options#plugins) 
