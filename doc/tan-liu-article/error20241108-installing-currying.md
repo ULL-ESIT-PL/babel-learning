@@ -23,3 +23,8 @@ npm ERR! notsup Actual:   {"npm":"9.8.0","node":"v20.5.0"}
 
 npm ERR! A complete log of this run can be found in: /Users/casianorodriguezleon/.npm/_logs/2024-11-08T12_16_00_617Z-debug-0.log
 ```
+
+
+- [Back to Plugin Second Approach: using the Babel Helpers](plugin-second-approach.md)
+- [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-second-approach)
+- [Back to the Plugin First Approach](plugin-first-approach.md)
