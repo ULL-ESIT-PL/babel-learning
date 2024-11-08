@@ -172,14 +172,14 @@ node-pre-gyp ERR! not ok
 Failed to execute '/Users/casianorodriguezleon/.nvm/versions/node/v21.2.0/bin/node /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/node_modules/node-gyp/bin/node-gyp.js configure --fallback-to-build --module=/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/node_modules/fsevents/lib/binding/Release/node-v120-darwin-x64/fse.node --module_name=fse --module_path=/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/node_modules/fsevents/lib/binding/Release/node-v120-darwin-x64 --napi_version=9 --node_abi_napi=napi --napi_build_version=0 --node_napi_label=node-v120' (7)"
 ✨  Done in 29.07s.
 ```
-
-thus I tried again, this time with node v20.
-
-```sh
-➜  babel-tanhauhau git:(master) nvm use v20
-Now using node v20.5.0 (npm v9.8.0)
-➜  babel-tanhauhau git:(master) make bootstrap
-```
+> [!IMPORTANT]
+> thus I tried again, this time with node v20.
+>
+> ```sh
+> ➜  babel-tanhauhau git:(master) nvm use v20
+> Now using node v20.5.0 (npm v9.8.0)
+> ➜  babel-tanhauhau git:(master) make bootstrap
+> ```
 
 It took a while to build the project, but there were no errors:
 
@@ -270,6 +270,8 @@ symbolic link `mybabel` to your version of `babel.js` script in the `node_module
 
 ```sh 
 ➜  babel-learning git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-parser/bin/babel-parser.js node_modules/.bin/adrianparser
+➜  babel-learning git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js node_modules/.bin/adrianbabel
+
 ``` 
 
 ### npx myparser

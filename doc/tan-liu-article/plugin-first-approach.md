@@ -195,7 +195,7 @@ module.exports = {
   ],
 };
 ```
-Since we haven't published the plugin, we start making a symbolic link to the parser we want to use:
+Since we haven't published our `babel-parser` plugin, we start making a symbolic link to the parser we want to use:
 
 ```sh
 ➜  tan-liu-article git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/index.js my-parser.js
