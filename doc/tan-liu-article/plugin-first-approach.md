@@ -138,7 +138,7 @@ Or, if you made a symbolic link in `node_modules/.bin/mybabel` to your version o
      -o src/tan-liu-article/salida.cjs
 ```
 
-Which gives the output:
+Which gives the output[^error20241108]:
 
 `➜  babel-learning git:(main) cat src/tan-liu-article/salida.cjs`
 ```js
@@ -162,6 +162,7 @@ we can now run it using the node interpreter:
 
 Notice that the user has to be aware that the word `currying` is a word reserved for the plugin.
 
+[^error20241108]: When reproducing this at 2024/11/08, the command `npx mybabel src/tan-liu-article/example.js ...` gave me an [error](error20241108.md).
 
 ## Running with the installed compiler using `parserOverride`
 
