@@ -162,6 +162,16 @@ Notice that the user has to be aware that the word `currying` is a word reserved
 
 ## Running with the installed compiler using `parserOverride`
 
+When you go to Babel Parser FAQ section, you will find the following question:
+
+**Will the Babel parser support a plugin system?**
+
+The answer says [they  aren't willing to change the  API to support "parser plugins"](https://babeljs.io/docs/babel-parser#faq)
+because it's not clear how to make that API effective, and it would limit 
+their ability to refactor and optimize the codebase.
+
+The current recommendation for those that want to create their own custom syntax is for users to fork the parser.
+
 You can modify the parser used by your intalled Babel by your own custom parser.
 For that we can add a plugin to our configuration [options](https://babeljs.io/docs/options#plugins) 
 to call the parser via 
@@ -234,10 +244,6 @@ When the resulted code is executed, the output is the same as before:
 6
 ```
 
-**Will the Babel parser support a plugin system?**
 
-T[hey  aren't willing to change the  API to support "parser plugins"](https://babeljs.io/docs/babel-parser#faq)
-because it's not clear how to make that API effective, and it would limit 
-their ability to refactor and optimize the codebase.
 
 ## [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-first-approach)
