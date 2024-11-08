@@ -103,7 +103,7 @@ Once the module is available, the developer can install it[^nodeversionerror]:
 added 1 package, and audited 231 packages in 1s
 ```
 
-[^nodeversionerror]: when reproducing this at 2024/11/08, the command `npm install src/tan-liu-article/currying` gave me [errors](error20241108-installing-currying.md)
+[^nodeversionerror]: When reproducing this at 2024/11/08, the command `npm install src/tan-liu-article/currying` gave me [errors](error20241108-installing-currying.md)
 
 
 
