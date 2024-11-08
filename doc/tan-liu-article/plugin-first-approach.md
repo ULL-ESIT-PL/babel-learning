@@ -19,7 +19,7 @@ This solution will be s.t. like this:
 
 ## 1. Write the plugin
 
-Let us start by [writing the plugin in our learning workspace](/src/tan-liu-article/babel-transform-curry-function.cjs):
+Let us start by writing the plugin in our learning workspace [`/src/tan-liu-article/babel-transform-curry-function.cjs`](/src/tan-liu-article/babel-transform-curry-function.cjs):
 
 `➜  babel-learning git:(main) ✗ cat src/tan-liu-article/babel-transform-curry-function.cjs`
 ```js
@@ -33,13 +33,13 @@ module.exports = function (babel) {
       Program: {
         exit(path) {
           let node = path.node;
-          node.body.unshift(curryTemplate);
+          node.body.unshift(curryTemplate); // Insert the require at the beginning of the program
         }
       },
       FunctionDeclaration(path) {
         if (path.get("curry").node) { 
           const functionName = path.get("id.name").node;
-          path.node.id = undefined;
+          path.node.id = undefined; 
           path.node.curry = false; // avoid infinite loop
 
           path.replaceWith(
