@@ -103,7 +103,8 @@ Once the module is available, the developer can install it[^nodeversionerror]:
 added 1 package, and audited 231 packages in 1s
 ```
 
-[^nodeversionerror]: when reproducing this at 2024/11/08, the command `npm install src/tan-liu-article/currying` gave me errors `EBADENGINE` by `@eslint/config-arra` with several versions of node (v20.5.0). The only one that worked was `v23.0.0`
+[^nodeversionerror]: when reproducing this at 2024/11/08, the command `npm install src/tan-liu-article/currying` gave me [errors](error20241108-installing-currying.md)
+
 
 
 ## 4. User: run the modified babel compiler with the plugin
