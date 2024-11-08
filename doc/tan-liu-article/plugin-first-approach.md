@@ -96,12 +96,15 @@ module.exports = function currying(fn) {
 
 ## 3. User: install the module
 
-Once the module is available, the developer can install it:
+Once the module is available, the developer can install it[^nodeversionerror]:
 
 ```sh
 ➜  babel-learning git:(main) ✗ npm install src/tan-liu-article/currying
 added 1 package, and audited 231 packages in 1s
 ```
+
+[^nodeversionerror]: when reproducing this at 2024/11/08, the command `npm install src/tan-liu-article/currying` gave me errors `EBADENGINE` by `@eslint/config-arra` with several versions of node (v20.5.0). The only one that worked was `v23.0.0`
+
 
 ## 4. User: run the modified babel compiler with the plugin
 
@@ -195,10 +198,11 @@ module.exports = {
   ],
 };
 ```
-Since we haven't published our `babel-parser` plugin, we start making a symbolic link to the parser we want to use:
+Since we haven't published our `babel-parser` plugin, we start making a symbolic link `myParser.js` 
+pointing to the modified parser `packages/babel-parser/lib/index.js` we want to use:
 
 ```sh
-➜  tan-liu-article git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/index.js my-parser.js
+➜  tan-liu-article git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau/packages/babel-parser/lib/index.js myParser.js
 ```
 
 Then we write [our configuration file `myParser.babel.config.js`](/src/tan-liu-article/myParser.babel.config.js) in which 
