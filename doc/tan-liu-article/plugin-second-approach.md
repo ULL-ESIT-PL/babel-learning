@@ -167,6 +167,7 @@ We can run the plugin with the following command:
 ➜  tan-liu-article git:(main) npx mybabel example.js \
      --plugins=./babel-transform-curry-function-withhelper.cjs | js-beautify
 ```  
+
 ```js
 // '@@' makes the function `foo` curried
 const foo = _currying(function(a, b, c) {
