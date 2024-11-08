@@ -26,5 +26,5 @@ npm ERR! A complete log of this run can be found in: /Users/casianorodriguezleon
 
 
 - [Back to Plugin Second Approach: using the Babel Helpers](plugin-second-approach.md)
-- [Back to the article](/doc/tan-liu-article.md#testing-the-plugin-second-approach)
+- [Back to the article](/doc/tan-liu-article.md#our-babel-plugin)
 - [Back to the Plugin First Approach](plugin-first-approach.md)
