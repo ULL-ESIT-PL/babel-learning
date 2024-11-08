@@ -168,7 +168,7 @@ We can run the plugin with the following command:
      --plugins=./babel-transform-curry-function-withhelper.cjs | js-beautify
 ```  
 
-producing the following output:
+producing the following output[^error20241108]:
 
 ```js
 // '@@' makes the function `foo` curried
@@ -194,6 +194,8 @@ function _currying(fn) {
 console.log(foo(1, 2)(3)); // 6
 ```
 We can see how the `_currying` function is inlined in the file.
+
+[^error20241108]: When reproducing this at 2024/11/08, the command `npx mybabel src/tan-liu-article/example.js ...` gave me this [error](error20241108.md).
 
 We can pipe the output of the compilation to `node` and see it working:
 
