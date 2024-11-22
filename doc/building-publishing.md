@@ -16,12 +16,11 @@ To resolve this issues, Babel uses Lerna, a monorepo management tool. Before we 
 - We consider that a package is an internal dependency if it is registered in the configuration file.
 
 It should also be noted that Babel [does not use Lerna anymore](https://github.com/babel/babel/discussions/12622).
+The problems that Babel solves with lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
 ### lerna bootstrap
 Installs the dependencies of every package.
 
 Internal dependencies are symlinked if needed. For external dependencies, `npm install` is used.
-
-Note: [lerna bootstrap can be substituted by workspaces](https://lerna.js.org/docs/legacy-package-management).
 
 [Reference.](https://github.com/lerna/lerna/tree/main/libs/commands/bootstrap)
 ### lerna publish
