@@ -82,11 +82,11 @@ Rollup is a bundler: it takes a project and writes it in one single JS file, wit
 ```
 The `"@babel/plugin-transform-flow-strip-types"` is (as the name implies) the plugin used to strip Flow type annotations from the code. The thing is that I found out that this plugin also uses a Flow type annotation and is transformed into JavaScript.
 There is two alternatives that could be happening (atleast that I came up with):
-1. The plugin and Flow parser (which, by the way, is also written in Flow) were compiled in a previous version to JavaScript. This is known as [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)).
-2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not diven into it yet.
+1. The plugin and Flow parser (which, by the way, is also written in Flow) were compiled by a different tool in a previous version to JavaScript. This is known as [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)).
+2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not dived into it yet.
 
 ## How to publish from a fork of Babel?
-Let us say that we want to modify and/or create packages in the Babel repository and then publish them. In my case, I changed the `babel-parser` and created two more packages with a plugin and support for said plugin. When trying to publish I changed the `lerna.json` to ignore packages that are not mine. But publishing from the Makefile as it is runs linting tests and because I changed the parser my tests were considered an error and would not publish my packages.
+Let us say that we want to modify and/or create packages in the Babel repository and then publish them. In my case, I changed the `babel-parser` and created two more packages with a plugin and support for said plugin. When trying to publish I changed the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force Lerna to). But publishing from the Makefile as it is runs linting tests and because I changed the parser my tests were considered an error and would not publish my packages.
 
 Even removing the tests my packages would not publish anyways (some error with Yarn, I have to recreate it to expand on this).
 
