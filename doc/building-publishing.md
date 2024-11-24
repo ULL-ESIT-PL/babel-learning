@@ -15,6 +15,27 @@ To resolve this issues, Babel uses Lerna, a monorepo management tool. Before we 
 - Packages are registered in Lerna's configuration file `lerna.json`. Babel has registered the directory `packages`, so all subdirectories are considered packages.
 - We consider that a package is an internal dependency if it is registered in the configuration file.
 
+Another important thing of `lerna.json` is that it let us prepare some flags for Lerna's commands. For example, maybe we want to use `--ignore-changes` with `lerna publish` to ignore the changes of some files to not publish them. In this case, we can add the following to the configuration file:
+```json
+"command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.txt",
+        "test/**",
+        "**/test/**",
+        "codemods/**",
+        "# We ignore every JSON file, except for native-modules, built-ins and plugins defined in babel-preset-env/data.",
+        "@(!(native-modules|built-ins|plugins|package)).json",
+        "# Until the ESLint packages version are aligned with Babel's, we ignore them",
+        "eslint/**",
+        "# Making sure we only upload the function assignment (left side) packages",
+        "packages/@(!(babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser))/**"
+      ]
+    }
+  },
+```
+
 It should also be noted that Babel [does not use Lerna anymore](https://github.com/babel/babel/discussions/12622).
 The problems that Babel solves with lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
 ### lerna bootstrap
@@ -33,3 +54,40 @@ There is a few alternatives when publishing.
 
 [Reference.](https://github.com/lerna/lerna/tree/main/libs/commands/publish)
 ## Gulp and Rollup
+Gulp is similar to Make: both are used to automate tasks. The major diference is that Gulp is written in JavaScript. In the case of Babel, it is used to build the project, since Babel is written in Flow. The Gulpfile.js of the project (the "makefile" of Gulp), has some tasks registered:
+```js
+// Different options to compile Babel using a bundler
+gulp.task("build-rollup", () => buildRollup(libBundles));
+gulp.task("build-babel-standalone", () => buildRollup(standaloneBundle));
+gulp.task("build-babel", () => buildBabel(/* exclude */ libBundles));
+gulp.task("build", gulp.parallel("build-rollup", "build-babel"));
+gulp.task("default", gulp.series("build"));
+gulp.task("build-no-bundle", () => buildBabel());
+gulp.task(
+  "watch",
+  gulp.series("build-no-bundle", function watch() {
+    gulp.watch(defaultSourcesGlob, gulp.task("build-no-bundle"));
+  })
+);
+```
+Rollup is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. At first I thought it was involved in compiling Flow into plain JS, but if we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, created [to integrate Babel and Gulp](https://github.com/babel/gulp-babel). `gulp-babel` uses `@babel/core` to transform the given code. [So Babel compiles itself](https://en.wikipedia.org/wiki/Bootstrapping_(compilers))? If we check Babel's configuration file (`babel.config.js`) we can see the following:
+```js
+    // More configuration
+    plugins: [
+      // TODO: Use @babel/preset-flow when
+      // https://github.com/babel/babel/issues/7233 is fixed
+      "@babel/plugin-transform-flow-strip-types",
+    ]
+    // More configuration
+```
+The `"@babel/plugin-transform-flow-strip-types"` is (as the name implies) the plugin used to strip Flow type annotations from the code. The thing is that I found out that this plugin also uses a Flow type annotation and is transformed into JavaScript.
+There is two alternatives that could be happening (atleast that I came up with):
+1. The plugin and Flow parser (which, by the way, is also written in Flow) were compiled in a previous version to JavaScript. This is known as [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)).
+2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not diven into it yet.
+
+## How to publish from a fork of Babel?
+Let us say that we want to modify and/or create packages in the Babel repository and then publish them. In my case, I changed the `babel-parser` and created two more packages with a plugin and support for said plugin. When trying to publish I changed the `lerna.json` to ignore packages that are not mine. But publishing from the Makefile as it is runs linting tests and because I changed the parser my tests were considered an error and would not publish my packages.
+
+Even removing the tests my packages would not publish anyways (some error with Yarn, I have to recreate it to expand on this).
+
+The alternative: create a new repository and move your packages to it so you can publish them.
