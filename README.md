@@ -225,6 +225,10 @@ foo(10) = 5;
 
 See [/src/left-side/README.md](/src/left-side/README.md) to know more about Pablo's transpiler. 
 
+## Building and publishing your Babel version
+
+See section [Building and publishing your Babel version](/doc/building-publishing.md).   
+
 ## Exercises
 
 See section [Exercises](doc/exercises/README.md).

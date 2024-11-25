@@ -1,4 +1,6 @@
-## Building and publishing processes in Babel.
+## Building and publishing 
+
+
 ## Makefile
 There is a lot of actions in Babel's Makefile. We are going to cover mainly three of them (although these call other actions, but we will describe their overall behaviour).
 1. `make bootstrap`. Installs all dependences for all packages using `lerna bootstrap` (more on Lerna later). After installing dependencies, `make build` is run. 
@@ -6,6 +8,7 @@ There is a lot of actions in Babel's Makefile. We are going to cover mainly thre
 3. `make publish`. Babel's packages are published with Lerna. Some tests are run to ensure that the uploaded code complies with Babel's linting rules.
 
 ## Lerna
+
 Babel is a monorepo, so all packages are in the same repository. A few issues arise from this:
 - Installing dependencies for each of these packages can be a hard task. Specially with how many packages Babel has, there is a need of automating the installation of dependencies of each package, since just using `npm install` won't cut it.
 - The internal dependencies between packages within the same repo also need to be resolved. Let us say that we want to install `@babel/parser` from `@babel/babel-core`. If we installed the dependency from a registry like npm, the version of the parser could not reflect the current state of the package if it has not been published. Also there is no need to install a package that we already have in our repository. Using relative paths from one package to another would not work neither.
@@ -38,12 +41,14 @@ Another important thing of `lerna.json` is that it let us prepare some flags for
 
 It should also be noted that Babel [does not use Lerna anymore](https://github.com/babel/babel/discussions/12622).
 The problems that Babel solves with lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
+
 ### lerna bootstrap
 Installs the dependencies of every package.
 
 Internal dependencies are symlinked if needed. For external dependencies, `npm install` is used.
 
 [Reference.](https://github.com/lerna/lerna/tree/main/libs/commands/bootstrap)
+
 ### lerna publish
 Publishes every registered package (as long as it is public).
 
@@ -53,7 +58,9 @@ There is a few alternatives when publishing.
 - `lerna publish from-package`. The `package.json` version of each package is checked. If it is not published in the registry, the version is published.
 
 [Reference.](https://github.com/lerna/lerna/tree/main/libs/commands/publish)
+
 ## Gulp and Rollup
+
 Gulp is similar to Make: both are used to automate tasks. The major diference is that Gulp is written in JavaScript. In the case of Babel, it is used to build the project, since Babel is written in Flow. The Gulpfile.js of the project (the "makefile" of Gulp), has some tasks registered:
 ```js
 // Different options to compile Babel using a bundler
@@ -86,7 +93,8 @@ There is two alternatives that could be happening (atleast that I came up with):
 2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not dived into it yet.
 
 ## How to publish from a fork of Babel?
-Let us say that we want to modify and/or create packages in the Babel repository and then publish them. In my case, I changed the `babel-parser` and created two more packages with a plugin and support for said plugin. When trying to publish I changed the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force Lerna to). But publishing from the Makefile as it is runs linting tests and because I changed the parser my tests were considered an error and would not publish my packages.
+
+Let us say that we want to modify and/or create packages in the Babel repository and then publish them. In my case (@PSantanaGlez13), I changed the `babel-parser` and created two more packages with a plugin and support for said plugin. When trying to publish I changed the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force Lerna to). But publishing from the Makefile as it is runs linting tests and because I changed the parser my tests were considered an error and would not publish my packages.
 
 Even removing the tests my packages would not publish anyways (some error with Yarn, I have to recreate it to expand on this).
 
