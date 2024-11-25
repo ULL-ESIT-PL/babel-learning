@@ -69,6 +69,7 @@ There is a few alternatives when publishing.
 ## Gulp and Rollup
 
 Gulp is similar to Make: both are used to automate tasks. The major diference is that Gulp is written in JavaScript. In the case of Babel, it is used to build the project, since Babel is written in Flow. The Gulpfile.js of the project (the "makefile" of Gulp), has some tasks registered:
+
 ```js
 // Different options to compile Babel using a bundler
 gulp.task("build-rollup", () => buildRollup(libBundles));
@@ -84,7 +85,9 @@ gulp.task(
   })
 );
 ```
+
 Rollup is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. At first I thought it was involved in compiling Flow into plain JS, but if we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, created [to integrate Babel and Gulp](https://github.com/babel/gulp-babel). `gulp-babel` uses `@babel/core` to transform the given code. [So Babel compiles itself](https://en.wikipedia.org/wiki/Bootstrapping_(compilers))? If we check Babel's configuration file (`babel.config.js`) we can see the following:
+
 ```js
     // More configuration
     plugins: [
@@ -94,8 +97,11 @@ Rollup is a bundler: it takes a project and writes it in one single JS file, wit
     ]
     // More configuration
 ```
+
 The `"@babel/plugin-transform-flow-strip-types"` is (as the name implies) the plugin used to strip Flow type annotations from the code. The thing is that I found out that this plugin also uses a Flow type annotation and is transformed into JavaScript.
-There is two alternatives that could be happening (atleast that I came up with):
+
+There ares two alternatives that could be happening, atleast that I[@PSantanaGlez13](https://github.com/PSantanaGlez13) came up with:
+
 1. The plugin and Flow parser (which, by the way, is also written in Flow) were compiled by a different tool in a previous version to JavaScript. This is known as [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)).
 2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not dived into it yet.
 
