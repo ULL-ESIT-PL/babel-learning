@@ -6,6 +6,12 @@ for Arrays and Objects in the [Adrian-tfg branch](https://github.com/ULL-ESIT-PL
 > [!IMPORTANT]
 > **Warning: This is work in progress. These comments can be outdated.**
 
+Place yourself in the `array-else` directory: 
+
+```
+➜  array-else git:(main) ✗ pwd -P
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/array-else
+```
 Here I am using the `adrianparser` and `adrianbabel` links to compile the code:
 
 ```bash
@@ -13,6 +19,10 @@ Here I am using the `adrianparser` and `adrianbabel` links to compile the code:
 lrwxr-xr-x@ 1 casianorodriguezleon  staff  129  5 nov 12:17 ../../node_modules/.bin/adrianbabel -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js
 lrwxr-xr-x@ 1 casianorodriguezleon  staff  139  5 nov 12:08 ../../node_modules/.bin/adrianparser -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-parser/bin/babel-parser.js
 ```
+
+> [!IMPORTANT] I have noticed that if you re-`build` the [Adrian-tfg]((https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/Adrian-tfg/packages/babel-parser) branch the links no longer work and you have to recreate them. 
+
+
 
 ## Extending Arrays and Objects with an `else` clause
 
@@ -85,6 +95,46 @@ martes,  5 de noviembre de 2024, 12:56:07 WEST
 - [packages/babel-parser/defaultvector.cjs](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/defaultvector.cjs)
 - [packages/babel-parser/pruebas.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/pruebas.js)
 - [packages/babel-parser/src/parser/expression.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/src/parser/expression.js#L2079-L2091)
+
+
+## Semantics of the `else` clause for Arrays 
+
+Assume the following input:
+
+[`➜  array-else git:(main) ✗ cat array-undefined-else.js`](array-undefined-else.js)
+```javascript
+let a = [1, undefined, 3, else x => x * x];
+
+console.log(a[0]);  // 1
+console.log(a[1]);  // undefined
+console.log(a[5]);  // 25 (porque 5 * 5 = 25)
+```
+  
+When compiled with Adrian's parser we get:
+  
+```javascript
+➜  array-else git:(main) ✗ npx adrian-babel array-undefined-else.js
+let a = new Proxy([1, undefined, 3], {
+  get: function (target, prop) {
+    if (typeof target[prop] === "function") return function (...args) {
+      return target[prop].apply(target, args);
+    };
+    if (prop < target.length) return target[prop];
+    return (x => x * x)(prop);
+  }
+});
+console.log(a[0]); // 1
+
+console.log(a[1]); // undefined
+
+console.log(a[5]); // 25 (porque 5 * 5 = 25)
+```
+
+We notice that
+
+- If `prop` is numeric
+- Is not checking if `prop` is an integer
+- Is not checking if `prop` is negative
 
 
 ### Goals
