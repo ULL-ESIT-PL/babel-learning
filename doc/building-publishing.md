@@ -94,8 +94,6 @@ There is two alternatives that could be happening (atleast that I came up with):
 
 ## How to publish from a fork of Babel?
 
-Let us say that we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two more packages with a plugin and support for said plugin. When trying to publish I changed the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force Lerna to). But publishing from the Makefile as it is runs linting tests and because I changed the parser my tests were considered an error and would not publish my packages.
+Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. When trying to publish, I modified the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published.
 
-Even removing the tests my packages would not publish anyways (some error with Yarn, I have to recreate it to expand on this).
-
-The alternative: create a new repository and move your packages to it so you can publish them.
+Even after removing the tests, my packages still would not publish due to some error with Yarn. I need to recreate the issue to provide more details.
