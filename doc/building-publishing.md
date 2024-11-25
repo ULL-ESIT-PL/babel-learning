@@ -2,10 +2,11 @@
 
 
 ## Makefile
-There is a lot of actions in Babel's Makefile. We are going to cover mainly three of them (although these call other actions, but we will describe their overall behaviour).
-1. `make bootstrap`. Installs all dependences for all packages using `lerna bootstrap` (more on Lerna later). After installing dependencies, `make build` is run. 
-2. `make build`. Babel uses Flow so there is a need to compile the project into plain JavaScript. To do two packages are used: `gulp` and `rollup` (more on them later).
-3. `make publish`. Babel's packages are published with Lerna. Some tests are run to ensure that the uploaded code complies with Babel's linting rules.
+
+Babel's Makefile contains many actions. We will mainly cover three of them (although these actions call other actions, we will describe their overall behavior).
+1. `make bootstrap`: Installs all dependencies for all packages using `lerna bootstrap` (more on Lerna later). After installing dependencies, `make build` is run.
+2. `make build`: Babel uses Flow, so the project needs to be compiled into plain JavaScript. Two packages are used for this: `gulp` and `rollup` (more on them later).
+3. `make publish`: Babel's packages are published with Lerna. Some tests are run to ensure that the uploaded code complies with Babel's linting rules.
 
 ## Lerna
 
