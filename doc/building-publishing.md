@@ -7,7 +7,7 @@ In this document we will cover the following topics:
 - Gulp and Rollup
 - How to publish from a fork of Babel?
 
-The document summarizes Pablo Santana's (@PSantanaGlez13](https://github.com/PSantanaGlez13)) first attempts to understand Babel's building and publishing.
+The document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) first attempts to understand Babel's building and publishing.
 
 
 ## Makefile
