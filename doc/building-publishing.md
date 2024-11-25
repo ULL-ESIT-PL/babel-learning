@@ -100,7 +100,7 @@ Rollup is a bundler: it takes a project and writes it in one single JS file, wit
 
 The `"@babel/plugin-transform-flow-strip-types"` is (as the name implies) the plugin used to strip Flow type annotations from the code. The thing is that I found out that this plugin also uses a Flow type annotation and is transformed into JavaScript.
 
-There ares two alternatives that could be happening, atleast that I ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) came up with:
+There ares two alternatives that could be happening, at least that I ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) came up with:
 
 1. The plugin and Flow parser (which, by the way, is also written in Flow) were compiled by a different tool in a previous version to JavaScript. This is known as [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)).
 2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not dived into it yet.
