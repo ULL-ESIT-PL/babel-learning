@@ -169,6 +169,10 @@ can be provided so that several *common* semantics are easily available (negativ
 **We can imagine a family of functions supporting different semantics** like **`neg`** above, **`throw`** (throw an exception if out of bounds), **`wrap`** (wrap around), etc
 
 
+## Concatenation and Symbols
+
+See [a.concat(b)](aconcatb/README.md) section for a discussion on the semantics of `a.concat(b)`.
+
 ## Issues
 
 - Issue #22: [Adrian-tfg branch: Semantics of array-else #22](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/22)
