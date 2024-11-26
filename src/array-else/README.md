@@ -169,8 +169,9 @@ can be provided so that several *common* semantics are easily available (negativ
 **We can imagine a family of functions supporting different semantics** like **`neg`** above, **`throw`** (throw an exception if out of bounds), **`wrap`** (wrap around), etc
 
 
-
 ## Issues
 
 - Issue #22: [Adrian-tfg branch: Semantics of array-else #22](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/22)
 - Issue #13: [Move defaultvector to babel-plugin-helper-defaultvector as external plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/13)?
+- Discussion #17: [a.concat(b)](https://github.com/ULL-ESIT-PL/babel-tanhauhau/discussions/17)
+- Issue #23 a.concat(b): https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/23
