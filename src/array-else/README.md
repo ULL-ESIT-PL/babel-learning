@@ -137,6 +137,40 @@ We notice that
 - Is not checking if `prop` is negative
 
 
-### Goals
+### Family of functions supporting different semantics
 
-- issue #13: [Move defaultvector to babel-plugin-helper-defaultvector as external plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/13)?
+Asume  we want to make negative indexation available:
+
+```js
+➜  array-else git:(main) ✗ cat array-else-negative-access.js
+let a = [1, 2, 3, else x => { if (x < 0) return a[a.length+x]; else return a[x]; }];
+
+console.log(a[2]);   // 3
+console.log(a[-1]);  // undefined but a[3+-1] = a[2] = 3
+```
+
+Execution:
+
+```                                                                                            
+➜  array-else git:(main) ✗ node babel.js array-else-negative-access.js | node
+3
+undefined
+```
+
+Seems to be convenient to pass as second argument the object/array so that
+sets of functions like
+
+```js
+const neg = (x , a) => { if (x < 0) return a[a.length+x]; else return a[x]; }
+```
+
+can be provided so that several *common* semantics are easily available (negative-indices, throw-by-default, etc.)
+
+**We can imagine a family of functions supporting different semantics** like **`neg`** above, **`throw`** (throw an exception if out of bounds), **`wrap`** (wrap around), etc
+
+
+
+## Issues
+
+- Issue #22: [Adrian-tfg branch: Semantics of array-else #22](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/22)
+- Issue #13: [Move defaultvector to babel-plugin-helper-defaultvector as external plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/13)?
