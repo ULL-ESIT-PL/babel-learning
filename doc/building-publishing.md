@@ -119,3 +119,5 @@ There ares two alternatives that could be happening, at least that I ([@PSantana
 Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. When trying to publish, I modified the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published.
 
 Even after removing the tests, my packages still would not publish due to some error with Yarn. I need to recreate the issue to provide more details.
+
+To install from the GitHub registry follow [this intructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
