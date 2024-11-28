@@ -112,12 +112,90 @@ The `"@babel/plugin-transform-flow-strip-types"` is (as the name implies) the pl
 There ares two alternatives that could be happening, at least that I ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) came up with:
 
 1. The plugin and Flow parser (which, by the way, is also written in Flow) were compiled by a different tool in a previous version to JavaScript. This is known as [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(compilers)).
-2. There is another way the Flow annotations are being dealt with. There is a `@babel/types` package which may have more info on this, but I have not dived into it yet.
+2. There is another way the Flow annotations are being dealt with.
+
+I concluded that the first choice is the answer. The reasoning is that the root directory of Babel is not considered a package and therefore the plugin to strip the types is being installed from the registry, so it has been compiled previously.
 
 ## How to publish from a fork of Babel?
 
 Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. When trying to publish, I modified the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published.
 
-Even after removing the tests, my packages still would not publish due to some error with Yarn. I need to recreate the issue to provide more details.
+Even after removing the tests, my packages still would not publish. The reason for this is that we need to run `make new-version` first. This will run `lerna version` which will bump the version of the packages one version up and then tag them so `lerna publish from-git` (called by `make publish`) will publish them. The issue with this is that all packages are being considered changed, so they will all be tagged and then, when publishing, they will appear as new packages.
 
-To install from the GitHub registry follow [this intructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
+The solution to this issue is to use `make bootstrap; npx lerna publish from-package`. The first part is needed to build the project itself before publishing (remember that `make bootstrap` runs `make build`) and the second part publishes the packages that are not found in the publishing registry. This means that, since Babel's packages are already published, we can publish only the packages we want. On the other hand, because `lerna version` will try to update all the packages' version we may prefer to use other ways to change the version of our packages (perhaps `npm version` or, if they are few, we can handle them individually). 
+
+Remember to configurate your `package.json` for each and every package you want to publish. This would be an example file:
+```json
+{
+  "name": "@ull-esit-pl/babel-plugin-left-side-plugin",
+  "version": "1.0.1",
+  "description": "Support plugin for the assignable functions",
+  "main": "lib/plugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@ull-esit-pl/parser-left-side": "^1.0.0",
+    "@ull-esit-pl/babel-plugin-left-side-support": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg",
+    "directory": "packages/babel-plugin-left-side-plugin"    
+  },
+  "publishConfig": {
+    "access": "public",
+  },
+  "author": "Pablo Santana Gonzalez <alu0101480541@ull.edu.es>",
+  "license": "ISC",
+}
+```
+The key `publishConfig.access: public` is specially important, since scoped packages are private by default (if you are using a scope). 
+
+So far, this would be the result of trying to publish my own packages:
+```sh
+sombra@P:~/projects/left-side-JS/babel-tanhauhau$ yarn lerna publish from-package
+yarn run v1.22.22
+$ /home/sombra/projects/left-side-JS/babel-tanhauhau/node_modules/.bin/lerna publish from-package
+lerna notice cli v3.19.0
+lerna WARN Yarn's registry proxy is broken, replacing with public npm registry
+lerna WARN If you don't have an npm token, you should exit and run `npm login`
+lerna WARN Unable to determine published version, assuming "@ull-esit-pl/parser-left-side" unpublished.
+lerna WARN Unable to determine published version, assuming "@ull-esit-pl/babel-plugin-left-side-plugin" unpublished.
+lerna WARN Unable to determine published version, assuming "@ull-esit-pl/babel-plugin-left-side-support" unpublished.
+
+Found 3 packages to publish:
+ - @ull-esit-pl/parser-left-side => 1.0.0
+ - @ull-esit-pl/babel-plugin-left-side-plugin => 1.0.0
+ - @ull-esit-pl/babel-plugin-left-side-support => 1.0.0
+
+? Are you sure you want to publish these packages? Yes
+lerna info publish Publishing packages to npm...
+lerna info Verifying npm credentials
+lerna http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 629ms
+lerna http fetch GET 200 https://registry.npmjs.org/-/org/psantanaglez13/package?format=cli 263ms
+lerna WARN The logged-in user does not have any previously-published packages, skipping permission checks...
+lerna info Checking two-factor auth mode
+lerna http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 621ms
+lerna http fetch PUT 404 https://registry.npmjs.org/@ull-esit-pl%2fbabel-plugin-left-side-support 316ms
+lerna ERR! E404 Not found
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
+Notice that you have to run `npm login` to get a token and be able to publish packages. But it still fails. The reason I think this fails is because I do not have permissions in the npmjs organization I am trying to publish in and [to publish in a scope you need to be part of the organization](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages) (atleast for npmjs).
+
+As an alternative, you can publish from the npm's GitHub registry.
+To publish or install from the GitHub registry follow [these instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+I ended up publishing from GitHub registry and it worked perfectly.
+
+Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and get a GitHub personal access token (check the previous link).
+
+### In summary:
+1. Configurate all the `package.json` files. Remember the scoped name if you want to use a scope (`publishConfig.access: "public"` for this case).
+2. Run `make bootstrap` to install all dependencies, both external and internal. I suggest you try everything is working before the next step by trying your packages.
+3. Run `npx lerna publish from-package`. Check that the packages that are shown are the correct ones. If publishing fails, check the org and registry you are trying to publish on.
+
+If you are using the GitHub registry, check [Github's tutorial](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry). Specially the part about publishing multiple packages on the same repository.
+
+### Note about using the packages.
+Watch out when installing `babel-cli` to run `npx babel`. In npmjs there are two versions: the old one, which is [babel-cli](https://www.npmjs.com/package/babel-cli), and [@babel/babel-cli](https://www.npmjs.com/package/@babel/cli). The first one is Babel 6 and does not allow for some features you may have used (for example, `parserOverride` for your plugin) and the second one is Babel 7.
