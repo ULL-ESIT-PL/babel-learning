@@ -50,23 +50,39 @@ When compiled with [Adrian's parser](https://github.com/ULL-ESIT-PL/babel-tanhau
 
 To use Adrian's babel transpiler we write a `babel.config.json` linking to the support plugin (currently 2024-11-07 in the wrong place)
 
-`➜  array-else git:(main) ✗ cat babel.config.json`
+`➜  babel-learning git:(main) ✗ cat src/array-else/babel.config.json`
 ```json
 {
   "plugins": [ 
-    "../../babel-tanhauhau-adrian/packages/babel-parser/defaultvector.cjs"
+    "../../../babel-tanhauhau-adrian/packages/babel-parser/defaultvector.cjs"
   ]
 }
+```
+Assuming we have (2024/12/02):
+
+```bash
+➜  babel-learning git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2425/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js node_modules/.bin/adrianbabel
 ```
 
 and now we can transpile the code:
 
-`➜  array-else git:(main) ✗ npx adrianbabel array-else.js`
+`➜  babel-learning git:(main) ✗ npx adrianbabel src/array-else/array-else.js --config-file $(pwd)/src/array-else/`
 ```js 
-ELSE
+babel.config.json 
+function isNumeric(n) {
+  return !isNaN(n) && isFinite(n);
+}
+
 let a = new Proxy([1, 2, 3], {
+  [Symbol.isConcatSpreadable]: true,
+  length: 3,
   get: function (target, prop) {
-    if (prop < target.length) return target[prop];
+    if (typeof prop === "symbol" && prop === Symbol.isConcatSpreadable) return true;
+    if (typeof target[prop] === "function") return function (...args) {
+      return target[prop].apply(target, args);
+    };
+    if (typeof target[prop] === "string") return target[prop];
+    if (isNumeric(prop) && prop < target.length && prop >= 0) return target[prop];
     return (x => x * x)(prop);
   }
 });
@@ -75,21 +91,28 @@ console.log(a[2]); // 3
 console.log(a[5]); // 25 (porque 5 * 5 = 25)
 ```
 
-and we can execute it (the `2>null` is to avoid the `console.error` debug messages):
+and we can execute it:
 
 ```bash
-➜  array-else git:(main) ✗ npx adrianbabel array-else.js 2>/dev/null | node -
+➜  babel-learning git:(main) ✗ npx adrianbabel src/array-else/array-else.js --config-file $(pwd)/src/array-else/babel.config.json | node -
 3
 25
 ```
 
-## Links to sAdrian's compiler for the `else` clause on Arrays and Objects
+## Links to Adrian's compiler for the `else` clause on Arrays and Objects
+
+Context:
 
 ```
-martes,  5 de noviembre de 2024, 12:56:07 WEST
-➜  packages git:(adrian) ✗ git lg | head -n 1
-38c427bb8 - (HEAD -> adrian, origin/Adrian-tfg) Añadida la configuracion (hace 6 días Adrián Mora)
+➜  babel-parser git:(adrian) ✗ date
+lunes,  2 de diciembre de 2024, 09:38:22 WET
+➜  babel-parser git:(adrian) ✗ pwd -P
+/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-parser
+➜  babel-parser git:(adrian) ✗ git lg | head -n 1
+5226ff943 - (HEAD -> adrian, origin/Adrian-tfg) Now the concat doesn´t give an error when trying to concat a normal vector with a else vector (hace 13 horas Adrián Mora)
 ```
+
+Involved files in branch [Adrian-tfg](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg):
 
 - [packages/babel-parser/babel.config.json](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/babel.config.json)
 - [packages/babel-parser/defaultvector.cjs](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/defaultvector.cjs)
@@ -99,9 +122,16 @@ martes,  5 de noviembre de 2024, 12:56:07 WEST
 
 ## Semantics of the `else` clause for Arrays 
 
+Warning! the final semantic of the `else` clause for Arrays is not yet defined.
+Under discussion.
+
 Assume the following input:
 
-[`➜  array-else git:(main) ✗ cat array-undefined-else.js`](array-undefined-else.js)
+``` 
+➜  array-else git:(main) ✗ pwd -P
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/array-else
+➜  array-else git:(main) ✗ cat array-else-undefined.js 
+```
 ```javascript
 let a = [1, undefined, 3, else x => x * x];
 
@@ -113,13 +143,25 @@ console.log(a[5]);  // 25 (porque 5 * 5 = 25)
 When compiled with Adrian's parser we get:
   
 ```javascript
-➜  array-else git:(main) ✗ npx adrian-babel array-undefined-else.js
+                                                                    
+➜  array-else git:(main) ✗ npx adrianbabel array-undefined-else.js 
+babel:
+  array-undefined-else.js does not exist
+➜  array-else git:(main) ✗ npx adrianbabel array-else-undefined.js 
+function isNumeric(n) {
+  return !isNaN(n) && isFinite(n);
+}
+
 let a = new Proxy([1, undefined, 3], {
+  [Symbol.isConcatSpreadable]: true,
+  length: 3,
   get: function (target, prop) {
+    if (typeof prop === "symbol" && prop === Symbol.isConcatSpreadable) return true;
     if (typeof target[prop] === "function") return function (...args) {
       return target[prop].apply(target, args);
     };
-    if (prop < target.length) return target[prop];
+    if (typeof target[prop] === "string") return target[prop];
+    if (isNumeric(prop) && prop < target.length && prop >= 0) return target[prop];
     return (x => x * x)(prop);
   }
 });
@@ -130,12 +172,21 @@ console.log(a[1]); // undefined
 console.log(a[5]); // 25 (porque 5 * 5 = 25)
 ```
 
+
 We notice that
 
 - If `prop` is numeric
 - Is not checking if `prop` is an integer
 - Is not checking if `prop` is negative
 
+
+```
+➜  array-else git:(main) ✗ npx adrianbabel array-else-undefined.js | node
+1
+undefined
+25
+➜  array-else git:(main) ✗ 
+```
 
 ### Family of functions supporting different semantics
 
