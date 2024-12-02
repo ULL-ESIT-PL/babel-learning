@@ -42,7 +42,7 @@ console.log(a[5]);  // 25 (porque 5 * 5 = 25)
 When compiled with [Adrian's parser](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/Adrian-tfg/packages/babel-parser/src/parser/expression.js) we get an AST like:
 
 ```
-➜  babel-learning git:(main) ✗ npx adrianparser src/array-else/array-else.js 2> /dev/null | jq '[.program.body[0].declarations[0].init.elements[] | .type ]' 
+➜  array-else git:(main) npx adrianparser array-else.js | jq '[.program.body[0].declarations[0].init.elements[] | .type ]'      
 [
   "NumericLiteral",
   "NumericLiteral",
@@ -64,14 +64,21 @@ To use Adrian's babel transpiler we write a `babel.config.json` linking to the s
 Assuming we have (2024/12/02):
 
 ```bash
+➜  babel-learning git:(main) ✗ npx adrianbabel src/array-else/array-else.js                                         
+ReferenceError: /Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/array-else/array-else.js: unknown node of type "ElseExpression" with constructor "Object"
+```
+
+We have to specify the `babel.config.json` file:
+
+```bash
 ➜  babel-learning git:(main) ✗ ln -s /Users/casianorodriguezleon/campus-virtual/2425/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js node_modules/.bin/adrianbabel
 ```
 
 and now we can transpile the code:
 
-`➜  babel-learning git:(main) ✗ npx adrianbabel src/array-else/array-else.js --config-file $(pwd)/src/array-else/`
+`➜  babel-learning git:(main) ✗ npx adrianbabel src/array-else/array-else.js --config-file $(pwd)/src/array-else/babel.config.json 
+`
 ```js 
-babel.config.json 
 function isNumeric(n) {
   return !isNaN(n) && isFinite(n);
 }
