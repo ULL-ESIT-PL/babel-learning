@@ -181,14 +181,7 @@ console.log(a[1]); // undefined
 
 console.log(a[5]); // 25 (porque 5 * 5 = 25)
 ```
-
-
-We notice that
-
-- If `prop` is numeric
-- Is not checking if `prop` is an integer
-- Is not checking if `prop` is negative
-
+Execution:
 
 ```
 ➜  array-else git:(main) ✗ npx adrianbabel array-else-undefined.js | node
@@ -197,6 +190,10 @@ undefined
 25
 ➜  array-else git:(main) ✗ 
 ```
+
+> [!WARNING]
+> An opinion is that `a[1]` should return `1` instead of `undefined` because the `else` clause must be executed for any `undefined` value.
+
 
 ### Family of functions supporting different semantics
 
