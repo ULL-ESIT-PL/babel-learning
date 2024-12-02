@@ -61,7 +61,7 @@ To use Adrian's babel transpiler we write a `babel.config.json` linking to the s
   ]
 }
 ```
-Assuming we have (2024/12/02):
+Assuming we are in the root of the project and compile calling `adrianbabel` we get an error (2024/12/02):
 
 ```bash
 ➜  babel-learning git:(main) ✗ npx adrianbabel src/array-else/array-else.js                                         
