@@ -192,7 +192,7 @@ undefined
 ```
 
 > [!WARNING]
-> An opinion is that `a[1]` should return `1` instead of `undefined` because the `else` clause must be executed for any `undefined` value.
+> An opinion is that `a[1]` should return `1` instead of `undefined` because the `else` clause must be executed for any `undefined` value. This is not a limitation since we can always have a specify an `else` function that will return `undefined` for `undefined` values inside the array.
 
 
 ### Family of functions supporting different semantics
