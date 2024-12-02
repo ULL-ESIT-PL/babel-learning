@@ -16,8 +16,10 @@ Here I am using the `adrianparser` and `adrianbabel` links to compile the code:
 
 ```bash
 ➜  array-else git:(main) ls -l ../../node_modules/.bin/adrian*
-lrwxr-xr-x@ 1 casianorodriguezleon  staff  129  5 nov 12:17 ../../node_modules/.bin/adrianbabel -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js
-lrwxr-xr-x@ 1 casianorodriguezleon  staff  139  5 nov 12:08 ../../node_modules/.bin/adrianparser -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-parser/bin/babel-parser.js
+lrwxr-xr-x@ 1 casianorodriguezleon  staff  129  2 dic 09:30 ../../node_modules/.bin/adrianbabel -> /Users/casianorodriguezleon/campus-virtual/2425/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js
+lrwxr-xr-x@ 1 casianorodriguezleon  staff  135  2 dic 09:20 ../../node_modules/.bin/adrianbabelcompiled -> /Users/casianorodriguezleon/campus-virtual/2425/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/lib/babel/index.js
+lrwxr-xr-x@ 1 casianorodriguezleon  staff  129  2 dic 09:28 ../../node_modules/.bin/adrianbabelsrc -> /Users/casianorodriguezleon/campus-virtual/2425/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-cli/bin/babel.js
+lrwxr-xr-x@ 1 casianorodriguezleon  staff  139  2 dic 08:33 ../../node_modules/.bin/adrianparser -> /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-adrian/packages/babel-parser/bin/babel-parser.js
 ```
 
 > [!IMPORTANT] I have noticed that if you re-`build` the [Adrian-tfg]((https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/Adrian-tfg/packages/babel-parser) branch the links no longer work and you have to recreate them. 
