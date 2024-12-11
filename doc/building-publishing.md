@@ -191,6 +191,7 @@ I ended up publishing from GitHub registry and it worked perfectly.
 Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and get a GitHub personal access token (check the previous link).
 
 ### In summary:
+
 1. Configurate all the `package.json` files. Remember the scoped name if you want to use a scope (`publishConfig.access: "public"` for this case).
 2. Run `make bootstrap` to install all dependencies, both external and internal. I suggest you try everything is working before the next step by trying your packages.
 3. Run `npx lerna publish from-package`. Check that the packages that are shown are the correct ones. If publishing fails, check the org and registry you are trying to publish on.
@@ -198,4 +199,14 @@ Now you should be able to install your package from any project. Keep in mind th
 If you are using the GitHub registry, check [Github's tutorial](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry). Specially the part about publishing multiple packages on the same repository.
 
 ### Note about using the packages.
+
 Watch out when installing `babel-cli` to run `npx babel`. In npmjs there are two versions: the old one, which is [babel-cli](https://www.npmjs.com/package/babel-cli), and [@babel/babel-cli](https://www.npmjs.com/package/@babel/cli). The first one is Babel 6 and does not allow for some features you may have used (for example, `parserOverride` for your plugin) and the second one is Babel 7.
+
+## Installing the module 
+
+See the instructions at repo [ULL-ESIT-PL/babel-left-side-npm-test](https://github.com/ULL-ESIT-PL/babel-left-side-npm-test/tree/main) to know how to install Pablo's @ull-esit-pl/parser-left-side set of packages [published in the GitHub registry](https://github.com/orgs/ULL-ESIT-PL/packages) inside the ull-esit-pl organization.
+
+### References
+
+- https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg
+- https://github.com/ULL-ESIT-PL/babel-learning/tree/main
