@@ -176,7 +176,8 @@ When trying to publish, I modified the [lerna.json](https://lerna.js.org/docs/ap
 }
 ```
 (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). 
-Here are the changes I made to the `lerna.json` file:
+Here are the changes I made to the `lerna.json` file. We have changed the section `command.publish.ignoreChanges` to ignore all the packages that are not the ones we want to publish. We also added a section `command.version.ignoreChanges` to ignore the changes of the packages we do not want to publish. This is useful because we can run `lerna version` to bump the version of the packages and then `lerna publish from-git` to publish them:
+
 ```
 ➜  babel-tanhauhau-pablo git:(pablo) git lg | head -n 1
 099c2a368 - (HEAD -> pablo, origin/pablo-tfg) Test Suite package WIP (hace 4 días PSantanaGlez13)
