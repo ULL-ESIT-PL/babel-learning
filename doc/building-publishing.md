@@ -121,10 +121,62 @@ I concluded that the first choice is the answer. The reasoning is that the root 
 Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), 
 - I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. 
 
-When trying to publish, I modified the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). 
+When trying to publish, I modified the `lerna.json` to ignore packages that are not mine 
 
+`➜  babel-tanhauhau-pablo git:(pablo) cat lerna.json`
+```json
+{
+  "version": "7.10.2",
+  "changelog": {
+    "repo": "babel/babel",
+    "cacheDir": ".changelog",
+    "labels": {
+      "PR: Spec Compliance :eyeglasses:": ":eyeglasses: Spec Compliance",
+      "PR: Breaking Change :boom:": ":boom: Breaking Change",
+      "PR: New Feature :rocket:": ":rocket: New Feature",
+      "PR: Bug Fix :bug:": ":bug: Bug Fix",
+      "PR: Polish :nail_care:": ":nail_care: Polish",
+      "PR: Docs :memo:": ":memo: Documentation",
+      "PR: Internal :house:": ":house: Internal",
+      "PR: Performance :running_woman:": ":running_woman: Performance",
+      "PR: Revert :leftwards_arrow_with_hook:": ":leftwards_arrow_with_hook: Revert"
+    }
+  },
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.txt",
+        "test/**",
+        "**/test/**",
+        "codemods/**",
+        "# We ignore every JSON file, except for native-modules, built-ins and plugins defined in babel-preset-env/data.",
+        "@(!(native-modules|built-ins|plugins|package)).json",
+        "# Until the ESLint packages version are aligned with Babel's, we ignore them",
+        "eslint/**",
+        "# Making sure we only upload the function assignment (left side) packages",
+        "packages/@(!(babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser))/**"
+      ]
+    },
+    "version": {
+      "ignoreChanges": [
+        "packages/@(!(babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser))/**"
+      ]
+    }
+  },
+  "packages": [
+    "codemods/*",
+    "eslint/*",
+    "packages/*"
+  ],
+  "npmClient": "yarn",
+  "npmClientArgs": [
+    "--pure-lockfile"
+  ]
+}
+```
+(another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). 
 Here are the changes I made to the `lerna.json` file:
-
 ```
 ➜  babel-tanhauhau-pablo git:(pablo) git lg | head -n 1
 099c2a368 - (HEAD -> pablo, origin/pablo-tfg) Test Suite package WIP (hace 4 días PSantanaGlez13)
