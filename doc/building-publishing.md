@@ -118,7 +118,44 @@ I concluded that the first choice is the answer. The reasoning is that the root 
 
 ## How to publish from a fork of Babel?
 
-Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. When trying to publish, I modified the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published.
+Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), 
+- I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. 
+
+When trying to publish, I modified the `lerna.json` to ignore packages that are not mine (another option could be to set all the other packages to private so Lerna won't publish them unless you force it to). 
+
+Here are the changes I made to the `lerna.json` file:
+
+```
+➜  babel-tanhauhau-pablo git:(pablo) git lg | head -n 1
+099c2a368 - (HEAD -> pablo, origin/pablo-tfg) Test Suite package WIP (hace 4 días PSantanaGlez13)
+➜  babel-tanhauhau-pablo git:(pablo) git -P diff b0350e5b1 lerna.json
+```
+
+```diff
+diff --git a/lerna.json b/lerna.json
+index f466f26e3..ce485c8eb 100644
+--- a/lerna.json
++++ b/lerna.json
+@@ -26,7 +26,14 @@
+         "# We ignore every JSON file, except for native-modules, built-ins and plugins defined in babel-preset-env/data.",
+         "@(!(native-modules|built-ins|plugins|package)).json",
+         "# Until the ESLint packages version are aligned with Babel's, we ignore them",
+-        "eslint/**"
++        "eslint/**",
++        "# Making sure we only upload the function assignment (left side) packages",
++        "packages/@(!(babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser))/**"
++      ]
++    },
++    "version": {
++      "ignoreChanges": [
++        "packages/@(!(babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser))/**"
+       ]
+     }
+   },
+```
+
+
+However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published.
 
 Even after removing the tests, my packages still would not publish. The reason for this is that we need to run `make new-version` first. This will run `lerna version` which will bump the version of the packages one version up and then tag them so `lerna publish from-git` (called by `make publish`) will publish them. The issue with this is that all packages are being considered changed, so they will all be tagged and then, when publishing, they will appear as new packages.
 
