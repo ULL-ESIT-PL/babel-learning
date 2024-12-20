@@ -208,7 +208,21 @@ index f466f26e3..ce485c8eb 100644
 ```
 
 
-However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published.
+However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published. Here is a summary of the Makefile's `publish` action:
+
+```sh
+➜  babel-tanhauhau-pablo git:(pablo) make -n publish
+/Applications/Xcode.app/Contents/Developer/usr/bin/make bootstrap-only
+/Applications/Xcode.app/Contents/Developer/usr/bin/make prepublish-build
+NODE_ENV=production BABEL_ENV=production /Applications/Xcode.app/Contents/Developer/usr/bin/make build
+/Applications/Xcode.app/Contents/Developer/usr/bin/make generate-standalone generate-type-helpers
+/Applications/Xcode.app/Contents/Developer/usr/bin/make build-dist
+/Applications/Xcode.app/Contents/Developer/usr/bin/make build-standalone
+/Applications/Xcode.app/Contents/Developer/usr/bin/make clone-license
+/Applications/Xcode.app/Contents/Developer/usr/bin/make clean
+```
+
+
 
 Even after removing the tests, my packages still would not publish. The reason for this is that we need to run `make new-version` first. This will run `lerna version` which will bump the version of the packages one version up and then tag them so `lerna publish from-git` (called by `make publish`) will publish them. The issue with this is that all packages are being considered changed, so they will all be tagged and then, when publishing, they will appear as new packages.
 
