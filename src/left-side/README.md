@@ -16,16 +16,18 @@ lrwxr-xr-x@ 1 casianorodriguezleon  staff  138  7 nov 13:20 ../../node_modules/.
 ➜  left-side git:(main) 
 ```
 
-This works because I keep a workspace per development branch of the babel-tanhauhau repo in my computer at the same level:
+This works because I keep a workspace per development branch of the babel-tanhauhau repo in my computer at the same level that my workspace of this repo:
 
 ```
-➜  compiler-learning ls -ld babel-tanhauhau*/
-drwxr-xr-x@ 41 casianorodriguezleon  staff  1312  2 dic 08:46 babel-tanhauhau-adrian/
-drwxr-xr-x  42 casianorodriguezleon  staff  1344  5 nov 11:24 babel-tanhauhau-casiano/
-drwxr-xr-x  37 casianorodriguezleon  staff  1184  8 nov 11:21 babel-tanhauhau-feat-curry-function/
-drwxr-xr-x@ 40 casianorodriguezleon  staff  1280  4 dic 08:15 babel-tanhauhau-pablo/
-drwxr-xr-x  37 casianorodriguezleon  staff  1184  8 nov 11:21 babel-tanhauhau-tan/
-drwxr-xr-x  42 casianorodriguezleon  staff  1344  5 nov 11:24 babel-tanhauhau/
+➜  left-side git:(main) pwd -P                         
+/Users/casianorodriguezleon/campus-virtual/2324/learning/babel-learning/src/left-side
+➜  left-side git:(main) ✗ ls -ld ../../../babel-tanhauhau*/
+drwxr-xr-x@ 41 casianorodriguezleon  staff  1312  2 dic 08:46 ../../../babel-tanhauhau-adrian/
+drwxr-xr-x  37 casianorodriguezleon  staff  1184  8 nov 11:21 ../../../babel-tanhauhau-feat-curry-function/
+drwxr-xr-x@ 40 casianorodriguezleon  staff  1280 20 dic 12:49 ../../../babel-tanhauhau-pablo/
+drwxr-xr-x  42 casianorodriguezleon  staff  1344  5 nov 11:24 ../../../babel-tanhauhau/
+➜  left-side git:(main) ✗ ls -ld ../../../babel-learning   
+drwxr-xr-x@ 16 casianorodriguezleon  staff  512  2 dic 09:13 ../../../babel-learning
 ```
 You can build these links with commands like:
 
