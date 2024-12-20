@@ -202,7 +202,7 @@ If you are using the GitHub registry, check [Github's tutorial](https://docs.git
 
 Watch out when installing `babel-cli` to run `npx babel`. In npmjs there are two versions: the old one, which is [babel-cli](https://www.npmjs.com/package/babel-cli), and [@babel/babel-cli](https://www.npmjs.com/package/@babel/cli). The first one is Babel 6 and does not allow for some features you may have used (for example, `parserOverride` for your plugin) and the second one is Babel 7.
 
-## Installing the module 
+## Installing the left-side module 
 
 See the instructions at repo [ULL-ESIT-PL/babel-left-side-npm-test](https://github.com/ULL-ESIT-PL/babel-left-side-npm-test/tree/main) to know how to install Pablo's @ull-esit-pl/parser-left-side set of packages [published in the GitHub registry](https://github.com/orgs/ULL-ESIT-PL/packages) inside the ull-esit-pl organization.
 
