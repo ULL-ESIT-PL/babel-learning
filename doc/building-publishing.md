@@ -204,7 +204,7 @@ Watch out when installing `babel-cli` to run `npx babel`. In npmjs there are two
 
 ## Installing the left-side module 
 
-See the instructions at repo [ULL-ESIT-PL/babel-left-side-npm-test](https://github.com/ULL-ESIT-PL/babel-left-side-npm-test/tree/main) to know how to install Pablo's [@ull-esit-pl/parser-left-side ](https://github.com/orgs/ULL-ESIT-PL/packages/npm/package/parser-left-side)set of packages [published in the GitHub registry](https://github.com/orgs/ULL-ESIT-PL/packages) inside the ull-esit-pl organization.
+See the instructions at repo [ULL-ESIT-PL/babel-left-side-npm-test](https://github.com/ULL-ESIT-PL/babel-left-side-npm-test/tree/main) to know how to install Pablo's [@ull-esit-pl/parser-left-side ](https://github.com/orgs/ULL-ESIT-PL/packages/npm/package/parser-left-side) set of packages [published in the GitHub registry](https://github.com/orgs/ULL-ESIT-PL/packages) inside the ull-esit-pl organization.
 
 ### References
 
