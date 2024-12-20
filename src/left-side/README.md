@@ -15,6 +15,24 @@ lrwxr-xr-x@ 1 casianorodriguezleon  staff  138  7 nov 13:20 ../../node_modules/.
 ➜  left-side git:(main) 
 ```
 
+This works because I keep a workspace per development branch of the babel-tanhauhau repo in my computer at the same level:
+
+```
+➜  compiler-learning ls -ld babel-tanhauhau*/
+drwxr-xr-x@ 41 casianorodriguezleon  staff  1312  2 dic 08:46 babel-tanhauhau-adrian/
+drwxr-xr-x  42 casianorodriguezleon  staff  1344  5 nov 11:24 babel-tanhauhau-casiano/
+drwxr-xr-x  37 casianorodriguezleon  staff  1184  8 nov 11:21 babel-tanhauhau-feat-curry-function/
+drwxr-xr-x@ 40 casianorodriguezleon  staff  1280  4 dic 08:15 babel-tanhauhau-pablo/
+drwxr-xr-x  37 casianorodriguezleon  staff  1184  8 nov 11:21 babel-tanhauhau-tan/
+drwxr-xr-x  42 casianorodriguezleon  staff  1344  5 nov 11:24 babel-tanhauhau/
+```
+You can build these links with commands like:
+
+```bash
+➜  left-side git:(main) ln -s /Users/casianorodriguezleon/campus-virtual/2324/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-cli/bin/babel.js ../../node_modules/.bin/pablobabel
+ln -s /Users/casianorodriguezleon/campus-virtual/2324/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-parser/bin/babel-parser.js ../../node_modules/.bin/pabloparser 
+```
+
 Let us consider the following code:
 
 `➜  left-side git:(main) ✗ cat left-side-original.mjs`
