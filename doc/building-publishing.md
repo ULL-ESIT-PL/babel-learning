@@ -121,7 +121,7 @@ I concluded that the first choice is the answer. The reasoning is that the root 
 Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), 
 - I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. 
 
-When trying to publish, I modified the `lerna.json` to ignore packages that are not mine 
+When trying to publish, I modified the [lerna.json](https://lerna.js.org/docs/api-reference/configuration) to ignore packages that are not mine 
 
 `➜  babel-tanhauhau-pablo git:(pablo) cat lerna.json`
 ```json
