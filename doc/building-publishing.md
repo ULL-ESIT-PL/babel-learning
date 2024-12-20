@@ -246,6 +246,37 @@ This means that, since Babel's packages are already published, we can publish on
 On the other hand, because `lerna version` will try to update all the packages' version we may prefer to use other ways to change the version of our packages (perhaps `npm version` or, if they are few, we can handle them individually). 
 
 Remember to configurate your `package.json` for each and every package you want to publish. This would be an example file:
+
+`➜  babel-tanhauhau-pablo git:(pablo) cat packages/babel-plugin-left-side-plugin/package.json`
+
+```json
+{
+  "name": "@ull-esit-pl/babel-plugin-left-side-plugin",
+  "version": "1.0.1",
+  "description": "Support plugin for the assignable functions",
+  "main": "lib/plugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@ull-esit-pl/parser-left-side": "^1.0.0",
+    "@ull-esit-pl/babel-plugin-left-side-support": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg",
+    "directory": "packages/babel-plugin-left-side-plugin"    
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "Pablo Santana Gonzalez <alu0101480541@ull.edu.es>",
+  "license": "ISC",
+  "gitHead": "df1dbf5d265ad3170234dff2e06cb385e08effc8"
+}
+```
+
 ```json
 {
   "name": "@ull-esit-pl/babel-plugin-left-side-plugin",
