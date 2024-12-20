@@ -182,6 +182,7 @@ console.log(foo(4)); // 8
 console.log(foo(10)); // 5
 ```
 
+<!--
 We can execute it this way:
 
 ```
@@ -220,3 +221,4 @@ undefined
 20
 {}
 ```
+-->
