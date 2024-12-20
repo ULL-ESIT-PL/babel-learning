@@ -277,31 +277,6 @@ Remember to configurate your `package.json` for each and every package you want 
 }
 ```
 
-```json
-{
-  "name": "@ull-esit-pl/babel-plugin-left-side-plugin",
-  "version": "1.0.1",
-  "description": "Support plugin for the assignable functions",
-  "main": "lib/plugin.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@ull-esit-pl/parser-left-side": "^1.0.0",
-    "@ull-esit-pl/babel-plugin-left-side-support": "^1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg",
-    "directory": "packages/babel-plugin-left-side-plugin"    
-  },
-  "publishConfig": {
-    "access": "public",
-  },
-  "author": "Pablo Santana Gonzalez <alu0101480541@ull.edu.es>",
-  "license": "ISC",
-}
-```
 The key `publishConfig.access: public` is specially important, since scoped packages are private by default (if you are using a scope). 
 
 So far, this would be the result of trying to publish my own packages:
