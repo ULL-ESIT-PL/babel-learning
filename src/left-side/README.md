@@ -160,7 +160,7 @@ Using the configuration file:
 ```json 
 {
   "plugins": [
-    "../../babel-tanhauhau-pablo/packages/babel-parser/babel-left-side-plugin.cjs"
+    "../../../babel-tanhauhau-pablo/packages/babel-parser/babel-left-side-plugin.cjs"
   ]
 }
 ```
@@ -177,4 +177,43 @@ assign(foo, 10, 5);
 console.log(foo(4)); // 8
 
 console.log(foo(10)); // 5
+```
+
+We can execute it this way:
+
+```
+➜  left-side git:(main) ✗ npx pablobabel left-side-original.mjs -o left-side-original.cjs
+```
+
+and then we add to `NODE_PATH` the path to the `src` directory of the plugin:
+
+```
+➜  left-side git:(main) ✗ tree -I node_modules  /Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-plugin-left-side-support/
+/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-plugin-left-side-support/
+├── lib
+│   ├── assign.js
+│   ├── function-object.js
+│   └── index.js
+├── package.json
+└── src
+    ├── assign.js
+    ├── function-object.js
+    └── index.js
+
+2 directories, 7 files
+➜  left-side git:(main) ✗ export NODE_PATH=/Users/casianorodriguezleon/campus-virtual/2122/learning/compiler-learning/babel-tanhauhau-pablo/packages/babel-plugin-left-side-support/ 
+```
+
+Now we open a node session and require the `left-side-original.cjs` file defining the `functionObject` and `assign` functions:
+
+```
+➜  left-side git:(main) ✗ node
+Welcome to Node.js v20.5.0.
+Type ".help" for more information.
+> const { functionObject, assign } = require("src/index")
+undefined
+> require("./left-side-original.cjs")
+8
+20
+{}
 ```
