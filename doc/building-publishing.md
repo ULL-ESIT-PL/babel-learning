@@ -25,7 +25,10 @@ Babel is a monorepo, so all packages are in the same repository. A few issues ar
 - The internal dependencies between packages within the same repo also need to be resolved. Let us say that we want to install `@babel/parser` from `@babel/babel-core`. If we installed the dependency from a registry like npm, the version of the parser could not reflect the current state of the package if it has not been published. Also there is no need to install a package that we already have in our repository. Using relative paths from one package to another would not work neither.
 - If you change various packages, you may want a way to publish them all at the same time instead of one by one.
 
-To resolve this issues, The (old) version we are using of Babel uses Lerna, a monorepo management tool. This has changed now. See the [Babel docs in the designa section](https://github.com/babel/babel/blob/master/doc/design/monorepo.md?plain=1). Before we continue, take into consideration the next two things:
+To resolve this issues, The (old) version we are using of Babel uses Lerna, a monorepo management tool. 
+This has changed now. See the [Babel docs in the designa section](https://github.com/babel/babel/blob/master/doc/design/monorepo.md?plain=1). I believe they are using [Yarn workspaces now](https://yarnpkg.com/features/workspaces).
+
+Before we continue, take into consideration the next two things:
 - Packages are registered in Lerna's configuration file `lerna.json`. Babel has registered the directory `packages`, so all subdirectories are considered packages.
 - We consider that a package is an internal dependency if it is registered in the configuration file.
 
