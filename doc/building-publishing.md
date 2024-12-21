@@ -410,6 +410,29 @@ I ended up publishing from GitHub registry and it worked perfectly.
 
 Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and [get a GitHub personal access token](https://github.com/settings/tokens).
 
+### gitHead key in package.json
+
+In the packages of the babel plugins inside the Babel monorepo I have found  entries like:
+
+```
+gitHead": "df1dbf5d265ad3170234dff2e06cb385e08effc8"
+``` 
+
+This `gitHead` entry is a helpful piece of metadata that enhances traceability and version management in complex monorepo setups like Babel's.
+
+The `gitHead` field in a package.json file represents the Git commit hash of the most recent commit at the time the package was published .
+
+This field is typically added automatically by npm (or tools like Lerna that use npm under the hood) during the publishing process. It's not usually manually added or edited by developers .
+
+The `gitHead` allows for precise tracking of which exact version of the code was used to publish a particular version of the package. This is especially useful in monorepos where multiple packages might be updated and published together .
+
+In a Lerna-managed monorepo, this field helps Lerna determine which packages have changed since the last release. It uses this information to decide which packages need to be republished in subsequent releases .
+
+The `gitHead` can be invaluable for debugging or auditing purposes. It allows developers to easily check out the exact state of the code that was published, which can be crucial for reproducing issues or understanding the state of the package at a specific version.
+
+While you might see this field in a published package, it's not typically committed to source control. It's usually added during the publish process and is specific to each published version.
+
+
 ### In summary:
 
 1. Configurate all the `package.json` files. Remember the scoped name if you want to use a scope (`publishConfig.access: "public"` for this case).
