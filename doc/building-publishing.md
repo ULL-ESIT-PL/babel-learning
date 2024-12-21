@@ -408,7 +408,7 @@ To publish or install from the GitHub registry follow [these instructions](https
 
 I ended up publishing from GitHub registry and it worked perfectly.
 
-Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and get a GitHub personal access token (check the previous link).
+Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and [get a GitHub personal access token](https://github.com/settings/tokens).
 
 ### In summary:
 
