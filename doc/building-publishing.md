@@ -128,7 +128,7 @@ gulp.task(
 ### Rollup
 
 [Rollup](https://rollupjs.org/introduction/#the-why) is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. Is like webpack but Rollup is primarily designed for bundling JavaScript libraries and frameworks and has
-tree shaking (dead code elimination) as a core feature.
+tree shaking (dead code elimination) as a core feature. This is why Babel uses it instead of Webpack.
 
 
 At first I thought it was involved in compiling Flow into plain JS, but if we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, 
