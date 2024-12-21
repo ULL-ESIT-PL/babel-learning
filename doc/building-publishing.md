@@ -32,7 +32,7 @@ Before we continue, take into consideration the next two things:
 - Packages are registered in [Lerna's configuration file](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43). [Babel has registered the directory `packages`](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43), so all subdirectories are considered packages.
 - We consider that a package is an internal dependency if it is registered in the configuration file.
 
-Another important thing of `lerna.json` is that it let us prepare some flags for Lerna's commands. For example, maybe we want to use `--ignore-changes` with `lerna publish` to ignore the changes of some files to not publish them. In this case, we can add the following to the configuration file:
+Another important thing of `lerna.json` is that it let us prepare some flags for Lerna's commands. For example, maybe we want to use `--ignore-changes` with `lerna publish` to ignore the changes of some files to not publish them. In this case, [we can add the following to the configuration file](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L19-L33):
 
 ```json
 "command": {
@@ -53,10 +53,28 @@ Another important thing of `lerna.json` is that it let us prepare some flags for
     }
   },
 ```
+The `ignoreChanges` flag  uses a glob expression like:
 
-It should also be noted that Babel [does not use Lerna anymore](https://github.com/babel/babel/discussions/12622).
+```
+"packages/@(!(babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser))/**"
+```
 
-The problems that Babel solves with lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
+Here's what each part means:
+
+1. `packages/`: This matches the "packages" directory.
+2. `@(...)`: This is an extended glob pattern that matches exactly one occurrence of the patterns inside the parentheses.
+3. `!(...)`: This is a negation pattern. It matches anything that does not match the patterns inside the parentheses.
+4. `babel-plugin-left-side-plugin|babel-plugin-left-side-support|babel-parser`: These are the specific package names being excluded, separated by `|` (OR operator).
+5. `/**`: This matches any file or directory recursively under the matched directory.
+
+Putting it all together, this glob pattern means:
+
+*"Match all files and directories recursively within any subdirectory of 'packages', except for 'babel-plugin-left-side-plugin', 'babel-plugin-left-side-support', and 'babel-parser'."*
+
+In other words, it includes everything in the "packages" directory and its subdirectories, but explicitly excludes the three named packages and their contents.
+
+Again, remember that Babel [does not use Lerna anymore](https://github.com/babel/babel/discussions/12622).
+The problems that Babel solves with Lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
 
 ### lerna bootstrap
 
