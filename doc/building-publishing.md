@@ -392,10 +392,13 @@ lerna WARN The logged-in user does not have any previously-published packages, s
 lerna info Checking two-factor auth mode
 lerna http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 621ms
 lerna http fetch PUT 404 https://registry.npmjs.org/@ull-esit-pl%2fbabel-plugin-left-side-support 316ms
-lerna ERR! E404 Not found
-error Command failed with exit code 1.
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
+> [!CAUTION]
+> ```
+> lerna ERR! E404 Not found
+> error Command failed with exit code 1.
+> info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+> ```
 
 
 Notice that you have to run `npm login` to get a token and be able to publish packages. But it still fails. The reason I think this fails is because I do not have permissions in the npmjs organization I am trying to publish in and [to publish in a scope you need to be part of the organization](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages) (atleast for npmjs).
