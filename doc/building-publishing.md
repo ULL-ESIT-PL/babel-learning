@@ -332,7 +332,7 @@ Remember to configurate your `package.json` for each and every package you want 
 While:
 
 `➜  babel-tanhauhau-pablo git:(pablo) cat packages/babel-plugin-left-side-support/package.json`
-```
+
 ```json
 {
   "name": "@ull-esit-pl/babel-plugin-left-side-support",
