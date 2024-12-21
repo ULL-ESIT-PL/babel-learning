@@ -90,7 +90,15 @@ Publishes every registered package (as long as it is public).
 There are a few alternatives when publishing:
 
 - [lerna publish](https://github.com/lerna/lerna/tree/main/libs/commands/publish#readme). Publishes packages that have changed since the last release.
-- Babel's way: `lerna publish from-git`. The packages that have been tagged in the current commit are published. Packages are tagged by running [lerna version](https://github.com/lerna/lerna/tree/main/libs/commands/publish#readme). In Babel's makefile there is a `make new-version` action. [`lerna version`](https://github.com/lerna/lerna/tree/main/libs/commands/version) changes the version of the packages if they have been modified and then they are pushed to the remote repository.
+- Babel's way: `lerna publish from-git`. The packages that have been tagged in the current commit are published. Packages are tagged by running [lerna version](https://github.com/lerna/lerna/tree/main/libs/commands/publish#readme). 
+  - In [Babel's makefile](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/Makefile#L222-L224) there is a `make new-version` action:
+  
+    ```makefile
+    new-version:
+      git pull --rebase
+      $(YARN) lerna version --force-publish=$(FORCE_PUBLISH)
+    ```
+   - [`lerna version`](https://github.com/lerna/lerna/tree/main/libs/commands/version) changes the version of the packages if they have been modified and then they are pushed to the remote repository.
 - `lerna publish from-package`. The `package.json` version of each package is checked. If it is not published in the registry, the version is published.
 
 [Reference.](https://github.com/lerna/lerna/tree/main/libs/commands/publish)
