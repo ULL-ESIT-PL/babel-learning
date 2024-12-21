@@ -416,7 +416,7 @@ Now you should be able to install your package from any project. Keep in mind th
 2. Run `make bootstrap` to install all dependencies, both external and internal. I suggest you try everything is working before the next step by trying your packages.
 3. Run `npx lerna publish from-package`. Check that the packages that are shown are the correct ones. If publishing fails, check the org and registry you are trying to publish on.
 
-If you are using the GitHub registry, check [Github's tutorial](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry). Specially the part about [publishing multiple packages on the same repository](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#publishing-multiple-packages-to-the-same-repository).
+If you are using the GitHub registry, check [Github's tutorial](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry). Specially the part about [publishing multiple packages on the same repository](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#publishing-multiple-packages-to-the-same-repository). See the `"url"` key in the `package.json` files above!.
 
 ### Note about using the packages.
 
