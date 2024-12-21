@@ -357,10 +357,13 @@ lerna ERR! E404 Not found
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
+
+
 Notice that you have to run `npm login` to get a token and be able to publish packages. But it still fails. The reason I think this fails is because I do not have permissions in the npmjs organization I am trying to publish in and [to publish in a scope you need to be part of the organization](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages) (atleast for npmjs).
 
 As an alternative, you can publish from the npm's GitHub registry.
 To publish or install from the GitHub registry follow [these instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+
 I ended up publishing from GitHub registry and it worked perfectly.
 
 Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and get a GitHub personal access token (check the previous link).
