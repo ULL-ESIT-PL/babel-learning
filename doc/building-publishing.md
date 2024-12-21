@@ -161,6 +161,10 @@ I concluded that the first choice is the answer. The reasoning is that the root 
 
 Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. 
 
+- [packages/babel-parser](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg/packages/babel-parser)
+- [packages/babel-plugin-left-side-plugin](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg/packages/babel-plugin-left-side-plugin)
+- [packages/babel-plugin-left-side-support](https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg/packages/babel-plugin-left-side-support)
+
 ### lerna.json modifications
 
 When trying to publish, I modified the [lerna.json](https://lerna.js.org/docs/api-reference/configuration) to ignore packages that are not mine 
@@ -314,6 +318,34 @@ Remember to configurate your `package.json` for each and every package you want 
     "type": "git",
     "url": "https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg",
     "directory": "packages/babel-plugin-left-side-plugin"    
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "Pablo Santana Gonzalez <alu0101480541@ull.edu.es>",
+  "license": "ISC",
+  "gitHead": "df1dbf5d265ad3170234dff2e06cb385e08effc8"
+}
+```
+
+`➜  babel-tanhauhau-pablo git:(pablo) cat packages/babel-plugin-left-side-support/package.json`
+```
+{
+  "name": "@ull-esit-pl/babel-plugin-left-side-support",
+  "version": "1.0.0",
+  "description": "Support for the left side plugin",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "callable-instance": "2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg",
+    "directory": "packages/babel-plugin-left-side-support"    
   },
   "publishConfig": {
     "access": "public",
