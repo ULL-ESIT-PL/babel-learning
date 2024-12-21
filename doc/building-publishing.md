@@ -410,7 +410,7 @@ I ended up publishing from GitHub registry and it worked perfectly.
 
 Now you should be able to install your package from any project. Keep in mind that if you are using the Github registry you will need to configure a `.npmrc` file and [get a GitHub personal access token](https://github.com/settings/tokens).
 
-### gitHead key in package.json
+### The role of the `gitHead` key in package.json files of a monorepo
 
 In the packages of the babel plugins inside the Babel monorepo I have found  entries like:
 
