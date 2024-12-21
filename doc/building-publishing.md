@@ -105,6 +105,8 @@ There are a few alternatives when publishing:
 
 ## Gulp and Rollup
 
+### Gulp
+
 Gulp is similar to Make: both are used to automate tasks. The major diference is that Gulp is written in JavaScript. In the case of Babel, it is used to build the project, since Babel is written in Flow. The [Gulpfile.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/Gulpfile.js) of the project (the "makefile" of Gulp), has some tasks registered:
 
 ```js
@@ -123,7 +125,11 @@ gulp.task(
 );
 ```
 
-[Rollup](https://rollupjs.org/introduction/#the-why) is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. 
+### Rollup
+
+[Rollup](https://rollupjs.org/introduction/#the-why) is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. Is like webpack but Rollup is primarily designed for bundling JavaScript libraries and frameworks and has
+tree shaking (dead code elimination) as a core feature.
+
 
 At first I thought it was involved in compiling Flow into plain JS, but if we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, 
 created [to integrate Babel and Gulp](https://github.com/babel/gulp-babel/tree/v7-maintenance). 
