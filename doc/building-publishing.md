@@ -123,7 +123,9 @@ gulp.task(
 );
 ```
 
-Rollup is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. At first I thought it was involved in compiling Flow into plain JS, but if we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, created [to integrate Babel and Gulp](https://github.com/babel/gulp-babel). `gulp-babel` uses `@babel/core` to transform the given code. [So Babel compiles itself](https://en.wikipedia.org/wiki/Bootstrapping_(compilers))? If we check Babel's configuration file (`babel.config.js`) we can see the following:
+[Rollup](https://rollupjs.org/introduction/#the-why) is a bundler: it takes a project and writes it in one single JS file, with the option to choose the output. 
+
+At first I thought it was involved in compiling Flow into plain JS, but if we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, created [to integrate Babel and Gulp](https://github.com/babel/gulp-babel). `gulp-babel` uses `@babel/core` to transform the given code. [So Babel compiles itself](https://en.wikipedia.org/wiki/Bootstrapping_(compilers))? If we check Babel's configuration file (`babel.config.js`) we can see the following:
 
 ```js
     // More configuration
