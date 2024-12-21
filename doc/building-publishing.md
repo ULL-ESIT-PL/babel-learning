@@ -293,7 +293,7 @@ The first part is needed to build the project itself before publishing (remember
 
 This means that, since Babel's packages are already published, we can publish only the packages we want. 
 
-### versions
+### Different versions for each package?
 
 On the other hand, because `lerna version` will try to update all the packages' version we may prefer to use other ways to change the version of our packages (perhaps `npm version` or, if they are few, we can handle them individually). 
 
@@ -328,6 +328,8 @@ Remember to configurate your `package.json` for each and every package you want 
   "gitHead": "df1dbf5d265ad3170234dff2e06cb385e08effc8"
 }
 ```
+
+While:
 
 `➜  babel-tanhauhau-pablo git:(pablo) cat packages/babel-plugin-left-side-support/package.json`
 ```
