@@ -159,9 +159,9 @@ I concluded that the first choice is the answer. The reasoning is that the root 
 
 ## How to publish from a fork of Babel?
 
-Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), 
-- I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. 
+Let's say we want to modify and/or create packages in the Babel repository and then publish them. In my case ([@PSantanaGlez13](https://github.com/PSantanaGlez13)), I changed the `babel-parser` and created two additional packages with a plugin and support for that plugin. 
 
+### lerna.json modifications
 
 When trying to publish, I modified the [lerna.json](https://lerna.js.org/docs/api-reference/configuration) to ignore packages that are not mine 
 
@@ -253,6 +253,7 @@ index f466f26e3..ce485c8eb 100644
    },
 ```
 
+### make publish. Tests don't pass
 
 However, publishing from the Makefile as it is runs linting tests, and because I changed the parser, my tests were considered errors and would not allow my packages to be published. Here is a summary of the Makefile's `publish` action. We can see  that it makes a `bootstrap-only` and a `build` before publishing. 
 
@@ -268,6 +269,8 @@ NODE_ENV=production BABEL_ENV=production /Applications/Xcode.app/Contents/Develo
 /Applications/Xcode.app/Contents/Developer/usr/bin/make clean
 ```
 
+### make new-version 
+
 Even after removing the tests, my packages still would not publish. The reason for this is that we need to run `make new-version` first. 
 
 ```sh
@@ -278,11 +281,15 @@ yarn --silent lerna version --force-publish="@babel/runtime,@babel/runtime-corej
 
 This will run `lerna version` which will bump the version of the packages one version up and then tag them so `lerna publish from-git` (called by `make publish`) will publish them. The issue with this is that all packages are being considered changed, so they will all be tagged and then, when publishing, they will appear as new packages.
 
+### make bootstrap; npx lerna publish from-package
+
 The solution to this issue is to use `make bootstrap; npx lerna publish from-package`. 
 
 The first part is needed to build the project itself before publishing (remember that `make bootstrap` runs `make build`) and the second part publishes the packages that are not found in the publishing registry. 
 
 This means that, since Babel's packages are already published, we can publish only the packages we want. 
+
+### versions
 
 On the other hand, because `lerna version` will try to update all the packages' version we may prefer to use other ways to change the version of our packages (perhaps `npm version` or, if they are few, we can handle them individually). 
 
