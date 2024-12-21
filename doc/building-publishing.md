@@ -333,6 +333,7 @@ While:
 
 `➜  babel-tanhauhau-pablo git:(pablo) cat packages/babel-plugin-left-side-support/package.json`
 ```
+```json
 {
   "name": "@ull-esit-pl/babel-plugin-left-side-support",
   "version": "1.0.0",
@@ -358,6 +359,10 @@ While:
   "gitHead": "df1dbf5d265ad3170234dff2e06cb385e08effc8"
 }
 ```
+
+You an see that the `version` is different for each package and you can check it in the [organization packages in GitHub](https://github.com/orgs/ULL-ESIT-PL/packages).
+
+### publishConfig.access: public
 
 The key `publishConfig.access: public` is specially important, since scoped packages are private by default (if you are using a scope). 
 
