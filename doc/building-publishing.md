@@ -1,4 +1,4 @@
-# Building and publishing 
+# How to publish from a fork of Babel? Building and publishing 
 
 In this document we will cover the following topics:
 
