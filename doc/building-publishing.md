@@ -131,12 +131,12 @@ gulp.task(
 tree shaking (dead code elimination) as a core feature. This is why Babel uses it instead of Webpack.
 
 
-### Flow and Babel
+### The use of Flow in Babel
 
 If we take a look at the previous tasks there is an option to `build-no-bundle` which does not use Rollup. It uses `babel()` which is a tool, called `gulp-babel`, 
 created [to integrate Babel and Gulp](https://github.com/babel/gulp-babel/tree/v7-maintenance). 
 `gulp-babel` uses `@babel/core` to transform the given code. 
-[So Babel compiles itself](https://en.wikipedia.org/wiki/Bootstrapping_(compilers))? If we check Babel's 7.10 configuration file ([babel.config.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/babel.config.js)) we can see the following:
+[So Babel compiles itself](https://en.wikipedia.org/wiki/Bootstrapping_(compilers))? If we check Babel's 7.10 configuration file ([babel.config.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/babel.config.js#L98-L112) we can see the following:
 
 ```js
     // More configuration
