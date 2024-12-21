@@ -26,7 +26,7 @@ Babel is a monorepo, so all packages are in the same repository. A few issues ar
 - If you change various packages, you may want a way to publish them all at the same time instead of one by one.
 
 To resolve this issues, The (old) version we are using of Babel uses Lerna, a monorepo management tool. 
-This has changed now. See the [Babel docs in the design section](https://github.com/babel/babel/blob/master/doc/design/monorepo.md?plain=1). I believe they are using [Yarn workspaces now](https://yarnpkg.com/features/workspaces).
+This has changed now. See the [Babel docs in the design section, branch v8.0.0-alpha.1](https://github.com/babel/babel/blob/release/v8.0.0-alpha.1/doc/design/monorepo.md?plain=1). I believe they are using [Yarn workspaces now](https://yarnpkg.com/features/workspaces).
 
 Before we continue, take into consideration the next two things:
 - Packages are registered in Lerna's configuration file `lerna.json`. Babel has registered the directory `packages`, so all subdirectories are considered packages.
