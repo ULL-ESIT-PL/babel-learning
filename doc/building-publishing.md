@@ -12,7 +12,7 @@ The document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PS
 
 ## Makefile
 
-Babel 7.10's Makefile contains many actions. We will mainly cover three of them (although these actions call other actions, we will describe their overall behavior).
+[Babel 7.10's Makefile](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/Makefile#L222) contains many actions. We will mainly cover three of them (although these actions call other actions, we will describe their overall behavior).
 1. `make bootstrap`: Installs all dependencies for all packages using `lerna bootstrap` (more on Lerna later). After installing dependencies, `make build` is run.
 2. `make build`: Babel 7.10 uses Flow, so the project needs to be compiled into plain JavaScript. Two packages are used for this: `gulp` and `rollup` (more on them later).
 3. `make publish`: Babel 7.10's packages are published with Lerna. Some tests are run to ensure that the uploaded code complies with Babel's linting rules.
