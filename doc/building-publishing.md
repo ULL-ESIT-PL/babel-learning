@@ -29,7 +29,7 @@ To resolve this issues, The (old) version we are using of Babel uses Lerna, a mo
 This has changed now. See the [Babel docs in the design section, branch v8.0.0-alpha.1](https://github.com/babel/babel/blob/release/v8.0.0-alpha.1/doc/design/monorepo.md?plain=1). I believe they are using [Yarn workspaces now](https://yarnpkg.com/features/workspaces).
 
 Before we continue, take into consideration the next two things:
-- Packages are registered in Lerna's configuration file `lerna.json`. Babel has registered the directory `packages`, so all subdirectories are considered packages.
+- Packages are registered in Lerna's configuration file (https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43). [Babel has registered the directory `packages`](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43), so all subdirectories are considered packages.
 - We consider that a package is an internal dependency if it is registered in the configuration file.
 
 Another important thing of `lerna.json` is that it let us prepare some flags for Lerna's commands. For example, maybe we want to use `--ignore-changes` with `lerna publish` to ignore the changes of some files to not publish them. In this case, we can add the following to the configuration file:
