@@ -1,21 +1,21 @@
-# How to publish from a fork of Babel? Building and publishing 
+# How to publish from a fork of Babel 7.10? Building and publishing 
 
 In this document we will cover the following topics:
 
-- Babel's Makefile
+- Babel 7.10's Makefile
 - Lerna
 - Gulp and Rollup
-- How to publish from a fork of Babel?
+- How to publish from a fork of Babel 7.10?
 
 The document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) first attempts to understand Babel's building and publishing.
 
 
 ## Makefile
 
-Babel's Makefile contains many actions. We will mainly cover three of them (although these actions call other actions, we will describe their overall behavior).
+Babel 7.10's Makefile contains many actions. We will mainly cover three of them (although these actions call other actions, we will describe their overall behavior).
 1. `make bootstrap`: Installs all dependencies for all packages using `lerna bootstrap` (more on Lerna later). After installing dependencies, `make build` is run.
-2. `make build`: Babel uses Flow, so the project needs to be compiled into plain JavaScript. Two packages are used for this: `gulp` and `rollup` (more on them later).
-3. `make publish`: Babel's packages are published with Lerna. Some tests are run to ensure that the uploaded code complies with Babel's linting rules.
+2. `make build`: Babel 7.10 uses Flow, so the project needs to be compiled into plain JavaScript. Two packages are used for this: `gulp` and `rollup` (more on them later).
+3. `make publish`: Babel 7.10's packages are published with Lerna. Some tests are run to ensure that the uploaded code complies with Babel's linting rules.
 
 ## Lerna
 
@@ -29,7 +29,7 @@ To resolve this issues, The (old) version we are using of Babel uses Lerna, a mo
 This has changed now. See the [Babel docs in the design section, branch v8.0.0-alpha.1](https://github.com/babel/babel/blob/release/v8.0.0-alpha.1/doc/design/monorepo.md?plain=1). I believe they are using [Yarn workspaces now](https://yarnpkg.com/features/workspaces).
 
 Before we continue, take into consideration the next two things:
-- Packages are registered in [Lerna's configuration file](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43). [Babel has registered the directory `packages`](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43), so all subdirectories are considered packages.
+- Packages are registered in [Lerna's configuration file](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43). [Babel 7.10 has registered the directory `packages`](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L43), so all subdirectories are considered packages.
 - We consider that a package is an internal dependency if it is registered in the configuration file.
 
 Another important thing of `lerna.json` is that it let us prepare some flags for Lerna's commands. For example, maybe we want to use `--ignore-changes` with `lerna publish` to ignore the changes of some files to not publish them. In this case, [we can add the following to the configuration file](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/lerna.json#L19-L33):
@@ -74,7 +74,7 @@ Putting it all together, this glob pattern means:
 In other words, it includes everything in the "packages" directory and its subdirectories, but explicitly excludes the three named packages and their contents.
 
 Again, remember that Babel [does not use Lerna anymore](https://github.com/babel/babel/discussions/12622).
-The problems that Babel solves with Lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
+The problems that Babel 7.10 solves with Lerna [can be solved with workspaces](https://lerna.js.org/docs/legacy-package-management).
 
 ### lerna bootstrap
 
@@ -90,7 +90,7 @@ Publishes every registered package (as long as it is public).
 There are a few alternatives when publishing:
 
 - [lerna publish](https://github.com/lerna/lerna/tree/main/libs/commands/publish#readme). Publishes packages that have changed since the last release.
-- Babel's way: `lerna publish from-git`. The packages that have been tagged in the current commit are published. Packages are tagged by running [lerna version](https://github.com/lerna/lerna/tree/main/libs/commands/publish#readme). 
+- Babel's 7.10 way: `lerna publish from-git`. The packages that have been tagged in the current commit are published. Packages are tagged by running [lerna version](https://github.com/lerna/lerna/tree/main/libs/commands/publish#readme). 
   - In [Babel's makefile](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/Makefile#L222-L224) there is a `make new-version` action:
   
     ```makefile
