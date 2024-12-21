@@ -22,7 +22,7 @@ The document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PS
 Babel is a monorepo, so all packages are in the same repository. A few issues arise from this:
 
 - Installing dependencies for each of these packages can be a hard task. Specially due to the large number of packages Babel has, there is a need of automating the installation of dependencies of each package.
-- The internal dependencies between packages within the same repo also need to be resolved. Let us say that we want to install `@babel/parser` from `@babel/babel-core`. If we installed the dependency from a registry like npm, the version of the parser could not reflect the current state of the package if it has not been published. Also there is no need to install a package that we already have in our repository. Using relative paths from one package to another would not work neither.
+- The internal dependencies between packages within the same repo also need to be resolved. Let us say that we want to install `@babel/parser` from `@babel/babel-core`. If we installed the dependency from a registry like npm, the version of the parser could not reflect the current state of the package if it has not been published. Also there is no need to install a package that we already have in our repository. Using relative paths from one package to another would not work either.
 - If you change various packages, you may want a way to publish them all at the same time instead of one by one.
 
 To resolve this issues, The (old) version we are using of Babel uses Lerna, a monorepo management tool. 
