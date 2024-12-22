@@ -110,6 +110,14 @@ There are a few alternatives when publishing:
 Gulp is similar to Make: both are used to automate tasks. The major diference is that Gulp is written in JavaScript. In the case of Babel, it is used to build the project, since Babel is written in Flow. The [Gulpfile.js](https://github.com/ULL-ESIT-PL/babel-tanhauhau/blob/pablo-tfg/Gulpfile.js) of the project (the "makefile" of Gulp), has some tasks registered:
 
 ```js
+use strict";
+
+const plumber = require("gulp-plumber");
+const through = require("through2");
+const chalk = require("chalk");
+...
+const defaultSourcesGlob = "./@(codemods|packages|eslint)/*/src/**/*.js";
+...
 // Different options to compile Babel using a bundler
 gulp.task("build-rollup", () => buildRollup(libBundles));
 gulp.task("build-babel-standalone", () => buildRollup(standaloneBundle));
@@ -124,6 +132,9 @@ gulp.task(
   })
 );
 ```
+
+> [!NOTE]
+> See [issue 28](https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/28). Attempting to publish a `*.cjs` file, the build process fails due to the `defaultSourcesGlob` variable. 
 
 ### Rollup
 
