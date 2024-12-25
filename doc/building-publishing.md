@@ -1,6 +1,8 @@
 # How to publish from a fork of Babel 7.10? Building and publishing 
 
-For a better solution see <https://github.com/ULL-ESIT-PL/parser-left-side-crguezl/tree/main>.
+**The goal**: This section deals with the problem of a developer extending JS and using the Babel parser to do it. The developer wants to have a package containing the parser and plugins and that can be published and used by other developers.
+
+For a more updated solution than the one described here, see <https://github.com/ULL-ESIT-PL/parser-left-side-crguezl/tree/main>.
 
 This document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) first attempts to understand Babel's building and publishing.
 
