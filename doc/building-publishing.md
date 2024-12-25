@@ -1,5 +1,9 @@
 # How to publish from a fork of Babel 7.10? Building and publishing 
 
+For a better solution see <https://github.com/ULL-ESIT-PL/parser-left-side-crguezl/tree/main>.
+
+This document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) first attempts to understand Babel's building and publishing.
+
 In this document we will cover the following topics:
 
 - Babel 7.10's Makefile
@@ -7,7 +11,6 @@ In this document we will cover the following topics:
 - Gulp and Rollup
 - How to publish from a fork of Babel 7.10?
 
-The document summarizes Pablo Santana's ([@PSantanaGlez13](https://github.com/PSantanaGlez13)) first attempts to understand Babel's building and publishing.
 
 
 ## Makefile
