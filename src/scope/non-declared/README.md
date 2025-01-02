@@ -1,5 +1,7 @@
 ## Introduction to the  `--env-name` flag and `path.scope.hasBinding`
 
+Babel CLI allows you to override plugin options using the `--env-name` flag combined with a specific environment configuration in your [Babel config file](./babel.config.js).
+
 See 
 
 - The config file [babel.config.js](./babel.config.js)

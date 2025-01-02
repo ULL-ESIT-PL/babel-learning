@@ -13,6 +13,8 @@ FunctionDeclaration(path) {
 ```
 
 This will walk up the scope tree and check for that particular binding.
+See the example at [/src/scope/non-declared/](/src/scope/non-declared/).
+
 
 ### path.scope.hasOwnBinding
 
