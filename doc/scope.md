@@ -39,6 +39,7 @@ FunctionDeclaration(path) {
 
 See examples at:
 
+- Section [Pushing a variable declaration to a parent scope](#pushing-a-variable-declaration-to-a-parent-scope) in this file.
 - [/src/awesome/tc39-pattern-matching/](/src/awesome/tc39-pattern-matching/) in function `function transformMatch (babel, referencePath)`
 
   ```js
