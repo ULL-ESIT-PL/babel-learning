@@ -1,4 +1,4 @@
-## Introduction to the  `--env-name` flag
+## Introduction to the  `--env-name` flag and `path.scope.hasBinding`
 
 See 
 
