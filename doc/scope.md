@@ -142,7 +142,7 @@ The method takes an object with the following properties:
 - `init`: (Optional) The initial value of the variable. This should be an AST node representing the value, such as `t.numericLiteral(42)` for the number `42`.
 - `kind`: (Optional) The kind of variable declaration. This can be `"var"`, `"let"`, or `"const"`. If omitted, it defaults to `"var"`.
 
-See the files in [/src/scope/scopepush/](/src/scope/scopepush/).
+See the examples in folder [/src/scope/scopepush/](/src/scope/scopepush/).
 
 Here is an example of how you might use `path.scope.push` within a Babel plugin to add a new constant variable to the current scope:
 
