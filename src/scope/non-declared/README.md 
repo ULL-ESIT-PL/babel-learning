@@ -4,7 +4,7 @@ See
 - The test [input.js](./input.js)
 - The plugin [nondeclared.mjs](./nondeclared.mjs)
 
-## executions
+## Executions
 
 ### Using --env-name development
 
