@@ -37,6 +37,69 @@ FunctionDeclaration(path) {
 }
 ```
 
+See examples at:
+
+- [/src/awesome/tc39-pattern-matching/](/src/awesome/tc39-pattern-matching/) in function `function transformMatch (babel, referencePath)`
+
+  ```js
+  module.exports = function transformMatch (babel, referencePath) {
+    const $root = referencePath.parentPath.parentPath
+    const $$uid = $root.scope.generateUidIdentifier('uid')
+    const $matching = getMatching($root)
+    const $$matching = $matching.node
+    const $patterns = getPatterns($root)
+    const $$blocks = transformPatterns(babel, $patterns, $$uid).filter(item => item)
+
+    const $$IIFE = babel.template(`
+      (v=> {
+        const UID = EXP
+        BLOCKS
+        throw new Error("No matching pattern");
+      })()
+      `)({
+      UID: $$uid,
+      EXP: $$matching,
+      BLOCKS: $$blocks
+    })
+    $root.replaceWith($$IIFE)
+  }
+  ```
+- [/src/nicolo-how-to-talk](/src/nicolo-howto-talk/) for the optional chaining plugin [optional-chaining-plugin.cjs](/src/nicolo-howto-talk/optional-chaining-plugin.cjs) and [optional-chaining-plugin2.cjs](/src/nicolo-howto-talk/optional-chaining-plugin2.cjs)
+
+  ```js 
+  //const generate = require('@babel/generator').default;
+  module.exports = function myPlugin(babel, options) {
+    const { types: t, template } = babel;
+    return {
+      name: "optional-chaining-plugin",
+      manipulateOptions(opts) {
+        opts.parserOpts.plugins.push("OptionalChaining")
+      },
+      visitor: {
+        OptionalMemberExpression(path) {
+
+          while (!path.node.optional) path = path.get("object");
+
+          let { object, property, computed } = path.node;
+          let tmp = path.scope.generateUidIdentifierBasedOnNode(property);
+          path.scope.push({ id: tmp, kind: 'let', init: t.NullLiteral() });
+
+          
+          let memberExp = t.memberExpression(tmp, property, computed);
+          let undef = path.scope.buildUndefinedNode();
+          path.replaceWith(
+            template.expression.ast`
+              (${tmp} = ${object}) == null? ${undef} :
+              ${memberExp}
+            `
+          )
+
+        }
+      }
+    }
+  }
+  ```
+
 ## Pushing a variable declaration
 
 The `path.scope.push` method has the following signature:
