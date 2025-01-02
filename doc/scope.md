@@ -14,13 +14,27 @@ FunctionDeclaration(path) {
 
 This will walk up the scope tree and check for that particular binding.
 
-You can also check if a scope has its **own** binding:
+You can also check if a scope has its **own** binding. The following example replaces
+all references to local variables `n` with `x` but not the global variable `n`.
 
 ```js
-FunctionDeclaration(path) {
-  if (path.scope.hasOwnBinding("n")) {
-    // ...
-  }
+export default function({ types: t }) {
+  return {
+    visitor: {
+      FunctionDeclaration(path) {
+        if (path.scope.hasOwnBinding("n")) {
+          path.traverse({
+            Identifier(path) {
+              if (path.node.name === "n") {
+                path.node.name = "x";
+              }
+            }
+          });
+          return;
+        }
+      }
+    }
+  };
 }
 ```
 
