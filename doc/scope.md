@@ -24,6 +24,8 @@ FunctionDeclaration(path) {
 }
 ```
 
+See the example at [/src/scope/replace-local-n-by-x/](/src/scope/replace-local-n-by-x/).
+
 ## Generating a UID
 
 This will generate an identifier that doesn't collide with any locally defined variables.
