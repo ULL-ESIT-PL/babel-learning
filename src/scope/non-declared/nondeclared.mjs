@@ -1,22 +1,31 @@
-import util from 'util';
-const inspect = x => util.inspect(x, { depth: 3 });
-let emitWarning = true;
-export default function({ types: t }) {
+export default function () {
   return {
     visitor: {
+      Program: {
+        enter(path, state) {
+          let varName = state.opts.varName;
+          console.log(`Searching for ${varName}`);
+          state.nonDeclared = new Map();
+          state.Declared = new Map();
+        },
+        exit(path, state) {
+          state.Declared.forEach((value, key) => { console.log(key, value); });
+          state.nonDeclared.forEach((value, key) => { console.log(key, value); });
+          process.exit(0);
+        }  
+      },
       Identifier(path, state) {
         let varName = state.opts.varName;
         let node = path.node;
         if (node.name !== varName) { return; }
-        if (!path.scope.hasBinding(varName) && emitWarning) {
-          console.error(`Variable "${varName}" not declared at line ${node.loc.start.line}. Declared variables: ${inspect(Object.keys(path.scope.bindings))}`);
-          emitWarning = false; // Avoid spamming the console
-        } else if (emitWarning) {
-          console.error(`Variable "${varName}" declared at line ${node.loc.start.line}.`);
-          emitWarning = false; 
+        if (!path.scope.hasBinding(varName)) {
+            state.nonDeclared.set(`${varName} at ${node.loc.start.line}`, `is not declared.`)
+        }
+        else {
+          state.Declared.set(`${varName} at ${node.loc.start.line}`, `is declared.`);
         }
         return;
-      }
+      },
     }
   };
 }

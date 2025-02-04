@@ -17,7 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.24.6",
-    "@babel/core": "^7.24.6",
+    "@babel/core": "^7.26.0",
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@babel/plugin-proposal-record-and-tuple": "^7.24.7",
     "@babel/preset-env": "^7.24.6",
@@ -37,6 +37,7 @@
     "babel-template": "^6.26.0",
     "compact-js-ast": "^4.1.2",
     "currying": "file:src/tan-liu-article/currying",
+    "estree-to-babel": "^10.1.0",
     "idx": "^3.0.3",
     "recast": "^0.23.9"
   }
