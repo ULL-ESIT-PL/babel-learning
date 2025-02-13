@@ -126,4 +126,4 @@ prop: Symbol(Symbol.isConcatSpreadable)
 
 ## Current weaknesses
 
-Error messages  must always  refer to the source `aconcatb.js`. We need to provide [source maps](https://tc39.es/source-map/). See also [package source-map](https://www.npmjs.com/package/source-map)
+Error messages  must always  refer to the source `aconcatb.js`. We need to provide [source maps](https://tc39.es/source-map/). See also [package source-map](https://www.npmjs.com/package/source-map). See https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/24#issuecomment-2656853555

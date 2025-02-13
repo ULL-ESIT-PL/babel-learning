@@ -109,3 +109,4 @@ You can easily see the available source maps by clicking on the "`Sources`" tab 
 
 * [What are source maps?](https://youtu.be/FIYkjjFYvoI?si=dOWvuRjHUEZNE9e2). Youtube by  #DevToolsTips. 2023.
 * npm package [magic-string](https://www.npmjs.com/package/magic-string)
+* Adrian's issue https://github.com/ULL-ESIT-PL/babel-tanhauhau/issues/24#issuecomment-2656853555
