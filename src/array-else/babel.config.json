@@ -1,5 +1,0 @@
-{
-  "plugins": [ 
-    "../../../babel-tanhauhau-adrian/packages/babel-parser/defaultvector.cjs"
-  ]
-}
