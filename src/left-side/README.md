@@ -135,7 +135,3 @@ or alternatively, use the `-o` option to save the output to a file and then run 
 - Branch pablo-tfg with the actual code implementation: https://github.com/ULL-ESIT-PL/babel-tanhauhau/tree/pablo-tfg
 - The original idea of the project is based on what is explained in this draft: https://www.authorea.com/users/147476/articles/1235078-function-expressions-on-the-left-side-of-assignments (submitted now to Science of Computer Programming
  journal)
-
-## License
-
-Same as Babel itself: [MIT](LICENSE)
