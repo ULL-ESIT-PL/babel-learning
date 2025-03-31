@@ -195,7 +195,7 @@ const MyVisitor = {
 See example [src/traverse/hello-babel-traverse.mjs](/src/traverse/hello-babel-traverse.mjs):
 
 ```js
-import * as babylon from "babylon";
+import * as babylon from "@babel/parser";
 import _traverse from "@babel/traverse";
 const traverse = _traverse.default;
 //console.log(traverse)
@@ -236,6 +236,8 @@ const output = generate(
   code
 );
 console.log(output.code);
+
+
 ```
 - This code uses the `@babel/traverse` package to traverse the AST and change all the `n` identifiers to `x`. 
 - It then uses the `@babel/generator` package to generate the code from the modified AST. 
