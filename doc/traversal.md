@@ -294,6 +294,50 @@ program:
 function square(x){return x*x;}
 ```
 
+## Second Example
+
+At [src/traverse/example.mjs](src/traverse/example.mjs) is another example of using Babel traverse to analyze and transform JavaScript code. The transformation will:
+
+- Add comments above function declarations
+- Log information about different function types
+- Convert arrow functions to regular function expressions
+
+For the input:
+
+```js 
+function square(n) {
+  return n * n;
+}
+
+const double = function(n) {
+  return n + n;
+}
+
+const add = (a, b) => a + b;
+```
+
+produces:
+
+```console
+➜  babel-learning git:(main) ✗ node src/traverse/example.mjs
+Found function declaration: square
+Found function expression assigned to: double
+Found arrow function assigned to: add
+Found function expression assigned to: add
+
+Transformed code:
+// Function: square 
+function square(n) {
+  return n * n;
+}
+const double = function (n) {
+  return n + n;
+};
+const add = function (a, b) {
+  return a + b;
+};
+```
+
 ## TOC
 
 - [Learning Babel](/#learning-babel)
