@@ -70,6 +70,9 @@ module.exports = function (babel) {
 }
 ```
 
+See also section [doc/templates.md](doc/templates.md) for more information about 
+templates.
+
 When executed with input:
 
 ```js

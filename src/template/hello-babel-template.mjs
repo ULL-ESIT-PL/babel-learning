@@ -18,8 +18,9 @@ const buildRequire = template(`
 
 const identifier = t.identifier("myModule"); // See https://babeljs.io/docs/babel-types#identifier
 const stringLiteral = t.stringLiteral("my-module");
-console.log(compast(identifier, { parse: false, }),
-  compast(stringLiteral, { parse: false, }));
+
+//console.log(compast(identifier, { parse: false, }));
+//console.log(compast(stringLiteral, { parse: false, }));
 
 const ast = buildRequire({
   IMPORT_NAME: identifier,

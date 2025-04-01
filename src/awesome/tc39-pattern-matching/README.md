@@ -1,6 +1,7 @@
 ## The TC39 Proposal Pattern Matching. Stage 1
 
-The TC39 [proposal *Pattern Matching*](https://github.com/tc39/proposal-pattern-matching) was approved for Stage 1 in the May 2018 TC39 meeting, and slides for that presentation are available [here](https://docs.google.com/presentation/d/1WPyAO4pHRsfwGoiIZupz_-tzAdv8mirw-aZfbxbAVcQ). Its current form was presented to TC39 in the April 2021 meeting ([slides](https://hackmd.io/@mpcsh/HkZ712ig_#/)). Our comments about the slides are available [here](slides.md)
+The TC39 [proposal *Pattern Matching*](https://github.com/tc39/proposal-pattern-matching) was approved for Stage 1 in the May 2018 TC39 meeting, and slides for that presentation are available [here](https://docs.google.com/presentation/d/1WPyAO4pHRsfwGoiIZupz_-tzAdv8mirw-aZfbxbAVcQ). Its current form was presented to TC39 in the April 2021 meeting ([slides](https://hackmd.io/@mpcsh/HkZ712ig_#/)). Our comments about the slides are available [here](slides.md). The grammar 
+is at https://tc39.es/proposal-pattern-matching/
 
 It introduces three new concepts to Javascript:
 
