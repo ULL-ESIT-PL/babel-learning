@@ -11,7 +11,7 @@ let ast = buildRequire({
   source: t.stringLiteral("my-module"),
 });
 
-console.log("syntactic placeholders: ", generate(ast).code);
+console.log("syntactic placeholders: ", generate(ast).code); // syntactic placeholders:  var myModule = require("my-module");
 
 buildRequire = template(`
   var IMPORT_NAME = require(SOURCE);
@@ -22,4 +22,4 @@ ast = buildRequire({
   SOURCE: t.stringLiteral("my-module"),
 });
 
-console.log("identifier placeholders: ",generate(ast).code);
+console.log("identifier placeholders: ",generate(ast).code); // identifier placeholders:  var myModule = require("my-module");

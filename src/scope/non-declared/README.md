@@ -15,10 +15,10 @@ See
 ```
 ➜  non-declared git:(main) npx babel input.js  --env-name development
 
-Variable "m" not declared at line 3. Declared variables: [ 'n' ]
-let n = 4;
-m = 9;
-n = n * m;
+Searching for variable "m"
+m at 2 is declared.
+m at 3 is not declared.
+m at 4 is not declared.
 ```
 
 ### Using --env-name custom
@@ -26,8 +26,8 @@ n = n * m;
 ```
 ➜  non-declared git:(main) ✗ npx babel input.js  --env-name custom     
 
-Variable "n" declared at line 1.
-let n = 4;
-m = 9;
-n = n * m;
+Searching for variable "n"
+n at 1 is declared.
+n at 2 is declared.
+n at 4 is declared
 ```
