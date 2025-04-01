@@ -2,6 +2,7 @@
 
 Let's tie it together with the plugin API.
 
+
 Start off with a `function` that gets passed the current `babel` object.
 
 ```js
@@ -10,7 +11,7 @@ export default function(babel) {
 }
 ```
 
-Since you'll be using it so often, you'll likely want to grab just `babel.types`
+Since you'll be using it so often, you'll likely want to grab just [babel.types](https://babeljs.io/docs/babel-types#node-builders)
 like so:
 
 ```js
@@ -19,7 +20,7 @@ export default function({ types: t }) {
 }
 ```
 
-Then you return an object with a property `visitor` which is the primary visitor
+Then **you return an object with a property `visitor` which is the primary visitor**
 for the plugin.
 
 ```js
@@ -111,7 +112,7 @@ BinaryExpression(path) {
     return;
   }
 
-  path.node.left = t.identifier("sebmck");
+  path.node.left = t.identifier("sebmck"); // Builds an identifier node
   path.node.right = t.identifier("dork");
 }
 ```
