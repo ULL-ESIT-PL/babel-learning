@@ -178,7 +178,7 @@ const MyVisitor = {
 };
 ```
 
-You can also use aliases as visitor nodes (as defined in [babel-types](https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions)).
+You can also use aliases as visitor nodes, as defined in [babel-types](https://babeljs.io/docs/babel-types#node-builders). Source at https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions.
 
 For example,
 
