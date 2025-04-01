@@ -194,6 +194,17 @@ const MyVisitor = {
 
 See example [src/traverse/hello-babel-traverse.mjs](/src/traverse/hello-babel-traverse.mjs):
 
+This introductory example traverses the AST for the code:
+
+```js 
+function square(n) {
+  return n * n;
+}
+```
+
+renaming all the `n` identifiers to `x`. It also uses the npm module [compact-js-ast](https://github.com/ULL-ESIT-PL/compact-js-ast)
+to show a YAML compact version of the AST.
+
 ```js
 import * as babylon from "@babel/parser";
 import _traverse from "@babel/traverse";
