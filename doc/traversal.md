@@ -318,7 +318,7 @@ const add = (a, b) => a + b;
 
 produces:
 
-```console
+```js
 ➜  babel-learning git:(main) ✗ node src/traverse/example.mjs
 Found function declaration: square
 Found function expression assigned to: double
@@ -337,6 +337,7 @@ const add = function (a, b) {
   return a + b;
 };
 ```
+
 Here is the code:
 
 ```js 
