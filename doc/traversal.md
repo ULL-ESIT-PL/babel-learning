@@ -168,6 +168,8 @@ const MyVisitor = {
 };
 ```
 
+### The `|` operator
+
 If necessary, you can also apply the same function for multiple visitor nodes by separating them with a `|` in the method name as a string like `Identifier|MemberExpression`.
 
 Example usage in the [flow-comments](https://github.com/babel/babel/blob/2b6ff53459d97218b0cf16f8a51c14a165db1fd2/packages/babel-plugin-transform-flow-comments/src/index.js#L47) plugin
@@ -177,6 +179,8 @@ const MyVisitor = {
   "ExportNamedDeclaration|Flow"(path) {}
 };
 ```
+
+### Aliases
 
 You can also use aliases as visitor nodes, as defined in [babel-types](https://babeljs.io/docs/babel-types#node-builders). Source at https://github.com/babel/babel/tree/master/packages/babel-types/src/definitions.
 
