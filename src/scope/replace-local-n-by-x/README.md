@@ -22,3 +22,4 @@ function square(z) {
 }
 n = square(n) * n;
 ```
+The global variable `n` is not renamed, only the local variable `n` in the function `square`.
