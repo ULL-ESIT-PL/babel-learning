@@ -68,11 +68,12 @@ This traversal process happens throughout the Babel transform stage.
 
 When we talk about "going" to a node, we actually mean we are **visiting** them.
 The reason we use that term is because there is this concept of a
-[**visitor**](https://en.wikipedia.org/wiki/Visitor_pattern).
+[**visitor** as specified in the wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern).
 
-Visitors are a pattern used in AST traversal across languages. Simply put they
-are an object with methods defined for accepting particular node types in a
-tree. That's a bit abstract so let's look at an example.
+Visitors are a pattern used in AST traversal across languages. 
+**Simply put they are an object with methods defined for accepting particular node types in a tree**. 
+
+That's a bit abstract so let's look at an example.
 
 ```js
 const MyVisitor = {
@@ -152,6 +153,8 @@ Let's _walk_ through what this process looks like for the above tree.
     - Exit `ReturnStatement (body)`
   - Exit `BlockStatement (body)`
 - Exit `FunctionDeclaration`
+
+### enter and exit 
 
 So when creating a visitor you have two opportunities to visit a node.
 
