@@ -29,7 +29,7 @@ traverse(ast, {
   FunctionDeclaration(path) {
     console.log(`Found function declaration: ${path.node.id.name}`);
     
-    // Add a comment above the function
+    // Add a comment above the function. See https://github.com/babel/babel/blob/0f95b748a9a5f90c3b23d4d72299684991049243/packages/babel-types/src/comments/addComments.ts and https://github.com/babel/babel/blob/0f95b748a9a5f90c3b23d4d72299684991049243/packages/babel-traverse/src/path/comments.ts#L57-L64
     path.addComment('leading', ` Function: ${path.node.id.name} `, true);
   },
   
