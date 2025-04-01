@@ -8,7 +8,7 @@ module.exports = function(babel) {
         const id = path.scope.generateUidIdentifierBasedOnNode(path.node.id);
         let node = t.toExpression(path.node);
         path.remove();
-        path.scope.parent.push({ id, init: node });
+        path.scope.parent.push({ id, init: node, });
       }
     }
   };

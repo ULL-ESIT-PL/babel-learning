@@ -11,3 +11,14 @@ function square(p) {
 }
 n = square(n) * n;
 ```
+
+We can also use `path.scope.rename` to rename the variable as in the plugin [rename.mjs](rename.mjs).
+
+```js
+➜  replace-local-n-by-x git:(main) ✗ VARNAME="n" REPLACE="z" npx babel input.js --plugins=./rename.mjs
+let n = 5;
+function square(z) {
+  return z * z;
+}
+n = square(n) * n;
+```
