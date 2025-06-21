@@ -22,9 +22,23 @@ console.log(
 ); 
 ```
 
-to pipe `value` through the three functions. See [example.js](example.js). 
+to pipe `value` through the three functions. See [example.js](example.js). Here the `^^` is a placeholder since our
+`babel.config.js` is configured to use the `hack` style of the pipeline operator and the `topicToken` is set to  `^^`:
 
-```  
+
+```js 
+pipeline-operator git:(main) cat babel.config.json 
+{
+  "plugins": [
+    [
+      "@babel/plugin-proposal-pipeline-operator", 
+      { 
+        "proposal": "hack", 
+        "topicToken": "^^" 
+      }
+    ]
+  ]
+}%  
 ➜  pipeline-operator git:(main) ✗ npx babel example.mjs | node
 16
 ```
