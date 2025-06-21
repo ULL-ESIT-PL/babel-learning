@@ -23,7 +23,9 @@ console.log(chalk.blue(`$ ${Object.keys(envars).map(envar => `${envar}=${envars[
 )); // Outputs: $ NODE_ENV=production PORT=3000 DB_HOST=localhost DB_PORT=5432 DB_USER=user node server.js --verbose --watch
 
 // With pipes
-_ref2 = Object.keys(envars).map(envar => `${envar}=${envars[envar]}`).join(' '), _ref = chalk.red(`$ ${_ref2}`, 'node', args.join(' ')), console.log(_ref);
+_ref2 = Object.keys(envars).map(envar => `${envar}=${envars[envar]}`).join(' '), _ref = chalk.red(`$ ${_ref2}` // '$ NODE_ENV=production PORT=3000 DB_HOST=localhost DB_PORT=5432 DB_USER=user'
+, 'node', args.join(' ')) // '$ NODE_ENV=production PORT=3000 DB_HOST=localhost DB_PORT=5432 DB_USER=user node server.js --verbose --watch'
+, console.log(_ref); // Outputs the same as above
 ```
 
 ```
