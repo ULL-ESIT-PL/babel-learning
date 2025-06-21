@@ -34,6 +34,8 @@ See
 - https://github.com/tc39/proposal-pipeline-operator
 - https://babeljs.io/docs/babel-plugin-proposal-pipeline-operator
 - [index.mjs](index.mjs)
+- [example.js](example.js)
+- [babel.config.js](babel.config.js)
 
 ```js 
 ➜  pipeline-operator git:(main) npx babel index.mjs       
