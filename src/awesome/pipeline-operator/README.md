@@ -1,3 +1,16 @@
+In the Hack language’s pipe syntax, the righthand side of the pipe 
+is an expression containing a special placeholder, 
+which is evaluated with the placeholder bound to the result of evaluating the lefthand side's expression. 
+That is, we write 
+
+```js
+function one () { return 1; }
+function double (x) { return x * 2; }
+value |> one(^^) |> two(^^) |> three(^^) 
+```
+
+to pipe `value` through the three functions.
+
 - https://babeljs.io/docs/babel-plugin-proposal-pipeline-operator
 - [index.mjs](index.mjs)
 
