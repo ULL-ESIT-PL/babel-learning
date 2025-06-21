@@ -58,5 +58,5 @@ var myModule = require("my-module");
 
 See also 
 
-- The example at [/doc/manipulation.md#replacing-a-node-with-multiple-nodes](https://github.com/ULL-ESIT-PL/babel-learning/blob/main/doc/manipulation.md#replacing-a-node-with-multiple-nodes)
+- The example at [/doc/manipulation.md#replacing-a-node-with-multiple-nodes](/doc/manipulation.md#replacing-a-node-with-multiple-nodes)
 - The example [/src/manipulating-ast-with-js/babel-template-example.js](/src/manipulating-ast-with-js/babel-template-example.js)

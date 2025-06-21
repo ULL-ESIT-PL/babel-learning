@@ -1,0 +1,18 @@
+{
+  "name": "pipeline-operator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/plugin-proposal-pipeline-operator": "^7.27.1"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}
