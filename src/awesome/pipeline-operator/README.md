@@ -1,5 +1,5 @@
-In the Hack language’s pipe syntax, the **righthand** side of the pipe 
-is an expression containing a s**pecial placeholder**, 
+In the Hack language’s pipe syntax, the **righthand** side of the pipe `leftHand |> rightHand(placeholder)`
+is an expression containing a **special placeholder**, 
 which is evaluated with the placeholder *bound to the result of evaluating the lefthand side's expression*. 
 That is, we write 
 
