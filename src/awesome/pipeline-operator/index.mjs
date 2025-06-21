@@ -28,6 +28,6 @@ console.log(
 Object.keys(envars)
   .map(envar => `${envar}=${envars[envar]}`)
   .join(' ')
-  |> `$ ${^^}`
-  |> chalk.red(^^, 'node', args.join(' '))
-  |> console.log(^^);
+  |> `$ ${^^}` // '$ NODE_ENV=production PORT=3000 DB_HOST=localhost DB_PORT=5432 DB_USER=user'
+  |> chalk.red(^^, 'node', args.join(' ')) // '$ NODE_ENV=production PORT=3000 DB_HOST=localhost DB_PORT=5432 DB_USER=user node server.js --verbose --watch'
+  |> console.log(^^); // Outputs the same as above
