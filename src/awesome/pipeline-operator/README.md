@@ -29,6 +29,9 @@ to pipe `value` through the three functions. See [example.js](example.js).
 16
 ```
 
+See 
+
+- https://github.com/tc39/proposal-pipeline-operator
 - https://babeljs.io/docs/babel-plugin-proposal-pipeline-operator
 - [index.mjs](index.mjs)
 
