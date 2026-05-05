@@ -10,8 +10,8 @@ const id = t.identifier("x");
 const ast = t.file(
   t.program([
     t.expressionStatement(id),
-    //t.expressionStatement(id), // A DAG: Bad idea. Avoid this pattern!
-    t.expressionStatement(t.identifier("x")),
+    //t.expressionStatement(id), // A DAG: Bad idea. Avoid this pattern when using path!
+    t.expressionStatement(t.identifier("x")), // A tree:  Each node is unique.
 
   ])
 );
