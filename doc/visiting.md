@@ -68,6 +68,16 @@ BinaryExpression(path) {
 }
 ```
 
+Remember to import `t` from `@babel/types`:
+
+```js
+import * as t from '@babel/types';
+```
+or in  a CommonJS module:
+```js
+const t = require('@babel/types');
+```
+
 You can also do a shallow check for properties on that node:
 
 ```js
