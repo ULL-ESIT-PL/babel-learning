@@ -9,9 +9,9 @@ const id = t.identifier("x");
 
 const ast = t.file(
   t.program([
-    t.expressionStatement(id),   // Switch comments between these two lines to see the difference between a DAG and a tree regarding path. 
-    //t.expressionStatement(id), // A DAG:  Avoid this pattern when using path!
-    t.expressionStatement(t.identifier("x")), // A tree:  Each node is unique.
+    t.expressionStatement(id),   // Switch comments between these two lines below to see the difference between a DAG and a tree regarding path. 
+    t.expressionStatement(id), // A DAG:  Avoid this pattern when using path!
+    //t.expressionStatement(t.identifier("x")), // A tree:  Each node is unique.
 
   ])
 );
@@ -25,5 +25,5 @@ traverse(ast, {
   }
 });
 
-console.log(path1 === path2);           // false
-console.log(path1.node === path2.node); // true
+console.log(path1 === path2);           // false when using a DAG, false when using a tree
+console.log(path1.node === path2.node); // true when using a DAG, false when using a tree
