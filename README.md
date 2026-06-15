@@ -143,6 +143,10 @@ See section [first-plugin.md](doc/first-plugin.md).
 
 See section [Visiting](doc/visiting.md)
 
+## Custom Nodes in Babel.js 7.29
+
+See section [Custom Nodes in Babel.js 7.29](doc/custom-nodes.md)
+
 ## Manipulating the AST in a Babel Plugin
 
 See section [Manipulation](doc/manipulation.md)
