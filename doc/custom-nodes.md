@@ -1,6 +1,8 @@
 
 # Custom Nodes in Babel.js 7.29
 
+## Example: Defining and Traversing Custom Nodes
+
 ```js
 // Using babel 7.29
 const babelTraverse = require("@babel/traverse");
@@ -113,4 +115,72 @@ true
 true
 Nombre del campo: field1
 Visitando identificador interno: field1
+```
+
+##  
+
+```js 
+// This file demonstrates how to define a custom AST node type and configure Babel to traverse it.
+// It also shows how to create an AST that includes the custom node and how to write 
+// a visitor that handles it. This is an unofficial hack. Babel does not offer a stable public API for extending arbitrary types.
+// This can break between versions.
+
+const traverse = require("@babel/traverse").default;
+const t = require("@babel/types");
+
+// 1. Define the new node type and its child properties
+// Babel will inspect these properties to continue deep traversal
+t.TYPES.push("MyCustomNode");
+t.VISITOR_KEYS.MyCustomNode = [
+  "childPropertyA",
+  "childPropertyB"
+];
+
+// 2. Create an AST structure that uses the new node
+const customAST = {
+  type: "Program",
+  body: [
+    {
+      type: "MyCustomNode",
+
+      // Child properties (Babel will traverse these automatically)
+      childPropertyA: {
+        type: "Identifier",
+        name: "internalVariable"
+      },
+
+      childPropertyB: {
+        type: "StringLiteral",
+        value: "test text"
+      },
+
+      // Regular property that will NOT be traversed
+      // because it is not listed in VISITOR_KEYS
+      metadataInfo: "control information"
+    }
+  ],
+  sourceType: "module"
+};
+
+// 3. Configure the visitor including the new node type
+const myVisitor = {
+  MyCustomNode(path) {
+    console.log("Custom node found!");
+  },
+
+  Identifier(path) {
+    console.log(`Visiting child identifier: ${path.node.name}`);
+  }
+};
+
+// 4. Run the traversal
+traverse(customAST, myVisitor);
+```
+
+Execution:
+
+```
+➜  compilers-introduction git:(dev) ✗ node bin/personalized-node.cjs 
+Custom node found!
+Visiting child identifier: internalVariable
 ```
